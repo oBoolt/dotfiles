@@ -1,1 +1,379 @@
-/mnt/c/Users/Bolt/.config/starship.toml
+# Get editor completions based on the config schema
+"$schema" = 'https://starsdisabled = falsehip.rs/config-schema.json'
+add_newline = false
+command_timeout = 1000
+scan_timeout = 50
+format = '''
+[╭╴](238)$os( - $shell) | \[$username(@$hostname)\]$git_status$git_state$all$fill$cmd_duration
+[╰╴](238)($git_branch )$directory $character'''
+
+[os]
+format = "[$symbol($type)]($style)"
+style = "bold 238"
+disabled = false
+
+[os.symbols]
+Alpaquita = ""
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = "󰣇 "
+Artix = " "
+Debian = " "
+DragonFly = ""
+Emscripten = ""
+EndeavourOS = ""
+Fedora = " "
+FreeBSD = " "
+Garuda = " "
+Gentoo = " "
+HardenedBSD = ""
+Illumos = " "
+Linux = " "
+Mabox = ""
+Macos = " "
+Manjaro = " "
+Mariner = ""
+MidnightBSD = ""
+Mint = "󰣭 "
+NetBSD = ""
+NixOS = " "
+OpenBSD = " "
+OpenCloudOS = ""
+openEuler = ""
+openSUSE = " "
+OracleLinux = ""
+Pop = " "
+Raspbian = " "
+Redhat = "󱄛 "
+RedHatEnterprise = "󱄛 "
+Redox = ""
+Solus = " "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Windows = " "
+
+[username]
+format = '[$user]($style)'
+show_always = true
+style_user = "blue bold"
+
+[hostname]
+format = '[$hostname]($style)'
+style = "bold green"
+
+[git_state]
+format = '-\[[$state( $progress_current/$progress_total)]($style)\]'
+
+[git_status]
+format = '(-\[[$all_status$ahead_behind]($style)\])'
+renamed = ""
+deleted = "󰧧"
+style = "202 bold"
+
+[fill]
+symbol = " "
+
+[cmd_duration]
+format = '\[[$duration]($style)\]'
+show_milliseconds = true
+min_time = 500
+
+[shell]
+format = '[$indicator]($style)'
+bash_indicator = ""
+fish_indicator = "󰈺"
+zsh_indicator = "ZSH"
+powershell_indicator = ""      # _
+ion_indicator = ""
+elvish_indicator = "󰘧"
+tcsh_indicator = "TSH"
+xonsh_indicator = "XSH"
+cmd_indicator = ""
+nu_indicator = "NSH"
+unknown_indicator = ""
+style = "bold 238"
+disabled = true
+
+[git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style)'
+symbol = " "
+truncation_length = 6
+truncation_symbol = ""
+
+[directory]
+format = '[($read_only )]($read_only_style)[$path]($style)'
+truncate_to_repo = true
+use_os_path_sep = true
+home_symbol = "~"
+style = "bold cyan"
+read_only = ""
+fish_style_pwd_dir_length = 10
+
+[character]
+success_symbol = "[󱦰](#01ff00)" #  󰁔  󱦰
+error_symbol = "[󱦰](#ff0000)"
+
+[aws]
+format = '\[[$symbol($profile)( \($region\))( - $duration)]($style)\]'
+symbol = "󰸏 "
+
+[azure]
+format = '-\[[$symbol($username)]($style)\]'
+symbol = " "
+disabled = false
+
+[buf]
+format = '-\[[$symbol($version)]($style)\]'
+
+[bun]
+format = '-\[[$symbol($version)]($style)\]'
+
+[c]
+format = '-\[[$symbol($version( - $name)]($style)\]'
+symbol = " "
+
+[cmake]
+format = '-\[[$symbol($version)]($style)\]'
+
+[cobol]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = "🦏 "
+
+[conda]
+format = '-\[[$symbol($version)]($style)\]'
+
+[container]
+format = '-\[[$symbol$name]($style)\]'
+symbol = " "
+
+[crystal]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+style = "bold purple"
+
+[daml]
+format = '-\[[$symbol($version)]($style)\]'
+
+[dart]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[deno]
+format = '-\[[$symbol($version)]($style)\]'
+
+[docker_context]
+format = '-\[[$symbol($context)]($style)\]'
+symbol = " "
+style = "cyan bold"
+
+[dotnet]
+format = '-\[[$symbol($version)( - $tfm)]($style)\]'
+symbol = "󰪮 "
+
+[elixir]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[elm]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[erlang]
+format = '-\[[$symbol($version)]($style)\]'
+
+[fennel]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[gcloud]
+format = '-\[[$symbol($account)( \($region\))( - $domain)]($style)\]'
+symbol = "󱇶 "
+
+[golang]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = "󰟓 "
+
+[gradle]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[haskell]
+format = '-\[[$symbol($version)]($style)\]'
+
+[haxe]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[helm]
+format = '-\[[$symbol($version)]($style)\]'
+
+[java]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[jobs]
+format = '-\[[$symbol($number)]($style)\]'
+
+[julia]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[kotlin]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[line_break]
+disabled = true
+
+[lua]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[meson]
+format = '-\[[$symbol($project)]($style)\]'
+
+[nim]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[nix_shell]
+format = '-\[[$symbol$state( - $name)]($style)\]'
+symbol = "󱄅 "
+
+[nodejs]
+format = '-\[[$symbol($version)]($style)\]'
+
+[ocaml]
+format = '-\[[$symbol($version( - $switch_name)]($style)\]'
+symbol = " "
+
+[opa]
+format = '-\[[$symbol($version)]($style)\]'
+
+[openstack]
+format = '-\[[$symbol$cloud( - $project)]($style)\]'
+
+[package]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[perl]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[php]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[pulumi]
+format = '-\[[$symbol($version ( - $name)]($style)\]'
+
+[purescript]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[python]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[rlang]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[raku]
+format = '-\[[$symbol($version)( - $vm_version)]($style)\]'
+symbol = "󱖉 "
+
+[red]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = "󱥒 "
+
+[ruby]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[rust]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[scala]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[singularity]
+format = '-\[[$symbol($env)]($style)\]'
+
+[solidity]
+format = '-\[[$symbol($version)]($style)\]'
+
+[spack]
+format = '-\[[$symbol($environment)]($style)\]'
+
+[swift]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[terraform]
+format = '-\[[$symbol($version( - $workspace)]($style)\]'
+symbol = "󱁢 "
+
+[typst]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = "󰬛 "
+
+[vagrant]
+format = '-\[[$symbol($version)]($style)\]'
+
+[vlang]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+[zig]
+format = '-\[[$symbol($version)]($style)\]'
+symbol = " "
+
+# Disables
+[git_metrics]
+disabled = true
+
+[battery]
+disabled = true
+
+[direnv]
+disabled = true
+
+[fossil_branch]
+disabled = true
+
+[fossil_metrics]
+disabled = true
+
+[guix_shell]
+disabled = true
+
+[kubernetes]
+disabled = true
+
+[localip]
+disabled = true
+
+[memory_usage]
+disabled = true
+
+[shlvl]
+disabled = true
+
+[sudo]
+disabled = true
+
+[status]
+format = '-\[[$common_meaning$signal_name$maybe_int]($style)\]'
+disabled = true
+
+[time]
+disabled = true
+
+[vcsh]
+disabled = true
