@@ -15,6 +15,8 @@ apt install stow
 ```
 
 ## Installation
+Make sure you are at your home directory
+
 ```
 $ git clone https://github.com/oBoolt/dotfiles.git
 $ cd .dotfiles
@@ -24,4 +26,4 @@ $ stow .
 ## References
 - [GNU Stow](https://www.gnu.org/software/stow/)
 - [Git](https://git-scm.com/)
-- [Video](https://www.youtube.com/watch?v=y6XCebnB9gs&t=322s)
+- [Video](https://www.youtube.com/watch?v=y6XCebnB9gs)
