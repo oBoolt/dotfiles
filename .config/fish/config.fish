@@ -6,3 +6,4 @@ end
 
 starship init fish | source
 cd ~
+alias vim=nvim
