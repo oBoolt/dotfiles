@@ -1,5 +1,5 @@
 # My Config Files
-This repository is used to store my config files in linux usig the GNU stow
+This repository is used to store my config files in linux using the GNU stow
 
 ## Requirements
 You need the following softwares to setup
@@ -18,7 +18,7 @@ apt install stow
 Make sure you are at your home directory
 
 ```
-$ git clone https://github.com/oBoolt/dotfiles.git
+$ git clone https://github.com/oBoolt/dotfiles.git .dotfiles
 $ cd .dotfiles
 $ stow .
 ```
