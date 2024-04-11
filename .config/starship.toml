@@ -97,7 +97,7 @@ style = "bold 238"
 disabled = true
 
 [git_branch]
-format = '[$symbol$branch(:$remote_branch)]($style)'
+format = '[$symbol $branch(:$remote_branch)]($style)'
 symbol = ""
 truncation_length = 6
 truncation_symbol = ""
