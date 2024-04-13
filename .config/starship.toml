@@ -126,6 +126,7 @@ disabled = false
 
 [buf]
 format = '-\[[$symbol( $version)]($style)\]'
+symbol = "🐃"
 
 [bun]
 format = '-\[[$symbol( $version)]($style)\]'
@@ -136,6 +137,7 @@ symbol = ""
 
 [cmake]
 format = '-\[[$symbol( $version)]($style)\]'
+symbol = "△"
 
 [cobol]
 format = '-\[[$symbol( $version)]($style)\]'
@@ -143,6 +145,7 @@ symbol = "🦏"
 
 [conda]
 format = '-\[[$symbol( $version)]($style)\]'
+symbol = "🅒"
 
 [container]
 format = '-\[[$symbol( $name)]($style)\]'
@@ -155,6 +158,7 @@ style = "bold purple"
 
 [daml]
 format = '-\[[$symbol( $version)]($style)\]'
+symbol = "Λ"
 
 [dart]
 format = '-\[[$symbol( $version)]($style)\]'
@@ -162,6 +166,7 @@ symbol = ""
 
 [deno]
 format = '-\[[$symbol( $version)]($style)\]'
+symbol = "🦕"
 
 [docker_context]
 format = '-\[[$symbol( $context)]($style)\]'
@@ -182,6 +187,7 @@ symbol = ""
 
 [erlang]
 format = '-\[[$symbol( $version)]($style)\]'
+symbol = ""
 
 [fennel]
 format = '-\[[$symbol( $version)]($style)\]'
@@ -201,6 +207,7 @@ symbol = ""
 
 [haskell]
 format = '-\[[$symbol( $version)]($style)\]'
+symbol = "λ"
 
 [haxe]
 format = '-\[[$symbol( $version)]($style)\]'
@@ -208,6 +215,7 @@ symbol = ""
 
 [helm]
 format = '-\[[$symbol( $version)]($style)\]'
+symbol = "⎈"
 
 [java]
 format = '-\[[$symbol( $version)]($style)\]'
@@ -233,6 +241,7 @@ symbol = ""
 
 [meson]
 format = '-\[[$symbol( $project)]($style)\]'
+symbol = "⬢"
 
 [nim]
 format = '-\[[$symbol( $version)]($style)\]'
@@ -244,6 +253,7 @@ symbol = "󱄅"
 
 [nodejs]
 format = '-\[[$symbol( $version)]($style)\]'
+symbol =""
 
 [ocaml]
 format = '-\[[$symbol( $version( - $switch_name)]($style)\]'
@@ -251,9 +261,11 @@ symbol = ""
 
 [opa]
 format = '-\[[$symbol( $version)]($style)\]'
+symbol = "🪖"
 
 [openstack]
 format = '-\[[$symbol ($cloud( - $project))]($style)\]'
+symbol = "☁️"
 
 [package]
 format = '-\[[$symbol( $version)]($style)\]'
@@ -269,6 +281,7 @@ symbol = ""
 
 [pulumi]
 format = '-\[[$symbol( $version ( - $name))]($style)\]'
+symbol = ""
 
 [purescript]
 format = '-\[[$symbol( $version)]($style)\]'
@@ -304,12 +317,15 @@ symbol = ""
 
 [singularity]
 format = '-\[[$symbol( $env)]($style)\]'
+symbol = ""
 
 [solidity]
 format = '-\[[$symbol( $version)]($style)\]'
+symbol = "S"
 
 [spack]
 format = '-\[[$symbol( $environment)]($style)\]'
+symbol = "🅢"
 
 [swift]
 format = '-\[[$symbol( $version)]($style)\]'
@@ -325,6 +341,7 @@ symbol = "󰬛"
 
 [vagrant]
 format = '-\[[$symbol( $version)]($style)\]'
+symbol = "⍱"
 
 [vlang]
 format = '-\[[$symbol( $version)]($style)\]'
