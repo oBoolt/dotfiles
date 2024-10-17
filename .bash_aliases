@@ -1,2 +1,2 @@
 # Uses neovim as default
-vim=nvim
+alias vim=nvim
