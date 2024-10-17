@@ -3,7 +3,7 @@ local cmp = require('cmp')
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { "rust_analyzer", "tsserver", "eslint" },
+  ensure_installed = { "rust_analyzer", "eslint", "emmet_language_server", "ast_grep" },
   handlers = {
     function(server_name)
       require('lspconfig')[server_name].setup({})
