@@ -1,0 +1,9 @@
+[init]
+	defaultBranch = main
+[user]
+	name = oBoolt
+	email = bernardo.patto.pinheiro@gmail.com
+[core]
+	editor = vim
+[alias]
+	st = status -s
