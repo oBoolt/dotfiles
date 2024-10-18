@@ -4,7 +4,33 @@
 	name = oBoolt
 	email = bernardo.patto.pinheiro@gmail.com
 [core]
-	editor = vim
+	editor = nvim
 	autocrlf = input
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
 [alias]
 	st = status -s
+[delta]
+    dark = true
+    side-by-side = true
+    line-numbers = true
+    file-decoration-style = normal dim ul ol
+    file-style = raw
+    hunk-header-decoration-style = normal dim box
+    hunk-header-line-number-style = raw
+    minus-style = red normal
+    minus-emph-style = red bold ul
+    minus-empty-line-marker-style = omit
+    plus-style = green normal
+    plus-emph-style = green bold ul
+    plus-empty-line-marker-style = omit
+    zero-style = normal dim
+    line-numbers-minus-style = red
+    line-numbers-plus-style = green
+    line-numbers-left-style = red
+    line-numbers-right-style = green
