@@ -121,8 +121,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Bat Configuration
-export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
-
 help() {
     "$@" --help 2>&1 | bat --plain --language=help
 }

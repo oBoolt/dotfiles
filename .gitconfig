@@ -1,11 +1,11 @@
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [user]
-	name = oBoolt
-	email = bernardo.patto.pinheiro@gmail.com
+    name = oBoolt
+    email = bernardo.patto.pinheiro@gmail.com
 [core]
-	editor = nvim
-	autocrlf = input
+    editor = nvim
+    autocrlf = input
     pager = delta
 [interactive]
     diffFilter = delta --color-only
@@ -14,7 +14,7 @@
 [diff]
     colorMoved = default
 [alias]
-	st = status -s
+    st = status -s
 [delta]
     dark = true
     side-by-side = true
