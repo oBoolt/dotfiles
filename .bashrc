@@ -129,6 +129,3 @@ help() {
 eval "$(starship init bash)"
 
 cd ~
-
-# TMux
-[ -z "$TMUX" ] && { tmux attach || exec tmux new-session && exit; }
