@@ -129,3 +129,5 @@ help() {
 eval "$(starship init bash)"
 
 cd ~
+
+. "$HOME/.cargo/env"
