@@ -1,5 +1,15 @@
 return {
     { 
+        'numToStr/Comment.nvim',
+        lazy = false,
+        opts = {
+            mappings = {
+                basic = true,
+                extra = true,
+            },
+        },
+    },
+    { 
         "ellisonleao/gruvbox.nvim",
         lazy = false,
         priority = 1000,
@@ -25,5 +35,4 @@ return {
             vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
         end
     },
-    'numToStr/Comment.nvim',
 }
