@@ -20,10 +20,10 @@ Make sure you are at your home directory
 ```
 $ git clone https://github.com/oBoolt/dotfiles.git .dotfiles
 $ cd .dotfiles
-$ stow .
+$ stow [packages]
 ```
 
 ## References
 - [GNU Stow](https://www.gnu.org/software/stow/)
 - [Git](https://git-scm.com/)
-- [Video](https://www.youtube.com/watch?v=y6XCebnB9gs)
+- [Video](https://www.youtube.com/watch?v=NoFiYOqnC4o)
