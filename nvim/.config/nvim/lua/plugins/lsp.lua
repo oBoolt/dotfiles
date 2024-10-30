@@ -1,10 +1,12 @@
 return {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v4.x',
+    lazy = false,
     dependencies = {
         {'neovim/nvim-lspconfig'},
-        {'hrsh7th/cmp-nvim-lsp'},
         {'hrsh7th/nvim-cmp'},
+        {'hrsh7th/cmp-nvim-lsp'},
+        {'hrsh7th/cmp-buffer'},
         {'L3MON4D3/LuaSnip'},
         {'williamboman/mason.nvim'},
         {'williamboman/mason-lspconfig.nvim'}
@@ -77,6 +79,7 @@ return {
         cmp.setup({
             sources = {
                 { name = 'nvim_lsp'},
+                { name = 'buffer' },
             },
             snippet = {
                 expand = function(args)
