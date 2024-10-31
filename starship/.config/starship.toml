@@ -1,5 +1,5 @@
 # Get editor completions based on the config schema
-"$schema" = 'https://starsdisabled = falsehip.rs/config-schema.json'
+"$schema" = 'https://starship.rs/config-schema.json'
 add_newline = false
 command_timeout = 1000
 scan_timeout = 50
@@ -63,14 +63,14 @@ style_user = "blue bold"
 format = '[$hostname]($style)'
 style = "bold green"
 
-[git_state]
-format = '-\[[$state( $progress_current/$progress_total)]($style)\]'
-
 [git_status]
 format = '(-\[[$all_status$ahead_behind]($style)\])'
 renamed = ""
 deleted = "󰧧"
 style = "202 bold"
+
+[git_state]
+format = '-\[[$state( $progress_current/$progress_total)]($style)\]'
 
 [fill]
 symbol = " "
