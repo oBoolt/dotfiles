@@ -114,6 +114,7 @@ fish_style_pwd_dir_length = 10
 [character]
 success_symbol = "[󱦰](#01ff00)" #  󰁔  󱦰
 error_symbol = "[󱦰](#ff0000)"
+vimcmd_symbol = "[󱦱](#ffea00)"
 
 [aws]
 format = '\[[$symbol($profile)( \($region\))( - $duration)]($style)\]'
@@ -253,7 +254,7 @@ symbol = "󱄅"
 
 [nodejs]
 format = '-\[[$symbol( $version)]($style)\]'
-symbol =""
+symbol = ""
 
 [ocaml]
 format = '-\[[$symbol( $version( - $switch_name)]($style)\]'
@@ -394,4 +395,3 @@ disabled = true
 
 [vcsh]
 disabled = true
-
