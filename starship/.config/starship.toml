@@ -3,6 +3,7 @@
 add_newline = false
 command_timeout = 1000
 scan_timeout = 50
+continuation_prompt = "[󱦰](bold bright-black) "
 format = '''
 [╭╴](238)$os( - $shell) | \[$username(@$hostname)\]$git_status$git_state$all$fill$cmd_duration
 [╰╴](238)($git_branch )$directory $character'''
