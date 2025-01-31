@@ -2,16 +2,18 @@
 This repository is used to store my config files in linux using the GNU stow
 
 ## Requirements
-You need the following softwares to setup
+You need the following softwares to setup:
+- Git
+- Stow
 
 ## Git
 ```
-apt install git
+sudo apt install git
 ```
 
 ## Stow
 ```
-apt install stow
+sudo apt install stow
 ```
 
 ## Installation
