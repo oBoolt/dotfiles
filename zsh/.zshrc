@@ -64,6 +64,9 @@ export VISUAL="$(which nvim)"
 # makes sure that snap is in PATH
 export PATH=$PATH:/snap/bin
 
+# JDK
+export PATH=$PATH:/home/bolt/.local/jdk/current/bin
+
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(starship init zsh)"
