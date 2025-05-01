@@ -31,6 +31,8 @@ return {
             servers = {
                 ['rust_analyzer'] = { 'rust' },
                 ['biome'] = { 'javascript', 'typescript', 'json' },
+                ['java_language_server'] = { 'java' },
+                ['clangd'] = { 'c', 'cpp'}, 
             },
         })
 
@@ -65,7 +67,7 @@ return {
 
         require('mason').setup({})
         require('mason-lspconfig').setup({
-            ensure_installed = { "rust_analyzer", "eslint", "emmet_language_server", "ast_grep" },
+            ensure_installed = { "rust_analyzer", "clangd", "biome", "emmet_language_server", "java_language_server" },
             handlers = {
                 function(server_name)
                     require('lspconfig')[server_name].setup({})

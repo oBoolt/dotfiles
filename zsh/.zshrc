@@ -66,6 +66,7 @@ export PATH=$PATH:/snap/bin
 
 # JDK
 export PATH=$PATH:/home/bolt/.local/jdk/current/bin
+export JAVA_HOME=/home/bolt/.local/jdk/current
 
 # Shell integrations
 eval "$(fzf --zsh)"
