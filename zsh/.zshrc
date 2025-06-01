@@ -72,3 +72,5 @@ export JAVA_HOME=/home/bolt/.local/jdk/current
 eval "$(fzf --zsh)"
 eval "$(starship init zsh)"
 
+# Bat to man
+export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | batcat -p -lman'"
