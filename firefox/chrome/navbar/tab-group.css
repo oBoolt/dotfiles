@@ -1,0 +1,66 @@
+tab-group>vbox.tab-group-label-container>label.tab-group-label {
+    position: relative;
+    max-width: 100% !important;
+
+    &::before {
+        content: "";
+        position: relative;
+        width: var(--icon-size-small, 16px);
+        height: var(--icon-size-small, 16px);
+        margin-inline-end: var(--tab-icon-end-margin);
+        background-color: var(--tab-group-color);
+        mask-image: url("tab-group-icon.svg");
+        mask-repeat: no-repeat;
+        mask-size: cover;
+        mask-position: center;
+    }
+}
+
+tab-group[collapsed]>vbox.tab-group-label-container {
+    flex: 100 100;
+    min-width: var(--tab-min-width-pref, var(--tab-min-width));
+    max-width: 225px;
+    transition: min-width 100ms ease-out, max-width 100ms ease-out !important;
+
+    &>label.tab-group-label {
+        margin-block: var(--tab-block-margin) !important;
+        min-height: var(--tab-min-height) !important;
+        outline: var(--tab-outline) !important;
+        outline-offset: var(--tab-outline-offset) !important;
+        background-color: transparent !important;
+        text-transform: capitalize;
+        display: flex;
+        align-items: center;
+        padding-inline: var(--tab-inline-padding) !important;
+
+        &:hover {
+            background-color: var(--tab-hover-background-color) !important;
+            outline-color: var(--tab-hover-outline-color) !important;
+        }
+    }
+}
+
+tab-group:not([collapsed])>vbox.tab-group-label-container {
+    position: sticky !important;
+    left: 0;
+    z-index: 999;
+
+    &>label.tab-group-label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important;
+        margin-block: var(--tab-block-margin) !important;
+        min-height: calc(var(--tab-min-height) + 2px) !important;
+        width: var(--tab-min-height) !important;
+        margin-bottom: 2px !important;
+        text-indent: -9999px;
+
+        &::before {
+            margin: 0;
+            width: var(--icon-size-medium, 16px);
+            height: var(--icon-size-medium, 16px);
+            background-color: var(--tab-group-label-text-dark);
+        }
+    }
+}
