@@ -1,4 +1,27 @@
+[general]
+import = ["~/.config/alacritty/themes/gruvbox_material_medium_dark.toml"]
+
 [keyboard]
 bindings = [
-    { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" }
+  { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" },
 ]
+
+[font]
+size = 14.0
+
+[font.normal]
+family = "FiraCode Nerd Font Mono"
+style = "Regular"
+
+[font.bold]
+family = "FiraCode Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "FiraCode Nerd Font Mono"
+style = "Italic"
+
+[font.bold_italic]
+family = "FiraCode Nerd Font Mono"
+style = "Bold Italic"
+
