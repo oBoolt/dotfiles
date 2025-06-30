@@ -49,3 +49,6 @@ fi
 # Shell integrations
 [ -x $(which fzf) ] && eval "$(fzf --zsh)"
 [ -x $(which starship) ] && eval "$(starship init zsh)"
+# Android SDK
+# Set ANDROID_HOME 
+[ -d $ANDROID_HOME ] && PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin
