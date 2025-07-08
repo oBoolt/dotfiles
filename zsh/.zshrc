@@ -10,6 +10,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 #zinit light Aloxaf/fzf-tab
 
 [ -e ~/.aliases ] && source ~/.aliases
+[ -d $HOME/.local/bin ] && PATH=$PATH:$HOME/.local/bin
 
 # Keybinds
 #bindkey -v
