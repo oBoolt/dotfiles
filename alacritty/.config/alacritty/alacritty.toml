@@ -10,6 +10,9 @@ style = { shape = "Beam" }
 vi_mode_style = { shape = "Block" }
 thickness = 0.225
 
+[mouse]
+hide_when_typing = true
+
 [keyboard]
 bindings = [
   { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" },
