@@ -53,3 +53,7 @@ fi
 # Android SDK
 # Set ANDROID_HOME 
 [ -d $ANDROID_HOME ] && PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin
+
+# SSH
+# set sock for ssh-agent
+[[ $(systemctl --user status ssh-agent.service >/dev/null) -eq 0 ]] && export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
