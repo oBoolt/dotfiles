@@ -1,3 +1,5 @@
+# Warning
+This repository is no longer in use, see [this](https://github.com/oBoolt/config-files) for the updated version
 # My Config Files
 This repository is used to store my config files in linux using the GNU stow
 
