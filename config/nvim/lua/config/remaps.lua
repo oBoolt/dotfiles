@@ -34,8 +34,8 @@ vim.keymap.set({ 'n', 't' }, '<C-k>', '<CMD>NavigatorUp<CR>')
 vim.keymap.set({ 'n', 't' }, '<C-j>', '<CMD>NavigatorDown<CR>')
 
 -- Splitting and Resize
-vim.keymap.set("n", "<leader>v", ":vsplit<CR>")
-vim.keymap.set("n", "<leader>h", ":split<CR>")
+vim.keymap.set("n", "<leader>v", ":split<CR>")
+vim.keymap.set("n", "<leader>h", ":vsplit<CR>")
 vim.keymap.set("n", "<C-Up>", ":resize +2<CR>")
 vim.keymap.set("n", "<C-Down>", ":resize -2<CR>")
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>")
