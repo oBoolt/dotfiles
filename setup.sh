@@ -2,7 +2,7 @@
 export CONFIG_PATH="${XDG_CONFIG_HOME:-${HOME}/.config}"
 export DOTFILES_PATH="$HOME/.local/share/dotfiles"
 
-REPO="https://github.com/oBoolt/dotfiles"
+REPO="git@github.com:oBoolt/dotfiles"
 download_repo() {
     if ! command -v git >/dev/null; then
         printf "ERROR: missing 'git'"
@@ -17,7 +17,7 @@ download_repo() {
 }
 
 case "$1" in
-    install)
+    "")
         download_repo
         $DOTFILES_PATH/bin/load_config.sh
         ;;
