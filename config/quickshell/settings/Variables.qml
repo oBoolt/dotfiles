@@ -34,4 +34,6 @@ Singleton {
     readonly property int osdHeight: 50
     readonly property int osdRadius: 6
     readonly property int osdTimer: 1000
+
+    readonly property string backlightPath: "/sys/class/backlight/intel_backlight"
 }

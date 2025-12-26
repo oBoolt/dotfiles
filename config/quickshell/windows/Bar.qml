@@ -94,10 +94,7 @@ Variants {
                         icon: Icons.NetworkWiredActivatedSymbolic
                         color: Colors.darkgreen
                     }
-                    Card {
-                        icon: Icons.Brightness90Symbolic
-                        color: Colors.orange
-                    }
+                    Brightness {}
                 }
             }
             Item {

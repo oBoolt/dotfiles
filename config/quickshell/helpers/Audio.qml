@@ -6,7 +6,7 @@ import Quickshell.Services.Pipewire
 Singleton {
     function getAudioIcon(node: PwNode): int {
         let muted = node?.audio?.muted;
-        let volume = Math.round(node.audio?.volume * 100) ?? 0;
+        let volume = Math.round(node?.audio?.volume * 100) ?? 0;
         if (muted) {
             return Icons.AudioVolumeMutedSymbolic;
         }

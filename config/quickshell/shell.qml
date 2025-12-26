@@ -6,6 +6,7 @@ import QtQuick
 
 import qs.types
 import qs.helpers
+import qs.services
 import qs.windows as Windows
 
 ShellRoot {
@@ -35,6 +36,13 @@ ShellRoot {
         }
     }
 
+    Connections {
+        target: Brightness
+        function onBrightnessChanged() {
+            osd.showOSD(OsdMode.Brightness, Brightness.icon, Math.round(Brightness.values.percentage * 100));
+        }
+    }
+
     Windows.Bar {}
     Windows.Launcher {}
     Windows.Notifications {
@@ -43,4 +51,6 @@ ShellRoot {
     Windows.OSD {
         id: osd
     }
+
+    Component.onCompleted: () => Brightness.updateIcon()
 }

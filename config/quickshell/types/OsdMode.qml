@@ -5,7 +5,8 @@ import QtQuick
 
 Singleton {
     enum Enum {
-        Audio = 0,
-        Keyboard = 1
+        Audio,
+        Brightness,
+        Keyboard
     }
 }
