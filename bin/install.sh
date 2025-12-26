@@ -14,4 +14,4 @@ rm -rf $DOTFILES_PATH
 git clone $REPO $DOTFILES_PATH >/dev/null
 printf "INFO: Clone repository successfully\n"
 
-$DOTFILES_PATH/bin/setup config
+$DOTFILES_PATH/bin/setup.sh config
