@@ -12,18 +12,16 @@ backup() {
 
 stow_config() {
     if command -v stow >/dev/null; then
-        stow -v -d $DOTFILES_PATH -t $CONFIG_PATH -S config
+        stow -v -d $DOTFILES_PATH -t $CONFIG_PATH -R config
     fi
 }
 
 main() {
-    if [ ! -e $DOTFILES_PATH/.installed ]; then
-        mkdir -p $BACKUP_PATH
-        for path in $DOTFILES_PATH/config/*; do
-            local pkg="$(basename $path)"
-            backup $pkg
-        done
-    fi
+    mkdir -p $BACKUP_PATH
+    for path in $DOTFILES_PATH/config/*; do
+        local pkg="$(basename $path)"
+        backup $pkg
+    done
 
     if [ -d $BACKUP_PATH ] && [ -z "$(ls -A $BACKUP_PATH)" ]; then
         rm -r $BACKUP_PATH
@@ -32,7 +30,6 @@ main() {
     stow_config
 
     if [ $? -eq 0 ]; then
-        touch $DOTFILES_PATH/.installed
         printf "INFO: all done, thank you!\n"
     fi
 }
