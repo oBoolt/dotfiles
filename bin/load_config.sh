@@ -1,22 +1,6 @@
 #!/usr/bin/env bash
-CONFIG_PATH="${XDG_CONFIG_HOME:-${HOME}/.config}"
-DOTFILES_PATH="$HOME/.local/share/dotfiles"
 BACKUP_PATH="$DOTFILES_PATH/backup"
 
-REPO="https://github.com/oBoolt/dotfiles"
-
-download_repo() {
-    if ! command -v git >/dev/null; then
-        printf "ERROR: missing 'git'"
-        exit 1
-    fi
-
-    printf "REPO: %s\n" $REPO
-    printf "INFO: Cloning repository...\n"
-    rm -rf $DOTFILES_PATH
-    git clone $REPO $DOTFILES_PATH >/dev/null
-    printf "INFO: Clone repository successfully\n"
-}
 
 backup() {
     local pkg="$CONFIG_PATH/$1"
@@ -34,7 +18,6 @@ stow_config() {
 
 main() {
     if [ ! -e $DOTFILES_PATH/.installed ]; then
-        download_repo
         mkdir -p $BACKUP_PATH
         for path in $DOTFILES_PATH/config/*; do
             local pkg="$(basename $path)"
