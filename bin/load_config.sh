@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 BACKUP_PATH="$DOTFILES_PATH/backup"
+declare -a PKGS
 
 backup() {
     local pkg="$CONFIG_PATH/$1"
     if [ ! -h $pkg ] && [ -d $pkg ]; then
-        printf "BACKUP: %s => %s\n" "$1" "$BACKUP_PATH/$1"
+        info "BACKUP"
+        success "$1 => $BACKUP_PATH/$1"
         mv $pkg $BACKUP_PATH/
     fi
 }
@@ -12,6 +14,7 @@ backup() {
 mkdir -p $BACKUP_PATH
 for path in $DOTFILES_PATH/config/*; do
     pkg_name="$(basename $path)"
+    PKGS+=($pkg_name)
     backup $pkg_name
 done
 
@@ -24,5 +27,6 @@ if command -v stow >/dev/null; then
 fi
 
 if [ $? -eq 0 ]; then
-    printf "INFO: all done, thank you!\n"
+    # printf "INFO: all done, thank you!\n"
+    success "all done, thank you!"
 fi
