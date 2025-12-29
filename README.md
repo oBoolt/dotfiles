@@ -9,5 +9,5 @@ You need the following softwares to setup:
 
 ## Installation
 ```
-$ bash <(curl -s https://raw.githubusercontent.com/oBoolt/dotfiles/refs/heads/main/bin/install.sh)
+$ DOTFILES_INSTALL=true bash <(curl -s https://raw.githubusercontent.com/oBoolt/dotfiles/refs/heads/main/bin/install.sh)
 ```
