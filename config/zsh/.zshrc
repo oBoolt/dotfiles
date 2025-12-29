@@ -1,8 +1,12 @@
-# Config Path
-CONFIG_PATH="$XDG_CONFIG_HOME"
+# Variables
+CONFIG_PATH="${XDG_CONFIG_HOME:-${HOME}/.config}"
+DOTFILES_PATH="${DOTFILES_PATH:-${HOME}/.local/share/dotfiles}"
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+export STARSHIP_CONFIG=$CONFIG_PATH/starship/starship.toml
+export GIT_CONFIG_GLOBAL=$CONFIG_PATH/git/.gitconfig
+
 
 # Install zinit
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
@@ -12,7 +16,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 #zinit light zsh-users/zsh-completions
 #zinit light Aloxaf/fzf-tab
 
-[ -e $HOME/.aliases ] && source ~/.aliases
+[ -e $CONFIG_PATH/zsh/.aliases ] && source $CONFIG_PATH/zsh/.aliases
 [ -d $HOME/.local/bin ] && PATH=$PATH:$HOME/.local/bin
 
 # Keybinds
@@ -66,9 +70,6 @@ if [ -x "$(command -v nvim)" ]; then
 fi
 # Cargo env
 [ -x "$(command -v cargo)" ] && export PATH="$PATH:$HOME/.cargo/bin"
-
-# Starship
-export STARSHIP_CONFIG=$CONFIG_PATH/starship/starship.toml
 
 # Shell integrations
 [ -x "$(command -v fzf)" ] && eval "$(fzf --zsh)"
