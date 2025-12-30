@@ -29,6 +29,11 @@ export -f warn
 export -f info
 export -f debug
 
+if [ ! "$(grep '^ID=\we*' /etc/os-release | cut -d = -f 2)" = "arch" ]; then
+    error "only for arch"
+    exit 1
+fi
+
 if [ "$(id -u)" = 0 ]; then
     error "you are not supposed to run this as root"
     exit 1
