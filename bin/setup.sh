@@ -46,7 +46,8 @@ case "$1" in
     *)
         if [ "$DOTFILES_INSTALL" = true ]; then
             DOTFILES_REPOSITORY="git@github.com:oBoolt/dotfiles"
-            mapfile -t DEPENDENCIES < <(grep -v '^#' "$(curl -s https://raw.githubusercontent.com/oBoolt/dotfiles/refs/heads/main/dependencies.packages)" | grep -v '^$')
+            mapfile -t DEPENDENCIES < <(curl -s https://raw.githubusercontent.com/oBoolt/dotfiles/refs/heads/main/dependencies.packages)
+
             info "installaing dependencies"
             sudo pacman -S --noconfirm --needed "${DEPENDENCIES[@]}"
 
