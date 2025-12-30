@@ -23,10 +23,12 @@ if [ -d $BACKUP_PATH ] && [ -z "$(ls -A $BACKUP_PATH)" ]; then
 fi
 
 if command -v stow >/dev/null; then
-    stow -v -d $DOTFILES_PATH -t $CONFIG_PATH -R config
+    stow -d $DOTFILES_PATH -t $CONFIG_PATH -R config
+    for pkg in ${PKGS[@]}; do
+        info "$pkg => $DOTFILES_PATH/config/$pkg" "link"
+    done
 fi
 
 if [ $? -eq 0 ]; then
-    # printf "INFO: all done, thank you!\n"
     success "all done, thank you!"
 fi
