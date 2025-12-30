@@ -1,5 +1,5 @@
 [general]
-import = ["~/.config/alacritty/themes/gruvbox_material_medium_dark.toml"]
+import = ["~/.local/share/dotfiles/themes/current/alacritty.toml"]
 
 [font]
 normal = { family = "FiraCodeNerdFontMono", style = "Regular" }
