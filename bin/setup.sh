@@ -43,6 +43,10 @@ case "$1" in
     config)
         $DOTFILES_PATH/bin/load_config.sh
         ;;
+    theme)
+        shift 1
+        $DOTFILES_PATH/bin/theme.sh $@
+        ;;
     *)
         if [ "$DOTFILES_INSTALL" = true ]; then
             DOTFILES_REPOSITORY="git@github.com:oBoolt/dotfiles"
@@ -60,8 +64,9 @@ case "$1" in
             info "cloned repository successfully"
 
             $DOTFILES_PATH/bin/load_config.sh
+            $DOTFILES_PATH/bin/theme.sh gruvbox
         else
-            warn "setup.sh <config>" "usage"
+            warn "setup.sh <config | theme [name]>" "usage"
         fi
         ;;
 esac
