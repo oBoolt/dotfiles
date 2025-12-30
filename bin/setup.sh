@@ -45,17 +45,17 @@ case "$1" in
         ;;
     *)
         if [ "$DOTFILES_INSTALL" = true ]; then
-            DOTFILES_REPOSITORY="${DOTFILES_REPOSITORY:-git@github.com:oBoolt/dotfiles}"
-
-            if ! command -v git >/dev/null; then
-                error "missing 'git'"
-                exit 1
-            fi
+            DOTFILES_REPOSITORY="git@github.com:oBoolt/dotfiles"
+            mapfile -t DEPENDENCIES < <(grep -v '^#' "$(curl -s https://raw.githubusercontent.com/oBoolt/dotfiles/refs/heads/main/dependencies.packages)" | grep -v '^$')
+            info "installaing dependencies"
+            sudo pacman -S --noconfirm --needed "${DEPENDENCIES[@]}"
 
             info "repository ($DOTFILES_REPOSITORY)"
             info "cloning repository..."
             rm -rf $DOTFILES_PATH
-            git clone $DOTFILES_REPOSITORY $DOTFILES_PATH >/dev/null
+            if command -v git; then
+                git clone $DOTFILES_REPOSITORY $DOTFILES_PATH >/dev/null
+            fi
             info "cloned repository successfully"
 
             $DOTFILES_PATH/bin/load_config.sh
