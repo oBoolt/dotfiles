@@ -3,19 +3,24 @@ export CONFIG_PATH="${XDG_CONFIG_HOME:-${HOME}/.config}"
 export DOTFILES_PATH="${DOTFILES_PATH:-$HOME/.local/share/dotfiles}"
 
 error() {
-    printf "%b\n" "\e[1m\e[38;5;1mERROR:\e[0m $@"
+    tmp=${2:-error}
+    printf "%b\n" "\e[1m\e[38;5;1m${tmp^^}:\e[0m $@"
 }
 success() {
-    printf "%b\n" "\e[1m\e[38;5;2mSUCS:\e[0m $@"
+    tmp=${2:-sucs}
+    printf "%b\n" "\e[1m\e[38;5;2m${tmp^^}:\e[0m $@"
 }
 warn() {
-    printf "%b\n" "\e[1m\e[38;5;3mWARN:\e[0m $@"
-}
-info() {
-    printf "%b\n" "\e[1m\e[38;5;6mINFO:\e[0m $@"
+    tmp=${2:-warn}
+    printf "%b\n" "\e[1m\e[38;5;3m${tmp^^}:\e[0m $1"
 }
 debug() {
-    printf "%b\n" "\e[1m\e[38;5;5mDEBUG:\e[0m $@"
+    tmp=${2:-debug}
+    printf "%b\n" "\e[1m\e[38;5;5m${tmp^^}:\e[0m $@"
+}
+info() {
+    tmp=${2:-info}
+    printf "%b\n" "\e[1m\e[38;5;6m${tmp^^}:\e[0m $@"
 }
 
 export -f error
@@ -25,6 +30,7 @@ export -f info
 export -f debug
 
 if [ "$(id -u)" = 0 ]; then
+    error "you are not supposed to run this as root"
     exit 1
 fi
 
@@ -49,7 +55,7 @@ case "$1" in
 
             $DOTFILES_PATH/bin/load_config.sh
         else
-            warn "usage setup.sh <config>"
+            warn "setup.sh <config>" "usage"
         fi
         ;;
 esac
