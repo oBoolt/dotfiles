@@ -65,6 +65,9 @@ case "$1" in
 
             $DOTFILES_PATH/bin/load_config.sh
             $DOTFILES_PATH/bin/theme.sh gruvbox
+
+            # Create file to enable lsp for quickshell
+            touch $DOTFILES_PATH/config/quickshell/.qmlls.ini
         else
             warn "setup.sh <config | theme [name]>" "usage"
         fi
