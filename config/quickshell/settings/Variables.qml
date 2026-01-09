@@ -18,10 +18,10 @@ Singleton {
 
     readonly property int notificationWidth: 350
     readonly property int notificationHeight: 100
+    readonly property int notificationMargin: 8
     readonly property int notificationsMaxDisplay: 5
     readonly property int notificationSpacing: 6
     readonly property int notificationBorder: 2
-    readonly property int notificationRadius: 6
 
     readonly property int calendarPadding: 8
     readonly property int calendarRadius: 3

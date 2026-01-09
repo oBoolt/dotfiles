@@ -11,21 +11,26 @@ import qs.widgets.common
 
 Rectangle {
     id: notification
-    required property var modelData
-    radius: Variables.notificationRadius
+    required property Notification modelData
     color: Colors.background
     border {
         width: Variables.notificationBorder
         color: {
             if (notification.modelData.urgency == NotificationUrgency.Normal) {
-                return Colors.yellow;
-            }
-            if (notification.modelData.urgency == NotificationUrgency.Critical) {
+                return Colors.foreground;
+            } else if (notification.modelData.urgency == NotificationUrgency.Critical) {
                 return Colors.darkred;
+            } else if (notification.modelData.urgency == NotificationUrgency.Low) {
+                return Colors.blue;
             }
-            if (notification.modelData.urgency == NotificationUrgency.Low) {
-                return Colors.aqua;
-            }
+        }
+    }
+
+    function getIcon(): string {
+        if (this.modelData.appIcon !== "")
+            return Quickshell.iconPath(this.modelData.appIcon);
+        else {
+            return Qt.resolvedUrl(Quickshell.shellDir + "/assets/default-notification.svg");
         }
     }
 
@@ -33,11 +38,11 @@ Rectangle {
         anchors.fill: parent
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         cursorShape: Qt.PointingHandCursor
-
         onClicked: event => notification.modelData.dismiss()
 
         RowLayout {
-            anchors.centerIn: parent
+            anchors.margins: Variables.notificationMargin
+            anchors.fill: parent
             spacing: Variables.notificationSpacing
 
             Rectangle {
@@ -47,8 +52,8 @@ Rectangle {
 
                 IconImage {
                     anchors.centerIn: parent
-                    source: Qt.resolvedUrl(Quickshell.shellDir + "/assets/default-notification.svg")
-                    implicitSize: parent.height - 16
+                    source: notification.getIcon()
+                    implicitSize: parent.height / 9 * 8
 
                     ColorOverlay {
                         anchors.fill: parent
@@ -65,20 +70,18 @@ Rectangle {
 
                 Text {
                     Layout.fillWidth: true
-                    font.pixelSize: Variables.fontSize + 4
+                    font {
+                        pixelSize: Variables.fontSize + 4
+                    }
                     text: notification.modelData.summary
-                }
-
-                Rectangle {
-                    Layout.preferredWidth: parent.width - 20
-                    height: 1
-                    color: Colors.foreground
                 }
 
                 Text {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
+                    font.bold: false
                     wrapMode: Text.Wrap
+                    elide: Text.ElideRight
                     text: notification.modelData.body
                 }
             }

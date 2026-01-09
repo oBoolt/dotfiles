@@ -11,6 +11,11 @@ import qs.widgets.notifications
 Item {
     id: root
     required property NotificationServer notificationServer
+    readonly property int size: {
+        if (root.notificationServer.trackedNotifications.values.length >= 5)
+            return Variables.notificationsMaxDisplay;
+        return root.notificationServer.trackedNotifications.values.length;
+    }
 
     Variants {
         model: Quickshell.screens
@@ -18,9 +23,9 @@ Item {
             required property ShellScreen modelData
             screen: modelData
 
-            visible: root.notificationServer.trackedNotifications.values.length > 0
+            visible: root.size > 0
             implicitWidth: Variables.notificationWidth
-            implicitHeight: Variables.notificationHeight * root.notificationServer.trackedNotifications.values.length + root.notificationServer.trackedNotifications.values.length * (Variables.notificationSpacing - 1)
+            implicitHeight: Variables.notificationHeight * root.size + root.size * (Variables.notificationSpacing - 1)
             color: Variables.debug ? Colors.orange : "transparent"
 
             anchors {
@@ -29,8 +34,8 @@ Item {
             }
 
             margins {
-                top: Variables.notificationSpacing
-                right: Variables.notificationSpacing
+                top: Variables.notificationMargin
+                right: Variables.notificationMargin
             }
 
             ColumnLayout {
