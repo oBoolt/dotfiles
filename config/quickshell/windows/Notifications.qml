@@ -12,7 +12,7 @@ Item {
     id: root
     required property NotificationServer notificationServer
     readonly property int size: {
-        if (root.notificationServer.trackedNotifications.values.length >= 5)
+        if (root.notificationServer.trackedNotifications.values.length >= Variables.notificationsMaxDisplay)
             return Variables.notificationsMaxDisplay;
         return root.notificationServer.trackedNotifications.values.length;
     }
