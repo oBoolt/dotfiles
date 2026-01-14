@@ -11,7 +11,7 @@ Singleton {
     readonly property int barSpacing: 8
     readonly property int barRadius: 6
 
-    readonly property string fontFamily: "JetBrainsMono Nerd Font Propo"
+    readonly property string fontFamily: "NotoSans Nerd Font Propo"
     readonly property int fontSize: 14
 
     readonly property real iconSize: 20
