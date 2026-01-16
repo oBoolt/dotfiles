@@ -1,6 +1,6 @@
 import QtQuick
 
-import qs.widgets.common
+import qs.widgets
 
 Text {
     text: "|"

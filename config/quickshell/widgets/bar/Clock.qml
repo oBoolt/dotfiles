@@ -1,7 +1,7 @@
 import Quickshell
 import QtQuick
 
-import qs.widgets.common
+import qs.widgets
 import qs.widgets.bar
 
 import qs.helpers

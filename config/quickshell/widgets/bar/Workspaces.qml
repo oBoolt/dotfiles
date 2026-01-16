@@ -2,7 +2,7 @@ import QtQuick
 import Quickshell.Hyprland
 
 import qs.settings
-import qs.widgets.common
+import qs.widgets
 
 Repeater {
     model: 5

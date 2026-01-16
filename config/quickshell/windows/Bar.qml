@@ -7,7 +7,7 @@ import QtQuick.Layouts
 
 import qs.settings
 import qs.helpers
-import qs.widgets.common
+import qs.widgets
 import qs.widgets.bar
 
 Variants {

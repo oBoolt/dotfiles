@@ -7,7 +7,7 @@ import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
 import qs.settings
-import qs.widgets.common
+import qs.widgets
 
 Rectangle {
     id: notification

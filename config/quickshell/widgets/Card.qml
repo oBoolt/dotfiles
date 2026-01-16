@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 
 import qs.settings
-import qs.widgets.common
+import qs.widgets
 import qs.helpers
 
 Item {
