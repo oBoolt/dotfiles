@@ -8,6 +8,7 @@ import QtQuick.Layouts
 import qs.settings
 import qs.helpers
 import qs.widgets
+import qs.utils
 import qs.widgets.bar
 
 Variants {
@@ -70,6 +71,14 @@ Variants {
                 color: Variables.debug ? Colors.purple : "transparent"
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+
+                // TODO: create button to open control center
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        States.showControlCenter = !States.showControlCenter;
+                    }
+                }
 
                 RowLayout {
                     anchors.top: parent.top
