@@ -44,13 +44,13 @@ ShellRoot {
     }
 
     Windows.Bar {}
-    Windows.Launcher {}
     Windows.Notifications {
         notificationServer: notificationServer
     }
     Windows.OSD {
         id: osd
     }
+    Windows.ControlCenter {}
 
     Component.onCompleted: () => Brightness.updateIcon()
 }
