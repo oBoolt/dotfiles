@@ -1,11 +1,13 @@
 import Quickshell
+import Quickshell.Services.Pipewire
 
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
 
-import qs.settings
 import qs.utils
 import qs.widgets
+import qs.services
 
 LazyLoader {
     active: States.showControlCenter
@@ -21,76 +23,98 @@ LazyLoader {
             right: 8
         }
 
-        implicitWidth: 400
+        implicitWidth: 500
         implicitHeight: 600
 
-        ColumnLayout {
+        StackView {
+            id: stackView
             anchors.fill: parent
+            initialItem: mainPage
+        }
 
-            RowLayout {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                Layout.leftMargin: 8
-                Layout.rightMargin: 8
+        Component {
+            id: mainPage
+            Page {
+                ColumnLayout {
+                    anchors.margins: 16
+                    anchors.fill: parent
+                    spacing: 16
 
-                Text {
-                    Layout.fillWidth: true
-                    text: "<"
-                    font.pixelSize: 30
-                    color: "black"
+                    Item {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 100
 
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            pageManager.previous();
+                        RowLayout {
+                            anchors.fill: parent
+                            spacing: 16
+
+                            Rectangle {
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                color: "black"
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: {
+                                        stackView.push(second);
+                                    }
+                                }
+                            }
+
+                            Rectangle {
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                color: "black"
+                            }
                         }
                     }
-                }
-                Text {
-                    Layout.fillWidth: true
-                    text: ">"
-                    font.pixelSize: 30
-                    color: "black"
-                    horizontalAlignment: Text.AlignRight
 
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            pageManager.next();
+                    Rectangle {
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+                        color: "red"
+                    }
+
+                    Item {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 150
+
+                        ColumnLayout {
+                            anchors.fill: parent
+                            spacing: 16
+
+                            Slider {
+                                Layout.fillHeight: true
+                                Layout.fillWidth: true
+                                value: Pipewire.defaultAudioSink.audio.volume
+
+                                onMoved: {
+                                    Pipewire.defaultAudioSink.audio.volume = this.value;
+                                }
+                            }
+
+                            Slider {
+                                Layout.fillHeight: true
+                                Layout.fillWidth: true
+                                value: Brightness.values.percentage
+
+                                onMoved: {
+                                    let current = Brightness.values.max * this.value;
+                                    Brightness.set(current);
+                                }
+                            }
                         }
                     }
                 }
             }
+        }
 
-            PageManager {
-                id: pageManager
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                active: true
-
-                Component {
-                    Page {
-                        Rectangle {
-                            anchors.fill: parent
-                            color: "blue"
-                        }
-                    }
-                }
-                Component {
-                    Page {
-                        Rectangle {
-                            anchors.fill: parent
-                            color: "yellow"
-                        }
-                    }
-                }
-                Component {
-                    Page {
-                        Rectangle {
-                            anchors.fill: parent
-                            color: "red"
-                        }
-                    }
+        Component {
+            id: second
+            Page {
+                Rectangle {
+                    anchors.fill: parent
+                    color: "yellow"
                 }
             }
         }
