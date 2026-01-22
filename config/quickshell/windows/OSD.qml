@@ -43,8 +43,8 @@ Scope {
         PanelWindow {
             id: window
             screen: Quickshell.screens[0]
-            implicitWidth: Config.osd.width
-            implicitHeight: Config.osd.height
+            implicitWidth: Config.osd.dynamicSize ? screen.width / 10 : Config.osd.width
+            implicitHeight: Config.osd.dynamicSize ? screen.height / 20 : Config.osd.height
             anchors.bottom: true
             margins.bottom: screen.height / 7
             exclusiveZone: 0

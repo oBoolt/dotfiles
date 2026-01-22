@@ -4,7 +4,8 @@ import QtQuick
 JsonObject {
     property bool enabled: true
     property int maxDisplay: 5
-    property int width: 350
-    property int height: 100
+    property bool dynamicSize: true
+    property int width: 380
+    property int height: 108
     property int borderSize: 2
 }

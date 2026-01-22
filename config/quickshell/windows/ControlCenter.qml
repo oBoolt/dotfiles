@@ -15,6 +15,7 @@ LazyLoader {
 
     PanelWindow {
         // TODO: only open in the screen that was clicked
+        screen: Quickshell.screens[0]
         anchors {
             top: true
             right: true
@@ -25,8 +26,8 @@ LazyLoader {
             right: 8
         }
 
-        implicitWidth: 500
-        implicitHeight: 600
+        implicitWidth: Config.controlcenter.dynamicSize ? screen.width / 4 : Config.controlcenter.width
+        implicitHeight: Config.controlcenter.dynamicSize ? screen.height / 2 : Config.controlcenter.height
 
         StackView {
             id: stackView
