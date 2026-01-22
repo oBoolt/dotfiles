@@ -13,6 +13,7 @@ Singleton {
     property alias notification: adapter.notification
     property alias osd: adapter.osd
     property alias calendar: adapter.calendar
+    property alias controlcenter: adapter.controlcenter
 
     FileView {
         id: fileView
@@ -41,6 +42,7 @@ Singleton {
             property NotificationConfig notification: NotificationConfig {}
             property OSDConfig osd: OSDConfig {}
             property CalendarConfig calendar: CalendarConfig {}
+            property ControlCenterConfig controlcenter: ControlCenterConfig {}
         }
     }
 }

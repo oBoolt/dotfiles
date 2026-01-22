@@ -8,7 +8,7 @@ import QtQuick.Layouts
 import qs.settings
 import qs.widgets.notifications
 
-Item {
+LazyLoader {
     id: root
     required property NotificationServer notificationServer
     readonly property int size: {
@@ -17,38 +17,36 @@ Item {
         return root.notificationServer.trackedNotifications.values.length;
     }
 
-    Variants {
-        model: Quickshell.screens
-        PanelWindow {
-            required property ShellScreen modelData
-            screen: modelData
+    active: Config.notification.enabled
 
-            visible: root.size > 0
-            implicitWidth: Config.notification.width
-            implicitHeight: Config.notification.height * root.size + root.size * (Appearance.spacing.small - 1)
-            color: Config.debug ? Colors.orange : "transparent"
+    PanelWindow {
+        screen: Quickshell.screens[0]
 
-            anchors {
-                right: true
-                top: true
-            }
+        visible: root.size > 0
+        implicitWidth: Config.notification.width
+        implicitHeight: Config.notification.height * root.size + root.size * (Appearance.spacing.small - 1)
+        color: Config.debug ? Colors.orange : "transparent"
 
-            margins {
-                top: Appearance.margin.normal
-                right: Appearance.margin.normal
-            }
+        anchors {
+            right: true
+            top: true
+        }
 
-            ColumnLayout {
-                anchors.fill: parent
-                spacing: Appearance.spacing.small
+        margins {
+            top: Appearance.margin.normal
+            right: Appearance.margin.normal
+        }
 
-                Repeater {
-                    model: root.notificationServer.trackedNotifications
-                    Notification {
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: Config.notification.height
-                        Layout.alignment: Qt.AlignTop
-                    }
+        ColumnLayout {
+            anchors.fill: parent
+            spacing: Appearance.spacing.small
+
+            Repeater {
+                model: root.notificationServer.trackedNotifications
+                Notification {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: Config.notification.height
+                    Layout.alignment: Qt.AlignTop
                 }
             }
         }

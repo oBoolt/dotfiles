@@ -38,10 +38,11 @@ Scope {
     }
 
     LazyLoader {
-        active: root.osdVisible
+        active: Config.osd.enabled && root.osdVisible
 
         PanelWindow {
             id: window
+            screen: Quickshell.screens[0]
             implicitWidth: Config.osd.width
             implicitHeight: Config.osd.height
             anchors.bottom: true

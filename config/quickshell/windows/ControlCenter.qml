@@ -8,11 +8,13 @@ import QtQuick.Controls
 import qs.utils
 import qs.widgets
 import qs.services
+import qs.settings
 
 LazyLoader {
-    active: States.showControlCenter
+    active: Config.controlcenter.enabled && States.showControlCenter
 
     PanelWindow {
+        // TODO: only open in the screen that was clicked
         anchors {
             top: true
             right: true

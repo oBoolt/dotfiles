@@ -1,5 +1,4 @@
 import Quickshell
-import Quickshell.Wayland
 import Quickshell.Services.Pipewire
 
 import QtQuick

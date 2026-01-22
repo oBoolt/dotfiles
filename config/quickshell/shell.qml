@@ -45,13 +45,19 @@ ShellRoot {
         }
     }
 
-    Windows.Bar {}
+    LazyLoader {
+        active: Config.bar.enabled
+        Windows.Bar {}
+    }
+
     Windows.Notifications {
         notificationServer: notificationServer
     }
+
     Windows.OSD {
         id: osd
     }
+
     Windows.ControlCenter {}
 
     Component.onCompleted: {
