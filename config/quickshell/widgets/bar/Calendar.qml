@@ -13,7 +13,7 @@ PopupWindow {
     anchor.adjustment: PopupAdjustment.None
     implicitWidth: 350
     // do this way for Calendar hover exit event
-    implicitHeight: 250 + Variables.barSize
+    implicitHeight: 250 + Config.bar.size
     anchor.rect.x: 0
     anchor.rect.y: 0
     visible: false
@@ -35,22 +35,22 @@ PopupWindow {
         }
         Rectangle {
             color: root.anchor.window.color
-            implicitHeight: root.implicitHeight - Variables.barSize
+            implicitHeight: root.implicitHeight - Config.bar.size
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.bottom: parent.bottom
-            bottomRightRadius: Variables.calendarRadius
+            bottomRightRadius: Appearance.radius.small
 
             ColumnLayout {
                 anchors.fill: parent
 
                 RowLayout {
-                    Layout.leftMargin: Variables.calendarPadding
+                    Layout.leftMargin: Appearance.padding.small
                     Layout.rightMargin: Layout.leftMargin
 
                     Rectangle {
                         property bool hovered: false
-                        Layout.preferredWidth: Variables.fontSize * 2
+                        Layout.preferredWidth: Appearance.font.size * 2
                         Layout.preferredHeight: Layout.preferredWidth
                         color: "transparent"
 
@@ -90,7 +90,7 @@ PopupWindow {
 
                     Rectangle {
                         property bool hovered: false
-                        Layout.preferredWidth: Variables.fontSize * 2
+                        Layout.preferredWidth: Appearance.font.size * 2
                         Layout.preferredHeight: Layout.preferredWidth
                         color: "transparent"
 
@@ -137,7 +137,7 @@ PopupWindow {
                     id: monthGrid
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    Layout.bottomMargin: Variables.barPadding
+                    Layout.bottomMargin: Appearance.padding.normal
 
                     month: parseInt(Qt.formatDateTime(Time.date, "M")) - 1
                     year: parseInt(Qt.formatDateTime(Time.date, "yyyy"))
@@ -176,7 +176,7 @@ PopupWindow {
                             implicitWidth: height + 2
                             anchors.horizontalCenter: parent.horizontalCenter
                             color: parent.model.today ? Colors.aqua : Colors.gray
-                            radius: Variables.barRadius
+                            radius: Appearance.radius.normal
                             opacity: parent.model.today ? 0.5 : 0.25
                         }
                     }

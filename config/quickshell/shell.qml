@@ -9,6 +9,8 @@ import qs.helpers
 import qs.services
 import qs.windows as Windows
 
+import qs.settings
+
 ShellRoot {
     NotificationServer {
         id: notificationServer
@@ -52,5 +54,7 @@ ShellRoot {
     }
     Windows.ControlCenter {}
 
-    Component.onCompleted: () => Brightness.updateIcon()
+    Component.onCompleted: {
+        Brightness.updateIcon();
+    }
 }

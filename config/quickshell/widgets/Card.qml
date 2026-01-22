@@ -13,24 +13,24 @@ Item {
     property bool background: true
 
     implicitWidth: childrenRect.width
-    implicitHeight: Variables.iconSize + Variables.cardPadding
+    implicitHeight: Appearance.font.icon + Appearance.padding.small
 
     Rectangle {
         id: background
         implicitHeight: parent.implicitHeight
-        implicitWidth: root.value != "" ? items.implicitWidth + Variables.cardPadding * 2 : parent.implicitHeight
+        implicitWidth: root.value != "" ? items.implicitWidth + Appearance.padding.small * 2 : parent.implicitHeight
         color: root.background ? Colors.backgroundc : "transparent"
-        radius: Variables.cardRadius
+        radius: Appearance.radius.small
 
         RowLayout {
             id: items
             anchors.centerIn: parent
             implicitHeight: root.implicitHeight
-            spacing: Variables.cardSpacing
+            spacing: Appearance.spacing.small
 
             Text {
                 Layout.fillWidth: true
-                font.pixelSize: Variables.iconSize - 2
+                font.pixelSize: Appearance.font.icon - 2
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 color: root.color

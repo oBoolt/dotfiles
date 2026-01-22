@@ -86,7 +86,7 @@ Singleton {
 
     Process {
         id: currentProcess
-        command: ["/bin/cat", Variables.backlightPath + "/actual_brightness"]
+        command: ["/bin/cat", Config.paths.backlight + "/actual_brightness"]
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
@@ -97,7 +97,7 @@ Singleton {
 
     Process {
         id: maxProcess
-        command: ["/bin/cat", Variables.backlightPath + "/max_brightness"]
+        command: ["/bin/cat", Config.paths.backlight + "/max_brightness"]
         running: true
         stdout: StdioCollector {
             onStreamFinished: {

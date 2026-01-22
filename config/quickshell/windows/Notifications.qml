@@ -12,8 +12,8 @@ Item {
     id: root
     required property NotificationServer notificationServer
     readonly property int size: {
-        if (root.notificationServer.trackedNotifications.values.length >= Variables.notificationsMaxDisplay)
-            return Variables.notificationsMaxDisplay;
+        if (root.notificationServer.trackedNotifications.values.length >= Config.notification.maxDisplay)
+            return Config.notification.maxDisplay;
         return root.notificationServer.trackedNotifications.values.length;
     }
 
@@ -24,9 +24,9 @@ Item {
             screen: modelData
 
             visible: root.size > 0
-            implicitWidth: Variables.notificationWidth
-            implicitHeight: Variables.notificationHeight * root.size + root.size * (Variables.notificationSpacing - 1)
-            color: Variables.debug ? Colors.orange : "transparent"
+            implicitWidth: Config.notification.width
+            implicitHeight: Config.notification.height * root.size + root.size * (Appearance.spacing.small - 1)
+            color: Config.debug ? Colors.orange : "transparent"
 
             anchors {
                 right: true
@@ -34,19 +34,19 @@ Item {
             }
 
             margins {
-                top: Variables.notificationMargin
-                right: Variables.notificationMargin
+                top: Appearance.margin.normal
+                right: Appearance.margin.normal
             }
 
             ColumnLayout {
                 anchors.fill: parent
-                spacing: Variables.notificationSpacing
+                spacing: Appearance.spacing.small
 
                 Repeater {
                     model: root.notificationServer.trackedNotifications
                     Notification {
                         Layout.fillWidth: true
-                        Layout.preferredHeight: Variables.notificationHeight
+                        Layout.preferredHeight: Config.notification.height
                         Layout.alignment: Qt.AlignTop
                     }
                 }

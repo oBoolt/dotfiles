@@ -19,7 +19,7 @@ Variants {
         screen: modelData
 
         color: Colors.background
-        implicitHeight: Variables.barSize
+        implicitHeight: Config.bar.size
 
         anchors {
             top: true
@@ -29,20 +29,20 @@ Variants {
 
         RowLayout {
             anchors.fill: parent
-            spacing: Variables.barSpacing
+            spacing: Appearance.spacing.normal
 
             Item {
-                Layout.leftMargin: Variables.barPadding - Variables.barSpacing
+                Layout.leftMargin: Appearance.padding.large - Appearance.spacing.normal
             }
             Rectangle {
                 id: left_area
-                color: Variables.debug ? Colors.orange : "transparent"
+                color: Config.debug ? Colors.orange : "transparent"
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
                 RowLayout {
                     anchors.verticalCenter: parent.verticalCenter
-                    spacing: Variables.barSpacing
+                    spacing: Appearance.spacing.normal
 
                     Clock {
                         parentWindow: root
@@ -55,7 +55,7 @@ Variants {
             }
             Rectangle {
                 id: center_area
-                color: Variables.debug ? Colors.aqua : "transparent"
+                color: Config.debug ? Colors.aqua : "transparent"
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
@@ -68,7 +68,7 @@ Variants {
 
             Rectangle {
                 id: right_area
-                color: Variables.debug ? Colors.purple : "transparent"
+                color: Config.debug ? Colors.purple : "transparent"
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
@@ -85,7 +85,7 @@ Variants {
                     anchors.bottom: parent.bottom
                     anchors.right: parent.right
                     layoutDirection: Qt.RightToLeft
-                    spacing: Variables.barSpacing
+                    spacing: Appearance.spacing.normal
 
                     Battery {}
                     Volume {
@@ -107,7 +107,7 @@ Variants {
                 }
             }
             Item {
-                Layout.rightMargin: Variables.barPadding - Variables.barSpacing
+                Layout.leftMargin: Appearance.padding.large - Appearance.spacing.normal
             }
         }
     }

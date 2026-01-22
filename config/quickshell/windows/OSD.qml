@@ -33,7 +33,7 @@ Scope {
 
     Timer {
         id: hideTimer
-        interval: Variables.osdTimer
+        interval: Config.osd.hideTime
         onTriggered: root.osdVisible = false
     }
 
@@ -42,8 +42,8 @@ Scope {
 
         PanelWindow {
             id: window
-            implicitWidth: Variables.osdWidth
-            implicitHeight: Variables.osdHeight
+            implicitWidth: Config.osd.width
+            implicitHeight: Config.osd.height
             anchors.bottom: true
             margins.bottom: screen.height / 7
             exclusiveZone: 0
@@ -53,7 +53,7 @@ Scope {
             Rectangle {
                 anchors.fill: parent
                 color: Colors.background
-                radius: Variables.osdRadius
+                radius: Appearance.radius.normal
 
                 RowLayout {
                     anchors {
@@ -64,9 +64,9 @@ Scope {
                     spacing: 12
 
                     Text {
-                        font.pixelSize: Variables.iconSize
-                        Layout.preferredHeight: Variables.iconSize
-                        Layout.preferredWidth: Variables.iconSize
+                        font.pixelSize: Appearance.font.icon
+                        Layout.preferredHeight: Appearance.font.icon
+                        Layout.preferredWidth: Appearance.font.icon
                         horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
                         text: root.icon
@@ -76,14 +76,14 @@ Scope {
                         Layout.fillWidth: true
                         Layout.preferredHeight: window.implicitHeight / 4
                         color: Colors.backgroundc
-                        radius: Variables.osdRadius / 2
+                        radius: Appearance.radius.normal / 2
 
                         Rectangle {
                             anchors.top: parent.top
                             anchors.bottom: parent.bottom
                             implicitWidth: parseInt(root.value) / 100 * parent.width
                             color: Colors.aqua
-                            radius: Variables.osdRadius / 2
+                            radius: Appearance.radius.normal / 2
                         }
                     }
                     Text {

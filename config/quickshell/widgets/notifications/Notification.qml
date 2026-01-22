@@ -14,7 +14,7 @@ Rectangle {
     required property Notification modelData
     color: Colors.background
     border {
-        width: Variables.notificationBorder
+        width: Config.notification.borderSize
         color: {
             if (notification.modelData.urgency == NotificationUrgency.Normal) {
                 return Colors.foreground;
@@ -41,9 +41,9 @@ Rectangle {
         onClicked: event => notification.modelData.dismiss()
 
         RowLayout {
-            anchors.margins: Variables.notificationMargin
+            anchors.margins: Appearance.margin.normal
             anchors.fill: parent
-            spacing: Variables.notificationSpacing
+            spacing: Appearance.spacing.small
 
             Rectangle {
                 Layout.fillHeight: true
@@ -71,7 +71,7 @@ Rectangle {
                 Text {
                     Layout.fillWidth: true
                     font {
-                        pixelSize: Variables.fontSize + 4
+                        pixelSize: Appearance.font.large
                     }
                     text: notification.modelData.summary
                 }
