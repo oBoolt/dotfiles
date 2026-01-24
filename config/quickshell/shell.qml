@@ -59,6 +59,7 @@ ShellRoot {
     }
 
     Windows.ControlCenter {}
+    Windows.Calendar {}
 
     Component.onCompleted: {
         Brightness.updateIcon();

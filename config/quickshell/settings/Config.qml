@@ -7,6 +7,8 @@ import QtQuick
 
 Singleton {
     property alias debug: adapter.debug
+    property alias locale: adapter.locale
+
     property alias appearance: adapter.appearance
     property alias bar: adapter.bar
     property alias paths: adapter.paths
@@ -36,6 +38,8 @@ Singleton {
         JsonAdapter {
             id: adapter
             property bool debug: false
+            property string locale: "en_US"
+
             property AppearanceConfig appearance: AppearanceConfig {}
             property BarConfig bar: BarConfig {}
             property PathsConfig paths: PathsConfig {}
