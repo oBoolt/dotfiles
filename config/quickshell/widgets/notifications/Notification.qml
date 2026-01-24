@@ -87,6 +87,7 @@ Rectangle {
                     font.bold: false
                     wrapMode: Text.Wrap
                     elide: Text.ElideRight
+                    textFormat: Text.PlainText
                     text: notification.modelData.body
                 }
             }

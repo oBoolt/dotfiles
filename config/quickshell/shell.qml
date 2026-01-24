@@ -14,6 +14,9 @@ import qs.settings
 ShellRoot {
     NotificationServer {
         id: notificationServer
+        bodySupported: true
+        imageSupported: true
+
         onNotification: not => {
             not.tracked = true;
         }
