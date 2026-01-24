@@ -26,9 +26,14 @@ Rectangle {
         }
     }
 
-    function getIcon(): string {
-        if (this.modelData.appIcon !== "")
-            return Quickshell.iconPath(this.modelData.appIcon);
+    function getSource(): string {
+        let image = this.modelData.image;
+        let icon = this.modelData.appIcon;
+
+        if (image !== "") {
+            return Qt.resolvedUrl(image);
+        } else if (icon !== "")
+            return Quickshell.iconPath(icon);
         else {
             return Qt.resolvedUrl(Quickshell.shellDir + "/assets/default-notification.svg");
         }
@@ -52,7 +57,7 @@ Rectangle {
 
                 IconImage {
                     anchors.centerIn: parent
-                    source: notification.getIcon()
+                    source: notification.getSource()
                     implicitSize: parent.height / 9 * 8
 
                     ColorOverlay {

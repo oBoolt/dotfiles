@@ -15,7 +15,6 @@ ShellRoot {
     NotificationServer {
         id: notificationServer
         onNotification: not => {
-            console.info("Notification Received");
             not.tracked = true;
         }
     }
