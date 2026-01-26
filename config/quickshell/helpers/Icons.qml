@@ -116,4 +116,19 @@ Singleton {
             return Icons.Brightness0Symbolic;
         }
     }
+
+    function getAudioIcon(volume: real, muted: bool): int {
+        if (muted) {
+            return Icons.AudioVolumeMutedSymbolic;
+        }
+        if (volume >= 0.66) {
+            return Icons.AudioVolumeHighSymbolic;
+        } else if (volume >= 0.33) {
+            return Icons.AudioVolumeMediumSymbolic;
+        } else if (volume > 0) {
+            return Icons.AudioVolumeLowSymbolic;
+        } else if (volume == 0) {
+            return Icons.AudioVolumeOffSymbolic;
+        }
+    }
 }

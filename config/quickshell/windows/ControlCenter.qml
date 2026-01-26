@@ -1,5 +1,4 @@
 import Quickshell
-import Quickshell.Services.Pipewire
 
 import QtQuick
 import QtQuick.Layouts
@@ -89,10 +88,10 @@ LazyLoader {
                             Slider {
                                 Layout.fillHeight: true
                                 Layout.fillWidth: true
-                                value: Pipewire.defaultAudioSink.audio.volume
+                                value: Audio.sink.volume
 
                                 onMoved: {
-                                    Pipewire.defaultAudioSink.audio.volume = this.value;
+                                    Audio.sink.setVolume(this.value);
                                 }
                             }
 

@@ -1,6 +1,5 @@
 import Quickshell
 import Quickshell.Services.Notifications
-import Quickshell.Services.Pipewire
 
 import QtQuick
 
@@ -22,21 +21,13 @@ ShellRoot {
         }
     }
 
-    PwObjectTracker {
-        objects: [Pipewire.defaultAudioSink]
-    }
-
     Connections {
-        target: Pipewire.defaultAudioSink?.audio
+        target: Audio.sink
         function onVolumeChanged() {
-            let node = Pipewire.defaultAudioSink;
-            let volume = Math.round(node?.audio?.volume * 100) ?? 0;
-            osd.showOSD(OsdMode.Audio, Audio.getAudioIcon(node), volume);
+            osd.showOSD(OsdMode.Audio, Audio.sink.icon, Math.round(Audio.sink.volume * 100));
         }
         function onMutedChanged() {
-            let node = Pipewire.defaultAudioSink;
-            let volume = Math.round(node?.audio?.volume * 100) ?? 0;
-            osd.showOSD(OsdMode.Audio, Audio.getAudioIcon(node), volume);
+            osd.showOSD(OsdMode.Audio, Audio.sink.icon, Math.round(Audio.sink.volume * 100));
         }
     }
 

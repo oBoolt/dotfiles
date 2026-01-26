@@ -1,18 +1,12 @@
-import Quickshell
-import Quickshell.Services.Pipewire
-
 import QtQuick
-import QtQuick.Layouts
 
 import qs.settings
-import qs.helpers
+import qs.services
 import qs.widgets
 
 Card {
     id: root
-    required property PwNode node
-    readonly property bool muted: node?.audio?.muted ?? false
-    icon: Audio.getAudioIcon(node)
+    icon: Audio.sink.icon
 
-    color: muted ? Colors.red : Colors.darkaqua
+    color: Audio.sink.muted ? Colors.red : Colors.darkaqua
 }

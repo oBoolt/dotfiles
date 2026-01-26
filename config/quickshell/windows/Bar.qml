@@ -1,5 +1,4 @@
 import Quickshell
-import Quickshell.Services.Pipewire
 
 import QtQuick
 import QtQuick.Layouts
@@ -87,9 +86,7 @@ Variants {
                     spacing: Appearance.spacing.normal
 
                     Battery {}
-                    Volume {
-                        node: Pipewire.defaultAudioSink
-                    }
+                    Volume {}
                     Card {
                         icon: Icons.NetworkBluetoothSymbolic
                         color: Colors.darkblue
