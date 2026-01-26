@@ -42,8 +42,8 @@ ShellRoot {
 
     Connections {
         target: Brightness
-        function onBrightnessChanged() {
-            osd.showOSD(OsdMode.Brightness, Brightness.icon, Math.round(Brightness.values.percentage * 100));
+        function onCurrentChanged() {
+            osd.showOSD(OsdMode.Brightness, Brightness.icon, Math.round(Brightness.percentage * 100));
         }
     }
 

@@ -99,10 +99,11 @@ LazyLoader {
                             Slider {
                                 Layout.fillHeight: true
                                 Layout.fillWidth: true
-                                value: Brightness.values.percentage
+                                value: Brightness.percentage
+                                from: 0.01
 
                                 onMoved: {
-                                    let current = Brightness.values.max * this.value;
+                                    let current = Brightness.max * this.value;
                                     Brightness.set(current);
                                 }
                             }

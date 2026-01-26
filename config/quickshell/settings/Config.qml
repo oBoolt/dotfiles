@@ -16,6 +16,7 @@ Singleton {
     property alias osd: adapter.osd
     property alias calendar: adapter.calendar
     property alias controlcenter: adapter.controlcenter
+    property alias brightness: adapter.brightness
 
     FileView {
         id: fileView
@@ -47,6 +48,7 @@ Singleton {
             property OSDConfig osd: OSDConfig {}
             property CalendarConfig calendar: CalendarConfig {}
             property ControlCenterConfig controlcenter: ControlCenterConfig {}
+            property BrightnessConfig brightness: BrightnessConfig {}
         }
     }
 }
