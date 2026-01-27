@@ -4,7 +4,6 @@ import Quickshell.Services.Notifications
 import QtQuick
 
 import qs.types
-import qs.helpers
 import qs.services
 import qs.windows as Windows
 

@@ -12,6 +12,7 @@ Text {
     MouseArea {
         anchors.fill: parent
         onClicked: () => {
+            States.updateCurrentScreen();
             States.showCalendar = !States.showCalendar;
         }
     }

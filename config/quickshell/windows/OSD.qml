@@ -8,6 +8,7 @@ import QtQuick.Layouts
 
 import qs.settings
 import qs.helpers
+import qs.utils
 import qs.widgets
 
 Scope {
@@ -17,6 +18,7 @@ Scope {
     property string value
 
     function showOSD(type: int, icon: int, value: string): void {
+        States.updateCurrentScreen();
         root.icon = Icons.get(icon);
         root.value = value;
 
@@ -42,7 +44,7 @@ Scope {
 
         PanelWindow {
             id: window
-            screen: Quickshell.screens[0]
+            screen: States.currentScreen
             implicitWidth: Config.osd.dynamicSize ? screen.width / 10 : Config.osd.width
             implicitHeight: Config.osd.dynamicSize ? screen.height / 20 : Config.osd.height
             anchors.bottom: true

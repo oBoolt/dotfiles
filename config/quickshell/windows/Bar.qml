@@ -74,6 +74,7 @@ Variants {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
+                        States.updateCurrentScreen();
                         States.showControlCenter = !States.showControlCenter;
                     }
                 }

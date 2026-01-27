@@ -15,7 +15,7 @@ LazyLoader {
     active: Config.calendar.enabled && States.showCalendar
 
     PanelWindow {
-        screen: Quickshell.screens[0]
+        screen: States.currentScreen
         anchors {
             top: true
             left: true
@@ -28,7 +28,7 @@ LazyLoader {
 
         implicitWidth: Config.calendar.dynamicSize ? screen.width / 4 : Config.calendar.width
         implicitHeight: Config.calendar.dynamicSize ? screen.height / 3 : Config.calendar.height
-        color: Colors.backgroundc
+        color: Colors.background
 
         ColumnLayout {
             anchors.fill: parent

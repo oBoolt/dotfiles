@@ -14,7 +14,7 @@ LazyLoader {
 
     PanelWindow {
         // TODO: only open in the screen that was clicked
-        screen: Quickshell.screens[0]
+        screen: States.currentScreen
         anchors {
             top: true
             right: true
