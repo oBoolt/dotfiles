@@ -55,6 +55,7 @@ Singleton {
         watchChanges: true
         onLoaded: {
             root.current = parseInt(text());
+            root.icon = Icons.getBrightnessIcon(root.percentage);
         }
         onFileChanged: {
             this.reload();
@@ -73,9 +74,5 @@ Singleton {
     Process {
         id: setProcess
         command: ["brightnessctl", "set"]
-    }
-
-    Component.onCompleted: {
-        root.icon = Icons.getBrightnessIcon(root.percentage);
     }
 }
