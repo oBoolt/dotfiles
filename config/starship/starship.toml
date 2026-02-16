@@ -1,5 +1,5 @@
 # Get editor completions based on the config schema
-"$schema" = 'https://starship.rs/config-schema.json'
+"$schema" = "https://starship.rs/config-schema.json"
 add_newline = false
 command_timeout = 1000
 scan_timeout = 50
@@ -56,12 +56,12 @@ Unknown = " "
 Windows = " "
 
 [username]
-format = '[$user]($style)'
+format = "[$user]($style)"
 show_always = true
 style_user = "blue bold"
 
 [hostname]
-format = '[$hostname]($style)'
+format = "[$hostname]($style)"
 style = "bold green"
 
 [git_status]
@@ -82,11 +82,11 @@ show_milliseconds = true
 min_time = 500
 
 [shell]
-format = '[$indicator]($style)'
+format = "[$indicator]($style)"
 bash_indicator = ""
 fish_indicator = "󰈺"
 zsh_indicator = "ZSH"
-powershell_indicator = ""      # _
+powershell_indicator = ""  # _
 ion_indicator = ""
 elvish_indicator = "󰘧"
 tcsh_indicator = "TSH"
@@ -98,13 +98,13 @@ style = "bold 238"
 disabled = true
 
 [git_branch]
-format = '[$symbol $branch(:$remote_branch)]($style)'
+format = "[$symbol $branch(:$remote_branch)]($style)"
 symbol = ""
 truncation_length = 6
 truncation_symbol = ""
 
 [directory]
-format = '[($read_only )]($read_only_style)[$path]($style)'
+format = "[($read_only )]($read_only_style)[$path]($style)"
 truncate_to_repo = true
 use_os_path_sep = true
 home_symbol = "~"
@@ -113,7 +113,7 @@ read_only = ""
 fish_style_pwd_dir_length = 10
 
 [character]
-success_symbol = "[󱦰](#01ff00)" #  󰁔  󱦰
+success_symbol = "[󱦰](#01ff00)"  #  󰁔  󱦰
 error_symbol = "[󱦰](#ff0000)"
 vimcmd_symbol = "[󱦱](#ffea00)"
 
@@ -134,7 +134,7 @@ symbol = "🐃"
 format = '-\[[$symbol( $version)]($style)\]'
 
 [c]
-format = '-\[[$symbol( $version( - $name)]($style)\]'
+format = '-\[[$symbol( $version)]($style)\]'
 symbol = ""
 
 [cmake]
@@ -256,7 +256,7 @@ symbol = "󱄅"
 [nodejs]
 format = '-\[[$symbol( $version)]($style)\]'
 symbol = ""
-detect_files = ['package.json', '.node-version']
+detect_files = ["package.json", ".node-version"]
 
 [ocaml]
 format = '-\[[$symbol( $version( - $switch_name)]($style)\]'
