@@ -74,6 +74,7 @@ fi
 # Shell integrations
 [ -x "$(command -v fzf)" ] && eval "$(fzf --zsh)"
 [ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
+[ -x "$(command -v zoxide)" ] && eval "$(zoxide init zsh)"
 
 # SSH
 # set sock for ssh-agent
