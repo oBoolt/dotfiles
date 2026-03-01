@@ -90,11 +90,13 @@ FPATH="$HOME/.docker/completions:$FPATH"
 autoload -Uz compinit
 compinit
 
+# aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias vim=nvim
-alias cat=bat
+alias vim='nvim'
+alias cat='bat'
+alias cd='z'
 
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
