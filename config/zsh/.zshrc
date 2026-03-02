@@ -91,16 +91,15 @@ autoload -Uz compinit
 compinit
 
 # aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 alias vim='nvim'
 alias cat='bat'
 alias cd='z'
+alias ls='eza'
+alias ll='ls -alF'
+alias tree='ls -T'
 
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
     alias grep='grep --color=auto'
