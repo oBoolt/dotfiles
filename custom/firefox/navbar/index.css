@@ -1,0 +1,17 @@
+@import url("tab-group.css");
+
+#firefox-view-button {
+    display: none;
+}
+
+#tabbrowser-tabs {
+    border: none !important;
+}
+
+#alltabs-button {
+    display: none;
+}
+
+#TabsToolbar hbox.titlebar-buttonbox-container {
+    display: none !important;
+}
