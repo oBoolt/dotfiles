@@ -26,7 +26,7 @@ Singleton {
         onFileChanged: reload()
         onAdapterChanged: writeAdapter()
         onLoadFailed: error => {
-            if (error = FileViewError.FileNotFound) {
+            if (error == FileViewError.FileNotFound) {
                 fileView.createFile();
                 console.info("config file created");
             }
