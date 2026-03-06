@@ -33,7 +33,12 @@ Singleton {
         }
 
         function createFile(): bool {
-            fileView.setText(JSON.stringify(adapter, null, 2));
+            fileView.setText(JSON.stringify(adapter, (key, value) => {
+                if (key === "objectName") {
+                    return undefined;
+                }
+                return value;
+            }, 2));
         }
 
         JsonAdapter {
