@@ -92,7 +92,7 @@ compinit
 
 # aliases
 alias vim='nvim'
-alias cat='bat'
+alias cat='bat --paging=never'
 alias cd='z'
 alias ls='eza'
 alias ll='ls -alF'
