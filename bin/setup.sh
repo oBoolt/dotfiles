@@ -23,12 +23,6 @@ info() {
     printf "%b\n" "\e[1m\e[38;5;6m${tmp^^}:\e[0m $1"
 }
 
-export -f error
-export -f success
-export -f warn
-export -f info
-export -f debug
-
 if [[ ! "$(grep '^ID=\we*' /etc/os-release | cut -d = -f 2)" = "arch" ]]; then
     error "only for arch"
     exit 1
@@ -38,6 +32,12 @@ if [[ "$(id -u)" = 0 ]]; then
     error "you are not supposed to run this as root"
     exit 1
 fi
+
+export -f error
+export -f success
+export -f warn
+export -f info
+export -f debug
 
 case "$1" in
     config)
@@ -69,7 +69,7 @@ case "$1" in
             # Create file to enable lsp for quickshell
             touch "${DOTFILES_PATH}"/config/quickshell/.qmlls.ini
         else
-            warn "setup.sh <config | theme [name]>" "usage"
+            warn "$0 <config | theme [name]>" "usage"
         fi
         ;;
 esac
