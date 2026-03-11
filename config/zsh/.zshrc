@@ -95,7 +95,7 @@ alias vim='nvim'
 alias cat='bat --paging=never'
 alias cd='z'
 alias ls='eza'
-alias ll='ls -alF'
+alias ll='ls -F -al'
 alias tree='ls -T'
 
 if [ -x /usr/bin/dircolors ]; then
