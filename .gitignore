@@ -3,5 +3,3 @@ backup/
 .installed
 config/quickshell/.qmlls.ini
 themes/current
-local/
-
