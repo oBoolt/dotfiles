@@ -98,6 +98,13 @@ alias ls='eza'
 alias ll='ls -F -al'
 alias tree='ls -T'
 
+if [ -x "$(command -v sudo-rs)" ]; then
+    alias su='su-rs'
+    alias sudo='sudo-rs'
+    alias sudoedit='sudoedit-rs'
+    alias visudo='visudo-rs'
+fi
+
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias dir='dir --color=auto'
