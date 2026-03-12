@@ -15,6 +15,7 @@
     colorMoved = default
 [alias]
     st = status -s
+    la = log --oneline --all -15
 [delta]
     dark = true
     side-by-side = true
