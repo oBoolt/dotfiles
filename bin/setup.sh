@@ -4,23 +4,23 @@ export DOTFILES_PATH="${DOTFILES_PATH:-${HOME}/.local/share/dotfiles}"
 
 error() {
     tmp=${2:-error}
-    printf "%b\n" "\e[1m\e[38;5;1m${tmp^^}:\e[0m $1"
+    printf "%b\n" "\e[1m\e[38;5;1m${tmp,,}:\e[0m $1"
 }
 success() {
     tmp=${2:-sucs}
-    printf "%b\n" "\e[1m\e[38;5;2m${tmp^^}:\e[0m $1"
+    printf "%b\n" "\e[1m\e[38;5;2m${tmp,,}:\e[0m $1"
 }
 warn() {
     tmp=${2:-warn}
-    printf "%b\n" "\e[1m\e[38;5;3m${tmp^^}:\e[0m $1"
+    printf "%b\n" "\e[1m\e[38;5;3m${tmp,,}:\e[0m $1"
 }
 debug() {
     tmp=${2:-debug}
-    printf "%b\n" "\e[1m\e[38;5;5m${tmp^^}:\e[0m $1"
+    printf "%b\n" "\e[1m\e[38;5;5m${tmp,,}:\e[0m $1"
 }
 info() {
     tmp=${2:-info}
-    printf "%b\n" "\e[1m\e[38;5;6m${tmp^^}:\e[0m $1"
+    printf "%b\n" "\e[1m\e[38;5;6m${tmp,,}:\e[0m $1"
 }
 
 if [[ ! "$(grep '^ID=\we*' /etc/os-release | cut -d = -f 2)" = "arch" ]]; then
