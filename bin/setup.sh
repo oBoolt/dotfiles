@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 export CONFIG_PATH="${XDG_CONFIG_HOME:-${HOME}/.config}"
-export DOTFILES_PATH="${DOTFILES_PATH:-${HOME}/.local/share/dotfiles}"
+export DOTFILES_PATH="${HOME}/.local/share/dotfiles"
 
 error() {
     tmp=${2:-error}

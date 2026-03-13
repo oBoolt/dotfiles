@@ -1,6 +1,6 @@
 # Variables
 CONFIG_PATH="${XDG_CONFIG_HOME:-${HOME}/.config}"
-DOTFILES_PATH="${DOTFILES_PATH:-${HOME}/.local/share/dotfiles}"
+DOTFILES_PATH="${HOME}/.local/share/dotfiles"
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 export STARSHIP_CONFIG=$CONFIG_PATH/starship/starship.toml
 export GIT_CONFIG_GLOBAL=$CONFIG_PATH/git/.gitconfig
