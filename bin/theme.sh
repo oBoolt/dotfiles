@@ -37,5 +37,5 @@ if [[ -z "$1" ]]; then
         warn "no theme set"
         exit 0
     fi
-    info "the current theme is '${CURRENT_THEME}'"
+    info "the current theme is '${CURRENT_THEME##*/}'"
 fi
