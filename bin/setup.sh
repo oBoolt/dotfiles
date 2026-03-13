@@ -45,7 +45,7 @@ case "$1" in
         ;;
     theme)
         shift 1
-        "${DOTFILES_PATH}"/bin/theme.sh $@
+        "${DOTFILES_PATH}"/bin/theme.sh $1
         ;;
     *)
         if [[ "${DOTFILES_INSTALL}" = true ]]; then
