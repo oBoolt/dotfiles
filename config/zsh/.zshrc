@@ -7,8 +7,8 @@ export GIT_CONFIG_GLOBAL=$CONFIG_PATH/git/.gitconfig
 
 
 # Install zinit
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+[ ! -d "$ZINIT_HOME" ] && mkdir -p "$(dirname "$ZINIT_HOME")"
+[ ! -d "$ZINIT_HOME"/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Plugins
@@ -16,8 +16,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 #zinit light zsh-users/zsh-completions
 #zinit light Aloxaf/fzf-tab
 
-[ -e $CONFIG_PATH/zsh/.aliases ] && source $CONFIG_PATH/zsh/.aliases
-[ -d $HOME/.local/bin ] && PATH=$PATH:$HOME/.local/bin
+[ -d "$HOME"/.local/bin ] && PATH=$PATH:$HOME/.local/bin
 
 # Keybinds
 bindkey -v
@@ -42,7 +41,7 @@ zshcache_time="$(date +%s%N)"
 autoload -Uz add-zsh-hook
 
 rehash_precmd() {
-  if [[ -a /var/cache/zsh/pacman ]]; then
+  if [[ -e /var/cache/zsh/pacman ]]; then
     local paccache_time="$(date -r /var/cache/zsh/pacman +%s%N)"
     if (( zshcache_time < paccache_time )); then
       rehash
@@ -64,9 +63,10 @@ source /usr/share/nvm/init-nvm.sh
 # Environment variables
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 if [ -x "$(command -v nvim)" ]; then
-    export EDITOR="$(which nvim)"
-    export VISUAL="$(which nvim)"
-    export MANPAGER="$(which nvim) +Man!"
+    local nvim="$(command -v nvim)"
+    export EDITOR="$nvim"
+    export VISUAL="$nvim"
+    export MANPAGER="$nvim +Man!"
 fi
 # Cargo env
 [ -x "$(command -v cargo)" ] && export PATH="$PATH:$HOME/.cargo/bin"
@@ -82,7 +82,7 @@ fi
 
 # tmux
 if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
-    exec tmux new-session -A -s ${USER} >/dev/null 2>&1
+    exec tmux new-session -A -s "${USER}" >/dev/null 2>&1
 fi
 
 # docker
