@@ -41,7 +41,7 @@ export -f debug
 
 case "$1" in
     config)
-        "${DOTFILES_PATH}"/bin/load_config.sh
+        "${DOTFILES_PATH}"/bin/config.sh
         ;;
     theme)
         shift 1
@@ -63,7 +63,7 @@ case "$1" in
             fi
             info "cloned repository successfully"
 
-            "${DOTFILES_PATH}"/bin/load_config.sh
+            "${DOTFILES_PATH}"/bin/config.sh
             "${DOTFILES_PATH}"/bin/theme.sh gruvbox
 
             # Create file to enable lsp for quickshell
