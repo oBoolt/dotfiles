@@ -41,11 +41,11 @@ export -f debug
 
 case "$1" in
     config)
-        "${DOTFILES_PATH}"/bin/config.sh
+        "${DOTFILES_PATH}"/bin/config
         ;;
     theme)
         shift 1
-        "${DOTFILES_PATH}"/bin/theme.sh $1
+        "${DOTFILES_PATH}"/bin/theme $1
         ;;
     *)
         warn "${0##*/} <config | theme [name]>" "usage"
