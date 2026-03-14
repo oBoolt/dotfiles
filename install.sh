@@ -54,6 +54,8 @@ install_repository() {
     fi
 
     success "dotfiles located in '${DOTFILES_PATH}'" 
+    mkdir -p "${DOTFILES_PATH}/local"
+    touch "${DOTFILES_PATH}/config/quickshell/.qmlls.ini"
 }
 
 install_dependencies() {
