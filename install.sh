@@ -100,10 +100,12 @@ fi
 install_repository
 install_dependencies
 
-warn "would you like to install aura (pacman wrapper and aur helper)? [Y/n]: "
-question
-if [[ $? = 0 ]]; then
-    install_aura
+if [[ ! -x "$(command -v aura)" ]]; then
+    warn "would you like to install aura (pacman wrapper and aur helper)? [Y/n]: "
+    question
+    if [[ $? = 0 ]]; then
+        install_aura
+    fi
 fi
 
 add_path
