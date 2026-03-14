@@ -48,29 +48,7 @@ case "$1" in
         "${DOTFILES_PATH}"/bin/theme.sh $1
         ;;
     *)
-        if [[ "${DOTFILES_INSTALL}" = true ]]; then
-            DOTFILES_REPOSITORY="git@github.com:oBoolt/dotfiles"
-            mapfile -t DEPENDENCIES < <(curl -s https://raw.githubusercontent.com/oBoolt/dotfiles/refs/heads/main/dependencies.packages)
-
-            info "installaing dependencies"
-            sudo pacman -S --noconfirm --needed "${DEPENDENCIES[@]}"
-
-            info "repository (${DOTFILES_REPOSITORY})"
-            info "cloning repository..."
-            rm -rf "${DOTFILES_PATH}"
-            if command -v git; then
-                git clone "${DOTFILES_REPOSITORY}" "${DOTFILES_PATH}" >/dev/null
-            fi
-            info "cloned repository successfully"
-
-            "${DOTFILES_PATH}"/bin/config.sh
-            "${DOTFILES_PATH}"/bin/theme.sh gruvbox
-
-            # Create file to enable lsp for quickshell
-            touch "${DOTFILES_PATH}"/config/quickshell/.qmlls.ini
-        else
-            warn "$0 <config | theme [name]>" "usage"
-        fi
+        warn "${0##*/} <config | theme [name]>" "usage"
         ;;
 esac
 
