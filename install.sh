@@ -79,6 +79,7 @@ add_path() {
     fi
     
     info "added 'dotfiles' command"
+    dotfiles theme gruvbox
 }
 
 if [[ ! "$(grep '^ID=\we*' /etc/os-release | cut -d = -f 2)" = "arch" ]]; then
