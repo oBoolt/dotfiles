@@ -54,8 +54,6 @@ install_repository() {
     fi
 
     success "dotfiles located in '${DOTFILES_PATH}'" 
-    mkdir -p "${DOTFILES_PATH}/local"
-    touch "${DOTFILES_PATH}/config/quickshell/.qmlls.ini"
 }
 
 install_dependencies() {
@@ -84,6 +82,13 @@ add_path() {
     dotfiles theme gruvbox
 }
 
+create_local() {
+    local local_path="${DOTFILES_PATH}/local"
+    mkdir -p "$local_path"
+    touch "${local_path}"/{hypr.conf,alacritty.toml}
+    touch "${DOTFILES_PATH}/config/quickshell/.qmlls.ini"
+}
+
 if [[ ! "$(grep '^ID=\we*' /etc/os-release | cut -d = -f 2)" = "arch" ]]; then
     error "only for arch"
     exit 1
@@ -102,6 +107,7 @@ fi
 
 install_repository
 install_dependencies
+create_local
 
 if [[ ! -x "$(command -v aura)" ]]; then
     warn "would you like to install aura (pacman wrapper and aur helper)? [Y/n]: "
