@@ -89,6 +89,10 @@ create_local() {
     touch "${DOTFILES_PATH}/config/quickshell/.qmlls.ini"
 }
 
+reload_config() {
+    hyprctl reload
+}
+
 if [[ ! "$(grep '^ID=\we*' /etc/os-release | cut -d = -f 2)" = "arch" ]]; then
     error "only for arch"
     exit 1
@@ -124,6 +128,7 @@ warn "would you like to replace the config (a backup will be made)? [Y/n]: "
 question
 if [[ $? = 0 ]]; then 
     dotfiles config
+    reload_config
     CONFIG_ACCEPTED=1
 fi
 
