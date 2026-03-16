@@ -1,8 +1,8 @@
 return {
     'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 
+    dependencies = {
         'nvim-treesitter/nvim-treesitter',
-        'echasnovski/mini.nvim' 
+        'echasnovski/mini.nvim'
     },
     opts = {},
 }
