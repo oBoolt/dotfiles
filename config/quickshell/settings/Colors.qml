@@ -28,7 +28,7 @@ Singleton {
 
     FileView {
         id: jsonFile
-        path: Qt.resolvedUrl(Quickshell.env("HOME") + "/theme.json")
+        path: Qt.resolvedUrl(Quickshell.env("HOME") + "/.local/share/dotfiles/themes/current/quickshell.json")
         watchChanges: true
         onFileChanged: reload()
         blockLoading: true
