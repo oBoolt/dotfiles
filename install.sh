@@ -24,8 +24,8 @@ info() {
 
 question() {
     while true; do
-        read q
-        case $q in
+        read -r yn </dev/tty
+        case $yn in
             [Nn]*) return 1  ;;  
             *) return 0 ;;
         esac
