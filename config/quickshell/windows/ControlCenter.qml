@@ -25,8 +25,8 @@ LazyLoader {
             right: 8
         }
 
-        implicitWidth: Config.controlcenter.dynamicSize ? screen.width / 4 : Config.controlcenter.width
-        implicitHeight: Config.controlcenter.dynamicSize ? screen.height / 2 : Config.controlcenter.height
+        implicitWidth: 480 * Config.scaleFactor
+        implicitHeight: 540 * Config.scaleFactor
 
         StackView {
             id: stackView

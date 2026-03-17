@@ -17,7 +17,7 @@ Variants {
         screen: modelData
 
         color: Colors.background
-        implicitHeight: Config.bar.dynamicSize ? screen.height / 30 : Config.bar.size
+        implicitHeight: 35 * Config.scaleFactor
 
         anchors {
             top: true

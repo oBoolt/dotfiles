@@ -22,10 +22,10 @@ LazyLoader {
     PanelWindow {
         id: window
         screen: Quickshell.screens[0]
-        readonly property int properHeight: Config.notification.dynamicSize ? screen.height / 10 : Config.notification.height
+        readonly property int properHeight: 100 * Config.scaleFactor
 
         visible: root.size > 0
-        implicitWidth: Config.notification.dynamicSize ? screen.width / 5 : Config.notification.width
+        implicitWidth: 380 * Config.scaleFactor
         implicitHeight: properHeight * root.size + root.size * (Appearance.spacing.small - 1)
         color: Config.debug ? Colors.orange : "transparent"
 

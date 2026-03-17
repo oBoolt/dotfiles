@@ -12,12 +12,9 @@ Singleton {
 
     property alias modules: adapter.modules
     property alias appearance: adapter.appearance
-    property alias bar: adapter.bar
     property alias paths: adapter.paths
     property alias notification: adapter.notification
     property alias osd: adapter.osd
-    property alias calendar: adapter.calendar
-    property alias controlcenter: adapter.controlcenter
     property alias brightness: adapter.brightness
 
     FileView {
@@ -50,14 +47,10 @@ Singleton {
             property real scaleFactor: 1
 
             property ModulesConfig modules: ModulesConfig {}
-
             property AppearanceConfig appearance: AppearanceConfig {}
-            property BarConfig bar: BarConfig {}
             property PathsConfig paths: PathsConfig {}
             property NotificationConfig notification: NotificationConfig {}
             property OSDConfig osd: OSDConfig {}
-            property CalendarConfig calendar: CalendarConfig {}
-            property ControlCenterConfig controlcenter: ControlCenterConfig {}
             property BrightnessConfig brightness: BrightnessConfig {}
         }
     }

@@ -26,8 +26,8 @@ LazyLoader {
             left: Appearance.margin.normal
         }
 
-        implicitWidth: Config.calendar.dynamicSize ? screen.width / 4 : Config.calendar.width
-        implicitHeight: Config.calendar.dynamicSize ? screen.height / 3 : Config.calendar.height
+        implicitWidth: 385 * Config.scaleFactor
+        implicitHeight: 270 * Config.scaleFactor
         color: Colors.background
 
         ColumnLayout {
