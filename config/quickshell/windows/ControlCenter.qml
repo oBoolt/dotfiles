@@ -10,7 +10,7 @@ import qs.services
 import qs.settings
 
 LazyLoader {
-    active: Config.controlcenter.enabled && States.showControlCenter
+    active: Config.modules.controlcenter && States.showControlCenter
 
     PanelWindow {
         // TODO: only open in the screen that was clicked

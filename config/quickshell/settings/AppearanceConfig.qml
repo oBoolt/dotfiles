@@ -5,7 +5,6 @@ import QtQuick
 
 JsonObject {
     id: root
-    property real scaleFactor: 1
     property Radius radius: Radius {}
     property Spacing spacing: Spacing {}
     property Padding padding: Padding {}

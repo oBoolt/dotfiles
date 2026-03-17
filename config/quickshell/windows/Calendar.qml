@@ -12,7 +12,7 @@ import qs.widgets
 import qs.helpers
 
 LazyLoader {
-    active: Config.calendar.enabled && States.showCalendar
+    active: Config.modules.calendar && States.showCalendar
 
     PanelWindow {
         screen: States.currentScreen

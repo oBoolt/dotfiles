@@ -8,7 +8,9 @@ import QtQuick
 Singleton {
     property alias debug: adapter.debug
     property alias locale: adapter.locale
+    property alias scaleFactor: adapter.scaleFactor
 
+    property alias modules: adapter.modules
     property alias appearance: adapter.appearance
     property alias bar: adapter.bar
     property alias paths: adapter.paths
@@ -45,6 +47,9 @@ Singleton {
             id: adapter
             property bool debug: false
             property string locale: "en_US"
+            property real scaleFactor: 1
+
+            property ModulesConfig modules: ModulesConfig {}
 
             property AppearanceConfig appearance: AppearanceConfig {}
             property BarConfig bar: BarConfig {}

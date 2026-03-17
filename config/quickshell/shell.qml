@@ -38,7 +38,7 @@ ShellRoot {
     }
 
     LazyLoader {
-        active: Config.bar.enabled
+        active: Config.modules.bar
         Windows.Bar {}
     }
 

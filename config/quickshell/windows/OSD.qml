@@ -40,7 +40,7 @@ Scope {
     }
 
     LazyLoader {
-        active: Config.osd.enabled && root.osdVisible
+        active: Config.modules.osd && root.osdVisible
 
         PanelWindow {
             id: window

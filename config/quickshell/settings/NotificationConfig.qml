@@ -2,7 +2,6 @@ import Quickshell.Io
 import QtQuick
 
 JsonObject {
-    property bool enabled: true
     property int maxDisplay: 5
     property bool dynamicSize: true
     property int width: 380

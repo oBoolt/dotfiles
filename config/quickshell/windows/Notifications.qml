@@ -17,7 +17,7 @@ LazyLoader {
         return root.notificationServer.trackedNotifications.values.length;
     }
 
-    active: Config.notification.enabled
+    active: Config.modules.notifications
 
     PanelWindow {
         id: window
