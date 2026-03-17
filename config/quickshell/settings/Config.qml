@@ -11,7 +11,7 @@ Singleton {
     property alias scaleFactor: adapter.scaleFactor
 
     property alias modules: adapter.modules
-    property alias appearance: adapter.appearance
+    property AppearanceConfig appearance: AppearanceConfig {}
     property alias paths: adapter.paths
     property alias notification: adapter.notification
     property alias osd: adapter.osd
@@ -47,7 +47,6 @@ Singleton {
             property real scaleFactor: 1
 
             property ModulesConfig modules: ModulesConfig {}
-            property AppearanceConfig appearance: AppearanceConfig {}
             property PathsConfig paths: PathsConfig {}
             property NotificationConfig notification: NotificationConfig {}
             property OSDConfig osd: OSDConfig {}
