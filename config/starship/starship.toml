@@ -113,9 +113,9 @@ read_only = ""
 fish_style_pwd_dir_length = 10
 
 [character]
-success_symbol = "[󱦰](#01ff00)"  #  󰁔  󱦰
-error_symbol = "[󱦰](#ff0000)"
-vimcmd_symbol = "[󱦱](#ffea00)"
+success_symbol = '[\$](bold green)'  #  󰁔  󱦰 󱦰
+error_symbol = '[\$](bold red)'
+vimcmd_symbol = '[\$](bold yellow)'
 
 [aws]
 format = '\[[$symbol($profile)( \($region\))( - $duration)]($style)\]'
