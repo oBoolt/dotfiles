@@ -1,16 +1,32 @@
-# My Config Files
-This repository is used to store my config files in linux using the GNU stow
-
-## Requirements
-You need the following softwares to setup:
-- Git
-- Stow
-- Curl
-- Bash
+<h1 align="center">oBoolt Dotfiles</h1>
+In this repository I will upload my configuration files. I really like to
+make my configuration to understand how something works. Feel free to use it if you like.
 
 ## Installation
-if you want to install my dotfiles config just run this line in your shell
-
+```sh
+bash <(curl -sS https://raw.githubusercontent.com/oBoolt/dotfiles/refs/heads/main/install.sh)
 ```
-DOTFILES_INSTALL=true bash <(curl -s https://raw.githubusercontent.com/oBoolt/dotfiles/refs/heads/main/bin/setup.sh)
+
+## Components
+ - quickshell
+ - hyprland
+ - starship
+ - alacritty
+ - tmux
+ - zsh
+
+## Usage
+In the install script you be asked if you want to setup your dotfiles, this will create the links
+and backup your old config in the backup folder, the script will also set your current theme to be `gruvbox`.
+Whatever if you want to setup later use the command:
+```
+$ dotfiles config
+```
+To set a different theme use:
+```
+$ dotfiles theme <theme>
+```
+and you can list all the available themes using:
+```
+$ dotfiles theme --list
 ```
