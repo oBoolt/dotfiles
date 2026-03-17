@@ -65,10 +65,13 @@ format = "[$hostname]($style)"
 style = "bold green"
 
 [git_status]
-format = '(-\[[$all_status$ahead_behind]($style)\])'
-renamed = ""
-deleted = "󰧧"
-style = "202 bold"
+format = '(-\[[$ahead_behind$all_status]($style)\])'
+ahead = ""
+behind = ""
+diverged = ""
+renamed = ""
+deleted = "-"
+style = "bold red"
 
 [git_state]
 format = '-\[[$state( $progress_current/$progress_total)]($style)\]'
