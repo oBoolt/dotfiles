@@ -198,6 +198,10 @@ symbol = ""
 format = '-\[[$symbol( $version)]($style)\]'
 symbol = ""
 
+[fortran]
+format = '-\[[$symbol( $version)]($style)\]'
+symbol = "󱈚"
+
 [gcloud]
 format = '-\[[$symbol( $account)( \($region\))( - $domain)]($style)\]'
 symbol = "󱇶"
