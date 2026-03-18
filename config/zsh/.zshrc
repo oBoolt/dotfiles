@@ -94,7 +94,7 @@ compinit
 alias vim='nvim'
 alias cat='bat --paging=never'
 alias cd='z'
-alias ls='eza'
+alias ls='eza --group-directories-first'
 alias ll='ls -F -al'
 alias tree='ls -T'
 
