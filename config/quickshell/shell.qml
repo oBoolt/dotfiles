@@ -5,7 +5,7 @@ import QtQuick
 
 import qs.types
 import qs.services
-import qs.windows as Windows
+import qs.modules as Modules
 
 import qs.settings
 
@@ -39,17 +39,17 @@ ShellRoot {
 
     LazyLoader {
         active: Config.modules.bar
-        Windows.Bar {}
+        Modules.Bar {}
     }
 
-    Windows.Notifications {
+    Modules.Notifications {
         notificationServer: notificationServer
     }
 
-    Windows.OSD {
+    Modules.OSD {
         id: osd
     }
 
-    Windows.ControlCenter {}
-    Windows.Calendar {}
+    Modules.ControlCenter {}
+    Modules.Calendar {}
 }
