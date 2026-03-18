@@ -3,7 +3,7 @@ import Quickshell.Services.UPower
 import QtQuick
 import QtQml
 
-import qs.helpers
+import qs.utils
 import qs.components
 
 Card {

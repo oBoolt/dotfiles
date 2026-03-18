@@ -9,7 +9,7 @@ import QtQuick.Controls
 import qs.config
 import qs.utils
 import qs.components
-import qs.helpers
+import qs.utils
 
 LazyLoader {
     active: Config.modules.calendar && States.showCalendar

@@ -4,7 +4,7 @@ import Quickshell
 import Quickshell.Services.Pipewire
 
 import QtQuick
-import qs.helpers
+import qs.utils
 
 Singleton {
     id: root

@@ -4,13 +4,14 @@ import QtQuick
 import QtQuick.Layouts
 
 import qs.config
-import qs.helpers
+import qs.utils
 import qs.components
 import qs.utils
 import qs.components.bar
 
 Variants {
     model: Quickshell.screens
+
     PanelWindow {
         id: root
         required property ShellScreen modelData

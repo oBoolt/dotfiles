@@ -7,7 +7,7 @@ import QtQuick
 import QtQuick.Layouts
 
 import qs.config
-import qs.helpers
+import qs.utils
 import qs.utils
 import qs.components
 

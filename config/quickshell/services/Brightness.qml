@@ -5,7 +5,7 @@ import Quickshell.Io
 
 import QtQuick
 
-import qs.helpers
+import qs.utils
 import qs.config
 
 Singleton {

@@ -2,7 +2,7 @@ import QtQuick
 
 import qs.components
 
-import qs.helpers
+import qs.utils
 import qs.utils
 
 Text {

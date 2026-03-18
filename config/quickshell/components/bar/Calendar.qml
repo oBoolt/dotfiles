@@ -6,7 +6,7 @@ import QtQuick.Layouts
 
 import qs.config
 import qs.components
-import qs.helpers
+import qs.utils
 
 PopupWindow {
     id: root
