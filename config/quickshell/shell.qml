@@ -1,11 +1,9 @@
 import Quickshell
 import Quickshell.Services.Notifications
-
 import QtQuick
 
 import qs.services
-import qs.modules as Modules
-
+import qs.modules
 import qs.config
 
 ShellRoot {
@@ -22,33 +20,33 @@ ShellRoot {
     Connections {
         target: Audio.sink
         function onVolumeChanged() {
-            osd.showOSD(Modules.OSD.Audio, Audio.sink.icon, Math.round(Audio.sink.volume * 100));
+            osd.showOSD(OSD.Audio, Audio.sink.icon, Math.round(Audio.sink.volume * 100));
         }
         function onMutedChanged() {
-            osd.showOSD(Modules.OSD.Audio, Audio.sink.icon, Math.round(Audio.sink.volume * 100));
+            osd.showOSD(OSD.Audio, Audio.sink.icon, Math.round(Audio.sink.volume * 100));
         }
     }
 
     Connections {
         target: Brightness
         function onCurrentChanged() {
-            osd.showOSD(Modules.OSD.Brightness, Brightness.icon, Math.round(Brightness.percentage * 100));
+            osd.showOSD(OSD.Brightness, Brightness.icon, Math.round(Brightness.percentage * 100));
         }
     }
 
     LazyLoader {
         active: Config.modules.bar
-        Modules.Bar {}
+        Bar {}
     }
 
-    Modules.Notifications {
+    Notifications {
         notificationServer: notificationServer
     }
 
-    Modules.OSD {
+    OSD {
         id: osd
     }
 
-    Modules.ControlCenter {}
-    Modules.Calendar {}
+    ControlCenter {}
+    Calendar {}
 }
