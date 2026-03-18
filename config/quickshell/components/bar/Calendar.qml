@@ -5,7 +5,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import qs.settings
-import qs.widgets
+import qs.components
 import qs.helpers
 
 PopupWindow {

@@ -9,7 +9,7 @@ import QtQuick.Layouts
 import qs.settings
 import qs.helpers
 import qs.utils
-import qs.widgets
+import qs.components
 
 Scope {
     id: root

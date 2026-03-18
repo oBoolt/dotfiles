@@ -2,7 +2,7 @@ import QtQuick
 
 import qs.settings
 import qs.services
-import qs.widgets
+import qs.components
 
 Card {
     id: root

@@ -8,7 +8,7 @@ import QtQuick.Controls
 
 import qs.settings
 import qs.utils
-import qs.widgets
+import qs.components
 import qs.helpers
 
 LazyLoader {

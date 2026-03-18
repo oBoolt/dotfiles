@@ -1,6 +1,6 @@
 import Quickshell.Wayland
 
-import qs.widgets
+import qs.components
 
 Text {
     text: ToplevelManager.activeToplevel?.maximized ? "Zoom" : "Normal"

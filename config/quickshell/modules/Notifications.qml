@@ -6,7 +6,7 @@ import QtQuick
 import QtQuick.Layouts
 
 import qs.settings
-import qs.widgets.notifications
+import qs.components.notifications
 
 LazyLoader {
     id: root

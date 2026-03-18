@@ -4,7 +4,7 @@ import QtQuick
 import QtQml
 
 import qs.helpers
-import qs.widgets
+import qs.components
 
 Card {
     id: root

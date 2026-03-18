@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 
-import qs.widgets
+import qs.components
 
 Slider {
     id: root

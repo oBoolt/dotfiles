@@ -5,9 +5,9 @@ import QtQuick.Layouts
 
 import qs.settings
 import qs.helpers
-import qs.widgets
+import qs.components
 import qs.utils
-import qs.widgets.bar
+import qs.components.bar
 
 Variants {
     model: Quickshell.screens

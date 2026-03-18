@@ -1,7 +1,7 @@
 import QtQuick
 import Quickshell.Hyprland
 
-import qs.widgets
+import qs.components
 
 Text {
     text: Hyprland.activeToplevel?.title ?? ""
