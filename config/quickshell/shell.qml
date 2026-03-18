@@ -3,7 +3,6 @@ import Quickshell.Services.Notifications
 
 import QtQuick
 
-import qs.types
 import qs.services
 import qs.modules as Modules
 
@@ -23,17 +22,17 @@ ShellRoot {
     Connections {
         target: Audio.sink
         function onVolumeChanged() {
-            osd.showOSD(OsdMode.Audio, Audio.sink.icon, Math.round(Audio.sink.volume * 100));
+            osd.showOSD(Modules.OSD.Audio, Audio.sink.icon, Math.round(Audio.sink.volume * 100));
         }
         function onMutedChanged() {
-            osd.showOSD(OsdMode.Audio, Audio.sink.icon, Math.round(Audio.sink.volume * 100));
+            osd.showOSD(Modules.OSD.Audio, Audio.sink.icon, Math.round(Audio.sink.volume * 100));
         }
     }
 
     Connections {
         target: Brightness
         function onCurrentChanged() {
-            osd.showOSD(OsdMode.Brightness, Brightness.icon, Math.round(Brightness.percentage * 100));
+            osd.showOSD(Modules.OSD.Brightness, Brightness.icon, Math.round(Brightness.percentage * 100));
         }
     }
 

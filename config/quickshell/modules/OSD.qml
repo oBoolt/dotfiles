@@ -13,6 +13,13 @@ import qs.components
 
 Scope {
     id: root
+
+    enum Enum {
+        Audio,
+        Brightness,
+        Keyboard
+    }
+
     property bool osdVisible: false
     property string icon
     property string value
