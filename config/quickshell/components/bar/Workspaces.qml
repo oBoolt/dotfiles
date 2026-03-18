@@ -1,7 +1,7 @@
 import QtQuick
 import Quickshell.Hyprland
 
-import qs.settings
+import qs.config
 import qs.components
 
 Repeater {

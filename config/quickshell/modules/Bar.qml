@@ -3,7 +3,7 @@ import Quickshell
 import QtQuick
 import QtQuick.Layouts
 
-import qs.settings
+import qs.config
 import qs.helpers
 import qs.components
 import qs.utils

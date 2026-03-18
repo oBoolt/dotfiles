@@ -6,7 +6,7 @@ import Quickshell.Io
 import QtQuick
 
 import qs.helpers
-import qs.settings
+import qs.config
 
 Singleton {
     id: root

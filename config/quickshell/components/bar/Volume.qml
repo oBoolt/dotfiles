@@ -1,6 +1,6 @@
 import QtQuick
 
-import qs.settings
+import qs.config
 import qs.services
 import qs.components
 

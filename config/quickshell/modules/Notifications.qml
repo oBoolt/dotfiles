@@ -5,7 +5,7 @@ import Quickshell.Services.Notifications
 import QtQuick
 import QtQuick.Layouts
 
-import qs.settings
+import qs.config
 import qs.components.notifications
 
 LazyLoader {

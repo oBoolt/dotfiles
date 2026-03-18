@@ -6,7 +6,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
-import qs.settings
+import qs.config
 import qs.utils
 import qs.components
 import qs.helpers

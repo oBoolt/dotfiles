@@ -7,7 +7,7 @@ import qs.types
 import qs.services
 import qs.modules as Modules
 
-import qs.settings
+import qs.config
 
 ShellRoot {
     NotificationServer {

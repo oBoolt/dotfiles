@@ -2,7 +2,7 @@ import QtQuick
 
 import qs.components
 import qs.services
-import qs.settings
+import qs.config
 
 Card {
     icon: Brightness.icon

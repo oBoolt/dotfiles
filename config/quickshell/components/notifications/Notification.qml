@@ -6,7 +6,7 @@ import QtQuick
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
-import qs.settings
+import qs.config
 import qs.components
 
 Rectangle {
