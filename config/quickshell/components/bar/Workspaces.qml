@@ -15,7 +15,7 @@ Repeater {
         color: workspace != null ? Colors.aqua : Colors.gray
 
         Rectangle {
-            visible: !workspaceNode.workspace.active
+            visible: !workspaceNode.workspace?.active
             anchors.margins: parent.width * 0.2
             anchors.fill: parent
             radius: width / 2
