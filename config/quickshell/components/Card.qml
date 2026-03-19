@@ -1,56 +1,48 @@
 import QtQuick
-import QtQuick.Layouts
 
-import qs.config
 import qs.components
 import qs.utils
+import qs.config
 
 Item {
-    id: root
+    id: card
     required property int icon
-    property color color: Colors.foreground
-    property alias value: value.text
-    property bool background: true
+    property bool hover: false
+    property alias color: text.color
 
-    implicitWidth: childrenRect.width
-    implicitHeight: Appearance.font.icon + Appearance.padding.small
+    signal clicked(MouseEvent mouse)
 
-    Rectangle {
-        id: background
-        implicitHeight: parent.implicitHeight
-        implicitWidth: root.value != "" ? items.implicitWidth + Appearance.padding.small * 2 : parent.implicitHeight
-        color: root.background ? Colors.backgroundc : "transparent"
-        radius: Appearance.radius.small
+    implicitWidth: 24
+    implicitHeight: width
 
-        RowLayout {
-            id: items
-            anchors.centerIn: parent
-            implicitHeight: root.implicitHeight
-            spacing: Appearance.spacing.small
+    Text {
+        id: text
+        anchors.fill: parent
+        font.pixelSize: 18
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+        text: Icons.get(card.icon)
+    }
 
-            Text {
-                Layout.fillWidth: true
-                font.pixelSize: Appearance.font.icon - 2
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                color: root.color
-                text: Icons.get(root.icon)
-            }
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
+        cursorShape: Qt.PointingHandCursor
 
-            Text {
-                id: value
-                visible: root.value != ""
-                Layout.fillWidth: true
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-            }
+        onEntered: {
+            bg.visible = true;
         }
+        onExited: {
+            bg.visible = false;
+        }
+        onClicked: e => card.clicked(e)
 
         Rectangle {
-            anchors.bottom: parent.bottom
-            implicitWidth: background.implicitWidth
-            implicitHeight: 1.5
-            color: root.color
+            id: bg
+            visible: false
+            opacity: 0.1
+            anchors.fill: parent
+            radius: Appearance.radius.small
         }
     }
 }

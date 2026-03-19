@@ -12,6 +12,5 @@ Card {
 
     visible: UPower.displayDevice.isLaptopBattery
     icon: Icons.getKey(laptop.iconName)
-    value: Math.round(laptop.percentage * 100) + "%"
     color: Battery.getColor(Icons.getKey(laptop.iconName))
 }
