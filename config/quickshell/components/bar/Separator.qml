@@ -1,7 +1,9 @@
 import QtQuick
 
-import qs.components
+import qs.config
 
-Text {
-    text: "|"
+Rectangle {
+    implicitWidth: 2
+    implicitHeight: parent.height / 2
+    color: Colors.foreground
 }
