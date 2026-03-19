@@ -68,6 +68,8 @@ if [ -x "$(command -v nvim)" ]; then
     export VISUAL="$nvim"
     export MANPAGER="$nvim +Man!"
 fi
+
+export QT_QPA_PLATFORMTHEME=qt5ct
 # Cargo env
 [ -x "$(command -v cargo)" ] && export PATH="$PATH:$HOME/.cargo/bin"
 
