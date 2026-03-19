@@ -5,7 +5,7 @@ command_timeout = 1000
 scan_timeout = 50
 continuation_prompt = "[󱦰](bold bright-black) "
 format = '''
-[╭╴](238)$os( - $shell) | \[$username(@$hostname)\]$git_status$git_state$all$fill$cmd_duration
+[╭╴](238)$os( - $shell) | \[$username(@$hostname)\]$git_status$git_commit$git_state$all$fill$cmd_duration
 [╰╴](238)($git_branch )$directory $character'''
 
 [os]
@@ -72,6 +72,11 @@ diverged = ""
 renamed = ""
 deleted = "-"
 style = "bold red"
+
+[git_commit]
+format = '(-\[[$hash$tag]($style)\])'
+commit_hash_length = 5
+tag_disabled = true
 
 [git_state]
 format = '-\[[$state( $progress_current/$progress_total)]($style)\]'
