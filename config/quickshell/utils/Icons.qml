@@ -43,7 +43,8 @@ Singleton {
         Brightness60Symbolic,
         Brightness75Symbolic,
         Brightness90Symbolic,
-        CPU
+        CPU,
+        OpenMenuSymbolic
     }
     readonly property var map: {
         let map = new Map();
@@ -85,6 +86,7 @@ Singleton {
         map.set(Icons.Brightness75Symbolic, "󰃟");
         map.set(Icons.Brightness90Symbolic, "󰃠");
         map.set(Icons.CPU, "󰍛");
+        map.set(Icons.OpenMenuSymbolic, "󰍜");
         return map;
     }
 

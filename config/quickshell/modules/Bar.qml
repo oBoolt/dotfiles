@@ -4,10 +4,9 @@ import QtQuick
 import QtQuick.Layouts
 
 import qs.config
-import qs.utils
 import qs.components
-import qs.utils
 import qs.components.bar
+import qs.utils as Utils
 
 Variants {
     model: Quickshell.screens
@@ -71,15 +70,6 @@ Variants {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                // TODO: create button to open control center
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        States.updateCurrentScreen();
-                        States.showControlCenter = !States.showControlCenter;
-                    }
-                }
-
                 RowLayout {
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
@@ -87,18 +77,20 @@ Variants {
                     layoutDirection: Qt.RightToLeft
                     spacing: Appearance.spacing.normal
 
+                    Menu {}
+                    Separator {}
                     Battery {}
                     Volume {}
                     Card {
-                        icon: Icons.NetworkBluetoothSymbolic
+                        icon: Utils.Icons.NetworkBluetoothSymbolic
                         color: Colors.darkblue
                     }
                     Card {
-                        icon: Icons.CPU
+                        icon: Utils.Icons.CPU
                         color: Colors.red
                     }
                     Card {
-                        icon: Icons.NetworkWiredActivatedSymbolic
+                        icon: Utils.Icons.NetworkWiredActivatedSymbolic
                         color: Colors.darkgreen
                     }
                     Brightness {}
