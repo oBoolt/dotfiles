@@ -39,6 +39,8 @@ Variants {
                 Layout.fillHeight: true
 
                 RowLayout {
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: Appearance.spacing.normal
 
