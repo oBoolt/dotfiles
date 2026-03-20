@@ -87,10 +87,7 @@ Variants {
                         icon: Utils.Icons.NetworkBluetoothSymbolic
                         color: Colors.darkblue
                     }
-                    Card {
-                        icon: Utils.Icons.CPU
-                        color: Colors.red
-                    }
+                    SystemUsage {}
                     Card {
                         icon: Utils.Icons.NetworkWiredActivatedSymbolic
                         color: Colors.darkgreen
