@@ -117,7 +117,11 @@ LazyLoader {
             Page {
                 Rectangle {
                     anchors.fill: parent
-                    color: "yellow"
+                    color: "black"
+
+                    Text {
+                        text: SystemUsage.cpu.usage * 100 + "%"
+                    }
                 }
             }
         }
