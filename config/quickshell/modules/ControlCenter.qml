@@ -119,8 +119,13 @@ LazyLoader {
                     anchors.fill: parent
                     color: "black"
 
-                    Text {
-                        text: SystemUsage.cpu.usage * 100 + "%"
+                    ColumnLayout {
+                        Text {
+                            text: SystemUsage.cpu.usage * 100 + "%"
+                        }
+                        Text {
+                            text: SystemUsage.mem.usage * 100 + "%"
+                        }
                     }
                 }
             }
