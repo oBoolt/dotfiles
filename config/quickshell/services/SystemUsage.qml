@@ -22,6 +22,7 @@ Singleton {
         property int steal: 0
         property int guest: 0
         property int guest_nice: 0
+        property int total: 0
         property real usage: 0
     }
 
@@ -39,23 +40,43 @@ Singleton {
     // /proc/stat
     function parseCpuInfo(line: string): void {
         let info = line.split(/\s+/);
-        root.cpu.user = info[1];
-        root.cpu.nice = info[2];
-        root.cpu.system = info[3];
-        root.cpu.idle = info[4];
-        root.cpu.iowait = info[5];
-        root.cpu.irq = info[6];
-        root.cpu.softirq = info[7];
-        root.cpu.steal = info[8];
-        root.cpu.guest = info[9];
-        root.cpu.guest_nice = info[10];
+
+        let user = info[1];
+        let nice = info[2];
+        let system = info[3];
+        let idle = info[4];
+        let iowait = info[5];
+        let irq = info[6];
+        let softirq = info[7];
+        let steal = info[8];
+        let guest = info[9];
+        let guest_nice = info[10];
 
         // I don't know why but I can't do in one line
         // have to separate to another function
         // it should work with a arrow function but the value
         // returned is absurd
-        let sum = info.reduce(root.sum);
-        root.cpu.usage = 1 - (info[4] / sum);
+        let total = info.reduce(root.sum);
+        let oldTotal = root.cpu.total;
+        let oldIdle = root.cpu.idle;
+        let usage;
+
+        if (oldTotal > 0) {
+            usage = 1 - ((idle - oldIdle) / (total - oldTotal));
+        }
+
+        root.cpu.user = user;
+        root.cpu.nice = nice;
+        root.cpu.system = system;
+        root.cpu.idle = idle;
+        root.cpu.iowait = iowait;
+        root.cpu.irq = irq;
+        root.cpu.softirq = softirq;
+        root.cpu.steal = steal;
+        root.cpu.guest = guest;
+        root.cpu.guest_nice = guest_nice;
+        root.cpu.total = total;
+        root.cpu.usage = usage;
     }
 
     // /proc/meminfo
