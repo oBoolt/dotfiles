@@ -95,7 +95,7 @@ Singleton {
     Process {
         id: cpuProccess
         running: true
-        command: ["/usr/bin/env", "sh", "-c", "while true; do head -1 /proc/stat; sleep 3; done"]
+        command: ["/usr/bin/env", "sh", "-c", "while true; do head -1 /proc/stat; sleep 0.5; done"]
         stdout: SplitParser {
             onRead: data => root.parseCpuInfo(data)
         }
@@ -104,7 +104,7 @@ Singleton {
     Process {
         id: memProccess
         running: true
-        command: ["/usr/bin/env", "sh", "-c", "while true; do head -3 /proc/meminfo; sleep 3; done"]
+        command: ["/usr/bin/env", "sh", "-c", "while true; do head -3 /proc/meminfo; sleep 0.5; done"]
         stdout: SplitParser {
             onRead: data => root.parseMemInfo(data)
         }
