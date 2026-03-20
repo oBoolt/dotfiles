@@ -4,6 +4,8 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 
+import qs.config
+
 Singleton {
     id: root
     property alias runningCpu: cpuProccess.running
@@ -31,6 +33,19 @@ Singleton {
         property int free: 0
         property int available: 0
         property real usage: 0
+    }
+
+    function getUsageColor(usage: real): color {
+        if (usage >= 0.9)
+            return Colors.darkred;
+        if (usage >= 0.7)
+            return Colors.red;
+        if (usage >= 0.5)
+            return Colors.yellow;
+        if (usage >= 0.2)
+            return Colors.darkgreen;
+        if (usage >= 0)
+            return Colors.green;
     }
 
     function sum(acc: int, current: int, idx: int): int {
