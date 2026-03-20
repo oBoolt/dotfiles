@@ -10,6 +10,7 @@ import qs.config
 
 Singleton {
     id: root
+    property bool valid: false
     property int current: 1
     property int max: 1
     property real percentage: current / max
@@ -49,10 +50,24 @@ Singleton {
         }
     }
 
+    Process {
+        running: true
+        command: ["sh", "-c", "command -v brightnessctl >/dev/null; echo $?"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                if (parseInt(this.text) == 0)
+                    root.valid = true;
+            }
+        }
+    }
+
     FileView {
         id: currentFile
         path: Qt.resolvedUrl(Config.paths.backlight + "/actual_brightness")
         watchChanges: true
+        onLoadFailed: e => {
+            root.valid = false;
+        }
         onLoaded: {
             root.current = parseInt(text());
             root.icon = Icons.getBrightnessIcon(root.percentage);
@@ -66,6 +81,9 @@ Singleton {
     FileView {
         blockLoading: true
         path: Qt.resolvedUrl(Config.paths.backlight + "/max_brightness")
+        onLoadFailed: e => {
+            root.valid = false;
+        }
         onLoaded: {
             root.max = parseInt(text());
         }
