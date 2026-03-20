@@ -38,24 +38,24 @@ Singleton {
 
     // /proc/stat
     function parseCpuInfo(line: string): void {
-        let info = line.trim().slice(5).split(" ");
-        root.cpu.user = info[0];
-        root.cpu.nice = info[1];
-        root.cpu.system = info[2];
-        root.cpu.idle = info[3];
-        root.cpu.iowait = info[4];
-        root.cpu.irq = info[5];
-        root.cpu.softirq = info[6];
-        root.cpu.steal = info[7];
-        root.cpu.guest = info[8];
-        root.cpu.guest_nice = info[9];
+        let info = line.split(/\s+/);
+        root.cpu.user = info[1];
+        root.cpu.nice = info[2];
+        root.cpu.system = info[3];
+        root.cpu.idle = info[4];
+        root.cpu.iowait = info[5];
+        root.cpu.irq = info[6];
+        root.cpu.softirq = info[7];
+        root.cpu.steal = info[8];
+        root.cpu.guest = info[9];
+        root.cpu.guest_nice = info[10];
 
         // I don't know why but I can't do in one line
         // have to separate to another function
         // it should work with a arrow function but the value
         // returned is absurd
         let sum = info.reduce(root.sum);
-        root.cpu.usage = 1 - (info[3] / sum);
+        root.cpu.usage = 1 - (info[4] / sum);
     }
 
     // /proc/meminfo
