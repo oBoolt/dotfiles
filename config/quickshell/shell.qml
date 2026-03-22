@@ -49,4 +49,5 @@ ShellRoot {
 
     ControlCenter {}
     Calendar {}
+    Mpris {}
 }

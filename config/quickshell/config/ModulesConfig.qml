@@ -7,4 +7,5 @@ JsonObject {
     property bool controlcenter: true
     property bool notifications: true
     property bool osd: true
+    property bool mpris: true
 }

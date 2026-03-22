@@ -8,6 +8,7 @@ Singleton {
     id: root
     property bool showControlCenter: false
     property bool showCalendar: false
+    property bool showMpris: false
 
     property ShellScreen currentScreen
 
