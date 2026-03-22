@@ -9,7 +9,7 @@ Repeater {
         id: workspaceNode
         required property int index
         readonly property HyprlandWorkspace workspace: Hyprland.workspaces.values.find(ws => ws.id == index + 1) ?? null
-        implicitWidth: 12
+        implicitWidth: 10
         implicitHeight: implicitWidth
         radius: width / 2
         color: workspace != null ? Colors.aqua : Colors.gray
