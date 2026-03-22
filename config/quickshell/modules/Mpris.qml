@@ -6,12 +6,13 @@ import Quickshell.Services.Mpris
 
 import qs.config
 import qs.utils
+import qs.components
 
 LazyLoader {
     active: Config.modules.mpris && States.showMpris
-    // active: true
 
     PanelWindow {
+        id: root
         screen: States.currentScreen
         exclusiveZone: 0
 
@@ -25,9 +26,112 @@ LazyLoader {
 
         implicitWidth: 450
         implicitHeight: 150
+        color: "#353535"
+
+        property MprisPlayer current: Mpris.players.values[0]
+
+        Timer {
+            running: root.current.playbackState == MprisPlaybackState.Playing
+            interval: 1000
+            repeat: true
+            onTriggered: root.current.positionChanged()
+        }
+
+        Item {
+            anchors.margins: 8
+            anchors.fill: parent
+
+            RowLayout {
+                anchors.fill: parent
+
+                Image {
+                    Layout.fillHeight: true
+                    Layout.preferredWidth: height
+                    source: root.current.metadata["mpris:artUrl"]
+                }
+                ColumnLayout {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+
+                    Text {
+                        text: "placeholder"
+                    }
+                    Text {
+                        text: "placeholder"
+                    }
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Layout.maximumHeight: 16
+                        Layout.alignment: Qt.AlignHCenter
+
+                        Rectangle {
+                            Layout.fillHeight: true
+                            Layout.preferredWidth: height
+
+                            MouseArea {
+                                anchors.fill: parent
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: root.current.previous()
+                            }
+                        }
+
+                        Rectangle {
+                            Layout.fillHeight: true
+                            Layout.preferredWidth: height
+
+                            MouseArea {
+                                anchors.fill: parent
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: root.current.togglePlaying()
+                            }
+                        }
+
+                        Rectangle {
+                            Layout.fillHeight: true
+                            Layout.preferredWidth: height
+
+                            MouseArea {
+                                anchors.fill: parent
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: root.current.next()
+                            }
+                        }
+                    }
+                    Item {
+                        Layout.fillWidth: true
+                        Rectangle {
+                            anchors {
+                                left: parent.left
+                                right: parent.right
+                            }
+                            height: 2
+
+                            MouseArea {
+                                anchors.fill: parent
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: e => {
+                                    console.log(JSON.stringify(e, null, 2));
+                                }
+                            }
+
+                            Rectangle {
+                                anchors {
+                                    left: parent.left
+                                    top: parent.top
+                                    bottom: parent.bottom
+                                }
+
+                                implicitWidth: (root.current.position / root.current.length) * parent.width
+                                color: "red"
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         Component.onCompleted: {
-            console.log(JSON.stringify(Mpris.players));
+            console.log(JSON.stringify(Mpris.players, null, 2));
         }
     }
 }
