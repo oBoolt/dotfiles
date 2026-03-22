@@ -54,10 +54,10 @@ LazyLoader {
                     Layout.fillWidth: true
 
                     Text {
-                        text: "placeholder"
+                        text: root.current.trackTitle || "Unknown Title"
                     }
                     Text {
-                        text: "placeholder"
+                        text: root.current.trackArtist || "Unknown Artist"
                     }
                     RowLayout {
                         Layout.fillWidth: true
