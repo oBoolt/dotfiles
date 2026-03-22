@@ -112,17 +112,24 @@ LazyLoader {
                                 left: parent.left
                                 right: parent.right
                             }
-                            height: 2
+                            height: 4
 
                             MouseArea {
                                 anchors.fill: parent
                                 cursorShape: Qt.PointingHandCursor
-                                onClicked: e => {
-                                    console.log(JSON.stringify(e, null, 2));
+                                onPositionChanged: e => {
+                                    currentIndicator.width = (e.x / this.width) * parent.width;
+                                // console.log(JSON.stringify(e, null, 2));
+                                }
+                                onReleased: e => {
+                                    root.current.position = (e.x / this.width) * root.current.length;
+                                    currentIndicator.implicitWidth = (root.current.position / root.current.length) * parent.width;
                                 }
                             }
 
                             Rectangle {
+                                id: currentIndicator
+
                                 anchors {
                                     left: parent.left
                                     top: parent.top
