@@ -30,6 +30,10 @@ LazyLoader {
 
         property MprisPlayer current: Mpris.players.values[0]
 
+        function convertSecToMin(seconds: int): string {
+            return (parseInt(seconds / 60) + ":" + ((seconds % 60) < 10 ? "0" + (seconds % 60) : (seconds % 60)));
+        }
+
         Timer {
             running: root.current.playbackState == MprisPlaybackState.Playing
             interval: 1000
@@ -122,16 +126,29 @@ LazyLoader {
                                 }
 
                                 implicitWidth: (root.current.position / root.current.length) * parent.width
+
                                 color: "red"
                             }
                         }
                     }
+
+                    RowLayout {
+                        Layout.fillWidth: true
+
+                        Text {
+                            text: root.convertSecToMin(root.current.position)
+                        }
+
+                        Item {
+                            Layout.fillWidth: true
+                        }
+
+                        Text {
+                            text: root.convertSecToMin(root.current.length)
+                        }
+                    }
                 }
             }
-        }
-
-        Component.onCompleted: {
-            console.log(JSON.stringify(Mpris.players, null, 2));
         }
     }
 }
