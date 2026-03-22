@@ -17,7 +17,7 @@ Variants {
         screen: modelData
 
         color: Colors.background
-        implicitHeight: 35 * Config.scaleFactor["DP-1"]
+        implicitHeight: 35 * Config.scaleFactor[screen.name]
 
         anchors {
             top: true

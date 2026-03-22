@@ -26,8 +26,8 @@ LazyLoader {
             left: Appearance.margin.normal
         }
 
-        implicitWidth: 385 * Config.scaleFactor["DP-1"]
-        implicitHeight: 270 * Config.scaleFactor["DP-1"]
+        implicitWidth: 385 * Config.scaleFactor[screen.name]
+        implicitHeight: 270 * Config.scaleFactor[screen.name]
         color: Colors.background
 
         ColumnLayout {

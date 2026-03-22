@@ -25,8 +25,8 @@ LazyLoader {
             right: 8
         }
 
-        implicitWidth: 480 * Config.scaleFactor["DP-1"]
-        implicitHeight: 540 * Config.scaleFactor["DP-1"]
+        implicitWidth: 480 * Config.scaleFactor[screen.name]
+        implicitHeight: 540 * Config.scaleFactor[screen.name]
 
         StackView {
             id: stackView
