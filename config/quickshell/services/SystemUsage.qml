@@ -74,7 +74,7 @@ Singleton {
         let total = info.reduce(root.sum);
         let oldTotal = root.cpu.total;
         let oldIdle = root.cpu.idle;
-        let usage;
+        let usage = 0;
 
         if (oldTotal > 0) {
             usage = 1 - ((idle - oldIdle) / (total - oldTotal));
