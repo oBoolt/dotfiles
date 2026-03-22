@@ -11,34 +11,34 @@ JsonObject {
     property Font font: Font {}
 
     component Radius: JsonObject {
-        property int small: 3 * Config.scaleFactor
-        property int normal: 6 * Config.scaleFactor
-        property int large: 12 * Config.scaleFactor
+        property int small: 3
+        property int normal: 6
+        property int large: 12
     }
 
     component Spacing: JsonObject {
-        property int small: 6 * Config.scaleFactor
-        property int normal: 10 * Config.scaleFactor
-        property int large: 16 * Config.scaleFactor
+        property int small: 6
+        property int normal: 10
+        property int large: 16
     }
 
     component Padding: JsonObject {
-        property int small: 6 * Config.scaleFactor
-        property int normal: 10 * Config.scaleFactor
-        property int large: 16 * Config.scaleFactor
+        property int small: 6
+        property int normal: 10
+        property int large: 16
     }
 
     component Margin: JsonObject {
-        property int small: 4 * Config.scaleFactor
-        property int normal: 8 * Config.scaleFactor
-        property int large: 12 * Config.scaleFactor
+        property int small: 4
+        property int normal: 8
+        property int large: 12
     }
 
     component Font: JsonObject {
         property string family: "NotoSans Nerd Font Propo"
-        property int small: 8 * Config.scaleFactor
-        property int normal: 14 * Config.scaleFactor
-        property int large: 20 * Config.scaleFactor
-        property int icon: 20 * Config.scaleFactor
+        property int small: 8
+        property int normal: 14
+        property int large: 20
+        property int icon: 20
     }
 }

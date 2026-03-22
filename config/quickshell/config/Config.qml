@@ -44,7 +44,15 @@ Singleton {
             id: adapter
             property bool debug: false
             property string locale: "en_US"
-            property real scaleFactor: 1
+            property var scaleFactor: {
+                let result = {};
+                for (let i = 0; i < Quickshell.screens.length; i++) {
+                    let current = Quickshell.screens[i];
+                    result[current.name] = 1;
+                }
+
+                return result;
+            }
 
             property ModulesConfig modules: ModulesConfig {}
             property PathsConfig paths: PathsConfig {}

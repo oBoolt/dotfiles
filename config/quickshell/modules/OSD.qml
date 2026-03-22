@@ -52,8 +52,8 @@ Scope {
         PanelWindow {
             id: window
             screen: States.currentScreen
-            implicitWidth: 200 * Config.scaleFactor
-            implicitHeight: 50 * Config.scaleFactor
+            implicitWidth: 200 * Config.scaleFactor["DP-1"]
+            implicitHeight: 50 * Config.scaleFactor["DP-1"]
             anchors.bottom: true
             margins.bottom: screen.height / 7
             exclusiveZone: 0
