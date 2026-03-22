@@ -58,9 +58,13 @@ LazyLoader {
                     Layout.fillWidth: true
 
                     Text {
+                        Layout.fillWidth: true
+                        elide: Text.ElideRight
                         text: root.current.trackTitle || "Unknown Title"
                     }
                     Text {
+                        Layout.fillWidth: true
+                        elide: Text.ElideRight
                         text: root.current.trackArtist || "Unknown Artist"
                     }
                     RowLayout {
