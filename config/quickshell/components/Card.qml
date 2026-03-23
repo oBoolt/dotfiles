@@ -12,13 +12,13 @@ Item {
 
     signal clicked(MouseEvent mouse)
 
-    implicitWidth: 24
+    implicitWidth: Appearance.font.icon
     implicitHeight: width
 
     Text {
         id: text
         anchors.fill: parent
-        font.pixelSize: 18
+        font.pixelSize: (parent.implicitWidth * 0.85)
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         text: Icons.get(card.icon)
