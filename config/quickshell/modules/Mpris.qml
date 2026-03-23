@@ -26,7 +26,7 @@ LazyLoader {
 
         implicitWidth: 450
         implicitHeight: 150
-        color: "#353535"
+        color: Colors.background
 
         property int currentIndex: 0
         property MprisPlayer current: Mpris.players.values[currentIndex]
