@@ -10,6 +10,7 @@ Singleton {
     property bool showControlCenter: false
     property bool showCalendar: false
     property bool showMpris: false
+    property int currentClientIndex: 0
 
     property ShellScreen currentScreen
 

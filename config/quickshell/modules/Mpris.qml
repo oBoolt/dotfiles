@@ -28,9 +28,9 @@ LazyLoader {
         implicitHeight: 150
         color: Colors.background
 
-        property int currentIndex: 0
-        property MprisPlayer current: Mpris.players.values[currentIndex]
-        property bool haveClient: !!Mpris.players.values.length
+        property MprisPlayer current: Mpris.players.values[States.currentClientIndex]
+        readonly property bool multipleClients: Mpris.players.values.length > 1
+        readonly property bool haveClient: !!Mpris.players.values.length
 
         function displaySeconds(seconds: int): string {
             let hours = seconds >= (60 * 60);
@@ -38,11 +38,11 @@ LazyLoader {
         }
 
         function nextClient(): void {
-            root.currentIndex = (currentIndex + 1) % Mpris.players.values.length;
+            States.currentClientIndex = (States.currentClientIndex + 1) % Mpris.players.values.length;
         }
 
         function previousClient(): void {
-            root.currentIndex = (currentIndex - 1) < 0 ? (Mpris.players.values.length - 1) : (currentIndex - 1);
+            States.currentClientIndex = (States.currentClientIndex - 1) < 0 ? (Mpris.players.values.length - 1) : (States.currentClientIndex - 1);
         }
 
         Timer {
