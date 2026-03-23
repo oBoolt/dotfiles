@@ -44,7 +44,11 @@ Singleton {
         Brightness75Symbolic,
         Brightness90Symbolic,
         CPU,
-        OpenMenuSymbolic
+        OpenMenuSymbolic,
+        MediaPlaybackPauseSymbolic,
+        MediaPlaybackStartSymbolic,
+        MediaSkipBackwardSymbolic,
+        MediaSkipForwardSymbolic
     }
     readonly property var map: {
         let map = new Map();
@@ -87,6 +91,10 @@ Singleton {
         map.set(Icons.Brightness90Symbolic, "󰃠");
         map.set(Icons.CPU, "󰍛");
         map.set(Icons.OpenMenuSymbolic, "󰍜");
+        map.set(Icons.MediaPlaybackPauseSymbolic, "󰏤");
+        map.set(Icons.MediaPlaybackStartSymbolic, "󰐊");
+        map.set(Icons.MediaSkipBackwardSymbolic, "󰒮");
+        map.set(Icons.MediaSkipForwardSymbolic, "󰒭");
         return map;
     }
 
