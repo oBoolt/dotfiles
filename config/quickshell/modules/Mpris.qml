@@ -47,7 +47,7 @@ LazyLoader {
 
         Timer {
             running: root.haveClient && root.current.playbackState == MprisPlaybackState.Playing
-            interval: 500
+            interval: 1000
             repeat: true
             onTriggered: root.current.positionChanged()
         }
@@ -180,7 +180,7 @@ LazyLoader {
                                         bottom: parent.bottom
                                     }
                                     color: Colors.aqua
-                                    implicitWidth: (1 % (root.current.position / root.current.length)) * parent.width
+                                    implicitWidth: ((root.current.position / root.current.length) % 1) * parent.width
                                 }
                             }
                         }
