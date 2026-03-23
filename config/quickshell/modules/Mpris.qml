@@ -28,8 +28,9 @@ LazyLoader {
         implicitHeight: 150
         color: "#353535"
 
-        property int currentIndex: 1
+        property int currentIndex: 0
         property MprisPlayer current: Mpris.players.values[currentIndex]
+        property bool haveClient: !!Mpris.players.values.length
 
         function convertSecToMin(seconds: int): string {
             return (parseInt(seconds / 60) + ":" + ((seconds % 60) < 10 ? "0" + (seconds % 60) : (seconds % 60)));
@@ -44,7 +45,7 @@ LazyLoader {
         }
 
         Timer {
-            running: root.current.playbackState == MprisPlaybackState.Playing
+            running: root.haveClient && root.current.playbackState == MprisPlaybackState.Playing
             interval: 1000
             repeat: true
             onTriggered: root.current.positionChanged()
@@ -54,7 +55,17 @@ LazyLoader {
             anchors.margins: 8
             anchors.fill: parent
 
+            Text {
+                anchors.fill: parent
+                visible: !root.haveClient
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                font.pixelSize: Appearance.font.large
+                text: "No player available"
+            }
+
             RowLayout {
+                visible: root.haveClient
                 anchors.fill: parent
 
                 Image {
