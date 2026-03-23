@@ -28,10 +28,19 @@ LazyLoader {
         implicitHeight: 150
         color: "#353535"
 
-        property MprisPlayer current: Mpris.players.values[0]
+        property int currentIndex: 1
+        property MprisPlayer current: Mpris.players.values[currentIndex]
 
         function convertSecToMin(seconds: int): string {
             return (parseInt(seconds / 60) + ":" + ((seconds % 60) < 10 ? "0" + (seconds % 60) : (seconds % 60)));
+        }
+
+        function nextClient(): void {
+            root.currentIndex = (currentIndex + 1) % Mpris.players.values.length;
+        }
+
+        function previousClient(): void {
+            root.currentIndex = (currentIndex - 1) < 0 ? (Mpris.players.values.length - 1) : (currentIndex - 1);
         }
 
         Timer {
@@ -53,6 +62,7 @@ LazyLoader {
                     Layout.preferredWidth: height
                     source: root.current.metadata["mpris:artUrl"]
                 }
+
                 ColumnLayout {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
