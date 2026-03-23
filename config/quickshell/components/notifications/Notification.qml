@@ -35,7 +35,7 @@ Rectangle {
         } else if (icon !== "")
             return Quickshell.iconPath(icon);
         else {
-            return Qt.resolvedUrl(Quickshell.shellRoot + "/assets/default-notification.svg");
+            return Qt.resolvedUrl(Quickshell.shellDir + "/assets/default-notification.svg");
         }
     }
 

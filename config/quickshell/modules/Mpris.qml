@@ -83,6 +83,11 @@ LazyLoader {
                         Layout.fillWidth: true
                         elide: Text.ElideRight
                         text: root.current.trackTitle || "Unknown Title"
+                    // Album Image
+                    Image {
+                        Layout.fillHeight: true
+                        Layout.preferredWidth: height
+                        source: root.current.trackArtUrl || Qt.resolvedUrl(Quickshell.shellDir + "/assets/default-album.jpg")
                     }
                     Text {
                         Layout.fillWidth: true
