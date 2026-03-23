@@ -2,6 +2,7 @@ import QtQuick
 import Qt5Compat.GraphicalEffects
 import Quickshell.Widgets
 import qs.utils
+import qs.config
 
 Item {
     id: root
@@ -17,6 +18,7 @@ Item {
             id: colorOverlay
             anchors.fill: parent
             source: parent
+            color: Colors.foreground
         }
     }
 }
