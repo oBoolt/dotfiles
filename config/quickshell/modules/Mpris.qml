@@ -93,40 +93,29 @@ LazyLoader {
                         Layout.maximumHeight: 16
                         Layout.alignment: Qt.AlignHCenter
 
-                        Rectangle {
-                            Layout.fillHeight: true
-                            Layout.preferredWidth: height
-
-                            MouseArea {
-                                anchors.fill: parent
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: root.current.previous()
-                            }
+                        ButtonIcon {
+                            Layout.preferredWidth: Appearance.font.icon
+                            Layout.preferredHeight: Appearance.font.icon
+                            icon: Icons.MediaSkipBackwardSymbolic
+                            enabled: root.current.canGoPrevious
+                            onClicked: root.current.previous()
                         }
-
-                        Icon {
-                            Layout.preferredWidth: 20
-                            Layout.preferredHeight: 20
-                            icon: Icons.AudioVolumeLowSymbolic
-
-                            MouseArea {
-                                anchors.fill: parent
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: root.current.togglePlaying()
-                            }
+                        ButtonIcon {
+                            Layout.preferredWidth: Appearance.font.icon
+                            Layout.preferredHeight: Appearance.font.icon
+                            icon: root.current.playbackState == MprisPlaybackState.Playing ? Icons.MediaPlaybackPauseSymbolic : Icons.MediaPlaybackStartSymbolic
+                            enabled: root.current.canTogglePlaying
+                            onClicked: root.current.togglePlaying()
                         }
-
-                        Rectangle {
-                            Layout.fillHeight: true
-                            Layout.preferredWidth: height
-
-                            MouseArea {
-                                anchors.fill: parent
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: root.current.next()
-                            }
+                        ButtonIcon {
+                            Layout.preferredWidth: Appearance.font.icon
+                            Layout.preferredHeight: Appearance.font.icon
+                            icon: Icons.MediaSkipForwardSymbolic
+                            enabled: root.current.canGoNext
+                            onClicked: root.current.canGoNext
                         }
                     }
+
                     Item {
                         Layout.fillWidth: true
                         Rectangle {
