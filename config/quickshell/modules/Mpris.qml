@@ -32,8 +32,9 @@ LazyLoader {
         property MprisPlayer current: Mpris.players.values[currentIndex]
         property bool haveClient: !!Mpris.players.values.length
 
-        function convertSecToMin(seconds: int): string {
-            return (parseInt(seconds / 60) + ":" + ((seconds % 60) < 10 ? "0" + (seconds % 60) : (seconds % 60)));
+        function displaySeconds(seconds: int): string {
+            let hours = seconds >= (60 * 60);
+            return hours ? (parseInt(seconds / (60 * 60)) + ":" + (parseInt(seconds / 60) % 60) + ":" + ((seconds % 60) < 10 ? "0" + (seconds % 60) : (seconds % 60))) : (parseInt(seconds / 60) + ":" + ((seconds % 60) < 10 ? "0" + (seconds % 60) : (seconds % 60)));
         }
 
         function nextClient(): void {
@@ -46,7 +47,7 @@ LazyLoader {
 
         Timer {
             running: root.haveClient && root.current.playbackState == MprisPlaybackState.Playing
-            interval: 1000
+            interval: 500
             repeat: true
             onTriggered: root.current.positionChanged()
         }
@@ -158,7 +159,7 @@ LazyLoader {
                         Layout.fillWidth: true
 
                         Text {
-                            text: root.convertSecToMin(root.current.position)
+                            text: root.displaySeconds(root.current.position)
                         }
 
                         Item {
@@ -166,7 +167,7 @@ LazyLoader {
                         }
 
                         Text {
-                            text: root.convertSecToMin(root.current.length)
+                            text: root.displaySeconds(root.current.length)
                         }
                     }
                 }
