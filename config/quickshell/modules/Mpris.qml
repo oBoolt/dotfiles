@@ -104,9 +104,10 @@ LazyLoader {
                             }
                         }
 
-                        Rectangle {
-                            Layout.fillHeight: true
-                            Layout.preferredWidth: height
+                        Icon {
+                            Layout.preferredWidth: 20
+                            Layout.preferredHeight: 20
+                            icon: Icons.AudioVolumeLowSymbolic
 
                             MouseArea {
                                 anchors.fill: parent

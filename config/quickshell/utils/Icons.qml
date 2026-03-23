@@ -22,7 +22,6 @@ Singleton {
         AudioVolumeMediumSymbolic,
         AudioVolumeLowSymbolic,
         AudioVolumeMutedSymbolic,
-        AudioVolumeOffSymbolic,
         NetworkBluetoothSymbolic,
         NetworkBluetoothActivatedSymbolic,
         NetworkBluetoothInactiveSymbolic,
@@ -52,54 +51,53 @@ Singleton {
     }
     readonly property var map: {
         let map = new Map();
-        map.set(Icons.BatteryFullChargedSymbolic, "󰁹");
-        map.set(Icons.BatteryFullChargingSymbolic, "󰂄");
-        map.set(Icons.BatteryGoodChargingSymbolic, "󰂄");
-        map.set(Icons.BatteryLowChargingSymbolic, "󰂄");
-        map.set(Icons.BatteryCautionChargingSymbolic, "󰂄");
-        map.set(Icons.BatteryEmptyChargingSymbolic, "󰂄");
-        map.set(Icons.BatteryFullSymbolic, "󰁹");
-        map.set(Icons.BatteryGoodSymbolic, "󰁿");
-        map.set(Icons.BatteryLowSymbolic, "󰁻");
-        map.set(Icons.BatteryCautionSymbolic, "󰂃");
-        map.set(Icons.BatteryEmptySymbolic, "󰂎");
-        map.set(Icons.BatteryMissingSymbolic, "󰂑");
-        map.set(Icons.AudioVolumeHighSymbolic, "󰕾");
-        map.set(Icons.AudioVolumeMediumSymbolic, "󰖀");
-        map.set(Icons.AudioVolumeLowSymbolic, "󰕿");
-        map.set(Icons.AudioVolumeMutedSymbolic, "󰝟");
-        map.set(Icons.AudioVolumeOffSymbolic, "󰸈");
-        map.set(Icons.NetworkBluetoothSymbolic, "󰂯");
-        map.set(Icons.NetworkBluetoothActivatedSymbolic, "󰂱");
-        map.set(Icons.NetworkBluetoothInactiveSymbolic, "󰂲");
-        map.set(Icons.NetworkWiredActivatedSymbolic, "󰛳");
-        map.set(Icons.NetworkWiredDisconnectedSymbolic, "󰲛");
-        map.set(Icons.NetworkWiredUnavailableSymbolic, "󰲝");
-        map.set(Icons.NetworkWirelessSignalNoneSymbolic, "󰤯");
-        map.set(Icons.NetworkWirelessSignalWeakSymbolic, "󰤟");
-        map.set(Icons.NetworkWirelessSignalOkSymbolic, "󰤢");
-        map.set(Icons.NetworkWirelessSignalGoodSymbolic, "󰤥");
-        map.set(Icons.NetworkWirelessSignalExcellentSymbolic, "󰤨");
-        map.set(Icons.NetworkWirelessDisconnectedSymbolic, "󰤭");
-        map.set(Icons.NetworkWirelessAcquiringSymbolic, "󰖩");
-        map.set(Icons.Brightness0Symbolic, "󰃚");
-        map.set(Icons.Brightness15Symbolic, "󰃛");
-        map.set(Icons.Brightness30Symbolic, "󰃜");
-        map.set(Icons.Brightness45Symbolic, "󰃝");
-        map.set(Icons.Brightness60Symbolic, "󰃞");
-        map.set(Icons.Brightness75Symbolic, "󰃟");
-        map.set(Icons.Brightness90Symbolic, "󰃠");
-        map.set(Icons.CPU, "󰍛");
-        map.set(Icons.OpenMenuSymbolic, "󰍜");
-        map.set(Icons.MediaPlaybackPauseSymbolic, "󰏤");
-        map.set(Icons.MediaPlaybackStartSymbolic, "󰐊");
-        map.set(Icons.MediaSkipBackwardSymbolic, "󰒮");
-        map.set(Icons.MediaSkipForwardSymbolic, "󰒭");
+        map.set(Icons.BatteryFullChargedSymbolic, "battery-full-charged-symbolic");
+        map.set(Icons.BatteryFullChargingSymbolic, "battery-full-charging-symbolic");
+        map.set(Icons.BatteryGoodChargingSymbolic, "battery-good-charging-symbolic");
+        map.set(Icons.BatteryLowChargingSymbolic, "battery-low-charging-symbolic");
+        map.set(Icons.BatteryCautionChargingSymbolic, "battery-caution-charging-symbolic");
+        map.set(Icons.BatteryEmptyChargingSymbolic, "battery-empty-charging-symbolic");
+        map.set(Icons.BatteryFullSymbolic, "battery-full-symbolic");
+        map.set(Icons.BatteryGoodSymbolic, "battery-good-symbolic");
+        map.set(Icons.BatteryLowSymbolic, "battery-low-symbolic");
+        map.set(Icons.BatteryCautionSymbolic, "battery-caution-symbolic");
+        map.set(Icons.BatteryEmptySymbolic, "battery-empty-symbolic");
+        map.set(Icons.BatteryMissingSymbolic, "battery-missing-symbolic");
+        map.set(Icons.AudioVolumeHighSymbolic, "audio-volume-high-symbolic");
+        map.set(Icons.AudioVolumeMediumSymbolic, "audio-volume-medium-symbolic");
+        map.set(Icons.AudioVolumeLowSymbolic, "audio-volume-low-symbolic");
+        map.set(Icons.AudioVolumeMutedSymbolic, "audio-volume-muted-symbolic");
+        map.set(Icons.NetworkBluetoothSymbolic, "network-bluetooth-symbolic");
+        map.set(Icons.NetworkBluetoothActivatedSymbolic, "network-bluetooth-activated-symbolic");
+        map.set(Icons.NetworkBluetoothInactiveSymbolic, "network-bluetooth-inactive-symbolic");
+        map.set(Icons.NetworkWiredActivatedSymbolic, "network-wired-activated-symbolic");
+        map.set(Icons.NetworkWiredDisconnectedSymbolic, "network-wired-disconnected-symbolic");
+        map.set(Icons.NetworkWiredUnavailableSymbolic, "network-wired-unavailable-symbolic");
+        map.set(Icons.NetworkWirelessSignalNoneSymbolic, "network-wireless-signal-noneSymbolic");
+        map.set(Icons.NetworkWirelessSignalWeakSymbolic, "network-wireless-signal-weakSymbolic");
+        map.set(Icons.NetworkWirelessSignalOkSymbolic, "network-wireless-signal-okSymbolic");
+        map.set(Icons.NetworkWirelessSignalGoodSymbolic, "network-wireless-signal-goodSymbolic");
+        map.set(Icons.NetworkWirelessSignalExcellentSymbolic, "network-wireless-signal-excellentSymbolic");
+        map.set(Icons.NetworkWirelessDisconnectedSymbolic, "network-wireless-disconnected-symbolic");
+        map.set(Icons.NetworkWirelessAcquiringSymbolic, "network-wireless-acquiring-symbolic");
+        map.set(Icons.Brightness0Symbolic, "brightness-0-symbolic");
+        map.set(Icons.Brightness15Symbolic, "brightness-15-symbolic");
+        map.set(Icons.Brightness30Symbolic, "brightness-30-symbolic");
+        map.set(Icons.Brightness45Symbolic, "brightness-45-symbolic");
+        map.set(Icons.Brightness60Symbolic, "brightness-60-symbolic");
+        map.set(Icons.Brightness75Symbolic, "brightness-75-symbolic");
+        map.set(Icons.Brightness90Symbolic, "brightness-90-symbolic");
+        map.set(Icons.CPU, "cpu");
+        map.set(Icons.OpenMenuSymbolic, "open-menu-symbolic");
+        map.set(Icons.MediaPlaybackPauseSymbolic, "media-playback-pause-symbolic");
+        map.set(Icons.MediaPlaybackStartSymbolic, "media-playback-start-symbolic");
+        map.set(Icons.MediaSkipBackwardSymbolic, "media-skip-backward-symbolic");
+        map.set(Icons.MediaSkipForwardSymbolic, "media-skip-forward-symbolic");
         return map;
     }
 
     function get(icon: int): string {
-        return root.map.get(icon);
+        return Quickshell.iconPath(root.map.get(icon));
     }
 
     function getKey(iconName: string): int {
@@ -135,10 +133,8 @@ Singleton {
             return Icons.AudioVolumeHighSymbolic;
         } else if (volume >= 0.33) {
             return Icons.AudioVolumeMediumSymbolic;
-        } else if (volume > 0) {
+        } else if (volume >= 0) {
             return Icons.AudioVolumeLowSymbolic;
-        } else if (volume == 0) {
-            return Icons.AudioVolumeOffSymbolic;
         }
     }
 }

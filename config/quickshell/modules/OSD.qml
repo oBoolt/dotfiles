@@ -8,7 +8,6 @@ import QtQuick.Layouts
 
 import qs.config
 import qs.utils
-import qs.utils
 import qs.components
 
 Scope {
@@ -21,12 +20,12 @@ Scope {
     }
 
     property bool osdVisible: false
-    property string icon
+    property int icon
     property string value
 
     function showOSD(type: int, icon: int, value: string): void {
         States.updateCurrentScreen();
-        root.icon = Icons.get(icon);
+        root.icon = icon;
         root.value = value;
 
         root.osdVisible = true;
@@ -73,13 +72,10 @@ Scope {
                     }
                     spacing: 12
 
-                    Text {
-                        font.pixelSize: Appearance.font.icon
+                    Icon {
                         Layout.preferredHeight: Appearance.font.icon
                         Layout.preferredWidth: Appearance.font.icon
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
-                        text: root.icon
+                        icon: root.icon
                     }
                     Rectangle {
                         id: bar

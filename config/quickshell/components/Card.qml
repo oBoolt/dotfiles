@@ -8,20 +8,17 @@ Item {
     id: card
     required property int icon
     property bool hover: false
-    property alias color: text.color
+    property alias color: icon.color
 
     signal clicked(MouseEvent mouse)
 
     implicitWidth: Appearance.font.icon
     implicitHeight: width
 
-    Text {
-        id: text
+    Icon {
+        id: icon
         anchors.fill: parent
-        font.pixelSize: (parent.implicitWidth * 0.85)
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        text: Icons.get(card.icon)
+        icon: card.icon
     }
 
     MouseArea {
