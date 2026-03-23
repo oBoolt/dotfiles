@@ -47,7 +47,9 @@ Singleton {
         MediaPlaybackPauseSymbolic,
         MediaPlaybackStartSymbolic,
         MediaSkipBackwardSymbolic,
-        MediaSkipForwardSymbolic
+        MediaSkipForwardSymbolic,
+        GoNextSymbolicRtl,
+        GoNextSymbolic
     }
     readonly property var map: {
         let map = new Map();
@@ -93,6 +95,8 @@ Singleton {
         map.set(Icons.MediaPlaybackStartSymbolic, "media-playback-start-symbolic");
         map.set(Icons.MediaSkipBackwardSymbolic, "media-skip-backward-symbolic");
         map.set(Icons.MediaSkipForwardSymbolic, "media-skip-forward-symbolic");
+        map.set(Icons.GoNextSymbolicRtl, "go-next-symbolic-rtl");
+        map.set(Icons.GoNextSymbolic, "go-next-symbolic");
         return map;
     }
 

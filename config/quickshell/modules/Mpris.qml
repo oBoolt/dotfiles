@@ -65,114 +65,141 @@ LazyLoader {
                 text: "No player available"
             }
 
-            RowLayout {
+            Item {
                 visible: root.haveClient
                 anchors.fill: parent
 
-                Image {
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: height
-                    source: root.current.metadata["mpris:artUrl"] ?? Qt.resolvedUrl(Quickshell.shellRoot + "/assets/default-album.jpg")
+                RowLayout {
+                    visible: root.multipleClients
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+
+                    ButtonIcon {
+                        Layout.preferredWidth: Appearance.font.icon
+                        Layout.preferredHeight: Appearance.font.icon
+                        icon: Icons.GoNextSymbolicRtl
+                        onClicked: root.previousClient()
+                    }
+                    ButtonIcon {
+                        Layout.preferredWidth: Appearance.font.icon
+                        Layout.preferredHeight: Appearance.font.icon
+                        icon: Icons.GoNextSymbolic
+                        onClicked: root.nextClient()
+                    }
                 }
 
-                ColumnLayout {
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
+                RowLayout {
+                    anchors.fill: parent
 
-                    Text {
-                        Layout.fillWidth: true
-                        elide: Text.ElideRight
-                        text: root.current.trackTitle || "Unknown Title"
                     // Album Image
                     Image {
                         Layout.fillHeight: true
                         Layout.preferredWidth: height
                         source: root.current.trackArtUrl || Qt.resolvedUrl(Quickshell.shellDir + "/assets/default-album.jpg")
                     }
-                    Text {
-                        Layout.fillWidth: true
-                        elide: Text.ElideRight
-                        text: root.current.trackArtist || "Unknown Artist"
-                    }
-                    RowLayout {
-                        Layout.fillWidth: true
-                        Layout.maximumHeight: 16
-                        Layout.alignment: Qt.AlignHCenter
 
-                        ButtonIcon {
-                            Layout.preferredWidth: Appearance.font.icon
-                            Layout.preferredHeight: Appearance.font.icon
-                            icon: Icons.MediaSkipBackwardSymbolic
-                            enabled: root.current.canGoPrevious
-                            onClicked: root.current.previous()
-                        }
-                        ButtonIcon {
-                            Layout.preferredWidth: Appearance.font.icon
-                            Layout.preferredHeight: Appearance.font.icon
-                            icon: root.current.playbackState == MprisPlaybackState.Playing ? Icons.MediaPlaybackPauseSymbolic : Icons.MediaPlaybackStartSymbolic
-                            enabled: root.current.canTogglePlaying
-                            onClicked: root.current.togglePlaying()
-                        }
-                        ButtonIcon {
-                            Layout.preferredWidth: Appearance.font.icon
-                            Layout.preferredHeight: Appearance.font.icon
-                            icon: Icons.MediaSkipForwardSymbolic
-                            enabled: root.current.canGoNext
-                            onClicked: root.current.canGoNext
-                        }
-                    }
-
-                    Item {
-                        Layout.fillWidth: true
-                        Rectangle {
-                            anchors {
-                                left: parent.left
-                                right: parent.right
-                            }
-                            height: 4
-
-                            MouseArea {
-                                anchors.fill: parent
-                                cursorShape: Qt.PointingHandCursor
-                                onPositionChanged: e => {
-                                    currentIndicator.width = (e.x / this.width) * parent.width;
-                                // console.log(JSON.stringify(e, null, 2));
-                                }
-                                onReleased: e => {
-                                    root.current.position = (e.x / this.width) * root.current.length;
-                                    currentIndicator.implicitWidth = (root.current.position / root.current.length) * parent.width;
-                                }
-                            }
-
-                            Rectangle {
-                                id: currentIndicator
-
-                                anchors {
-                                    left: parent.left
-                                    top: parent.top
-                                    bottom: parent.bottom
-                                }
-
-                                implicitWidth: (1 % (root.current.position / root.current.length)) * parent.width
-
-                                color: "red"
-                            }
-                        }
-                    }
-
-                    RowLayout {
+                    ColumnLayout {
+                        Layout.fillHeight: true
                         Layout.fillWidth: true
 
+                        // Title
                         Text {
-                            text: root.displaySeconds(root.current.position)
+                            Layout.fillWidth: true
+                            elide: Text.ElideRight
+                            font.pixelSize: Appearance.font.large
+                            text: root.current.trackTitle || "Unknown Title"
+                        }
+                        // Artist
+                        Text {
+                            Layout.fillWidth: true
+                            elide: Text.ElideRight
+                            color: Colors.gray
+                            text: root.current.trackArtist || "Unknown Artist"
                         }
 
+                        // Buttons Control
+                        RowLayout {
+                            Layout.fillWidth: true
+                            Layout.maximumHeight: 16
+                            Layout.alignment: Qt.AlignHCenter
+
+                            ButtonIcon {
+                                Layout.preferredWidth: Appearance.font.icon
+                                Layout.preferredHeight: Appearance.font.icon
+                                icon: Icons.MediaSkipBackwardSymbolic
+                                enabled: root.current.canGoPrevious
+                                onClicked: root.current.previous()
+                            }
+                            ButtonIcon {
+                                Layout.preferredWidth: Appearance.font.icon
+                                Layout.preferredHeight: Appearance.font.icon
+                                icon: root.current.playbackState == MprisPlaybackState.Playing ? Icons.MediaPlaybackPauseSymbolic : Icons.MediaPlaybackStartSymbolic
+                                enabled: root.current.canTogglePlaying
+                                onClicked: root.current.togglePlaying()
+                            }
+                            ButtonIcon {
+                                Layout.preferredWidth: Appearance.font.icon
+                                Layout.preferredHeight: Appearance.font.icon
+                                icon: Icons.MediaSkipForwardSymbolic
+                                enabled: root.current.canGoNext
+                                onClicked: root.current.next()
+                            }
+                        }
+
+                        // Progress bar
                         Item {
                             Layout.fillWidth: true
+
+                            // Progress Bar background
+                            Rectangle {
+                                anchors {
+                                    left: parent.left
+                                    right: parent.right
+                                }
+                                height: 4
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    cursorShape: Qt.PointingHandCursor
+                                    onPositionChanged: e => {
+                                        currentIndicator.width = (e.x / this.width) * parent.width;
+                                    // console.log(JSON.stringify(e, null, 2));
+                                    }
+                                    onReleased: e => {
+                                        root.current.position = (e.x / this.width) * root.current.length;
+                                        currentIndicator.implicitWidth = (root.current.position / root.current.length) * parent.width;
+                                    }
+                                }
+
+                                // Progress Bar indicator
+                                Rectangle {
+                                    id: currentIndicator
+                                    anchors {
+                                        left: parent.left
+                                        top: parent.top
+                                        bottom: parent.bottom
+                                    }
+                                    color: Colors.aqua
+                                    implicitWidth: (1 % (root.current.position / root.current.length)) * parent.width
+                                }
+                            }
                         }
 
-                        Text {
-                            text: root.displaySeconds(root.current.length)
+                        // Time
+                        RowLayout {
+                            Layout.fillWidth: true
+
+                            Text {
+                                text: root.displaySeconds(root.current.position)
+                            }
+
+                            Item {
+                                Layout.fillWidth: true
+                            }
+
+                            Text {
+                                text: root.displaySeconds(root.current.length)
+                            }
                         }
                     }
                 }
