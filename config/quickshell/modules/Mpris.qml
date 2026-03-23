@@ -148,7 +148,7 @@ LazyLoader {
                                     bottom: parent.bottom
                                 }
 
-                                implicitWidth: (root.current.position / root.current.length) * parent.width
+                                implicitWidth: (1 % (root.current.position / root.current.length)) * parent.width
 
                                 color: "red"
                             }
