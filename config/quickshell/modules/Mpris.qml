@@ -71,7 +71,7 @@ LazyLoader {
                 Image {
                     Layout.fillHeight: true
                     Layout.preferredWidth: height
-                    source: root.current.metadata["mpris:artUrl"]
+                    source: root.current.metadata["mpris:artUrl"] ?? Qt.resolvedUrl(Quickshell.shellRoot + "/assets/default-album.jpg")
                 }
 
                 ColumnLayout {
