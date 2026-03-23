@@ -37,8 +37,8 @@ JsonObject {
     component Font: JsonObject {
         property string family: "NotoSans Nerd Font Propo"
         property int small: 8
-        property int normal: 14
-        property int large: 20
+        property int normal: 12
+        property int large: 18
         property int icon: 20
     }
 }
