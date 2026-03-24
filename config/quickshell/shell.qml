@@ -50,4 +50,5 @@ ShellRoot {
     ControlCenter {}
     Calendar {}
     Mpris {}
+    Background {}
 }

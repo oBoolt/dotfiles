@@ -8,4 +8,5 @@ JsonObject {
     property bool notifications: true
     property bool osd: true
     property bool mpris: true
+    property bool background: true
 }
