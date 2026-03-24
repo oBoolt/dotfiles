@@ -16,6 +16,7 @@ Singleton {
     property alias notification: adapter.notification
     property alias osd: adapter.osd
     property alias brightness: adapter.brightness
+    property alias controlcenter: adapter.controlcenter
 
     FileView {
         id: fileView
@@ -59,6 +60,7 @@ Singleton {
             property NotificationConfig notification: NotificationConfig {}
             property OSDConfig osd: OSDConfig {}
             property BrightnessConfig brightness: BrightnessConfig {}
+            property ControlCenterConfig controlcenter: ControlCenterConfig {}
         }
     }
 }

@@ -1,4 +1,5 @@
 import Quickshell
+import Quickshell.Io
 
 import QtQuick
 import QtQuick.Layouts
@@ -58,7 +59,9 @@ LazyLoader {
                                 MouseArea {
                                     anchors.fill: parent
                                     onClicked: {
-                                        stackView.push(second);
+                                        process.command.push(Config.controlcenter.commands.poweroff);
+                                        process.running = true;
+                                        // stackView.push(second);
                                     }
                                 }
                             }
@@ -129,6 +132,11 @@ LazyLoader {
                     }
                 }
             }
+        }
+
+        Process {
+            id: process
+            command: ["sh", "-c"]
         }
     }
 }
