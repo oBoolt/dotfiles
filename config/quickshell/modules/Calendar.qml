@@ -7,7 +7,6 @@ import QtQuick.Layouts
 import QtQuick.Controls
 
 import qs.config
-import qs.utils
 import qs.components
 import qs.utils
 
@@ -15,6 +14,7 @@ LazyLoader {
     active: Config.modules.calendar && States.showCalendar
 
     PanelWindow {
+        id: root
         screen: States.currentScreen
         anchors {
             top: true
@@ -26,178 +26,113 @@ LazyLoader {
             left: Appearance.margin.normal
         }
 
-        implicitWidth: 385 * Config.scaleFactor[screen.name]
-        implicitHeight: 270 * Config.scaleFactor[screen.name]
-        color: Colors.background
+        implicitWidth: 400 * Config.scaleFactor[screen.name]
+        implicitHeight: 350 * Config.scaleFactor[screen.name]
+        color: "transparent"
 
-        ColumnLayout {
+        Rectangle {
             anchors.fill: parent
-            anchors {
-                topMargin: Appearance.spacing.normal
-                bottomMargin: Appearance.spacing.normal
-            }
-            spacing: Appearance.spacing.normal
+            color: Colors.background
+            radius: Appearance.radius.small
 
-            RowLayout {
-                Layout.fillWidth: true
-                Layout.leftMargin: Appearance.margin.normal
-                Layout.rightMargin: Layout.leftMargin
-                Layout.preferredHeight: Appearance.font.normal + Appearance.padding.normal * 2
+            ColumnLayout {
+                anchors.margins: Appearance.margin.large
+                anchors.fill: parent
 
-                spacing: Appearance.margin.normal
-
-                Item {
+                RowLayout {
                     Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    Layout.horizontalStretchFactor: 1
 
+                    ButtonIcon {
+                        Layout.preferredWidth: Appearance.font.icon * 2
+                        Layout.preferredHeight: Appearance.font.icon
+                        hoverEnabled: true
+                        onClicked: monthGrid.previousMonth()
+                        onEntered: color = Colors.gray
+                        onExited: color = Colors.foreground
+                        icon: Icons.GoNextSymbolicRtl
+                    }
                     Text {
-                        property bool hovered: false
+                        Layout.fillWidth: true
+                        horizontalAlignment: Text.AlignHCenter
+                        font.pixelSize: Appearance.font.large
+                        text: monthGrid.title
+                    }
+                    ButtonIcon {
+                        Layout.preferredWidth: Appearance.font.icon * 2
+                        Layout.preferredHeight: Appearance.font.icon
+                        hoverEnabled: true
+                        onClicked: monthGrid.nextMonth()
+                        onEntered: color = Colors.gray
+                        onExited: color = Colors.foreground
+                        icon: Icons.GoNextSymbolic
+                    }
+                }
 
-                        anchors.centerIn: parent
-                        height: parent.height
-                        width: height
+                DayOfWeekRow {
+                    Layout.fillWidth: true
+                    locale: monthGrid.locale
+
+                    delegate: Text {
+                        required property string shortName
+
+                        text: shortName
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
-                        font.pixelSize: Appearance.font.icon
-                        text: "<"
-
-                        Rectangle {
-                            anchors.fill: parent
-                            opacity: parent.hovered ? 0.25 : 0
-                            radius: Appearance.radius.small
-                            color: Colors.background
-                        }
-
-                        MouseArea {
-                            anchors.fill: parent
-                            acceptedButtons: Qt.LeftButton
-                            cursorShape: Qt.PointingHandCursor
-                            hoverEnabled: true
-
-                            onEntered: {
-                                parent.hovered = true;
-                            }
-                            onExited: {
-                                parent.hovered = false;
-                            }
-                            onClicked: {
-                                monthGrid.previous();
-                            }
-                        }
                     }
                 }
 
-                Text {
-                    Layout.preferredWidth: parent.width / 3
-                    Layout.fillHeight: true
+                MonthGrid {
+                    id: monthGrid
+                    function nextMonth(): void {
+                        if (((monthGrid.month + 1) % 12) == 0)
+                            monthGrid.year++;
+                        monthGrid.month = (monthGrid.month + 1) % 12;
+                    }
 
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
+                    function previousMonth(): void {
+                        if ((monthGrid.month - 1) < 0)
+                            monthGrid.year--;
+                        monthGrid.month = (monthGrid.month - 1) < 0 ? 11 : monthGrid.month - 1;
+                    }
 
-                    text: monthGrid.title
-                }
-
-                Item {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    Layout.horizontalStretchFactor: 1
+                    spacing: Appearance.spacing.small
+                    month: parseInt(Qt.formatDateTime(Time.date, "M")) - 1
+                    year: parseInt(Qt.formatDateTime(Time.date, "yyyy"))
+                    locale: Qt.locale(Config.locale)
 
-                    Text {
-                        property bool hovered: false
+                    delegate: Text {
+                        required property var model
 
-                        anchors.centerIn: parent
-                        height: parent.height
-                        width: height
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
-                        font.pixelSize: Appearance.font.icon
-                        text: ">"
+                        opacity: model.month === monthGrid.month ? 1 : 0.5
+                        text: monthGrid.locale.toString(model.date, "d")
+                        font: monthGrid.font
 
                         Rectangle {
-                            anchors.fill: parent
-                            opacity: parent.hovered ? 0.25 : 0
-                            radius: Appearance.radius.small
-                            color: Colors.background
+                            property bool hovered: false
+                            readonly property bool today: parent.model.today
+
+                            implicitHeight: parent.height
+                            implicitWidth: height
+                            anchors.centerIn: parent
+                            radius: Appearance.radius.normal
+                            opacity: hovered ? 0.75 : today ? 0.5 : 0
+                            color: today ? Colors.aqua : Colors.gray
+
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+
+                                onEntered: parent.hovered = true
+                                onExited: parent.hovered = false
+                                //TODO: copy month to clipboard
+                                onClicked: console.log(Qt.formatDateTime(model.date, "dd/MMM/yyyy"))
+                            }
                         }
-
-                        MouseArea {
-                            anchors.fill: parent
-                            acceptedButtons: Qt.LeftButton
-                            cursorShape: Qt.PointingHandCursor
-                            hoverEnabled: true
-
-                            onEntered: {
-                                parent.hovered = true;
-                            }
-                            onExited: {
-                                parent.hovered = false;
-                            }
-                            onClicked: {
-                                monthGrid.next();
-                            }
-                        }
-                    }
-                }
-            }
-
-            DayOfWeekRow {
-                Layout.fillWidth: true
-                Layout.preferredHeight: Appearance.font.normal + Appearance.padding.normal * 2
-                spacing: Appearance.spacing.large
-                locale: monthGrid.locale
-
-                delegate: Text {
-                    required property string narrowName
-                    horizontalAlignment: Text.AlignHCenter
-                    text: narrowName
-                }
-            }
-
-            MonthGrid {
-                id: monthGrid
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                spacing: Appearance.spacing.large
-
-                month: parseInt(Qt.formatDateTime(Time.date, "M")) - 1
-                year: parseInt(Qt.formatDateTime(Time.date, "yyyy"))
-                locale: Qt.locale(Config.locale)
-
-                function next(): void {
-                    let nextMonth = monthGrid.month + 1;
-                    if (nextMonth > 11) {
-                        monthGrid.year = monthGrid.year + 1;
-                        nextMonth = 0;
-                    }
-
-                    monthGrid.month = nextMonth;
-                }
-
-                function previous(): void {
-                    let previousMonth = monthGrid.month - 1;
-                    if (previousMonth < 0) {
-                        monthGrid.year = monthGrid.year - 1;
-                        previousMonth = 11;
-                    }
-
-                    monthGrid.month = previousMonth;
-                }
-
-                delegate: Text {
-                    required property var model
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    opacity: model.month == monthGrid.month ? 1 : 0.25
-                    text: model.day
-
-                    Rectangle {
-                        anchors.centerIn: parent
-                        implicitWidth: implicitHeight
-                        implicitHeight: parent.height
-                        opacity: parent.model.today ? 0.5 : 0.25
-                        radius: Appearance.radius.normal
-                        color: parent.model.today ? Colors.aqua : Colors.gray
                     }
                 }
             }
