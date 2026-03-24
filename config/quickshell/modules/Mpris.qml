@@ -55,7 +55,7 @@ LazyLoader {
 
         Rectangle {
             anchors.fill: parent
-            radius: Appearance.radius.normal
+            radius: Appearance.radius.small
             color: Colors.background
 
             Item {
