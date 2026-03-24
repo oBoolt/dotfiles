@@ -89,6 +89,7 @@ LazyLoader {
                                 id: album
                                 anchors.fill: parent
                                 fillMode: Image.PreserveAspectCrop
+                                mipmap: true
                                 source: root.current.trackArtUrl || Qt.resolvedUrl(Quickshell.shellDir + "/assets/default-album.jpg")
                             }
                         }
