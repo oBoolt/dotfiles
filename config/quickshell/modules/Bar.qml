@@ -16,8 +16,8 @@ Variants {
         required property ShellScreen modelData
         screen: modelData
 
-        color: Colors.background
-        implicitHeight: 30 * Config.scaleFactor[screen.name]
+        color: "transparent"
+        implicitHeight: (30 * Config.scaleFactor[screen.name]) + (Config.bar.floating ? Appearance.margin.normal : 0)
 
         anchors {
             top: true
@@ -25,83 +25,94 @@ Variants {
             right: true
         }
 
-        RowLayout {
+        Rectangle {
+            anchors {
+                topMargin: Config.bar.floating && Appearance.margin.normal
+                leftMargin: Config.bar.floating && Appearance.margin.normal
+                rightMargin: Config.bar.floating && Appearance.margin.normal
+            }
             anchors.fill: parent
-            spacing: Appearance.spacing.normal
+            color: Colors.background
+            radius: Appearance.radius.small
 
-            Item {
-                Layout.leftMargin: Appearance.padding.large - Appearance.spacing.normal
-            }
-            Rectangle {
-                id: left_area
-                color: Config.debug ? Colors.orange : "transparent"
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+            RowLayout {
+                anchors.fill: parent
+                spacing: Appearance.spacing.normal
 
-                RowLayout {
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    spacing: Appearance.spacing.normal
+                Item {
+                    Layout.leftMargin: Appearance.padding.large - Appearance.spacing.normal
+                }
+                Rectangle {
+                    id: left_area
+                    color: Config.debug ? Colors.orange : "transparent"
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
 
-                    Clock {
-                        parentWindow: root
+                    RowLayout {
+                        anchors.top: parent.top
+                        anchors.bottom: parent.bottom
+                        spacing: Appearance.spacing.normal
+
+                        Clock {
+                            parentWindow: root
+                        }
+                        Separator {}
+                        Workspaces {}
+                        Separator {}
+                        WindowState {}
                     }
-                    Separator {}
-                    Workspaces {}
-                    Separator {}
-                    WindowState {}
                 }
-            }
-            Rectangle {
-                id: center_area
-                color: Config.debug ? Colors.aqua : "transparent"
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+                Rectangle {
+                    id: center_area
+                    color: Config.debug ? Colors.aqua : "transparent"
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
 
-                // TODO: Make a nicer way to access mpris
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: Utils.States.showMpris = !Utils.States.showMpris
-                }
-
-                Title {
-                    anchors.centerIn: parent
-                    width: parent.width
-                    horizontalAlignment: Text.AlignHCenter
-                }
-            }
-
-            Rectangle {
-                id: right_area
-                color: Config.debug ? Colors.purple : "transparent"
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-
-                RowLayout {
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    anchors.right: parent.right
-                    layoutDirection: Qt.RightToLeft
-                    spacing: Appearance.spacing.normal
-
-                    Menu {}
-                    Separator {}
-                    Battery {}
-                    Volume {}
-                    Card {
-                        icon: Utils.Icons.NetworkBluetoothSymbolic
-                        color: Colors.darkblue
+                    // TODO: Make a nicer way to access mpris
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: Utils.States.showMpris = !Utils.States.showMpris
                     }
-                    SystemUsage {}
-                    Card {
-                        icon: Utils.Icons.NetworkWiredActivatedSymbolic
-                        color: Colors.darkgreen
+
+                    Title {
+                        anchors.centerIn: parent
+                        width: parent.width
+                        horizontalAlignment: Text.AlignHCenter
                     }
-                    Brightness {}
                 }
-            }
-            Item {
-                Layout.leftMargin: Appearance.padding.large - Appearance.spacing.normal
+
+                Rectangle {
+                    id: right_area
+                    color: Config.debug ? Colors.purple : "transparent"
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    RowLayout {
+                        anchors.top: parent.top
+                        anchors.bottom: parent.bottom
+                        anchors.right: parent.right
+                        layoutDirection: Qt.RightToLeft
+                        spacing: Appearance.spacing.normal
+
+                        Menu {}
+                        Separator {}
+                        Battery {}
+                        Volume {}
+                        Card {
+                            icon: Utils.Icons.NetworkBluetoothSymbolic
+                            color: Colors.darkblue
+                        }
+                        SystemUsage {}
+                        Card {
+                            icon: Utils.Icons.NetworkWiredActivatedSymbolic
+                            color: Colors.darkgreen
+                        }
+                        Brightness {}
+                    }
+                }
+                Item {
+                    Layout.leftMargin: Appearance.padding.large - Appearance.spacing.normal
+                }
             }
         }
     }

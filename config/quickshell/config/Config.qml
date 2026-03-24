@@ -17,6 +17,7 @@ Singleton {
     property alias osd: adapter.osd
     property alias brightness: adapter.brightness
     property alias controlcenter: adapter.controlcenter
+    property alias bar: adapter.bar
 
     FileView {
         id: fileView
@@ -61,6 +62,7 @@ Singleton {
             property OSDConfig osd: OSDConfig {}
             property BrightnessConfig brightness: BrightnessConfig {}
             property ControlCenterConfig controlcenter: ControlCenterConfig {}
+            property BarConfig bar: BarConfig {}
         }
     }
 }
