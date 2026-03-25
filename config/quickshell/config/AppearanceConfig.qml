@@ -19,7 +19,7 @@ JsonObject {
     component Spacing: JsonObject {
         property int small: 6
         property int normal: 10
-        property int large: 16
+        property int large: 12
     }
 
     component Padding: JsonObject {

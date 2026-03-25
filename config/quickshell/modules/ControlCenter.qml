@@ -16,32 +16,109 @@ LazyLoader {
     PanelWindow {
         // TODO: only open in the screen that was clicked
         screen: States.currentScreen
+        exclusiveZone: 0
         anchors {
             top: true
+            bottom: true
             right: true
         }
 
         margins {
-            top: 8
-            right: 8
+            top: Appearance.margin.normal
+            bottom: Appearance.margin.normal
+            right: Appearance.margin.normal
         }
 
         implicitWidth: 480 * Config.scaleFactor[screen.name]
-        implicitHeight: 540 * Config.scaleFactor[screen.name]
+        color: "transparent"
 
-        StackView {
-            id: stackView
+        Rectangle {
             anchors.fill: parent
-            initialItem: mainPage
+            color: Colors.background
+            radius: Appearance.radius.small
+
+            StackView {
+                id: stackView
+                anchors.fill: parent
+                initialItem: mainPage
+            }
         }
 
         Component {
             id: mainPage
             Page {
                 ColumnLayout {
-                    anchors.margins: 16
+                    anchors.margins: Appearance.margin.large
                     anchors.fill: parent
                     spacing: 16
+
+                    RowLayout {
+                        Layout.fillWidth: true
+
+                        Text {
+                            font.pixelSize: Appearance.font.large * 0.8
+                            text: "bolt@quacker"
+                        }
+
+                        Item {
+                            Layout.fillWidth: true
+                        }
+
+                        ButtonIcon {
+                            Layout.preferredWidth: Appearance.font.icon
+                            Layout.preferredHeight: Appearance.font.icon
+                            icon: Icons.SystemLockScreenSymbolic
+                        }
+
+                        ButtonIcon {
+                            Layout.preferredWidth: Appearance.font.icon
+                            Layout.preferredHeight: Appearance.font.icon
+                            icon: Icons.ApplicationExitSymbolic
+                        }
+
+                        ButtonIcon {
+                            Layout.preferredWidth: Appearance.font.icon
+                            Layout.preferredHeight: Appearance.font.icon
+                            icon: 0
+                        }
+
+                        ButtonIcon {
+                            Layout.preferredWidth: Appearance.font.icon
+                            Layout.preferredHeight: Appearance.font.icon
+                            icon: Icons.SystemShutdownSymbolic
+                        }
+                    }
+
+                    Item {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 100
+
+                        RowLayout {
+                            anchors.fill: parent
+                            spacing: 16
+
+                            Rectangle {
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                color: "black"
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: {
+                                        process.command.push(Config.controlcenter.commands.poweroff);
+                                        process.running = true;
+                                        // stackView.push(second);
+                                    }
+                                }
+                            }
+
+                            Rectangle {
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                color: "black"
+                            }
+                        }
+                    }
 
                     Item {
                         Layout.fillWidth: true
