@@ -2,5 +2,5 @@ export HYPRCURSOR_SIZE=24
 export XCURSOR_SIZE=24
 export LIBVA_DRIVER_NAME=nvidia
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
-export QT_STYLE_OVERRIDE=breeze-dark
-export QS_ICON_THEME=breeze-dark
+export QT_STYLE_OVERRIDE=Adwaita
+export QS_ICON_THEME=Adwaita
