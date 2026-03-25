@@ -11,7 +11,7 @@ Item {
 
     IconImage {
         anchors.centerIn: parent
-        implicitSize: parent.height * 0.8
+        implicitSize: parent.height * 0.7
         source: Icons.get(root.icon)
 
         ColorOverlay {
