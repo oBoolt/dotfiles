@@ -98,15 +98,9 @@ Variants {
                         Separator {}
                         Battery {}
                         Volume {}
-                        Card {
-                            icon: Utils.Icons.NetworkBluetoothSymbolic
-                            color: Colors.darkblue
-                        }
-                        SystemUsage {}
-                        Card {
-                            icon: Utils.Icons.NetworkWiredActivatedSymbolic
-                            color: Colors.darkgreen
-                        }
+                        //TODO: Bluetooth
+                        //TODO: Network
+                        //TODO: SystemUsage
                         Brightness {}
                     }
                 }
