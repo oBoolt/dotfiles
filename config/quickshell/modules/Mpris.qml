@@ -47,10 +47,10 @@ LazyLoader {
         }
 
         Timer {
-            running: root.haveClient && root.current.playbackState == MprisPlaybackState.Playing
+            running: root.haveClient && root.current?.playbackState == MprisPlaybackState.Playing
             interval: 1000
             repeat: true
-            onTriggered: root.current.positionChanged()
+            onTriggered: root.current?.positionChanged()
         }
 
         Rectangle {
@@ -90,7 +90,7 @@ LazyLoader {
                                 anchors.fill: parent
                                 fillMode: Image.PreserveAspectCrop
                                 mipmap: true
-                                source: root.current.trackArtUrl || Qt.resolvedUrl(Quickshell.shellDir + "/assets/default-album.jpg")
+                                source: root.current?.trackArtUrl || Qt.resolvedUrl(Quickshell.shellDir + "/assets/default-album.jpg")
                             }
                         }
 
@@ -108,14 +108,14 @@ LazyLoader {
                                         Layout.fillWidth: true
                                         elide: Text.ElideRight
                                         font.pixelSize: Appearance.font.large
-                                        text: root.current.trackTitle || "Unknown Title"
+                                        text: root.current?.trackTitle || "Unknown Title"
                                     }
                                     // Artist
                                     Text {
                                         Layout.fillWidth: true
                                         elide: Text.ElideRight
                                         color: Colors.gray
-                                        text: root.current.trackArtist || "Unknown Artist"
+                                        text: root.current?.trackArtist || "Unknown Artist"
                                     }
                                 }
 
@@ -150,22 +150,22 @@ LazyLoader {
                                     Layout.preferredWidth: Appearance.font.icon
                                     Layout.preferredHeight: Appearance.font.icon
                                     icon: Icons.MediaSkipBackwardSymbolic
-                                    enabled: root.current.canGoPrevious
-                                    onClicked: root.current.previous()
+                                    enabled: root.current?.canGoPrevious ?? false
+                                    onClicked: root.current?.previous()
                                 }
                                 ButtonIcon {
                                     Layout.preferredWidth: Appearance.font.icon
                                     Layout.preferredHeight: Appearance.font.icon
-                                    icon: root.current.playbackState == MprisPlaybackState.Playing ? Icons.MediaPlaybackPauseSymbolic : Icons.MediaPlaybackStartSymbolic
-                                    enabled: root.current.canTogglePlaying
-                                    onClicked: root.current.togglePlaying()
+                                    icon: root.current?.playbackState == MprisPlaybackState.Playing ? Icons.MediaPlaybackPauseSymbolic : Icons.MediaPlaybackStartSymbolic
+                                    enabled: root.current?.canTogglePlaying ?? false
+                                    onClicked: root.current?.togglePlaying()
                                 }
                                 ButtonIcon {
                                     Layout.preferredWidth: Appearance.font.icon
                                     Layout.preferredHeight: Appearance.font.icon
                                     icon: Icons.MediaSkipForwardSymbolic
-                                    enabled: root.current.canGoNext
-                                    onClicked: root.current.next()
+                                    enabled: root.current?.canGoNext ?? false
+                                    onClicked: root.current?.next()
                                 }
                             }
 
@@ -187,11 +187,10 @@ LazyLoader {
                                         cursorShape: Qt.PointingHandCursor
                                         onPositionChanged: e => {
                                             currentIndicator.width = (e.x / this.width) * parent.width;
-                                        // console.log(JSON.stringify(e, null, 2));
                                         }
                                         onReleased: e => {
-                                            root.current.position = (e.x / this.width) * root.current.length;
-                                            currentIndicator.implicitWidth = (root.current.position / root.current.length) * parent.width;
+                                            root.current.position = (e.x / this.width) * root.current?.length;
+                                            currentIndicator.implicitWidth = (root.current?.position / root.current?.length) * parent.width;
                                         }
                                     }
 
@@ -205,7 +204,7 @@ LazyLoader {
                                         }
                                         color: Colors.aqua
                                         radius: Appearance.radius.small
-                                        implicitWidth: ((root.current.position / root.current.length) % 1) * parent.width
+                                        implicitWidth: ((root.current?.position / root.current?.length) % 1) * parent.width
                                     }
                                 }
                             }
@@ -215,7 +214,7 @@ LazyLoader {
                                 Layout.fillWidth: true
 
                                 Text {
-                                    text: root.displaySeconds(root.current.position)
+                                    text: root.displaySeconds(root.current?.position)
                                 }
 
                                 Item {
@@ -224,7 +223,7 @@ LazyLoader {
 
                                 Text {
                                     Layout.alignment: Qt.AlignRight
-                                    text: root.displaySeconds(root.current.length)
+                                    text: root.displaySeconds(root.current?.length)
                                 }
                             }
                         }
