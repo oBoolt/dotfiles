@@ -22,9 +22,8 @@ Singleton {
         AudioVolumeMediumSymbolic,
         AudioVolumeLowSymbolic,
         AudioVolumeMutedSymbolic,
-        NetworkBluetoothSymbolic,
-        NetworkBluetoothActivatedSymbolic,
-        NetworkBluetoothInactiveSymbolic,
+        BluetoothActiveSymbolic,
+        BluetoothDisabledSymbolic,
         NetworkWiredActivatedSymbolic,
         NetworkWiredDisconnectedSymbolic,
         NetworkWiredUnavailableSymbolic,
@@ -55,7 +54,8 @@ Singleton {
     }
 
     function get(icon: int): string {
-        return Quickshell.iconPath(Qt.enumValueToString(Icons.Enum, icon).replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase());
+        // return Quickshell.iconPath(Qt.enumValueToString(Icons.Enum, icon).replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase());
+        return Quickshell.iconPath("media-skip-forward-symbolic");
     }
 
     function getKey(iconName: string): int {
