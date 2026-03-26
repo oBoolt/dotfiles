@@ -1,3 +1,4 @@
+pragma ComponentBehavior: Bound
 pragma Singleton
 
 import Quickshell
@@ -8,6 +9,20 @@ import qs.utils
 
 Singleton {
     id: root
+
+    function getAudioIcon(volume: real, muted: bool): int {
+        if (muted) {
+            return Icons.AudioVolumeMutedSymbolic;
+        }
+        if (volume >= 0.66) {
+            return Icons.AudioVolumeHighSymbolic;
+        } else if (volume >= 0.33) {
+            return Icons.AudioVolumeMediumSymbolic;
+        } else if (volume >= 0) {
+            return Icons.AudioVolumeLowSymbolic;
+        }
+    }
+
     component PwNodeWrapper: QtObject {
         required property PwNode node
         readonly property bool muted: !!node?.audio?.muted
@@ -16,11 +31,11 @@ Singleton {
         property int icon
 
         onVolumeChanged: {
-            icon = Icons.getAudioIcon(volume, muted);
+            icon = root.getAudioIcon(volume, muted);
         }
 
         onMutedChanged: {
-            icon = Icons.getAudioIcon(volume, muted);
+            icon = root.getAudioIcon(volume, muted);
         }
 
         function toggleMute(): void {
