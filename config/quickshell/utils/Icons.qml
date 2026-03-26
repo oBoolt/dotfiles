@@ -662,24 +662,6 @@ Singleton {
         return Icons[icon];
     }
 
-    function getBrightnessIcon(percentage: real): int {
-        if (percentage >= 0.9) {
-            return Icons.Brightness90Symbolic;
-        } else if (percentage >= 0.75) {
-            return Icons.Brightness75Symbolic;
-        } else if (percentage >= 0.6) {
-            return Icons.Brightness60Symbolic;
-        } else if (percentage >= 0.45) {
-            return Icons.Brightness45Symbolic;
-        } else if (percentage >= 0.30) {
-            return Icons.Brightness30Symbolic;
-        } else if (percentage >= 0.15) {
-            return Icons.Brightness15Symbolic;
-        } else {
-            return Icons.Brightness0Symbolic;
-        }
-    }
-
     function getAudioIcon(volume: real, muted: bool): int {
         if (muted) {
             return Icons.AudioVolumeMutedSymbolic;

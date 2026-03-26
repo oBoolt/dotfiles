@@ -17,7 +17,7 @@ Singleton {
     property int icon
 
     onCurrentChanged: {
-        icon = Icons.getBrightnessIcon(percentage);
+        icon = root.getBrightnessIcon(percentage);
     }
 
     function set(value: int): void {
@@ -35,6 +35,25 @@ Singleton {
     function decrease(): void {
         let value = root.current - (root.max * Config.brightness.step);
         root.set(value);
+    }
+
+    function getBrightnessIcon(percentage: real): int {
+        return Icons.DisplayBrightnessSymbolic;
+        // if (percentage >= 0.9) {
+        //     return Icons.Brightness90Symbolic;
+        // } else if (percentage >= 0.75) {
+        //     return Icons.Brightness75Symbolic;
+        // } else if (percentage >= 0.6) {
+        //     return Icons.Brightness60Symbolic;
+        // } else if (percentage >= 0.45) {
+        //     return Icons.Brightness45Symbolic;
+        // } else if (percentage >= 0.30) {
+        //     return Icons.Brightness30Symbolic;
+        // } else if (percentage >= 0.15) {
+        //     return Icons.Brightness15Symbolic;
+        // } else {
+        //     return Icons.Brightness0Symbolic;
+        // }
     }
 
     IpcHandler {
@@ -70,7 +89,7 @@ Singleton {
         }
         onLoaded: {
             root.current = parseInt(text());
-            root.icon = Icons.getBrightnessIcon(root.percentage);
+            root.icon = root.getBrightnessIcon(root.percentage);
         }
         onFileChanged: {
             this.reload();
