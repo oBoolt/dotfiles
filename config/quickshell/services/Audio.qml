@@ -23,11 +23,24 @@ Singleton {
         }
     }
 
+    function setSink(node: PwNode): void {
+        if (node.isSink && !node.isStream && node.audio) {
+            Pipewire.preferredDefaultAudioSink = node;
+        }
+    }
+
+    function setSource(node: PwNode): void {
+        if (!node.isSink && !node.isStream && node.audio) {
+            Pipewire.preferredDefaultAudioSource = node;
+        }
+    }
+
     component PwNodeWrapper: QtObject {
         required property PwNode node
         readonly property bool muted: !!node?.audio?.muted
         readonly property real volume: node?.audio?.volume ?? 0
         readonly property bool ready: node?.ready ?? false
+        readonly property string name: node?.description || node?.nickname || node?.name || "Unknown Device"
         property int icon
 
         onVolumeChanged: {
@@ -52,6 +65,14 @@ Singleton {
         }
     }
 
+    readonly property list<PwNode> sinks: {
+        return Pipewire.nodes.values.filter(n => n.isSink && !n.isStream && n.audio);
+    }
+
+    readonly property list<PwNode> sources: {
+        return Pipewire.nodes.values.filter(n => !n.isSink && !n.isStream && n.audio);
+    }
+
     readonly property PwNodeWrapper sink: PwNodeWrapper {
         node: Pipewire.defaultAudioSink
     }
@@ -60,6 +81,6 @@ Singleton {
     }
 
     PwObjectTracker {
-        objects: [root.sink.node, root.source.node]
+        objects: [...root.sinks, ...root.sources]
     }
 }
