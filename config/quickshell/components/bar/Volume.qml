@@ -7,7 +7,7 @@ import qs.components
 Card {
     id: root
     icon: Audio.sink.icon
-    color: Audio.sink.muted ? Colors.red : Colors.darkaqua
+    color: Audio.sink.muted ? Colors.danger : Colors.foreground
 
     onClicked: {
         Audio.sink.toggleMute();

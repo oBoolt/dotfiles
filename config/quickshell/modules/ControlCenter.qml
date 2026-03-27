@@ -20,17 +20,16 @@ LazyLoader {
         exclusiveZone: 0
         anchors {
             top: true
-            bottom: true
             right: true
         }
 
         margins {
             top: Appearance.margin.normal
-            bottom: Appearance.margin.normal
             right: Appearance.margin.normal
         }
 
         implicitWidth: 480 * Config.scaleFactor[screen.name]
+        implicitHeight: screen.height * 0.75
         color: "transparent"
 
         Rectangle {
@@ -53,6 +52,7 @@ LazyLoader {
                     anchors.fill: parent
                     spacing: 16
 
+                    // Quick actions
                     RowLayout {
                         Layout.fillWidth: true
 
@@ -74,31 +74,36 @@ LazyLoader {
                         ButtonIcon {
                             Layout.preferredWidth: Appearance.font.icon
                             Layout.preferredHeight: Appearance.font.icon
+                            hoverEnabled: true
                             icon: Icons.ApplicationExitSymbolic
                         }
 
                         ButtonIcon {
                             Layout.preferredWidth: Appearance.font.icon
                             Layout.preferredHeight: Appearance.font.icon
+                            hoverEnabled: true
                             icon: Icons.SystemLockScreenSymbolic
                         }
 
                         ButtonIcon {
                             Layout.preferredWidth: Appearance.font.icon
                             Layout.preferredHeight: Appearance.font.icon
+                            hoverEnabled: true
                             icon: Icons.SystemRebootSymbolic
                         }
 
                         ButtonIcon {
                             Layout.preferredWidth: Appearance.font.icon
                             Layout.preferredHeight: Appearance.font.icon
+                            hoverEnabled: true
                             icon: Icons.SystemShutdownSymbolic
                         }
                     }
 
+                    // Panels
                     Item {
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 100
+                        Layout.preferredHeight: 75
 
                         RowLayout {
                             anchors.fill: parent
@@ -107,16 +112,8 @@ LazyLoader {
                             Rectangle {
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
-                                color: "black"
-
-                                MouseArea {
-                                    anchors.fill: parent
-                                    onClicked: {
-                                        // process.command.push(Config.controlcenter.commands.poweroff);
-                                        // process.running = true;
-                                        stackView.push(second);
-                                    }
-                                }
+                                radius: Appearance.radius.large
+                                color: Colors.foreground
                             }
 
                             Rectangle {
@@ -127,9 +124,10 @@ LazyLoader {
                         }
                     }
 
+                    // Panels
                     Item {
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 100
+                        Layout.preferredHeight: 75
 
                         RowLayout {
                             anchors.fill: parent
@@ -139,13 +137,6 @@ LazyLoader {
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
                                 color: "black"
-
-                                MouseArea {
-                                    anchors.fill: parent
-                                    onClicked: {
-                                        // stackView.push(second);
-                                    }
-                                }
                             }
 
                             Rectangle {
@@ -156,12 +147,7 @@ LazyLoader {
                         }
                     }
 
-                    Rectangle {
-                        Layout.fillHeight: true
-                        Layout.fillWidth: true
-                        color: "red"
-                    }
-
+                    // Sliders
                     Item {
                         Layout.fillWidth: true
                         Layout.preferredHeight: 150
@@ -192,6 +178,13 @@ LazyLoader {
                                 }
                             }
                         }
+                    }
+
+                    // Notification
+                    Rectangle {
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+                        color: "red"
                     }
                 }
             }

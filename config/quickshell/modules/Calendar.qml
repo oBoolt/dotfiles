@@ -47,8 +47,6 @@ LazyLoader {
                         Layout.preferredHeight: Appearance.font.icon
                         hoverEnabled: true
                         onClicked: monthGrid.previousMonth()
-                        onEntered: color = Colors.gray
-                        onExited: color = Colors.foreground
                         icon: Icons.GoPreviousSymbolic
                     }
                     Text {
@@ -62,8 +60,6 @@ LazyLoader {
                         Layout.preferredHeight: Appearance.font.icon
                         hoverEnabled: true
                         onClicked: monthGrid.nextMonth()
-                        onEntered: color = Colors.gray
-                        onExited: color = Colors.foreground
                         icon: Icons.GoNextSymbolic
                     }
                 }
@@ -119,8 +115,8 @@ LazyLoader {
                             implicitWidth: height
                             anchors.centerIn: parent
                             radius: Appearance.radius.normal
-                            opacity: hovered ? 0.75 : today ? 0.5 : 0
-                            color: today ? Colors.aqua : Colors.gray
+                            opacity: hovered ? 0.5 : today ? 0.25 : 0
+                            color: today ? Colors.main : Colors.foregroundMuted
 
                             MouseArea {
                                 anchors.fill: parent

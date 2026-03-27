@@ -114,7 +114,7 @@ LazyLoader {
                                     Text {
                                         Layout.fillWidth: true
                                         elide: Text.ElideRight
-                                        color: Colors.gray
+                                        color: Colors.foregroundMuted
                                         text: root.current?.trackArtist || "Unknown Artist"
                                     }
                                 }
@@ -127,12 +127,14 @@ LazyLoader {
                                     ButtonIcon {
                                         Layout.preferredWidth: Appearance.font.icon
                                         Layout.preferredHeight: Appearance.font.icon
+                                        hoverEnabled: true
                                         icon: Icons.GoPreviousSymbolic
                                         onClicked: root.previousClient()
                                     }
                                     ButtonIcon {
                                         Layout.preferredWidth: Appearance.font.icon
                                         Layout.preferredHeight: Appearance.font.icon
+                                        hoverEnabled: true
                                         icon: Icons.GoNextSymbolic
                                         onClicked: root.nextClient()
                                     }
@@ -151,6 +153,7 @@ LazyLoader {
                                     Layout.preferredHeight: Appearance.font.icon
                                     icon: Icons.MediaSkipBackwardSymbolic
                                     enabled: root.current?.canGoPrevious ?? false
+                                    hoverEnabled: true
                                     onClicked: root.current?.previous()
                                 }
                                 ButtonIcon {
@@ -158,6 +161,7 @@ LazyLoader {
                                     Layout.preferredHeight: Appearance.font.icon
                                     icon: root.current?.playbackState == MprisPlaybackState.Playing ? Icons.MediaPlaybackPauseSymbolic : Icons.MediaPlaybackStartSymbolic
                                     enabled: root.current?.canTogglePlaying ?? false
+                                    hoverEnabled: true
                                     onClicked: root.current?.togglePlaying()
                                 }
                                 ButtonIcon {
@@ -165,6 +169,7 @@ LazyLoader {
                                     Layout.preferredHeight: Appearance.font.icon
                                     icon: Icons.MediaSkipForwardSymbolic
                                     enabled: root.current?.canGoNext ?? false
+                                    hoverEnabled: true
                                     onClicked: root.current?.next()
                                 }
                             }
@@ -202,7 +207,7 @@ LazyLoader {
                                             top: parent.top
                                             bottom: parent.bottom
                                         }
-                                        color: Colors.aqua
+                                        color: Colors.main
                                         radius: Appearance.radius.small
                                         implicitWidth: ((root.current?.position / root.current?.length) % 1) * parent.width
                                     }

@@ -40,15 +40,15 @@ Card {
 
     function getColor(percent: real): color {
         if (percent >= 0.9)
-            return Colors.darkgreen;
+            return Colors.good;
         if (percent >= 0.7)
-            return Colors.green;
+            return Colors.ok;
         if (percent >= 0.5)
-            return Colors.yellow;
+            return Colors.warning;
         if (percent >= 0.2)
-            return Colors.red;
+            return Colors.danger;
         if (percent >= 0)
-            return Colors.darkred;
+            return Colors.critical;
     }
 
     visible: laptop.isLaptopBattery

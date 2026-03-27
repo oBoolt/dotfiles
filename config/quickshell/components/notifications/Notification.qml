@@ -19,9 +19,9 @@ Rectangle {
             if (notification.modelData.urgency == NotificationUrgency.Normal) {
                 return Colors.foreground;
             } else if (notification.modelData.urgency == NotificationUrgency.Critical) {
-                return Colors.darkred;
+                return Colors.critical;
             } else if (notification.modelData.urgency == NotificationUrgency.Low) {
-                return Colors.blue;
+                return Colors.warning;
             }
         }
     }

@@ -77,7 +77,7 @@ PopupWindow {
                             anchors.fill: parent
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
-                            color: parent.hovered ? Colors.gray : Colors.foreground
+                            color: parent.hovered ? Colors.foregroundMuted : Colors.foreground
                             text: "<"
                         }
                     }
@@ -117,7 +117,7 @@ PopupWindow {
                             anchors.fill: parent
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
-                            color: parent.hovered ? Colors.gray : Colors.foreground
+                            color: parent.hovered ? Colors.foregroundMuted : Colors.foreground
                             text: ">"
                         }
                     }
@@ -175,7 +175,7 @@ PopupWindow {
                             anchors.bottom: parent.bottom
                             implicitWidth: height + 2
                             anchors.horizontalCenter: parent.horizontalCenter
-                            color: parent.model.today ? Colors.aqua : Colors.gray
+                            color: parent.model.today ? Colors.main : Colors.foregroundMuted
                             radius: Appearance.radius.normal
                             opacity: parent.model.today ? 0.5 : 0.25
                         }

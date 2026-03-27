@@ -37,15 +37,15 @@ Singleton {
 
     function getUsageColor(usage: real): color {
         if (usage >= 0.9)
-            return Colors.darkred;
+            return Colors.critical;
         if (usage >= 0.7)
-            return Colors.red;
+            return Colors.danger;
         if (usage >= 0.5)
-            return Colors.yellow;
+            return Colors.warning;
         if (usage >= 0.2)
-            return Colors.darkgreen;
+            return Colors.good;
         if (usage >= 0)
-            return Colors.green;
+            return Colors.ok;
     }
 
     function sum(acc: int, current: int, idx: int): int {

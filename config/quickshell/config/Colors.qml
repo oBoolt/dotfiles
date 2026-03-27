@@ -6,62 +6,42 @@ import QtQuick
 
 Singleton {
     id: root
-    property color background: "white"
-    property color backgroundc: "white"
-    property color foreground: "black"
-    property color foregroundc: "black"
-    property color red: "red"
-    property color darkred: "darkred"
-    property color green: "green"
-    property color darkgreen: "darkgreen"
-    property color yellow: "yellow"
-    property color darkyellow: "gold"
-    property color blue: "blue"
-    property color darkblue: "darkblue"
-    property color purple: "purple"
-    property color darkpurple: "darkmagenta"
-    property color aqua: "aqua"
-    property color darkaqua: "darkcyan"
-    property color orange: "orange"
-    property color darkorange: "darkorange"
-    property color gray: "gray"
+    property bool darkMode: true
+    property color background: darkMode ? "black" : "white"
+    property color backgroundMuted: darkMode ? Qt.hsla(background.hslHue, background.hslSaturation * 0.1, background.hslLightness + 0.15, 1) : Qt.hsla(background.hslHue, background.hslSaturation * 0.1, background.hslLightness - 0.15, 1)
+    property color foreground: darkMode ? "white" : "black"
+    property color foregroundMuted: darkMode ? Qt.hsla(foreground.hslHue, foreground.hslSaturation * 0.1, foreground.hslLightness - 0.25, 1) : Qt.hsla(foreground.hslHue, foreground.hslSaturation * 0.1, foreground.hslLightness + 0.25, 1)
+    property color disabled: Qt.hsla(foreground.hslHue, foreground.hslSaturation * 0.1, foreground.hslLightness * 0.5)
+    property color main: "aqua"
+    property color critical: "darkred"
+    property color danger: "red"
+    property color warning: "yellow"
+    property color ok: "green"
+    property color good: "darkred"
 
     FileView {
         id: jsonFile
         path: Qt.resolvedUrl(Quickshell.env("HOME") + "/.local/share/dotfiles/themes/current/quickshell.json")
         watchChanges: true
-        onFileChanged: reload()
-        blockLoading: true
 
+        onFileChanged: reload()
         onLoadFailed: error => {
             console.error("failed to load colors file");
             console.error("using default colors instead");
-            console.error("Reason: " + FileViewError.toString(error));
+            console.error("reason: " + FileViewError.toString(error));
         }
-
         onLoaded: () => {
-            console.info("loaded colors file: '" + jsonFile.path + "'");
             let colorsJson = JSON.parse(this.text());
 
+            root.darkMode = colorsJson.darkMode;
             root.background = colorsJson.background;
-            root.backgroundc = colorsJson.backgroundc;
             root.foreground = colorsJson.foreground;
-            root.foregroundc = colorsJson.foregroundc;
-            root.red = colorsJson.red;
-            root.darkred = colorsJson.darkred;
-            root.green = colorsJson.green;
-            root.darkgreen = colorsJson.darkgreen;
-            root.yellow = colorsJson.yellow;
-            root.darkyellow = colorsJson.darkyellow;
-            root.blue = colorsJson.blue;
-            root.darkblue = colorsJson.darkblue;
-            root.purple = colorsJson.purple;
-            root.darkpurple = colorsJson.darkpurple;
-            root.aqua = colorsJson.aqua;
-            root.darkaqua = colorsJson.darkaqua;
-            root.orange = colorsJson.orange;
-            root.darkorange = colorsJson.darkorange;
-            root.gray = colorsJson.gray;
+            root.main = colorsJson.main;
+            root.critical = colorsJson.critical;
+            root.danger = colorsJson.danger;
+            root.warning = colorsJson.warning;
+            root.ok = colorsJson.ok;
+            root.good = colorsJson.good;
         }
     }
 }

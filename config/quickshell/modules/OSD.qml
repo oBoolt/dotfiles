@@ -81,14 +81,14 @@ Scope {
                         id: bar
                         Layout.fillWidth: true
                         Layout.preferredHeight: window.implicitHeight / 4
-                        color: Colors.backgroundc
+                        color: Colors.backgroundMuted
                         radius: Appearance.radius.normal / 2
 
                         Rectangle {
                             anchors.top: parent.top
                             anchors.bottom: parent.bottom
                             implicitWidth: parseInt(root.value) / 100 * parent.width
-                            color: Colors.aqua
+                            color: Colors.main
                             radius: Appearance.radius.normal / 2
                         }
                     }

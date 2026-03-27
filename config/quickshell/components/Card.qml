@@ -37,8 +37,9 @@ Item {
         Rectangle {
             id: bg
             visible: false
-            opacity: 0.1
             anchors.fill: parent
+            color: Colors.foregroundMuted
+            opacity: 0.25
             radius: Appearance.radius.small
         }
     }

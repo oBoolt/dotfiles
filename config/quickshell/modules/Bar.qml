@@ -64,7 +64,7 @@ Variants {
                 }
                 Rectangle {
                     id: center_area
-                    color: Config.debug ? Colors.aqua : "transparent"
+                    color: Config.debug ? Colors.main : "transparent"
                     Layout.fillWidth: true
                     Layout.fillHeight: true
 
