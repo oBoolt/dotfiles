@@ -51,4 +51,5 @@ ShellRoot {
     Calendar {}
     Mpris {}
     Background {}
+    LockScreen {}
 }
