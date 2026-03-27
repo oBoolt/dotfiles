@@ -24,7 +24,7 @@ Item {
             id: area
             enabled: root.enabled
             anchors.fill: parent
-            cursorShape: enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
+            cursorShape: enabled ? Qt.PointingHandCursor : Qt.ForbiddenCursor
             onClicked: e => root.clicked(e)
             onEntered: {
                 if (root.react)
