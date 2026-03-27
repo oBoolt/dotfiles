@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import Quickshell
 import Quickshell.Io
 import Quickshell.Services.Pipewire
@@ -90,6 +92,10 @@ LazyLoader {
                             Layout.preferredHeight: Appearance.font.icon
                             hoverEnabled: true
                             icon: Icons.SystemRebootSymbolic
+                            onClicked: {
+                                process.command.push(Config.controlcenter.commands.reboot);
+                                process.running = true;
+                            }
                         }
 
                         ButtonIcon {
@@ -97,6 +103,10 @@ LazyLoader {
                             Layout.preferredHeight: Appearance.font.icon
                             hoverEnabled: true
                             icon: Icons.SystemShutdownSymbolic
+                            onClicked: {
+                                process.command.push(Config.controlcenter.commands.poweroff);
+                                process.running = true;
+                            }
                         }
                     }
 
