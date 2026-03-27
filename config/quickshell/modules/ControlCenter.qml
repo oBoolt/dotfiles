@@ -1,5 +1,6 @@
 import Quickshell
 import Quickshell.Io
+import Quickshell.Services.Pipewire
 
 import QtQuick
 import QtQuick.Layouts
@@ -55,6 +56,12 @@ LazyLoader {
                     RowLayout {
                         Layout.fillWidth: true
 
+                        Icon {
+                            Layout.preferredHeight: Appearance.font.icon
+                            Layout.preferredWidth: Appearance.font.icon
+                            icon: Icons.AvatarDefaultSymbolic
+                        }
+
                         Text {
                             font.pixelSize: Appearance.font.large * 0.8
                             text: "bolt@quacker"
@@ -67,19 +74,19 @@ LazyLoader {
                         ButtonIcon {
                             Layout.preferredWidth: Appearance.font.icon
                             Layout.preferredHeight: Appearance.font.icon
-                            icon: Icons.SystemLockScreenSymbolic
-                        }
-
-                        ButtonIcon {
-                            Layout.preferredWidth: Appearance.font.icon
-                            Layout.preferredHeight: Appearance.font.icon
                             icon: Icons.ApplicationExitSymbolic
                         }
 
                         ButtonIcon {
                             Layout.preferredWidth: Appearance.font.icon
                             Layout.preferredHeight: Appearance.font.icon
-                            icon: 0
+                            icon: Icons.SystemLockScreenSymbolic
+                        }
+
+                        ButtonIcon {
+                            Layout.preferredWidth: Appearance.font.icon
+                            Layout.preferredHeight: Appearance.font.icon
+                            icon: Icons.SystemRebootSymbolic
                         }
 
                         ButtonIcon {
@@ -105,9 +112,9 @@ LazyLoader {
                                 MouseArea {
                                     anchors.fill: parent
                                     onClicked: {
-                                        process.command.push(Config.controlcenter.commands.poweroff);
-                                        process.running = true;
-                                        // stackView.push(second);
+                                        // process.command.push(Config.controlcenter.commands.poweroff);
+                                        // process.running = true;
+                                        stackView.push(second);
                                     }
                                 }
                             }
@@ -136,8 +143,6 @@ LazyLoader {
                                 MouseArea {
                                     anchors.fill: parent
                                     onClicked: {
-                                        process.command.push(Config.controlcenter.commands.poweroff);
-                                        process.running = true;
                                         // stackView.push(second);
                                     }
                                 }
@@ -200,13 +205,54 @@ LazyLoader {
                     color: "black"
 
                     ColumnLayout {
+
                         Text {
-                            text: SystemUsage.cpu.usage * 100 + "%"
+                            text: Audio.sink.name
                         }
                         Text {
-                            text: SystemUsage.mem.usage * 100 + "%"
+                            text: Audio.source.name
+                        }
+
+                        Rectangle {
+                            implicitHeight: 2
+                            Layout.fillWidth: true
+                        }
+
+                        Text {
+                            text: "Sinks"
+                        }
+                        Repeater {
+                            model: Audio.sinks
+                            Text {
+                                required property PwNode modelData
+                                visible: Audio.sink.node != modelData
+                                text: modelData.description
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: Audio.setSink(parent.modelData)
+                                }
+                            }
+                        }
+                        Text {
+                            text: "Sources"
+                        }
+                        Repeater {
+                            model: Audio.sources
+                            Text {
+                                required property PwNode modelData
+                                visible: Audio.source.node != modelData
+                                text: modelData.description
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: Audio.setSource(parent.modelData)
+                                }
+                            }
                         }
                     }
+
+                    // Component.onCompleted: console.log(JSON.stringify(Pipewire.nodes, null, 2))
                 }
             }
         }

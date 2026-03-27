@@ -14,13 +14,16 @@ Singleton {
         if (muted) {
             return Icons.AudioVolumeMutedSymbolic;
         }
-        if (volume >= 0.66) {
+        if (volume > 1)
+            return Icons.AudioVolumeOveramplifiedSymbolic;
+        if (volume >= 0.66)
             return Icons.AudioVolumeHighSymbolic;
-        } else if (volume >= 0.33) {
+        if (volume >= 0.33)
             return Icons.AudioVolumeMediumSymbolic;
-        } else if (volume >= 0) {
+        if (volume > 0)
             return Icons.AudioVolumeLowSymbolic;
-        }
+        if (volume == 0)
+            return Icons.AudioVolumeMutedSymbolic;
     }
 
     function setSink(node: PwNode): void {

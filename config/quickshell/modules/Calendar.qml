@@ -49,7 +49,7 @@ LazyLoader {
                         onClicked: monthGrid.previousMonth()
                         onEntered: color = Colors.gray
                         onExited: color = Colors.foreground
-                        icon: Icons.GoNextSymbolicRtl
+                        icon: Icons.GoPreviousSymbolic
                     }
                     Text {
                         Layout.fillWidth: true

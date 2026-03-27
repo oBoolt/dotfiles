@@ -127,7 +127,7 @@ LazyLoader {
                                     ButtonIcon {
                                         Layout.preferredWidth: Appearance.font.icon
                                         Layout.preferredHeight: Appearance.font.icon
-                                        icon: Icons.GoNextSymbolicRtl
+                                        icon: Icons.GoPreviousSymbolic
                                         onClicked: root.previousClient()
                                     }
                                     ButtonIcon {
