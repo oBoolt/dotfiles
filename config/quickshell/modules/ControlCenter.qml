@@ -93,6 +93,7 @@ LazyLoader {
                             Layout.preferredHeight: Appearance.font.icon
                             hoverEnabled: true
                             icon: Icons.ApplicationExitSymbolic
+                            onClicked: SystemManage.logout()
                         }
 
                         ButtonIcon {

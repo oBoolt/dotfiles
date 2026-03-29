@@ -11,4 +11,8 @@ Singleton {
     function reboot() {
         Quickshell.execDetached(["systemctl", "reboot"]);
     }
+
+    function logout() {
+        Quickshell.execDetached(["hyprctl", "dispatch", "exit"]);
+    }
 }
