@@ -9,6 +9,7 @@ import Quickshell.Wayland
 import qs.utils
 import qs.config
 import qs.services
+import qs.components
 
 WlSessionLock {
     id: lock
@@ -19,11 +20,20 @@ WlSessionLock {
             anchors.fill: parent
             fillMode: Image.PreserveAspectCrop
             source: Qt.resolvedUrl(Quickshell.env("XDG_CONFIG_HOME") + "/wallpapers/hk-4-3840_2160.jpg")
+
+            Rectangle {
+                anchors.fill: parent
+                color: Colors.background
+                opacity: 0.5
+            }
         }
-        Rectangle {
-            anchors.fill: parent
-            color: Colors.background
-            opacity: 0.5
+        //TODO Remove Me
+        ButtonIcon {
+            implicitWidth: 20
+            implicitHeight: 20
+            icon: Icons.GoPreviousSymbolic
+            hoverEnabled: true
+            onClicked: States.sessionLocked = false
         }
         Rectangle {
             anchors.centerIn: parent
@@ -41,8 +51,7 @@ WlSessionLock {
                         echoMode: TextInput.Password
                         passwordCharacter: "*"
                         onAccepted: {
-                            // pam.login(this.text);
-                            Pam.login(this.text);
+                            LoginManager.login(this.text);
                             this.clear();
                         }
                     }

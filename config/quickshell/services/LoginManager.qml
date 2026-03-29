@@ -1,22 +1,23 @@
+pragma Singleton
 import Quickshell.Services.Pam
 
 import qs.utils
 
 PamContext {
-    id: pam
+    id: root
     property string password: ""
 
     function login(password: string): void {
-        if (pam.active)
-            pam.abort();
-        pam.password = password;
-        pam.start();
+        if (root.active)
+            root.abort();
+        root.password = password;
+        root.start();
     }
 
     onResponseRequiredChanged: {
-        if (pam.responseRequired && !!pam.password) {
-            pam.respond(pam.password);
-            pam.password = "";
+        if (root.responseRequired && !!root.password) {
+            root.respond(root.password);
+            root.password = "";
         }
     }
     onCompleted: result => {
