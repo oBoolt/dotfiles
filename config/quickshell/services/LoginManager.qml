@@ -22,7 +22,7 @@ PamContext {
     }
     onCompleted: result => {
         if (result == PamResult.Success) {
-            States.sessionLocked = false;
+            States.unlockSession();
         }
     }
 }

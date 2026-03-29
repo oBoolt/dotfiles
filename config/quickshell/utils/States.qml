@@ -40,4 +40,8 @@ Singleton {
     function lockSession(): void {
         root.sessionLocked = true;
     }
+
+    function unlockSession(): void {
+        root.sessionLocked = false;
+    }
 }
