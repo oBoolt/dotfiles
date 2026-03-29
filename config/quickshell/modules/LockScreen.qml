@@ -21,7 +21,7 @@ WlSessionLock {
         Image {
             anchors.fill: parent
             fillMode: Image.PreserveAspectCrop
-            source: Qt.resolvedUrl(Quickshell.env("XDG_CONFIG_HOME") + "/wallpapers/hk-4-3840_2160.jpg")
+            source: Qt.resolvedUrl(Config.wallpaper[surface.screen.name])
 
             Rectangle {
                 anchors.fill: parent

@@ -34,7 +34,7 @@ LazyLoader {
             Image {
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectCrop
-                source: Qt.resolvedUrl(Quickshell.env("XDG_CONFIG_HOME") + "/wallpapers/" + root.wallpapers[root.currentWallpaperIndex] + ".jpg")
+                source: Qt.resolvedUrl(Config.wallpaper[root.screen.name])
             }
         }
     }

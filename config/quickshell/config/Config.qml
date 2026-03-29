@@ -6,9 +6,11 @@ import Quickshell.Io
 import QtQuick
 
 Singleton {
+    id: root
     property alias debug: adapter.debug
     property alias locale: adapter.locale
     property alias scaleFactor: adapter.scaleFactor
+    property alias wallpaper: adapter.wallpaper
 
     property alias modules: adapter.modules
     property AppearanceConfig appearance: AppearanceConfig {}
@@ -18,6 +20,10 @@ Singleton {
     property alias brightness: adapter.brightness
     property alias controlcenter: adapter.controlcenter
     property alias bar: adapter.bar
+
+    function setWallpaper(screen: ShellScreen, path: string) {
+        root.wallpaper[screen.name] = path;
+    }
 
     FileView {
         id: fileView
@@ -51,6 +57,15 @@ Singleton {
                 for (let i = 0; i < Quickshell.screens.length; i++) {
                     let current = Quickshell.screens[i];
                     result[current.name] = 1;
+                }
+
+                return result;
+            }
+            property var wallpaper: {
+                let result = {};
+                let defaultPath = Quickshell.env("XDG_CONFIG_HOME") + "/wallpapers/default.jpg";
+                for (let i = 0; i < Quickshell.screens.length; i++) {
+                    result[Quickshell.screens[i].name] = defaultPath;
                 }
 
                 return result;
