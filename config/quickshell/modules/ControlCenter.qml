@@ -93,7 +93,7 @@ LazyLoader {
                             Layout.preferredHeight: Appearance.font.icon
                             hoverEnabled: true
                             icon: Icons.ApplicationExitSymbolic
-                            onClicked: SystemManage.logout()
+                            onClicked: System.logout()
                         }
 
                         ButtonIcon {
@@ -109,7 +109,7 @@ LazyLoader {
                             Layout.preferredHeight: Appearance.font.icon
                             hoverEnabled: true
                             icon: Icons.SystemRebootSymbolic
-                            onClicked: SystemManage.reboot()
+                            onClicked: System.reboot()
                         }
 
                         ButtonIcon {
@@ -117,7 +117,7 @@ LazyLoader {
                             Layout.preferredHeight: Appearance.font.icon
                             hoverEnabled: true
                             icon: Icons.SystemShutdownSymbolic
-                            onClicked: SystemManage.poweroff()
+                            onClicked: System.poweroff()
                         }
                     }
 
@@ -138,14 +138,20 @@ LazyLoader {
 
                                 MouseArea {
                                     anchors.fill: parent
-                                    onClicked: stackView.push(second)
+                                    onClicked: stackView.push(audio)
                                 }
                             }
 
                             Rectangle {
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
-                                color: "black"
+                                radius: Appearance.radius.large
+                                color: Colors.foregroundMuted
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: stackView.push(systemUsage)
+                                }
                             }
                         }
                     }
@@ -217,7 +223,7 @@ LazyLoader {
         }
 
         Component {
-            id: second
+            id: audio
             Page {
                 Rectangle {
                     anchors.fill: parent
@@ -272,6 +278,24 @@ LazyLoader {
                     }
 
                     // Component.onCompleted: console.log(JSON.stringify(Pipewire.nodes, null, 2))
+                }
+            }
+        }
+        Component {
+            id: systemUsage
+            Page {
+                Rectangle {
+                    anchors.fill: parent
+                    color: "black"
+
+                    ColumnLayout {
+                        Text {
+                            text: "CPU: " + System.usage.cpu.percentage * 100
+                        }
+                        Text {
+                            text: "MEM: " + System.usage.mem.percentage * 100
+                        }
+                    }
                 }
             }
         }

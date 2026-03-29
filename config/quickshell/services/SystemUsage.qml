@@ -1,12 +1,9 @@
-pragma Singleton
-
 import QtQuick
-import Quickshell
 import Quickshell.Io
 
 import qs.config
 
-Singleton {
+Item {
     id: root
     property alias runningCpu: cpuProccess.running
     property alias runningMem: memProccess.running
@@ -25,26 +22,26 @@ Singleton {
         property int guest: 0
         property int guest_nice: 0
         property int total: 0
-        property real usage: 0
+        property real percentage: 0
     }
 
     component MemInfo: QtObject {
         property int total: 0
         property int free: 0
         property int available: 0
-        property real usage: 0
+        property real percentage: 0
     }
 
-    function getUsageColor(usage: real): color {
-        if (usage >= 0.9)
+    function getColor(percentage: real): color {
+        if (percentage >= 0.9)
             return Colors.critical;
-        if (usage >= 0.7)
+        if (percentage >= 0.7)
             return Colors.danger;
-        if (usage >= 0.5)
+        if (percentage >= 0.5)
             return Colors.warning;
-        if (usage >= 0.2)
+        if (percentage >= 0.2)
             return Colors.good;
-        if (usage >= 0)
+        if (percentage >= 0)
             return Colors.ok;
     }
 
@@ -74,10 +71,10 @@ Singleton {
         let total = info.reduce(root.sum);
         let oldTotal = root.cpu.total;
         let oldIdle = root.cpu.idle;
-        let usage = 0;
+        let percentage = 0;
 
         if (oldTotal > 0) {
-            usage = 1 - ((idle - oldIdle) / (total - oldTotal));
+            percentage = 1 - ((idle - oldIdle) / (total - oldTotal));
         }
 
         root.cpu.user = user;
@@ -91,7 +88,7 @@ Singleton {
         root.cpu.guest = guest;
         root.cpu.guest_nice = guest_nice;
         root.cpu.total = total;
-        root.cpu.usage = usage;
+        root.cpu.percentage = percentage;
     }
 
     // /proc/meminfo
@@ -104,7 +101,7 @@ Singleton {
         } else if (info[0] == "MemAvailable:") {
             root.mem.available = parseInt(info[1]);
         }
-        root.mem.usage = (root.mem.total - root.mem.available) / root.mem.total;
+        root.mem.percentage = (root.mem.total - root.mem.available) / root.mem.total;
     }
 
     Process {

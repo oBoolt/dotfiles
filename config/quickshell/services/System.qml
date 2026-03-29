@@ -4,6 +4,8 @@ import QtQuick
 import Quickshell
 
 Singleton {
+    property SystemUsage usage: SystemUsage {}
+
     function poweroff() {
         Quickshell.execDetached(["systemctl", "poweroff"]);
     }
