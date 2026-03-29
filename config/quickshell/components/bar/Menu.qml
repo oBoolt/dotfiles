@@ -8,6 +8,6 @@ Card {
 
     onClicked: {
         States.updateCurrentScreen();
-        States.showControlCenter = !States.showControlCenter;
+        States.toggleControlCenter();
     }
 }

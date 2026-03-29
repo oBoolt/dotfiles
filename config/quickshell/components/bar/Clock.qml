@@ -1,8 +1,6 @@
 import QtQuick
 
 import qs.components
-
-import qs.utils
 import qs.utils
 
 Text {
@@ -13,7 +11,7 @@ Text {
         anchors.fill: parent
         onClicked: () => {
             States.updateCurrentScreen();
-            States.showCalendar = !States.showCalendar;
+            States.toggleCalendar();
         }
     }
 }

@@ -39,10 +39,25 @@ LazyLoader {
             color: Colors.background
             radius: Appearance.radius.small
 
-            StackView {
-                id: stackView
+            ColumnLayout {
                 anchors.fill: parent
-                initialItem: mainPage
+
+                Text {
+                    visible: stackView.depth > 1
+                    Layout.fillWidth: true
+                    text: "back"
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: stackView.pop()
+                    }
+                }
+                StackView {
+                    id: stackView
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    initialItem: mainPage
+                }
             }
         }
 
@@ -85,7 +100,7 @@ LazyLoader {
                             Layout.preferredHeight: Appearance.font.icon
                             hoverEnabled: true
                             icon: Icons.SystemLockScreenSymbolic
-                            onClicked: States.sessionLocked = true
+                            onClicked: States.lockSession()
                         }
 
                         ButtonIcon {
@@ -118,7 +133,12 @@ LazyLoader {
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
                                 radius: Appearance.radius.large
-                                color: Colors.foreground
+                                color: Colors.foregroundMuted
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: stackView.push(second)
+                                }
                             }
 
                             Rectangle {
@@ -253,11 +273,6 @@ LazyLoader {
                     // Component.onCompleted: console.log(JSON.stringify(Pipewire.nodes, null, 2))
                 }
             }
-        }
-
-        Process {
-            id: process
-            command: ["sh", "-c"]
         }
     }
 }

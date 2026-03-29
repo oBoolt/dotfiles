@@ -71,7 +71,7 @@ Variants {
                     // TODO: Make a nicer way to access mpris
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: Utils.States.showMpris = !Utils.States.showMpris
+                        onClicked: Utils.States.toggleMpris()
                     }
 
                     Title {

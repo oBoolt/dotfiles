@@ -24,4 +24,20 @@ Singleton {
             }
         }
     }
+
+    function toggleControlCenter(): void {
+        root.showControlCenter = !root.showControlCenter;
+    }
+
+    function toggleCalendar(): void {
+        root.showCalendar = !root.showCalendar;
+    }
+
+    function toggleMpris(): void {
+        root.showMpris = !root.showMpris;
+    }
+
+    function lockSession(): void {
+        root.sessionLocked = true;
+    }
 }
