@@ -5,42 +5,16 @@ import QtQuick.Layouts
 
 import Quickshell
 import Quickshell.Wayland
-import Quickshell.Services.Pam
 
 import qs.utils
-import qs.components
 import qs.config
+import qs.services
 
 WlSessionLock {
     id: lock
     locked: States.sessionLocked
-    property string status: "..."
 
     WlSessionLockSurface {
-        PamContext {
-            id: pam
-            property string password: ""
-
-            function login(password: string): void {
-                if (pam.active)
-                    pam.abort();
-                pam.password = password;
-                pam.start();
-            }
-
-            onResponseRequiredChanged: {
-                if (pam.responseRequired && !!pam.password) {
-                    pam.respond(pam.password);
-                    pam.password = "";
-                }
-            }
-            onCompleted: result => {
-                if (result == PamResult.Success) {
-                    States.sessionLocked = false;
-                }
-                lock.status = PamResult.toString(result);
-            }
-        }
         Image {
             anchors.fill: parent
             fillMode: Image.PreserveAspectCrop
@@ -67,7 +41,8 @@ WlSessionLock {
                         echoMode: TextInput.Password
                         passwordCharacter: "*"
                         onAccepted: {
-                            pam.login(this.text);
+                            // pam.login(this.text);
+                            Pam.login(this.text);
                             this.clear();
                         }
                     }
