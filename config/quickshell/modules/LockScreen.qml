@@ -22,6 +22,8 @@ WlSessionLock {
             property string password: ""
 
             function login(password: string): void {
+                if (pam.active)
+                    pam.abort();
                 pam.password = password;
                 pam.start();
             }
