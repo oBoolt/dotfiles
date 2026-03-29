@@ -85,6 +85,7 @@ LazyLoader {
                             Layout.preferredHeight: Appearance.font.icon
                             hoverEnabled: true
                             icon: Icons.SystemLockScreenSymbolic
+                            onClicked: States.sessionLocked = true
                         }
 
                         ButtonIcon {

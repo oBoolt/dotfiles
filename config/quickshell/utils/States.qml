@@ -11,6 +11,7 @@ Singleton {
     property bool showCalendar: false
     property bool showMpris: false
     property int currentClientIndex: 0
+    property bool sessionLocked: false
 
     property ShellScreen currentScreen
 
