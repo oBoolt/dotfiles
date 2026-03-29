@@ -93,10 +93,7 @@ LazyLoader {
                             Layout.preferredHeight: Appearance.font.icon
                             hoverEnabled: true
                             icon: Icons.SystemRebootSymbolic
-                            onClicked: {
-                                process.command.push(Config.controlcenter.commands.reboot);
-                                process.running = true;
-                            }
+                            onClicked: SystemManage.reboot()
                         }
 
                         ButtonIcon {
@@ -104,10 +101,7 @@ LazyLoader {
                             Layout.preferredHeight: Appearance.font.icon
                             hoverEnabled: true
                             icon: Icons.SystemShutdownSymbolic
-                            onClicked: {
-                                process.command.push(Config.controlcenter.commands.poweroff);
-                                process.running = true;
-                            }
+                            onClicked: SystemManage.poweroff()
                         }
                     }
 
