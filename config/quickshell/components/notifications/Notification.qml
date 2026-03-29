@@ -93,4 +93,20 @@ Rectangle {
             }
         }
     }
+
+    Timer {
+        id: timer
+        onTriggered: notification.modelData.expire()
+    }
+
+    Component.onCompleted: {
+        console.log("test");
+        if (notification.modelData.expireTimeout != -1) {
+            timer.interval = notification.modelData.expireTimeout * 1000;
+        } else {
+            timer.interval = 3000;
+        }
+
+        timer.start();
+    }
 }
