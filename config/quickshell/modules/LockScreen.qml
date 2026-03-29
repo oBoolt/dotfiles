@@ -74,5 +74,44 @@ WlSessionLock {
                 }
             }
         }
+        // Actions
+        RowLayout {
+            anchors.top: parent.top
+            anchors.right: parent.right
+            anchors.margins: Appearance.margin.large
+            spacing: Appearance.spacing.normal
+            layoutDirection: Qt.RightToLeft
+
+            ButtonIcon {
+                Layout.preferredWidth: Appearance.font.icon * 1.5
+                Layout.preferredHeight: Appearance.font.icon * 1.5
+                icon: Icons.SystemShutdownSymbolic
+                background: true
+                backgroundColor: Colors.background
+                backgroundOpacity: 0.75
+                hoverEnabled: true
+                onClicked: System.poweroff()
+            }
+            ButtonIcon {
+                Layout.preferredWidth: Appearance.font.icon * 1.5
+                Layout.preferredHeight: Appearance.font.icon * 1.5
+                icon: Icons.SystemRebootSymbolic
+                background: true
+                backgroundColor: Colors.background
+                backgroundOpacity: 0.75
+                hoverEnabled: true
+                onClicked: System.reboot()
+            }
+            ButtonIcon {
+                Layout.preferredWidth: Appearance.font.icon * 1.5
+                Layout.preferredHeight: Appearance.font.icon * 1.5
+                icon: Icons.ApplicationExitSymbolic
+                background: true
+                backgroundColor: Colors.background
+                backgroundOpacity: 0.75
+                hoverEnabled: true
+                onClicked: System.logout()
+            }
+        }
     }
 }
