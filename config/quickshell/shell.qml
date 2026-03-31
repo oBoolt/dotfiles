@@ -34,19 +34,13 @@ ShellRoot {
         }
     }
 
-    LazyLoader {
-        active: Config.modules.bar
-        Bar {}
-    }
-
+    Bar {}
     Notifications {
         notificationServer: notificationServer
     }
-
     OSD {
         id: osd
     }
-
     ControlCenter {}
     Calendar {}
     Mpris {}

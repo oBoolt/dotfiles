@@ -6,7 +6,7 @@ import Quickshell.Wayland
 import qs.config
 
 LazyLoader {
-    active: Config.modules.background
+    active: Config.modules.background && (Quickshell.screens.length > 0)
 
     Variants {
         model: Quickshell.screens
