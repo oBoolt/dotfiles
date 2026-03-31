@@ -67,7 +67,7 @@ LazyLoader {
                 ColumnLayout {
                     anchors.margins: Appearance.margin.large
                     anchors.fill: parent
-                    spacing: 16
+                    spacing: Appearance.spacing.large
 
                     // Quick actions
                     RowLayout {
@@ -179,6 +179,51 @@ LazyLoader {
                         }
                     }
 
+                    // Usage
+                    Item {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 50
+
+                        RowLayout {
+                            anchors.fill: parent
+
+                            Rectangle {
+                                Layout.fillHeight: true
+                                Layout.preferredWidth: 50
+
+                                Icon {
+                                    anchors.centerIn: parent
+                                    implicitWidth: 30
+                                    implicitHeight: 30
+                                    icon: 0
+                                }
+
+                                Canvas {
+                                    id: canvas
+                                    anchors.fill: parent
+                                    onPaint: {
+                                        let ctx = getContext("2d");
+                                        ctx.reset();
+
+                                        let centerX = this.width / 2;
+                                        let centerY = this.height / 2;
+                                        let angle = Math.PI * 2 * System.usage.cpu.percentage;
+                                        ctx.fillStyle = "black";
+                                        ctx.arc(centerX, centerY, 10, 0, angle, false);
+                                        ctx.stroke();
+                                    }
+
+                                    Timer {
+                                        interval: 500
+                                        repeat: true
+                                        running: true
+                                        onTriggered: canvas.requestPaint()
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     // Sliders
                     Item {
                         Layout.fillWidth: true
@@ -186,7 +231,7 @@ LazyLoader {
 
                         ColumnLayout {
                             anchors.fill: parent
-                            spacing: 16
+                            spacing: Appearance.spacing.large
 
                             Slider {
                                 Layout.fillHeight: true
