@@ -4,7 +4,6 @@ import QtQuick
 
 import qs.services
 import qs.modules
-import qs.config
 
 ShellRoot {
     NotificationServer {
