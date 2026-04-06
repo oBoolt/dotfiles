@@ -14,7 +14,10 @@ Item {
     property bool hoverEnabled: false
     readonly property bool react: color == Colors.foreground || color == Colors.foregroundMuted
     property BackgroundProperties background: BackgroundProperties {}
-    property string text: ""
+    property alias text: textItem.text
+    property alias font: textItem.font
+    readonly property bool hasText: text != ""
+    property BorderProperties border: BorderProperties {}
 
     component BackgroundProperties: QtObject {
         property bool hover: false
@@ -24,12 +27,20 @@ Item {
         property real radius: Appearance.radius.small
     }
 
+    component BorderProperties: QtObject {
+        property color color: Colors.main
+        property int width: 0
+        property bool pixelAligned: true
+        property real opacity: 1
+    }
+
     signal clicked(MouseEvent mouse)
     signal wheel(WheelEvent wheel)
     signal entered
     signal exited
 
-    implicitWidth: row.implicitWidth + (text != "" ? height * 0.3 : 0)
+    implicitWidth: row.implicitWidth + (hasText ? height * 0.3 : 0)
+    implicitHeight: hasText ? row.implicitHeight : 0
 
     Rectangle {
         id: backgroundItem
@@ -38,6 +49,20 @@ Item {
         radius: root.background.radius
         color: root.background.color
         opacity: root.background.opacity
+    }
+
+    Rectangle {
+        visible: root.border.width > 0
+        anchors.fill: parent
+        opacity: root.border.opacity
+        radius: root.background.radius
+        color: "transparent"
+
+        border {
+            width: root.border.width
+            pixelAligned: root.border.pixelAligned
+            color: root.border.color
+        }
     }
 
     RowLayout {
@@ -57,17 +82,13 @@ Item {
             }
         }
 
-        Loader {
+        Text {
+            id: textItem
             Layout.fillHeight: true
             Layout.fillWidth: true
-
-            active: root.text != ""
-            sourceComponent: Text {
-                id: textItem
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                text: root.text
-            }
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            color: root.color
         }
     }
 
