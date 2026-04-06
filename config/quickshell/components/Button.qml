@@ -52,7 +52,6 @@ Item {
 
             sourceComponent: Icon {
                 anchors.fill: parent
-                implicitSize: height * 0.7
                 color: root.enabled ? root.color : Colors.disabled
                 icon: root.icon
             }
