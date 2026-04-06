@@ -14,6 +14,15 @@ WlSessionLock {
     id: lock
     locked: States.sessionLocked
 
+    component ActionButton: Button {
+        background.visible: true
+        background.color: Colors.background
+        background.opacity: 0.5
+        background.radius: 0
+        border.width: 1
+        font.capitalization: Font.AllUppercase
+    }
+
     WlSessionLockSurface {
         id: surface
 
@@ -34,38 +43,34 @@ WlSessionLock {
             anchors.margins: surface.height * 0.05
 
             // Actions
-            RowLayout {
+            Item {
                 anchors.top: parent.top
                 anchors.left: parent.left
-                spacing: Appearance.spacing.normal
+                implicitWidth: (surface.width / 5)
+                implicitHeight: (surface.height * 0.05)
 
-                Button {
-                    Layout.preferredHeight: Appearance.font.icon * 1.5
-                    Layout.preferredWidth: 200
-                    icon: Icons.SystemShutdownSymbolic
-                    background.visible: true
-                    background.color: Colors.background
-                    hoverEnabled: true
-                    text: "Shutdown"
-                    onClicked: System.poweroff()
-                }
-                Button {
-                    Layout.preferredWidth: Appearance.font.icon * 1.5
-                    Layout.preferredHeight: Appearance.font.icon * 1.5
-                    icon: Icons.SystemRebootSymbolic
-                    background.visible: true
-                    background.color: Colors.background
-                    hoverEnabled: true
-                    onClicked: System.reboot()
-                }
-                Button {
-                    Layout.preferredWidth: Appearance.font.icon * 1.5
-                    Layout.preferredHeight: Appearance.font.icon * 1.5
-                    icon: Icons.ApplicationExitSymbolic
-                    background.visible: true
-                    background.color: Colors.background
-                    hoverEnabled: true
-                    onClicked: System.logout()
+                RowLayout {
+                    anchors.fill: parent
+                    spacing: Appearance.spacing.normal
+
+                    ActionButton {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        text: "power"
+                        onClicked: System.poweroff()
+                    }
+                    ActionButton {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        text: "restart"
+                        onClicked: System.reboot()
+                    }
+                    ActionButton {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        text: "lougout"
+                        onClicked: System.logout()
+                    }
                 }
             }
             // Clock
