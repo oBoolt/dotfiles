@@ -12,4 +12,8 @@ Button {
     onClicked: {
         Audio.sink.toggleMute();
     }
+
+    onWheel: e => {
+        Audio.sink.setVolume(Audio.sink.volume + (e.angleDelta.y < 0 ? (-0.05) : 0.05));
+    }
 }
