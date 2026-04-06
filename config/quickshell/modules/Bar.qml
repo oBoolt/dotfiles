@@ -97,14 +97,19 @@ LazyLoader {
                             layoutDirection: Qt.RightToLeft
                             spacing: Appearance.spacing.normal
 
-                            Menu {}
+                            Menu {
+                                Layout.preferredHeight: Appearance.font.icon
+                            }
                             Separator {}
-                            Battery {}
-                            Volume {}
+                            Battery {
+                                Layout.preferredHeight: Appearance.font.icon
+                            }
+                            Volume {
+                                Layout.preferredHeight: Appearance.font.icon
+                            }
                             //TODO: Bluetooth
                             //TODO: Network
                             //TODO: SystemUsage
-                            Brightness {}
                         }
                     }
                     Item {

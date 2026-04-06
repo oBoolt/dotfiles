@@ -3,8 +3,9 @@ import QtQuick
 import qs.components
 import qs.utils
 
-Card {
+Button {
     icon: Icons.OpenMenuSymbolic
+    background.hover: true
 
     onClicked: {
         States.updateCurrentScreen();

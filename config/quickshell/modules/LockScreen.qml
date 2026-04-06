@@ -28,6 +28,7 @@ WlSessionLock {
                 opacity: 0.5
             }
         }
+
         Item {
             anchors.fill: parent
             anchors.margins: surface.height * 0.05
@@ -38,33 +39,31 @@ WlSessionLock {
                 anchors.left: parent.left
                 spacing: Appearance.spacing.normal
 
-                ButtonIcon {
-                    Layout.preferredWidth: Appearance.font.icon * 1.5
+                Button {
                     Layout.preferredHeight: Appearance.font.icon * 1.5
+                    Layout.preferredWidth: 200
                     icon: Icons.SystemShutdownSymbolic
-                    background: true
-                    backgroundColor: Colors.background
-                    backgroundOpacity: 0.75
+                    background.visible: true
+                    background.color: Colors.background
                     hoverEnabled: true
+                    text: "Shutdown"
                     onClicked: System.poweroff()
                 }
-                ButtonIcon {
+                Button {
                     Layout.preferredWidth: Appearance.font.icon * 1.5
                     Layout.preferredHeight: Appearance.font.icon * 1.5
                     icon: Icons.SystemRebootSymbolic
-                    background: true
-                    backgroundColor: Colors.background
-                    backgroundOpacity: 0.75
+                    background.visible: true
+                    background.color: Colors.background
                     hoverEnabled: true
                     onClicked: System.reboot()
                 }
-                ButtonIcon {
+                Button {
                     Layout.preferredWidth: Appearance.font.icon * 1.5
                     Layout.preferredHeight: Appearance.font.icon * 1.5
                     icon: Icons.ApplicationExitSymbolic
-                    background: true
-                    backgroundColor: Colors.background
-                    backgroundOpacity: 0.75
+                    background.visible: true
+                    background.color: Colors.background
                     hoverEnabled: true
                     onClicked: System.logout()
                 }

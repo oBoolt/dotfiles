@@ -42,12 +42,17 @@ LazyLoader {
                 RowLayout {
                     Layout.fillWidth: true
 
-                    ButtonIcon {
-                        Layout.preferredWidth: Appearance.font.icon * 2
+                    Item {
                         Layout.preferredHeight: Appearance.font.icon
-                        hoverEnabled: true
-                        onClicked: monthGrid.previousMonth()
-                        icon: Icons.GoPreviousSymbolic
+                        Layout.preferredWidth: parent.width / 4
+
+                        Button {
+                            implicitHeight: parent.height
+                            anchors.centerIn: parent
+                            hoverEnabled: true
+                            onClicked: monthGrid.previousMonth()
+                            icon: Icons.GoPreviousSymbolic
+                        }
                     }
                     Text {
                         Layout.fillWidth: true
@@ -55,12 +60,17 @@ LazyLoader {
                         font.pixelSize: Appearance.font.large
                         text: monthGrid.title
                     }
-                    ButtonIcon {
-                        Layout.preferredWidth: Appearance.font.icon * 2
+                    Item {
                         Layout.preferredHeight: Appearance.font.icon
-                        hoverEnabled: true
-                        onClicked: monthGrid.nextMonth()
-                        icon: Icons.GoNextSymbolic
+                        Layout.preferredWidth: parent.width / 4
+
+                        Button {
+                            implicitHeight: parent.height
+                            anchors.centerIn: parent
+                            hoverEnabled: true
+                            onClicked: monthGrid.nextMonth()
+                            icon: Icons.GoNextSymbolic
+                        }
                     }
                 }
 

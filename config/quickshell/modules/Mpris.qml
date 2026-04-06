@@ -124,14 +124,14 @@ LazyLoader {
                                     spacing: Appearance.spacing.small
                                     Layout.alignment: Qt.AlignTop
 
-                                    ButtonIcon {
+                                    Button {
                                         Layout.preferredWidth: Appearance.font.icon
                                         Layout.preferredHeight: Appearance.font.icon
                                         hoverEnabled: true
                                         icon: Icons.GoPreviousSymbolic
                                         onClicked: root.previousClient()
                                     }
-                                    ButtonIcon {
+                                    Button {
                                         Layout.preferredWidth: Appearance.font.icon
                                         Layout.preferredHeight: Appearance.font.icon
                                         hoverEnabled: true
@@ -148,7 +148,7 @@ LazyLoader {
                                 Layout.alignment: Qt.AlignHCenter
                                 spacing: Appearance.spacing.normal
 
-                                ButtonIcon {
+                                Button {
                                     Layout.preferredWidth: Appearance.font.icon
                                     Layout.preferredHeight: Appearance.font.icon
                                     icon: Icons.MediaSkipBackwardSymbolic
@@ -156,7 +156,7 @@ LazyLoader {
                                     hoverEnabled: true
                                     onClicked: root.current?.previous()
                                 }
-                                ButtonIcon {
+                                Button {
                                     Layout.preferredWidth: Appearance.font.icon
                                     Layout.preferredHeight: Appearance.font.icon
                                     icon: root.current?.playbackState == MprisPlaybackState.Playing ? Icons.MediaPlaybackPauseSymbolic : Icons.MediaPlaybackStartSymbolic
@@ -164,7 +164,7 @@ LazyLoader {
                                     hoverEnabled: true
                                     onClicked: root.current?.togglePlaying()
                                 }
-                                ButtonIcon {
+                                Button {
                                     Layout.preferredWidth: Appearance.font.icon
                                     Layout.preferredHeight: Appearance.font.icon
                                     icon: Icons.MediaSkipForwardSymbolic

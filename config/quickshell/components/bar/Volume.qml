@@ -4,10 +4,10 @@ import qs.config
 import qs.services
 import qs.components
 
-Card {
-    id: root
+Button {
     icon: Audio.sink.icon
     color: Audio.sink.muted ? Colors.danger : Colors.foreground
+    background.hover: true
 
     onClicked: {
         Audio.sink.toggleMute();

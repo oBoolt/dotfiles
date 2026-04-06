@@ -88,7 +88,7 @@ LazyLoader {
                             Layout.fillWidth: true
                         }
 
-                        ButtonIcon {
+                        Button {
                             Layout.preferredWidth: Appearance.font.icon
                             Layout.preferredHeight: Appearance.font.icon
                             hoverEnabled: true
@@ -96,7 +96,7 @@ LazyLoader {
                             onClicked: System.logout()
                         }
 
-                        ButtonIcon {
+                        Button {
                             Layout.preferredWidth: Appearance.font.icon
                             Layout.preferredHeight: Appearance.font.icon
                             hoverEnabled: true
@@ -104,7 +104,7 @@ LazyLoader {
                             onClicked: States.lockSession()
                         }
 
-                        ButtonIcon {
+                        Button {
                             Layout.preferredWidth: Appearance.font.icon
                             Layout.preferredHeight: Appearance.font.icon
                             hoverEnabled: true
@@ -112,7 +112,7 @@ LazyLoader {
                             onClicked: System.reboot()
                         }
 
-                        ButtonIcon {
+                        Button {
                             Layout.preferredWidth: Appearance.font.icon
                             Layout.preferredHeight: Appearance.font.icon
                             hoverEnabled: true
