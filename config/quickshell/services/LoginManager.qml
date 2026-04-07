@@ -6,6 +6,7 @@ import qs.utils
 PamContext {
     id: root
     property string password: ""
+    property string result: "Unknown"
 
     function login(password: string): void {
         if (root.active)
@@ -21,6 +22,7 @@ PamContext {
         }
     }
     onCompleted: result => {
+        root.result = PamResult.toString(result);
         if (result == PamResult.Success) {
             States.unlockSession();
         }

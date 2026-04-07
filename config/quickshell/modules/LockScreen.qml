@@ -20,11 +20,17 @@ WlSessionLock {
         background.opacity: 0.5
         background.radius: 0
         border.width: 1
+        font.pixelSize: height * 0.25
         font.capitalization: Font.AllUppercase
     }
 
     WlSessionLockSurface {
         id: surface
+
+        function sendPassword(): void {
+            LoginManager.login(inputField.text);
+            inputField.clear();
+        }
 
         Image {
             anchors.fill: parent
@@ -111,20 +117,63 @@ WlSessionLock {
                 }
             }
             // Input
-            Rectangle {
+            Item {
                 anchors.bottom: parent.bottom
-                anchors.left: parent.left
-                implicitHeight: Appearance.font.large * 1.5
-                implicitWidth: (surface.width / 4)
+                anchors.bottomMargin: surface.height * 0.1
+                anchors.horizontalCenter: parent.horizontalCenter
+                implicitHeight: Appearance.font.large * 2
+                implicitWidth: (surface.width / 6)
 
-                TextInput {
+                // Background
+                Rectangle {
                     anchors.fill: parent
-                    focus: true
-                    echoMode: TextInput.Password
-                    passwordCharacter: "*"
-                    onAccepted: {
-                        LoginManager.login(this.text);
-                        this.clear();
+                    color: Colors.background
+                    opacity: 0.5
+                }
+
+                // Indicator
+                Rectangle {
+                    id: indicatorItem
+                    anchors.bottom: parent.bottom
+                    implicitWidth: parent.width
+                    implicitHeight: 2
+                    color: LoginManager.result == "Failed" ? Colors.critical : Colors.main
+                }
+
+                RowLayout {
+                    anchors.fill: parent
+                    anchors.bottomMargin: indicatorItem.implicitHeight
+
+                    TextInput {
+                        id: inputField
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        Layout.leftMargin: parent.width * 0.05
+                        focus: true
+                        clip: true
+                        echoMode: TextInput.Password
+                        passwordCharacter: "◆"
+                        verticalAlignment: TextInput.AlignVCenter
+                        onAccepted: surface.sendPassword()
+                        color: Colors.foreground
+
+                        Text {
+                            anchors.fill: parent
+                            visible: !parent.text
+                            verticalAlignment: Text.AlignVCenter
+                            opacity: 0.75
+                            font: parent.font
+                            text: "Logging in Bolt..."
+                        }
+                    }
+
+                    Button {
+                        Layout.fillHeight: true
+                        Layout.preferredWidth: height
+                        Layout.margins: parent.width * 0.01
+                        icon: Icons.GoNextSymbolic
+                        hoverEnabled: true
+                        onClicked: surface.sendPassword()
                     }
                 }
             }
