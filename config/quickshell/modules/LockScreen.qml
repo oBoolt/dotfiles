@@ -19,6 +19,7 @@ WlSessionLock {
         background.color: Colors.background
         background.opacity: 0.5
         background.radius: 0
+        hoverEnabled: true
         border.width: 1
         font.pixelSize: height * 0.25
         font.capitalization: Font.AllUppercase
@@ -63,6 +64,7 @@ WlSessionLock {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         text: "power"
+                        border.color: Colors.danger
                         onClicked: System.poweroff()
                     }
                     ActionButton {
