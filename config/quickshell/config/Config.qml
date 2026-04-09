@@ -25,6 +25,16 @@ Singleton {
         root.wallpaper[screen.name] = path;
     }
 
+    function getScaleFactor(screen: ShellScreen): real {
+        return root.scaleFactor[screen?.name] ?? 1;
+    }
+
+    function getWallpaper(screen: ShellScreen): string {
+        console.log(screen?.toString() ?? "No Screen");
+        console.log(root.wallpaper[screen?.name] ?? "/default");
+        return root.wallpaper[screen?.name] ?? (Quickshell.env("XDG_CONFIG_HOME") + "/wallpapers/default.jpg");
+    }
+
     FileView {
         id: fileView
         path: Qt.resolvedUrl(Quickshell.dataDir + "/config.json")

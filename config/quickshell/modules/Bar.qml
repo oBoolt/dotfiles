@@ -20,7 +20,7 @@ LazyLoader {
             screen: modelData
 
             color: "transparent"
-            implicitHeight: (30 * Config.scaleFactor[screen.name]) + (Config.bar.floating ? Appearance.margin.normal : 0)
+            implicitHeight: (30 * Config.getScaleFactor(screen)) + (Config.bar.floating ? Appearance.margin.normal : 0)
 
             anchors {
                 top: true
