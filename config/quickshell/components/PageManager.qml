@@ -35,8 +35,4 @@ Item {
         anchors.fill: parent
         sourceComponent: root.pages[root.currentPage]
     }
-
-    Component.onCompleted: {
-        console.log(pages);
-    }
 }

@@ -30,8 +30,6 @@ Singleton {
     }
 
     function getWallpaper(screen: ShellScreen): string {
-        console.log(screen?.toString() ?? "No Screen");
-        console.log(root.wallpaper[screen?.name] ?? "/default");
         return root.wallpaper[screen?.name] ?? (Quickshell.env("XDG_CONFIG_HOME") + "/wallpapers/default.jpg");
     }
 

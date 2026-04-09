@@ -321,8 +321,6 @@ LazyLoader {
                             }
                         }
                     }
-
-                    // Component.onCompleted: console.log(JSON.stringify(Pipewire.nodes, null, 2))
                 }
             }
         }
