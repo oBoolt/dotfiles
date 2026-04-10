@@ -2,40 +2,60 @@
 THEME_PATH="${DOTFILES_PATH}/themes"
 declare -a THEMES
 
-for theme in ${DOTFILES_PATH}/themes/*; do
+for theme in "${THEME_PATH}"/*; do
     if [[ -d "${theme}" && ! -h "${theme}" ]]; then
         THEMES+=("${theme##*/}")
     fi
 done
 
-if [[ "${1,,}" == "--list" ]]; then
-    success "${THEMES[*]}"
-    exit 0
-fi
-
-if [[ -n "$1" ]]; then
-    VALID=false
-    for theme in ${THEMES[@]}; do
-        if [[ "${theme}" = "${1,,}" ]]; then
-            VALID=true
-        fi
-    done
-
-    if ! ${VALID}; then
-        error "invalid theme '$1'"
-        exit 1
-    fi
-
-    ln -sfn "${THEME_PATH}"/"${1,,}" "${THEME_PATH}"/current
-    success "current theme set to '${1,,}'"
-    exit 0
-fi
-
-if [[ -z "$1" ]]; then
+get() {
     CURRENT_THEME="$(realpath "${THEME_PATH}"/current)"
     if [[ "${CURRENT_THEME##*/}" = "current" ]]; then
         warn "no theme set"
         exit 0
     fi
-    info "the current theme is '${CURRENT_THEME##*/}'"
-fi
+    info "the current theme is ${CURRENT_THEME##*/}"
+}
+
+set() {
+    local valid=false
+    for theme in "${THEMES[@]}"; do
+        if [[ "${theme}" = "${1}" ]]; then
+            valid=true
+        fi
+    done
+
+    if ! ${valid}; then
+        error "invalid theme '$1'"
+        exit 1
+    fi
+
+    ln -sfn "${THEME_PATH}"/"${1}" "${THEME_PATH}"/current
+    success "current theme set to ${1}"
+    exit 0
+}
+
+list() {
+    success "${THEMES[*]}"
+    exit 0
+}
+
+case "${1,,}" in
+    get)
+        get
+        ;;
+    set)
+        set "$2"
+        ;;
+    list)
+        list
+        ;;
+    *)
+        warn "dotfiles theme <COMMAND>" "usage"
+        warn "" "usage"
+        warn "COMMANDS:" "usage"
+        warn "  get\t\tReturn the current theme" "usage"
+        warn "  set\t\tSet the current theme to THEME" "usage"
+        warn "  list\t\tShow all the themes" "usage"
+        ;;
+esac

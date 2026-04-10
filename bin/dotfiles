@@ -45,7 +45,7 @@ case "$1" in
         ;;
     theme)
         shift 1
-        "${DOTFILES_PATH}"/bin/theme "$1"
+        "${DOTFILES_PATH}"/bin/theme "$@"
         ;;
     *)
         warn "${0##*/} <config | theme [name]>" "usage"
