@@ -13,6 +13,9 @@ hide_when_typing = true
 [keyboard]
 bindings = [
   { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" },
+  { key = "Insert", mods = "Shift", action = "Paste" },
+  { key = "Insert", mods = "Control", action = "Copy" },
+  { key = "Return", mods = "Shift", chars = "\u001B\r" }
 ]
 
 [general]
