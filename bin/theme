@@ -51,11 +51,11 @@ case "${1,,}" in
         list
         ;;
     *)
-        warn "dotfiles theme <COMMAND>" "usage"
-        warn "" "usage"
-        warn "COMMANDS:" "usage"
-        warn "  get\t\tReturn the current theme" "usage"
-        warn "  set\t\tSet the current theme to THEME" "usage"
-        warn "  list\t\tShow all the themes" "usage"
+        warn "dotfiles theme <COMMAND>" "help"
+        warn "" "help"
+        warn "COMMANDS:" "help"
+        warn "  get\t\tReturn the current theme" "help"
+        warn "  set\t\tSet the current theme to THEME" "help"
+        warn "  list\t\tShow all the themes" "help"
         ;;
 esac

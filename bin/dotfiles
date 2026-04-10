@@ -48,7 +48,11 @@ case "$1" in
         "${DOTFILES_PATH}"/bin/theme "$@"
         ;;
     *)
-        warn "${0##*/} <config | theme [name]>" "usage"
+        warn "dotfiles <COMMAND>" "help"
+        warn "" "help"
+        warn "COMMANDS:" "help"
+        warn "  config\t\tCreate the symlinks for the dotfiles" "help"
+        warn "  theme\t\tChange the current theme" "help"
         ;;
 esac
 
