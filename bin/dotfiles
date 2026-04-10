@@ -39,7 +39,7 @@ export -f warn
 export -f info
 export -f debug
 
-case "$1" in
+case "${1,,}" in
     config)
         "${DOTFILES_PATH}"/bin/config
         ;;
