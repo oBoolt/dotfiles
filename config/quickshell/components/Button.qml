@@ -9,7 +9,7 @@ import qs.config
 Item {
     id: root
     property int icon: -1
-    property bool enabled: true
+    final property bool enabled: true
     property color color: Colors.foreground
     property bool hoverEnabled: false
     readonly property bool react: color == Colors.foreground || color == Colors.foregroundMuted
