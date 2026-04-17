@@ -9,6 +9,7 @@ JsonObject {
     property Padding padding: Padding {}
     property Margin margin: Margin {}
     property Font font: Font {}
+    property Animations animations: Animations {}
 
     component Radius: JsonObject {
         property int small: 3
@@ -40,5 +41,9 @@ JsonObject {
         property int normal: 12
         property int large: 18
         property int icon: 20
+    }
+
+    component Animations: JsonObject {
+        property bool enabled: true
     }
 }

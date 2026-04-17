@@ -10,6 +10,7 @@ Item {
     onPercentageChanged: canvas.requestPaint()
 
     Behavior on percentage {
+        enabled: Appearance.animations.enabled
         NumberAnimation {
             duration: 500
         }

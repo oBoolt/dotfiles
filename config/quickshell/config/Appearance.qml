@@ -9,4 +9,5 @@ Singleton {
     readonly property AppearanceConfig.Padding padding: Config.appearance.padding
     readonly property AppearanceConfig.Margin margin: Config.appearance.margin
     readonly property AppearanceConfig.Font font: Config.appearance.font
+    readonly property AppearanceConfig.Animations animations: Config.appearance.animations
 }
