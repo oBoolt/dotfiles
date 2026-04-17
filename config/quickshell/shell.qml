@@ -23,12 +23,7 @@ ShellRoot {
     HyprlandFocusGrab {
         windows: windowsWrapper.instances
         active: States.isPopupOpen
-        onCleared: {
-            console.log("cleared");
-            States.closeAll();
-        }
-
-        Component.onCompleted: console.log(this.windows)
+        onCleared: States.closeAll()
     }
 
     Connections {
