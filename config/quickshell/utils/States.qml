@@ -6,6 +6,8 @@ import Quickshell.Services.Notifications
 
 import QtQuick
 
+import qs.config
+
 Singleton {
     id: root
     property bool showControlCenter: false
@@ -14,6 +16,7 @@ Singleton {
     property int currentClientIndex: 0
     property bool sessionLocked: false
     property int barZone: 30
+    readonly property bool isPopupOpen: (Config.modules.calendar && showCalendar || Config.modules.mpris && showMpris || Config.modules.controlcenter && showControlCenter)
 
     property ShellScreen currentScreen
     property NotificationServer notificationServer
@@ -46,5 +49,11 @@ Singleton {
 
     function unlockSession(): void {
         root.sessionLocked = false;
+    }
+
+    function closeAll(): void {
+        root.showCalendar = false;
+        root.showMpris = false;
+        root.showControlCenter = false;
     }
 }

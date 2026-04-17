@@ -1,4 +1,5 @@
 import Quickshell
+import Quickshell.Hyprland
 import Quickshell.Services.Notifications
 import QtQuick // qmllint disable
 
@@ -17,6 +18,17 @@ ShellRoot {
         }
 
         Component.onCompleted: States.notificationServer = this
+    }
+
+    HyprlandFocusGrab {
+        windows: windowsWrapper.instances
+        active: States.isPopupOpen
+        onCleared: {
+            console.log("cleared");
+            States.closeAll();
+        }
+
+        Component.onCompleted: console.log(this.windows)
     }
 
     Connections {
@@ -43,6 +55,7 @@ ShellRoot {
     LockScreen {}
 
     Variants {
+        id: windowsWrapper
         model: Quickshell.screens
 
         PanelWindow { // qmllint disable uncreatable-type
