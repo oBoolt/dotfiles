@@ -8,113 +8,107 @@ import qs.components
 import qs.components.bar
 import qs.utils as Utils
 
-LazyLoader {
-    active: Config.modules.bar && (Quickshell.screens.length > 0)
+Item {
+    id: root
+    // implicitHeight: (30 * Config.getScaleFactor(screen)) + (Config.bar.floating ? Appearance.margin.normal : 0)
+    implicitHeight: 30 + (Config.bar.floating ? Appearance.margin.normal : 0)
 
-    Variants {
-        model: Quickshell.screens
+    anchors {
+        top: parent.top
+        left: parent.left
+        right: parent.right
+    }
 
-        PanelWindow {
-            id: root
-            required property ShellScreen modelData
-            screen: modelData
+    Loader {
+        active: Config.modules.bar
+        anchors.fill: parent
 
-            color: "transparent"
-            implicitHeight: (30 * Config.getScaleFactor(screen)) + (Config.bar.floating ? Appearance.margin.normal : 0)
-
+        sourceComponent: Rectangle {
             anchors {
-                top: true
-                left: true
-                right: true
+                topMargin: Config.bar.floating && Appearance.margin.normal
+                leftMargin: Config.bar.floating && Appearance.margin.normal
+                rightMargin: Config.bar.floating && Appearance.margin.normal
             }
+            anchors.fill: parent
+            color: Colors.background
+            radius: Appearance.radius.small
 
-            Rectangle {
-                anchors {
-                    topMargin: Config.bar.floating && Appearance.margin.normal
-                    leftMargin: Config.bar.floating && Appearance.margin.normal
-                    rightMargin: Config.bar.floating && Appearance.margin.normal
-                }
+            RowLayout {
                 anchors.fill: parent
-                color: Colors.background
-                radius: Appearance.radius.small
+                spacing: Appearance.spacing.normal
 
-                RowLayout {
-                    anchors.fill: parent
-                    spacing: Appearance.spacing.normal
+                Item {
+                    Layout.leftMargin: Appearance.padding.large - Appearance.spacing.normal
+                }
+                Rectangle {
+                    id: left_area
+                    color: Config.debug ? Colors.orange : "transparent"
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
 
-                    Item {
-                        Layout.leftMargin: Appearance.padding.large - Appearance.spacing.normal
-                    }
-                    Rectangle {
-                        id: left_area
-                        color: Config.debug ? Colors.orange : "transparent"
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
+                    RowLayout {
+                        anchors.top: parent.top
+                        anchors.bottom: parent.bottom
+                        spacing: Appearance.spacing.normal
 
-                        RowLayout {
-                            anchors.top: parent.top
-                            anchors.bottom: parent.bottom
-                            spacing: Appearance.spacing.normal
-
-                            Clock {
-                                parentWindow: root
-                            }
-                            Separator {}
-                            Workspaces {}
-                            Separator {}
-                            WindowState {}
+                        Clock {
+                            parentWindow: root
                         }
+                        Separator {}
+                        Workspaces {}
+                        Separator {}
+                        WindowState {}
                     }
-                    Rectangle {
-                        id: center_area
-                        color: Config.debug ? Colors.main : "transparent"
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
+                }
+                Rectangle {
+                    id: center_area
+                    color: Config.debug ? Colors.main : "transparent"
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
 
-                        // TODO: Make a nicer way to access mpris
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: Utils.States.toggleMpris()
+                    // TODO: Make a nicer way to access mpris
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: Utils.States.toggleMpris()
+                    }
+
+                    Title {
+                        anchors.centerIn: parent
+                        width: parent.width
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+                }
+
+                Rectangle {
+                    id: right_area
+                    color: Config.debug ? Colors.purple : "transparent"
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    RowLayout {
+                        anchors.top: parent.top
+                        anchors.bottom: parent.bottom
+                        anchors.right: parent.right
+                        layoutDirection: Qt.RightToLeft
+                        spacing: Appearance.spacing.normal
+
+                        Menu {
+                            Layout.preferredHeight: Appearance.font.icon
                         }
-
-                        Title {
-                            anchors.centerIn: parent
-                            width: parent.width
-                            horizontalAlignment: Text.AlignHCenter
+                        Separator {}
+                        Battery {
+                            Layout.preferredHeight: Appearance.font.icon
                         }
-                    }
-
-                    Rectangle {
-                        id: right_area
-                        color: Config.debug ? Colors.purple : "transparent"
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-
-                        RowLayout {
-                            anchors.top: parent.top
-                            anchors.bottom: parent.bottom
-                            anchors.right: parent.right
-                            layoutDirection: Qt.RightToLeft
-                            spacing: Appearance.spacing.normal
-
-                            Menu {
-                                Layout.preferredHeight: Appearance.font.icon
-                            }
-                            Separator {}
-                            Battery {
-                                Layout.preferredHeight: Appearance.font.icon
-                            }
-                            Volume {
-                                Layout.preferredHeight: Appearance.font.icon
-                            }
-                            //TODO: Bluetooth
-                            //TODO: Network
-                            //TODO: SystemUsage
+                        Volume {
+                            Layout.preferredHeight: Appearance.font.icon
                         }
+                        //TODO: Bluetooth
+                        //TODO: Network
+                        //TODO: SystemUsage
                     }
-                    Item {
-                        Layout.leftMargin: Appearance.padding.large - Appearance.spacing.normal
-                    }
+                }
+                Item {
+                    Layout.leftMargin: Appearance.padding.large - Appearance.spacing.normal
                 }
             }
         }

@@ -100,7 +100,6 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        
         if (notification.modelData.expireTimeout != -1) {
             timer.interval = notification.modelData.expireTimeout * 1000;
         } else {

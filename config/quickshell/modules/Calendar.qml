@@ -10,27 +10,26 @@ import qs.config
 import qs.components
 import qs.utils
 
-LazyLoader {
-    active: Config.modules.calendar && States.showCalendar
+Item {
+    id: root
+    anchors {
+        top: parent.top
+        left: parent.left
 
-    PanelWindow {
-        id: root
-        screen: States.currentScreen
-        anchors {
-            top: true
-            left: true
-        }
+        topMargin: Appearance.margin.normal + States.barZone
+        leftMargin: Appearance.margin.normal
+    }
 
-        margins {
-            top: Appearance.margin.normal
-            left: Appearance.margin.normal
-        }
+    // implicitWidth: 400 * Config.scaleFactor[screen.name]
+    // implicitHeight: 350 * Config.scaleFactor[screen.name]
+    implicitWidth: 400
+    implicitHeight: 350
 
-        implicitWidth: 400 * Config.scaleFactor[screen.name]
-        implicitHeight: 350 * Config.scaleFactor[screen.name]
-        color: "transparent"
+    Loader {
+        active: Config.modules.calendar && States.showCalendar
+        anchors.fill: parent
 
-        Rectangle {
+        sourceComponent: Rectangle {
             anchors.fill: parent
             color: Colors.background
             radius: Appearance.radius.small

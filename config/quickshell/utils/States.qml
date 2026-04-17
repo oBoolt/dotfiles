@@ -2,6 +2,7 @@ pragma Singleton
 
 import Quickshell
 import Quickshell.Hyprland
+import Quickshell.Services.Notifications
 
 import QtQuick
 
@@ -12,8 +13,10 @@ Singleton {
     property bool showMpris: false
     property int currentClientIndex: 0
     property bool sessionLocked: false
+    property int barZone: 30
 
     property ShellScreen currentScreen
+    property NotificationServer notificationServer
 
     function updateCurrentScreen(): void {
         Hyprland.refreshMonitors();

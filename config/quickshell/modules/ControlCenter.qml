@@ -1,7 +1,5 @@
 pragma ComponentBehavior: Bound
 
-import Quickshell
-import Quickshell.Io
 import Quickshell.Services.Pipewire
 
 import QtQuick
@@ -13,28 +11,24 @@ import qs.components
 import qs.services
 import qs.config
 
-LazyLoader {
-    active: Config.modules.controlcenter && States.showControlCenter
+Item {
+    id: root
+    anchors {
+        top: parent.top
+        right: parent.right
 
-    PanelWindow {
-        // TODO: only open in the screen that was clicked
-        screen: States.currentScreen
-        exclusiveZone: 0
-        anchors {
-            top: true
-            right: true
-        }
+        topMargin: Appearance.margin.normal + States.barZone
+        rightMargin: Appearance.margin.normal
+    }
 
-        margins {
-            top: Appearance.margin.normal
-            right: Appearance.margin.normal
-        }
+    // implicitWidth: 480 * Config.scaleFactor[screen.name]
+    implicitWidth: 480
+    implicitHeight: parent.height * 0.75
 
-        implicitWidth: 480 * Config.scaleFactor[screen.name]
-        implicitHeight: screen.height * 0.75
-        color: "transparent"
-
-        Rectangle {
+    Loader {
+        active: Config.modules.controlcenter && States.showControlCenter
+        anchors.fill: parent
+        sourceComponent: Rectangle {
             anchors.fill: parent
             color: Colors.background
             radius: Appearance.radius.small

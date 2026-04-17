@@ -9,106 +9,100 @@ import qs.config
 import qs.utils
 import qs.components
 
-LazyLoader {
-    active: Config.modules.mpris && States.showMpris
+Item {
+    id: root
+    anchors.top: parent.top
+    anchors.topMargin: Appearance.margin.normal + States.barZone
+    x: parent.width / 2 - this.width / 2
 
-    PanelWindow {
-        id: root
-        screen: States.currentScreen
-        exclusiveZone: 0
+    // implicitWidth: 450 * Config.scaleFactor[screen.name]
+    // implicitHeight: 130 * Config.scaleFactor[screen.name]
+    implicitWidth: 450
+    implicitHeight: 130
 
-        anchors {
-            top: true
-        }
+    property MprisPlayer current: Mpris.players.values[States.currentClientIndex]
+    readonly property bool multipleClients: Mpris.players.values.length > 1
+    readonly property bool haveClient: !!Mpris.players.values.length
 
-        margins {
-            top: Appearance.margin.normal
-        }
+    function displaySeconds(seconds: int): string {
+        let hours = seconds >= (60 * 60);
+        return hours ? (parseInt(seconds / (60 * 60)) + ":" + (parseInt(seconds / 60) % 60) + ":" + ((seconds % 60) < 10 ? "0" + (seconds % 60) : (seconds % 60))) : (parseInt(seconds / 60) + ":" + ((seconds % 60) < 10 ? "0" + (seconds % 60) : (seconds % 60)));
+    }
 
-        implicitWidth: 450 * Config.scaleFactor[screen.name]
-        implicitHeight: 130 * Config.scaleFactor[screen.name]
-        focusable: true
-        color: "transparent"
+    function nextClient(): void {
+        if (!root.multipleClients)
+            return;
+        States.currentClientIndex = (States.currentClientIndex + 1) % Mpris.players.values.length;
+    }
 
-        property MprisPlayer current: Mpris.players.values[States.currentClientIndex]
-        readonly property bool multipleClients: Mpris.players.values.length > 1
-        readonly property bool haveClient: !!Mpris.players.values.length
+    function previousClient(): void {
+        if (!root.multipleClients)
+            return;
+        States.currentClientIndex = (States.currentClientIndex - 1) < 0 ? (Mpris.players.values.length - 1) : (States.currentClientIndex - 1);
+    }
 
-        function displaySeconds(seconds: int): string {
-            let hours = seconds >= (60 * 60);
-            return hours ? (parseInt(seconds / (60 * 60)) + ":" + (parseInt(seconds / 60) % 60) + ":" + ((seconds % 60) < 10 ? "0" + (seconds % 60) : (seconds % 60))) : (parseInt(seconds / 60) + ":" + ((seconds % 60) < 10 ? "0" + (seconds % 60) : (seconds % 60)));
-        }
-
-        function nextClient(): void {
-            if (!root.multipleClients)
+    Shortcut {
+        name: "togglePlaying"
+        description: "Toggle the state of current client if possible"
+        onPressed: {
+            if (!States.showMpris && Config.modules.mpris)
                 return;
-            States.currentClientIndex = (States.currentClientIndex + 1) % Mpris.players.values.length;
+            // root.current?.canTogglePlaying ? root.current?.togglePlaying() : null;
         }
+    }
 
-        function previousClient(): void {
-            if (!root.multipleClients)
+    Shortcut {
+        name: "nextClient"
+        description: "Change to next mpris client"
+        onPressed: {
+            if (!States.showMpris && Config.modules.mpris)
                 return;
-            States.currentClientIndex = (States.currentClientIndex - 1) < 0 ? (Mpris.players.values.length - 1) : (States.currentClientIndex - 1);
+            root.nextClient();
         }
+    }
 
-        Shortcut {
-            name: "togglePlaying"
-            description: "Toggle the state of current client if possible"
-            onPressed: {
-                if (!States.showMpris && !Config.modules.mpris)
-                    return;
-                root.current?.canTogglePlaying ? root.current?.togglePlaying() : null;
-            }
+    Shortcut {
+        name: "previousClient"
+        description: "Change to previous mpris client"
+        onPressed: {
+            if (!States.showMpris && Config.modules.mpris)
+                return;
+            root.previousClient();
         }
+    }
 
-        Shortcut {
-            name: "nextClient"
-            description: "Change to next mpris client"
-            onPressed: {
-                if (!States.showMpris && !Config.modules.mpris)
-                    return;
-                root.nextClient();
-            }
+    Shortcut {
+        name: "nextTrack"
+        description: "Go to the next track"
+        onPressed: {
+            if (!States.showMpris && Config.modules.mpris)
+                return;
+            root.current?.canGoNext ? root.current?.next() : null;
         }
+    }
 
-        Shortcut {
-            name: "previousClient"
-            description: "Change to previous mpris client"
-            onPressed: {
-                if (!States.showMpris && !Config.modules.mpris)
-                    return;
-                root.previousClient();
-            }
+    Shortcut {
+        name: "previousTrack"
+        description: "Go to the previous track"
+        onPressed: {
+            if (!States.showMpris && Config.modules.mpris)
+                return;
+            root.current?.canGoPrevious ? root.current?.previous() : null;
         }
+    }
 
-        Shortcut {
-            name: "nextTrack"
-            description: "Go to the next track"
-            onPressed: {
-                if (!States.showMpris && !Config.modules.mpris)
-                    return;
-                root.current?.canGoNext ? root.current?.next() : null;
-            }
-        }
+    Timer {
+        running: root.haveClient && root.current?.playbackState == MprisPlaybackState.Playing
+        interval: 1000
+        repeat: true
+        onTriggered: root.current?.positionChanged()
+    }
 
-        Shortcut {
-            name: "previousTrack"
-            description: "Go to the previous track"
-            onPressed: {
-                if (!States.showMpris && !Config.modules.mpris)
-                    return;
-                root.current?.canGoPrevious ? root.current?.previous() : null;
-            }
-        }
+    Loader {
+        active: Config.modules.mpris && States.showMpris
+        anchors.fill: parent
 
-        Timer {
-            running: root.haveClient && root.current?.playbackState == MprisPlaybackState.Playing
-            interval: 1000
-            repeat: true
-            onTriggered: root.current?.positionChanged()
-        }
-
-        Rectangle {
+        sourceComponent: Rectangle {
             anchors.fill: parent
             radius: Appearance.radius.small
             color: Colors.background

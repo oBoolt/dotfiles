@@ -1,19 +1,22 @@
 import Quickshell
 import Quickshell.Services.Notifications
-import QtQuick
+import QtQuick // qmllint disable
 
 import qs.services
 import qs.modules
+import qs.config
+import qs.utils
 
 ShellRoot {
     NotificationServer {
-        id: notificationServer
         bodySupported: true
         imageSupported: true
 
         onNotification: not => {
             not.tracked = true;
         }
+
+        Component.onCompleted: States.notificationServer = this
     }
 
     Connections {
@@ -33,16 +36,62 @@ ShellRoot {
         }
     }
 
-    Bar {}
-    Notifications {
-        notificationServer: notificationServer
-    }
     OSD {
         id: osd
     }
-    ControlCenter {}
-    Calendar {}
-    Mpris {}
     Background {}
     LockScreen {}
+
+    Variants {
+        model: Quickshell.screens
+
+        PanelWindow { // qmllint disable uncreatable-type
+            required property ShellScreen modelData
+            screen: modelData
+
+            anchors {
+                top: true
+                left: true
+                right: true
+            }
+            implicitHeight: screen.height
+            color: "transparent"
+            exclusiveZone: Config.modules.bar ? itemRect(barItem).height : 0
+            mask: Region {
+                Region {
+                    item: Config.modules.bar ? barItem : null
+                }
+                Region {
+                    item: (Config.modules.mpris && States.showMpris) ? mprisItem : null
+                }
+                Region {
+                    item: (Config.modules.controlcenter && States.showControlCenter) ? controlCenterItem : null
+                }
+                Region {
+                    item: (Config.modules.calendar && States.showCalendar) ? calendarItem : null
+                }
+                Region {
+                    item: (Config.modules.notifications && States.notificationServer?.trackedNotifications.values.length > 0) ? notificationsItem : null
+                }
+            }
+
+            Bar {
+                id: barItem
+            }
+            Mpris {
+                id: mprisItem
+            }
+            ControlCenter {
+                id: controlCenterItem
+            }
+            Calendar {
+                id: calendarItem
+            }
+            Notifications {
+                id: notificationsItem
+            }
+
+            Component.onCompleted: States.barZone = Config.modules.bar ? itemRect(barItem).height : 0
+        }
+    }
 }

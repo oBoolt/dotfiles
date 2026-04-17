@@ -1,55 +1,46 @@
 pragma ComponentBehavior: Bound
-import Quickshell
 import Quickshell.Services.Notifications
 
 import QtQuick
 import QtQuick.Layouts
 
 import qs.config
+import qs.utils
 import qs.components.notifications
 
-LazyLoader {
+Item {
     id: root
-    required property NotificationServer notificationServer
+    // readonly property int properHeight: 100 * Config.getScaleFactor(screen)
+    readonly property int properHeight: 100
     readonly property int size: {
-        if (root.notificationServer.trackedNotifications.values.length >= Config.notification.maxDisplay)
+        if (States.notificationServer?.trackedNotifications.values.length >= Config.notification.maxDisplay)
             return Config.notification.maxDisplay;
-        return root.notificationServer.trackedNotifications.values.length;
+        return States.notificationServer?.trackedNotifications.values.length;
     }
 
-    active: Config.modules.notifications
+    visible: root.size > 0
+    // implicitWidth: 380 * Config.getScaleFactor(screen)
+    implicitWidth: 380
+    implicitHeight: properHeight * root.size + root.size * (Appearance.spacing.small - 1)
 
-    PanelWindow {
-        id: window
-        screen: Quickshell.screens[0]
-        readonly property int properHeight: 100 * Config.getScaleFactor(screen)
+    anchors {
+        top: parent.top
+        right: parent.right
 
-        visible: root.size > 0
-        implicitWidth: 380 * Config.getScaleFactor(screen)
-        implicitHeight: properHeight * root.size + root.size * (Appearance.spacing.small - 1)
-        color: Config.debug ? Colors.orange : "transparent"
+        topMargin: Appearance.margin.normal + States.barZone
+        rightMargin: Appearance.margin.normal
+    }
 
-        anchors {
-            right: true
-            top: true
-        }
+    ColumnLayout {
+        anchors.fill: parent
+        spacing: Appearance.spacing.small
 
-        margins {
-            top: Appearance.margin.normal
-            right: Appearance.margin.normal
-        }
-
-        ColumnLayout {
-            anchors.fill: parent
-            spacing: Appearance.spacing.small
-
-            Repeater {
-                model: root.notificationServer.trackedNotifications
-                Notification {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: window.properHeight
-                    Layout.alignment: Qt.AlignTop
-                }
+        Repeater {
+            model: States.notificationServer?.trackedNotifications
+            Notification {
+                Layout.fillWidth: true
+                Layout.preferredHeight: root.properHeight
+                Layout.alignment: Qt.AlignTop
             }
         }
     }
