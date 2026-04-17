@@ -265,6 +265,13 @@ LazyLoader {
                                         color: Colors.main
                                         radius: Appearance.radius.small
                                         implicitWidth: ((root.current?.position / root.current?.length) % 1) * parent.width
+
+                                        Behavior on implicitWidth {
+                                            enabled: Appearance.animations.enabled
+                                            NumberAnimation {
+                                                duration: 100
+                                            }
+                                        }
                                     }
                                 }
                             }
