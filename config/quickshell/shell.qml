@@ -26,6 +26,8 @@ ShellRoot {
         onCleared: States.closeAll()
     }
 
+    GlobalShortcuts {}
+
     Connections {
         target: Audio.sink
         function onVolumeChanged() {
