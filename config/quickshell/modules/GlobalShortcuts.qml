@@ -19,7 +19,7 @@ Item {
         name: "toggleMpris"
         description: "Toggle mpris state"
         onPressed: {
-            if (!Config.modules.mpris)
+            if (!Config.modules.mpris || States.currentTopLevelFullscreen)
                 return;
             States.toggleMpris();
         }

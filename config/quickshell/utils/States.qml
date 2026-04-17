@@ -2,6 +2,7 @@ pragma Singleton
 
 import Quickshell
 import Quickshell.Hyprland
+import Quickshell.Wayland
 import Quickshell.Services.Notifications
 
 import QtQuick
@@ -20,6 +21,7 @@ Singleton {
 
     property ShellScreen currentScreen
     property NotificationServer notificationServer
+    readonly property bool currentTopLevelFullscreen: ToplevelManager.activeToplevel?.fullscreen ?? false
 
     function updateCurrentScreen(): void {
         Hyprland.refreshMonitors();

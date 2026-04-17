@@ -1,6 +1,7 @@
 import Quickshell
 import Quickshell.Hyprland
 import Quickshell.Services.Notifications
+
 import QtQuick // qmllint disable
 
 import qs.services
