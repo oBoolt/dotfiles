@@ -45,9 +45,9 @@ Item {
         name: "togglePlaying"
         description: "Toggle the state of current client if possible"
         onPressed: {
-            if (!States.showMpris && Config.modules.mpris)
+            if (!States.showMpris || !Config.modules.mpris)
                 return;
-            // root.current?.canTogglePlaying ? root.current?.togglePlaying() : null;
+            root.current?.canTogglePlaying ? root.current?.togglePlaying() : null;
         }
     }
 
@@ -55,7 +55,7 @@ Item {
         name: "nextClient"
         description: "Change to next mpris client"
         onPressed: {
-            if (!States.showMpris && Config.modules.mpris)
+            if (!Config.modules.mpris || !States.showMpris)
                 return;
             root.nextClient();
         }
@@ -65,7 +65,7 @@ Item {
         name: "previousClient"
         description: "Change to previous mpris client"
         onPressed: {
-            if (!States.showMpris && Config.modules.mpris)
+            if (!Config.modules.mpris || !States.showMpris)
                 return;
             root.previousClient();
         }
@@ -75,7 +75,7 @@ Item {
         name: "nextTrack"
         description: "Go to the next track"
         onPressed: {
-            if (!States.showMpris && Config.modules.mpris)
+            if (!Config.modules.mpris || !States.showMpris)
                 return;
             root.current?.canGoNext ? root.current?.next() : null;
         }
@@ -85,7 +85,7 @@ Item {
         name: "previousTrack"
         description: "Go to the previous track"
         onPressed: {
-            if (!States.showMpris && Config.modules.mpris)
+            if (!Config.modules.mpris || !States.showMpris)
                 return;
             root.current?.canGoPrevious ? root.current?.previous() : null;
         }
