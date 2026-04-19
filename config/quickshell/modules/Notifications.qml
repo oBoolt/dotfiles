@@ -11,7 +11,7 @@ import qs.components.notifications
 Item {
     id: root
     // readonly property int properHeight: 100 * Config.getScaleFactor(screen)
-    readonly property int properHeight: 100
+    readonly property int properHeight: 75
     readonly property int size: {
         if (States.notificationServer?.trackedNotifications.values.length >= Config.notification.maxDisplay)
             return Config.notification.maxDisplay;
@@ -20,8 +20,9 @@ Item {
 
     visible: root.size > 0
     // implicitWidth: 380 * Config.getScaleFactor(screen)
-    implicitWidth: 380
+    implicitWidth: 300
     implicitHeight: properHeight * root.size + root.size * (Appearance.spacing.small - 1)
+    // clip: true
 
     anchors {
         top: parent.top
