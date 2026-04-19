@@ -37,27 +37,11 @@ Item {
             radius: Appearance.radius.small
             clip: true
 
-            ColumnLayout {
+            StackView {
+                id: stackView
                 anchors.fill: parent
-
-                Text {
-                    visible: stackView.depth > 1
-                    Layout.fillWidth: true
-                    text: "back"
-
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: stackView.pop()
-                    }
-                }
-
-                StackView {
-                    id: stackView
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    initialItem: mainPage
-                    Component.onCompleted: loader.stackView = this
-                }
+                initialItem: mainPage
+                Component.onCompleted: loader.stackView = this
             }
         }
     }

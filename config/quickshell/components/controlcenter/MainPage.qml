@@ -8,194 +8,189 @@ import qs.utils
 
 Page {
     id: root
-    ColumnLayout {
-        anchors.margins: Appearance.margin.large
-        anchors.fill: parent
-        spacing: Appearance.spacing.large
 
-        // Quick actions
+    // Quick actions
+    RowLayout {
+        Layout.fillWidth: true
+
+        Icon {
+            Layout.preferredHeight: Appearance.font.icon
+            Layout.preferredWidth: Appearance.font.icon
+            icon: Icons.AvatarDefaultSymbolic
+        }
+
+        Text {
+            font.pixelSize: Appearance.font.large * 0.8
+            text: "bolt@quacker"
+        }
+
+        Item {
+            Layout.fillWidth: true
+        }
+
+        Button {
+            Layout.preferredWidth: Appearance.font.icon
+            Layout.preferredHeight: Appearance.font.icon
+            hoverEnabled: true
+            icon: Icons.ApplicationExitSymbolic
+            onClicked: System.logout()
+        }
+
+        Button {
+            Layout.preferredWidth: Appearance.font.icon
+            Layout.preferredHeight: Appearance.font.icon
+            hoverEnabled: true
+            icon: Icons.SystemLockScreenSymbolic
+            onClicked: States.lockSession()
+        }
+
+        Button {
+            Layout.preferredWidth: Appearance.font.icon
+            Layout.preferredHeight: Appearance.font.icon
+            hoverEnabled: true
+            icon: Icons.SystemRebootSymbolic
+            onClicked: System.reboot()
+        }
+
+        Button {
+            Layout.preferredWidth: Appearance.font.icon
+            Layout.preferredHeight: Appearance.font.icon
+            hoverEnabled: true
+            icon: Icons.SystemShutdownSymbolic
+            onClicked: System.poweroff()
+        }
+    }
+
+    // Panels
+    Item {
+        Layout.fillWidth: true
+        Layout.preferredHeight: 60
+
         RowLayout {
-            Layout.fillWidth: true
+            anchors.fill: parent
+            spacing: 16
 
-            Icon {
-                Layout.preferredHeight: Appearance.font.icon
-                Layout.preferredWidth: Appearance.font.icon
-                icon: Icons.AvatarDefaultSymbolic
-            }
-
-            Text {
-                font.pixelSize: Appearance.font.large * 0.8
-                text: "bolt@quacker"
-            }
-
-            Item {
+            Panel {
                 Layout.fillWidth: true
+                Layout.fillHeight: true
+
+                enabled: true
+                icon: Audio.sink.icon
+                title: "Audio"
+                text: Audio.sink.name
+
+                onClicked: root.push(Page.Audio)
             }
 
-            Button {
-                Layout.preferredWidth: Appearance.font.icon
-                Layout.preferredHeight: Appearance.font.icon
-                hoverEnabled: true
-                icon: Icons.ApplicationExitSymbolic
-                onClicked: System.logout()
-            }
+            Panel {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
 
-            Button {
-                Layout.preferredWidth: Appearance.font.icon
-                Layout.preferredHeight: Appearance.font.icon
-                hoverEnabled: true
-                icon: Icons.SystemLockScreenSymbolic
-                onClicked: States.lockSession()
-            }
-
-            Button {
-                Layout.preferredWidth: Appearance.font.icon
-                Layout.preferredHeight: Appearance.font.icon
-                hoverEnabled: true
-                icon: Icons.SystemRebootSymbolic
-                onClicked: System.reboot()
-            }
-
-            Button {
-                Layout.preferredWidth: Appearance.font.icon
-                Layout.preferredHeight: Appearance.font.icon
-                hoverEnabled: true
-                icon: Icons.SystemShutdownSymbolic
-                onClicked: System.poweroff()
+                enabled: false
+                title: "System"
+                onClicked: root.push(Page.SystemInfo)
             }
         }
+    }
 
-        // Panels
-        Item {
-            Layout.fillWidth: true
-            Layout.preferredHeight: 60
+    Item {
+        Layout.fillWidth: true
+        Layout.preferredHeight: 60
 
-            RowLayout {
-                anchors.fill: parent
-                spacing: 16
+        RowLayout {
+            anchors.fill: parent
+            spacing: 16
 
-                Panel {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
+            Panel {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
 
-                    enabled: true
-                    icon: Audio.sink.icon
-                    title: "Audio"
-                    text: Audio.sink.name
+                enabled: false
+                title: "Placeholder"
+            }
 
-                    onClicked: root.push(Page.Audio)
-                }
+            Panel {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
 
-                Panel {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-
-                    enabled: false
-                    title: "System"
-                    onClicked: root.push(Page.SystemInfo)
-                }
+                enabled: false
+                title: "Placeholder"
             }
         }
+    }
 
-        Item {
-            Layout.fillWidth: true
-            Layout.preferredHeight: 60
+    // Usage
+    Item {
+        Layout.fillWidth: true
+        Layout.preferredHeight: 50
 
-            RowLayout {
-                anchors.fill: parent
-                spacing: 16
+        RowLayout {
+            anchors.fill: parent
 
-                Panel {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-
-                    enabled: false
-                    title: "Placeholder"
-                }
-
-                Panel {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-
-                    enabled: false
-                    title: "Placeholder"
-                }
+            RadialUsageIndicator {
+                Layout.fillHeight: true
+                Layout.preferredWidth: height
+                Layout.alignment: Qt.AlignCenter
+                percentage: System.usage.cpu.percentage
+            }
+            RadialUsageIndicator {
+                Layout.fillHeight: true
+                Layout.preferredWidth: height
+                Layout.alignment: Qt.AlignCenter
+                percentage: System.usage.mem.percentage
+            }
+            RadialUsageIndicator {
+                Layout.fillHeight: true
+                Layout.preferredWidth: height
+                Layout.alignment: Qt.AlignCenter
+                percentage: System.usage.cpu.percentage
+            }
+            RadialUsageIndicator {
+                Layout.fillHeight: true
+                Layout.preferredWidth: height
+                Layout.alignment: Qt.AlignCenter
+                percentage: System.usage.cpu.percentage
             }
         }
+    }
 
-        // Usage
-        Item {
-            Layout.fillWidth: true
-            Layout.preferredHeight: 50
+    // Sliders
+    Item {
+        Layout.fillWidth: true
+        Layout.preferredHeight: 150
 
-            RowLayout {
-                anchors.fill: parent
+        ColumnLayout {
+            anchors.fill: parent
+            spacing: Appearance.spacing.large
 
-                RadialUsageIndicator {
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: height
-                    Layout.alignment: Qt.AlignCenter
-                    percentage: System.usage.cpu.percentage
+            IconSlider {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                value: Audio.sink.volume
+
+                onMoved: {
+                    Audio.sink.setVolume(this.value);
                 }
-                RadialUsageIndicator {
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: height
-                    Layout.alignment: Qt.AlignCenter
-                    percentage: System.usage.mem.percentage
-                }
-                RadialUsageIndicator {
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: height
-                    Layout.alignment: Qt.AlignCenter
-                    percentage: System.usage.cpu.percentage
-                }
-                RadialUsageIndicator {
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: height
-                    Layout.alignment: Qt.AlignCenter
-                    percentage: System.usage.cpu.percentage
+            }
+
+            IconSlider {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                value: Brightness.percentage
+                from: 0.01
+
+                onMoved: {
+                    let current = Brightness.max * this.value;
+                    Brightness.set(current);
                 }
             }
         }
+    }
 
-        // Sliders
-        Item {
-            Layout.fillWidth: true
-            Layout.preferredHeight: 150
-
-            ColumnLayout {
-                anchors.fill: parent
-                spacing: Appearance.spacing.large
-
-                IconSlider {
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
-                    value: Audio.sink.volume
-
-                    onMoved: {
-                        Audio.sink.setVolume(this.value);
-                    }
-                }
-
-                IconSlider {
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
-                    value: Brightness.percentage
-                    from: 0.01
-
-                    onMoved: {
-                        let current = Brightness.max * this.value;
-                        Brightness.set(current);
-                    }
-                }
-            }
-        }
-
-        // Notification
-        Rectangle {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            color: "red"
-        }
+    // Notification
+    Rectangle {
+        Layout.fillHeight: true
+        Layout.fillWidth: true
+        color: "red"
     }
 }
