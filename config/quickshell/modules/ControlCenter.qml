@@ -1,13 +1,12 @@
 pragma ComponentBehavior: Bound
 
-import Quickshell.Services.Pipewire
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
 import qs.utils
 import qs.components
+import qs.components.controlcenter
 import qs.services
 import qs.config
 
@@ -26,12 +25,17 @@ Item {
     implicitHeight: parent.height * 0.75
 
     Loader {
+        id: loader
         active: Config.modules.controlcenter && States.showControlCenter
         anchors.fill: parent
+
+        property StackView stackView
+
         sourceComponent: Rectangle {
             anchors.fill: parent
             color: Colors.background
             radius: Appearance.radius.small
+            clip: true
 
             ColumnLayout {
                 anchors.fill: parent
@@ -46,285 +50,39 @@ Item {
                         onClicked: stackView.pop()
                     }
                 }
+
                 StackView {
                     id: stackView
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     initialItem: mainPage
+                    Component.onCompleted: loader.stackView = this
                 }
             }
         }
+    }
 
-        Component {
-            id: mainPage
-            Page {
-                ColumnLayout {
-                    anchors.margins: Appearance.margin.large
-                    anchors.fill: parent
-                    spacing: Appearance.spacing.large
-
-                    // Quick actions
-                    RowLayout {
-                        Layout.fillWidth: true
-
-                        Icon {
-                            Layout.preferredHeight: Appearance.font.icon
-                            Layout.preferredWidth: Appearance.font.icon
-                            icon: Icons.AvatarDefaultSymbolic
-                        }
-
-                        Text {
-                            font.pixelSize: Appearance.font.large * 0.8
-                            text: "bolt@quacker"
-                        }
-
-                        Item {
-                            Layout.fillWidth: true
-                        }
-
-                        Button {
-                            Layout.preferredWidth: Appearance.font.icon
-                            Layout.preferredHeight: Appearance.font.icon
-                            hoverEnabled: true
-                            icon: Icons.ApplicationExitSymbolic
-                            onClicked: System.logout()
-                        }
-
-                        Button {
-                            Layout.preferredWidth: Appearance.font.icon
-                            Layout.preferredHeight: Appearance.font.icon
-                            hoverEnabled: true
-                            icon: Icons.SystemLockScreenSymbolic
-                            onClicked: States.lockSession()
-                        }
-
-                        Button {
-                            Layout.preferredWidth: Appearance.font.icon
-                            Layout.preferredHeight: Appearance.font.icon
-                            hoverEnabled: true
-                            icon: Icons.SystemRebootSymbolic
-                            onClicked: System.reboot()
-                        }
-
-                        Button {
-                            Layout.preferredWidth: Appearance.font.icon
-                            Layout.preferredHeight: Appearance.font.icon
-                            hoverEnabled: true
-                            icon: Icons.SystemShutdownSymbolic
-                            onClicked: System.poweroff()
-                        }
-                    }
-
-                    // Panels
-                    Item {
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: 75
-
-                        RowLayout {
-                            anchors.fill: parent
-                            spacing: 16
-
-                            Rectangle {
-                                Layout.fillWidth: true
-                                Layout.fillHeight: true
-                                radius: Appearance.radius.large
-                                color: Colors.foregroundMuted
-
-                                MouseArea {
-                                    anchors.fill: parent
-                                    onClicked: stackView.push(audio)
-                                }
-                            }
-
-                            Rectangle {
-                                Layout.fillWidth: true
-                                Layout.fillHeight: true
-                                radius: Appearance.radius.large
-                                color: Colors.foregroundMuted
-
-                                MouseArea {
-                                    anchors.fill: parent
-                                    onClicked: stackView.push(systemUsage)
-                                }
-                            }
-                        }
-                    }
-
-                    // Panels
-                    Item {
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: 75
-
-                        RowLayout {
-                            anchors.fill: parent
-                            spacing: 16
-
-                            Rectangle {
-                                Layout.fillWidth: true
-                                Layout.fillHeight: true
-                                color: "black"
-                            }
-
-                            Rectangle {
-                                Layout.fillWidth: true
-                                Layout.fillHeight: true
-                                color: "black"
-                            }
-                        }
-                    }
-
-                    // Usage
-                    Item {
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: 50
-
-                        RowLayout {
-                            anchors.fill: parent
-
-                            RadialUsageIndicator {
-                                Layout.fillHeight: true
-                                Layout.preferredWidth: height
-                                Layout.alignment: Qt.AlignCenter
-                                percentage: System.usage.cpu.percentage
-                            }
-                            RadialUsageIndicator {
-                                Layout.fillHeight: true
-                                Layout.preferredWidth: height
-                                Layout.alignment: Qt.AlignCenter
-                                percentage: System.usage.mem.percentage
-                            }
-                            RadialUsageIndicator {
-                                Layout.fillHeight: true
-                                Layout.preferredWidth: height
-                                Layout.alignment: Qt.AlignCenter
-                                percentage: System.usage.cpu.percentage
-                            }
-                            RadialUsageIndicator {
-                                Layout.fillHeight: true
-                                Layout.preferredWidth: height
-                                Layout.alignment: Qt.AlignCenter
-                                percentage: System.usage.cpu.percentage
-                            }
-                        }
-                    }
-
-                    // Sliders
-                    Item {
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: 150
-
-                        ColumnLayout {
-                            anchors.fill: parent
-                            spacing: Appearance.spacing.large
-
-                            Slider {
-                                Layout.fillHeight: true
-                                Layout.fillWidth: true
-                                value: Audio.sink.volume
-
-                                onMoved: {
-                                    Audio.sink.setVolume(this.value);
-                                }
-                            }
-
-                            Slider {
-                                Layout.fillHeight: true
-                                Layout.fillWidth: true
-                                value: Brightness.percentage
-                                from: 0.01
-
-                                onMoved: {
-                                    let current = Brightness.max * this.value;
-                                    Brightness.set(current);
-                                }
-                            }
-                        }
-                    }
-
-                    // Notification
-                    Rectangle {
-                        Layout.fillHeight: true
-                        Layout.fillWidth: true
-                        color: "red"
-                    }
+    Component {
+        id: mainPage
+        MainPage {
+            onPush: page => {
+                if (page == Page.Audio) {
+                    loader.stackView.push(audioPage);
+                    return;
+                }
+                if (page == Page.SystemInfo) {
+                    loader.stackView.push(systemInfoPage);
+                    return;
                 }
             }
         }
-
-        Component {
-            id: audio
-            Page {
-                Rectangle {
-                    anchors.fill: parent
-                    color: "black"
-
-                    ColumnLayout {
-
-                        Text {
-                            text: Audio.sink.name
-                        }
-                        Text {
-                            text: Audio.source.name
-                        }
-
-                        Rectangle {
-                            implicitHeight: 2
-                            Layout.fillWidth: true
-                        }
-
-                        Text {
-                            text: "Sinks"
-                        }
-                        Repeater {
-                            model: Audio.sinks
-                            Text {
-                                required property PwNode modelData
-                                visible: Audio.sink.node != modelData
-                                text: modelData.description
-
-                                MouseArea {
-                                    anchors.fill: parent
-                                    onClicked: Audio.setSink(parent.modelData)
-                                }
-                            }
-                        }
-                        Text {
-                            text: "Sources"
-                        }
-                        Repeater {
-                            model: Audio.sources
-                            Text {
-                                required property PwNode modelData
-                                visible: Audio.source.node != modelData
-                                text: modelData.description
-
-                                MouseArea {
-                                    anchors.fill: parent
-                                    onClicked: Audio.setSource(parent.modelData)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        Component {
-            id: systemUsage
-            Page {
-                Rectangle {
-                    anchors.fill: parent
-                    color: "black"
-
-                    ColumnLayout {
-                        Text {
-                            text: "CPU: " + System.usage.cpu.percentage * 100
-                        }
-                        Text {
-                            text: "MEM: " + System.usage.mem.percentage * 100
-                        }
-                    }
-                }
-            }
-        }
+    }
+    Component {
+        id: audioPage
+        AudioPage {}
+    }
+    Component {
+        id: systemInfoPage
+        SystemInfoPage {}
     }
 }
