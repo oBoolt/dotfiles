@@ -26,15 +26,14 @@ Singleton {
             return Icons.AudioVolumeMutedSymbolic;
     }
 
-    function setSink(node: PwNode): void {
+    function setNode(node: PwNode): void {
         if (node.isSink && !node.isStream && node.audio) {
             Pipewire.preferredDefaultAudioSink = node;
+            return;
         }
-    }
-
-    function setSource(node: PwNode): void {
         if (!node.isSink && !node.isStream && node.audio) {
             Pipewire.preferredDefaultAudioSource = node;
+            return;
         }
     }
 
