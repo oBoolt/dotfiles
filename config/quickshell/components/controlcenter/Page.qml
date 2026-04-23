@@ -4,7 +4,7 @@ import QtQuick.Layouts
 import qs.config
 
 Item {
-    default final property alias data: inner.data
+    default property alias innerData: inner.data
 
     enum Enum {
         Main,

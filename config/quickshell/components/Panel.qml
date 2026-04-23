@@ -9,7 +9,7 @@ Rectangle {
     property int icon: 0
     property string title
     property string text
-    property bool enabled: false
+    final property bool enabled: false
 
     signal clicked(MouseEvent mouse)
 
