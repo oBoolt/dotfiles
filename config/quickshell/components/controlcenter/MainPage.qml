@@ -75,7 +75,7 @@ Page {
                 Layout.fillHeight: true
 
                 enabled: true
-                icon: Audio.sink.icon
+                icon: Icons.AudioVolumeHighSymbolic
                 title: "Audio"
                 text: Audio.sink.name
 
