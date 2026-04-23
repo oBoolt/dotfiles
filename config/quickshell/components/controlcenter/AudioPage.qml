@@ -9,7 +9,7 @@ import qs.config
 import qs.utils
 
 Page {
-
+    id: root
     component NodeList: ListView {
         id: listView
         required property PwNode currentNode
@@ -115,5 +115,14 @@ Page {
         Layout.fillWidth: true
         model: Audio.sources
         currentNode: Audio.source.node
+    }
+
+    Button {
+        Layout.preferredHeight: Appearance.font.icon
+        hoverEnabled: true
+        background.hover: true
+        text: "Back"
+        icon: Icons.GoPreviousSymbolic
+        onClicked: root.pop()
     }
 }

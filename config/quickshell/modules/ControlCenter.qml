@@ -63,7 +63,9 @@ Item {
     }
     Component {
         id: audioPage
-        AudioPage {}
+        AudioPage {
+            onPop: loader.stackView.pop()
+        }
     }
     Component {
         id: systemInfoPage
