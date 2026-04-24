@@ -58,7 +58,8 @@ Singleton {
         SystemRebootSymbolic,
         SystemShutdownSymbolic,
         ApplicationExitSymbolic,
-        AvatarDefaultSymbolic
+        AvatarDefaultSymbolic,
+        BluetoothSymbolic
     }
 
     readonly property var map: ({
@@ -114,7 +115,8 @@ Singleton {
             [Icons.SystemRebootSymbolic]: "system-reboot-symbolic",
             [Icons.SystemShutdownSymbolic]: "system-shutdown-symbolic",
             [Icons.ApplicationExitSymbolic]: "application-exit-symbolic",
-            [Icons.AvatarDefaultSymbolic]: "avatar-default-symbolic"
+            [Icons.AvatarDefaultSymbolic]: "avatar-default-symbolic",
+            [Icons.BluetoothSymbolic]: "bluetooth-symbolic"
         })
 
     function get(icon: int): string {
