@@ -20,7 +20,7 @@ Item {
     implicitWidth: 450
     implicitHeight: 130
 
-    property MprisPlayer current: Mpris.players.values[States.currentClientIndex]
+    readonly property MprisPlayer current: Mpris.players.values[States.currentClientIndex] ?? null
     readonly property bool multipleClients: Mpris.players.values.length > 1
     readonly property bool haveClient: !!Mpris.players.values.length
 
