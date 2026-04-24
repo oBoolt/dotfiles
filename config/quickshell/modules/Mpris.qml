@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Layouts
 
@@ -41,6 +43,7 @@ Item {
         States.currentClientIndex = (States.currentClientIndex - 1) < 0 ? (Mpris.players.values.length - 1) : (States.currentClientIndex - 1);
     }
 
+    // qmllint disable unresolved-type
     Shortcut {
         name: "togglePlaying"
         description: "Toggle the state of current client if possible"
@@ -90,9 +93,10 @@ Item {
             root.current?.canGoPrevious ? root.current?.previous() : null;
         }
     }
+    // qmllint enable unresolved-type
 
     Timer {
-        running: root.haveClient && root.current?.playbackState == MprisPlaybackState.Playing
+        running: States.showMpris && root.haveClient && root.current?.playbackState == MprisPlaybackState.Playing && root.current?.positionSupported
         interval: 1000
         repeat: true
         onTriggered: root.current?.positionChanged()
