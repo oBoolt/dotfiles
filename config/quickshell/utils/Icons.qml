@@ -6,6 +6,7 @@ import QtQuick
 Singleton {
     id: root
     enum Enum {
+        DialogQuestionSymbolic,
         GoNextSymbolic,
         GoPreviousSymbolic,
         MediaSkipForwardSymbolic,
@@ -63,6 +64,7 @@ Singleton {
     }
 
     readonly property var map: ({
+            [Icons.DialogQuestionSymbolic]: "dialog-question-symbolic",
             [Icons.GoNextSymbolic]: "go-next-symbolic",
             [Icons.GoPreviousSymbolic]: "go-previous-symbolic",
             [Icons.MediaSkipForwardSymbolic]: "media-skip-forward-symbolic",
