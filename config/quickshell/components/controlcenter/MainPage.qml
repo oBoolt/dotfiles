@@ -87,8 +87,9 @@ Page {
                 Layout.fillHeight: true
 
                 enabled: false
-                title: "System"
-                onClicked: root.push(Page.SystemInfo)
+                title: "Bluetooth"
+                icon: Icons.BluetoothSymbolic
+                onClicked: root.push(Page.Bluetooth)
             }
         }
     }

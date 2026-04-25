@@ -58,6 +58,10 @@ Item {
                     loader.stackView.push(systemInfoPage);
                     return;
                 }
+                if (page == Page.Bluetooth) {
+                    loader.stackView.push(bluetoothPage);
+                    return;
+                }
             }
         }
     }
@@ -70,5 +74,11 @@ Item {
     Component {
         id: systemInfoPage
         SystemInfoPage {}
+    }
+    Component {
+        id: bluetoothPage
+        BluetoothPage {
+            onPop: loader.stackView.pop()
+        }
     }
 }

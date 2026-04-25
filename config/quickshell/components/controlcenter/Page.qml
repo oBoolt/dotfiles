@@ -9,7 +9,8 @@ Item {
     enum Enum {
         Main,
         Audio,
-        SystemInfo
+        SystemInfo,
+        Bluetooth
     }
 
     signal pop
