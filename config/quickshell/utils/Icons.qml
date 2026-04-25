@@ -123,4 +123,8 @@ Singleton {
         // return Quickshell.iconPath(Qt.enumValueToString(Icons.Enum, icon).replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase());
         return Quickshell.iconPath(root.map[icon]);
     }
+
+    function getString(icon: int): string {
+        return root.map[icon];
+    }
 }

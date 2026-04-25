@@ -1,23 +1,29 @@
 import QtQuick
 import Qt5Compat.GraphicalEffects
+
+import Quickshell
 import Quickshell.Widgets
+
 import qs.utils
 import qs.config
 
 Item {
     id: root
-    required property int icon
+    property int icon: -1
+    property string iconString
     property alias color: colorOverlay.color
     property alias implicitSize: image.implicitSize
+    property bool disableColor: false
 
     IconImage {
         id: image
         anchors.centerIn: parent
         implicitSize: parent.height * 0.7
-        source: Icons.get(root.icon)
+        source: (root.icon != -1) ? Icons.get(root.icon) : (root.iconString != null || root.iconString != "") ? Quickshell.iconPath(root.iconString) : "unknown"
 
         ColorOverlay {
             id: colorOverlay
+            visible: !root.disableColor
             anchors.fill: parent
             source: parent
             color: Colors.foreground
