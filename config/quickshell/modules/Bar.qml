@@ -102,7 +102,9 @@ Item {
                         Volume {
                             Layout.preferredHeight: Appearance.font.icon
                         }
-                        //TODO: Bluetooth
+                        Bluetooth {
+                            Layout.preferredHeight: Appearance.font.icon
+                        }
                         //TODO: Network
                         //TODO: SystemUsage
                     }
