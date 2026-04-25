@@ -86,8 +86,9 @@ Page {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                enabled: false
+                enabled: BluetoothManager.enabled
                 title: "Bluetooth"
+                text: BluetoothManager.connectedDevices[0]?.name ?? ""
                 icon: Icons.BluetoothSymbolic
                 onClicked: root.push(Page.Bluetooth)
             }

@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Layouts
 
@@ -54,10 +56,29 @@ Page {
                     font.bold: false
                     text: listItem.name
                 }
+
+                Item {
+                    Layout.fillWidth: true
+                }
+
+                Text {
+                    visible: listItem.modelData.batteryAvailable
+                    text: parseInt(listItem.modelData.battery * 100) + "%"
+                }
+
+                Icon {
+                    visible: listItem.modelData.batteryAvailable
+                    Layout.margins: Appearance.padding.small
+                    Layout.fillHeight: true
+                    Layout.preferredWidth: height
+                    implicitSize: width
+                    icon: Icons.BatterySymbolic
+                }
             }
 
             MouseArea {
                 anchors.fill: parent
+                cursorShape: listItem.loading ? Qt.WaitCursor : Qt.PointingHandCursor
                 onClicked: {
                     if (listItem.loading)
                         return;
@@ -96,6 +117,36 @@ Page {
             fontSizeMode: Text.VerticalFit
             font.pixelSize: 999
             text: BluetoothManager.currentAdapter?.adapterId ?? "Unknown Adapater"
+        }
+
+        Item {
+            Layout.fillWidth: true
+        }
+
+        Rectangle {
+            Layout.fillHeight: true
+            Layout.preferredWidth: height
+            color: BluetoothManager.currentAdapter?.discovering ? "green" : "red"
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    BluetoothManager.toggleDiscovering();
+                }
+            }
+        }
+
+        Rectangle {
+            Layout.fillHeight: true
+            Layout.preferredWidth: height
+            color: BluetoothManager.enabled ? "green" : "red"
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    BluetoothManager.toggleEnabled();
+                }
+            }
         }
     }
 
