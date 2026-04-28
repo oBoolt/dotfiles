@@ -2,10 +2,5 @@
     "darkMode": true, 
     "background": "#1d2021",
     "foreground": "#ebdbb2",
-    "danger": "#fb4934",
-    "critical": "#cc241d",
-    "ok": "#b8bb26",
-    "good": "#98971a",
-    "warning": "#fabd2f",
     "main": "#8ec07c"
 }
