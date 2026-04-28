@@ -238,6 +238,7 @@ Item {
                                         right: parent.right
                                     }
                                     radius: Appearance.radius.small
+                                    color: Colors.container
                                     height: 4
 
                                     MouseArea {
