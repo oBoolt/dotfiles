@@ -38,7 +38,7 @@ Item {
             id: bg
             visible: false
             anchors.fill: parent
-            color: Colors.foregroundMuted
+            color: Colors.foregroundMute
             opacity: 0.25
             radius: Appearance.radius.small
         }

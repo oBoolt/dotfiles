@@ -31,7 +31,7 @@ Page {
 
             Rectangle {
                 anchors.fill: parent
-                color: listItem.connected ? Colors.main : listItem.paired ? Colors.backgroundMuted : Colors.background
+                color: listItem.connected ? Colors.main : listItem.paired ? Colors.container : Colors.containerMute
                 opacity: listItem.loading ? 0.5 : 0.75
             }
 

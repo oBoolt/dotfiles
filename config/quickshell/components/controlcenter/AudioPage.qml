@@ -29,7 +29,7 @@ Page {
             Rectangle {
                 anchors.fill: parent
                 opacity: 0.5
-                color: listItem.isCurrentItem ? Colors.main : Colors.backgroundMuted
+                color: listItem.isCurrentItem ? Colors.main : Colors.container
             }
 
             RowLayout {

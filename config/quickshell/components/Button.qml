@@ -12,7 +12,7 @@ Item {
     final property bool enabled: true
     property color color: Colors.foreground
     property bool hoverEnabled: false
-    readonly property bool react: color == Colors.foreground || color == Colors.foregroundMuted
+    readonly property bool react: color == Colors.foreground || color == Colors.foregroundMute
     property BackgroundProperties background: BackgroundProperties {}
     property alias text: textItem.text
     property alias font: textItem.font
@@ -22,7 +22,7 @@ Item {
     component BackgroundProperties: QtObject {
         property bool hover: false
         property bool visible: false
-        property color color: Colors.foregroundMuted
+        property color color: Colors.foregroundMute
         property real opacity: 0.25
         property real radius: Appearance.radius.small
     }
@@ -77,7 +77,7 @@ Item {
 
             sourceComponent: Icon {
                 anchors.fill: parent
-                color: root.enabled ? root.color : Colors.disabled
+                color: root.enabled ? root.color : Colors.container
                 icon: root.icon
             }
         }
@@ -104,7 +104,7 @@ Item {
             if (root.background.hover)
                 root.background.visible = true;
             if (root.react && root.hoverEnabled && !root.background.hover)
-                root.color = Colors.foregroundMuted;
+                root.color = Colors.foregroundMute;
         }
         onExited: {
             root.exited();

@@ -167,7 +167,7 @@ Item {
                                     Text {
                                         Layout.fillWidth: true
                                         elide: Text.ElideRight
-                                        color: Colors.foregroundMuted
+                                        color: Colors.foregroundMute
                                         text: root.current?.trackArtist || "Unknown Artist"
                                     }
                                 }

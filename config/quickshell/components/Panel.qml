@@ -9,13 +9,17 @@ Rectangle {
     property int icon: 0
     property string title
     property string text
-    final property bool enabled: false
     property bool found: false
+    final property bool enabled: false
+    readonly property bool _enabled: root.found && root.enabled
+
+    readonly property color textColor: _enabled ? Colors.topMain : Colors.foreground
 
     signal clicked(MouseEvent mouse)
 
     radius: Appearance.radius.large
-    color: root.enabled ? Colors.main : Colors.backgroundMuted
+    // color: root.enabled ? Colors.main : Colors.backgroundMuted
+    color: !found ? Colors.containerMute : enabled ? Colors.main : Colors.container
 
     RowLayout {
         anchors.fill: parent
@@ -25,7 +29,7 @@ Rectangle {
         Icon {
             Layout.fillHeight: true
             Layout.preferredWidth: height
-            color: root.enabled ? Colors.background : Colors.foreground
+            color: root.textColor
             icon: root.icon
         }
 
@@ -38,7 +42,7 @@ Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: !root.enabled
                 verticalAlignment: Text.AlignVCenter
-                color: root.enabled ? Colors.background : Colors.foreground
+                color: root.textColor
                 font.pixelSize: root.enabled ? Appearance.font.large : Appearance.font.large * 1.25
                 text: root.title
             }
@@ -47,7 +51,8 @@ Rectangle {
                 Layout.fillWidth: true
                 font.bold: false
                 verticalAlignment: Text.AlignVCenter
-                color: root.enabled ? Colors.background : Colors.foreground
+                // color: root.enabled ? Colors.background : Colors.foreground
+                color: root.textColor
                 elide: Text.ElideRight
                 text: root.text
             }

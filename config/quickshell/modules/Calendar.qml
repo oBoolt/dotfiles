@@ -115,6 +115,7 @@ Item {
                         opacity: model.month === monthGrid.month ? 1 : 0.5
                         text: monthGrid.locale.toString(model.date, "d")
                         font: monthGrid.font
+                        color: model.today ? Colors.main : Colors.foreground
 
                         Rectangle {
                             property bool hovered: false
@@ -125,7 +126,7 @@ Item {
                             anchors.centerIn: parent
                             radius: Appearance.radius.normal
                             opacity: hovered ? 0.5 : today ? 0.25 : 0
-                            color: today ? Colors.main : Colors.foregroundMuted
+                            color: today ? Colors.main : Colors.foregroundMute
 
                             MouseArea {
                                 anchors.fill: parent

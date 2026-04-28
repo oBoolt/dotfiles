@@ -32,19 +32,6 @@ Item {
         property real percentage: 0
     }
 
-    function getColor(percentage: real): color {
-        if (percentage >= 0.9)
-            return Colors.critical;
-        if (percentage >= 0.7)
-            return Colors.danger;
-        if (percentage >= 0.5)
-            return Colors.warning;
-        if (percentage >= 0.2)
-            return Colors.good;
-        if (percentage >= 0)
-            return Colors.ok;
-    }
-
     function sum(acc: int, current: int, idx: int): int {
         return acc + current;
     }

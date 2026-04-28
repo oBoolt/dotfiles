@@ -81,7 +81,7 @@ Scope {
                         id: bar
                         Layout.fillWidth: true
                         Layout.preferredHeight: window.implicitHeight / 4
-                        color: Colors.backgroundMuted
+                        color: Colors.container
                         radius: Appearance.radius.normal / 2
 
                         Rectangle {

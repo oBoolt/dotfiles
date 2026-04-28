@@ -12,7 +12,7 @@ Repeater {
         implicitWidth: 10
         implicitHeight: implicitWidth
         radius: width / 2
-        color: workspace != null ? Colors.main : Colors.foregroundMuted
+        color: workspace != null ? Colors.main : Colors.foregroundMute
 
         Rectangle {
             visible: !workspaceNode.workspace?.active

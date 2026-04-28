@@ -40,7 +40,7 @@ Item {
             ctx.lineCap = "round";
 
             ctx.beginPath();
-            ctx.strokeStyle = Colors.backgroundMuted;
+            ctx.strokeStyle = Colors.container;
             ctx.arc(centerX, centerY, radius, 0, Math.PI * 2, false);
             ctx.stroke();
 

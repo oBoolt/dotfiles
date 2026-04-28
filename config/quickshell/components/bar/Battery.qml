@@ -38,20 +38,7 @@ Card {
         return Icons.BatteryMissingSymbolic;
     }
 
-    function getColor(percent: real): color {
-        if (percent >= 0.9)
-            return Colors.good;
-        if (percent >= 0.7)
-            return Colors.ok;
-        if (percent >= 0.5)
-            return Colors.warning;
-        if (percent >= 0.2)
-            return Colors.danger;
-        if (percent >= 0)
-            return Colors.critical;
-    }
-
     visible: laptop.isLaptopBattery
     icon: root.getIcon(laptop.percentage)
-    color: root.getColor(laptop.percentage)
+    color: Colors.getColor(laptop.percentage)
 }
