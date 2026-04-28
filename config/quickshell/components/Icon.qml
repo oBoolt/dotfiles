@@ -14,11 +14,12 @@ Item {
     property alias color: colorOverlay.color
     property alias implicitSize: image.implicitSize
     property bool disableColor: false
+    clip: true
 
     IconImage {
         id: image
         anchors.centerIn: parent
-        implicitSize: parent.height * 0.7
+        implicitSize: parent.height * 0.75
         source: (root.icon != -1) ? Icons.get(root.icon) : (root.iconString != null || root.iconString != "") ? Quickshell.iconPath(root.iconString) : "unknown"
 
         ColorOverlay {
