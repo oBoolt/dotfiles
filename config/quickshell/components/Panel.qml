@@ -5,16 +5,17 @@ import qs.components
 import qs.config
 
 Rectangle {
-    id: page
+    id: root
     property int icon: 0
     property string title
     property string text
     final property bool enabled: false
+    property bool found: false
 
     signal clicked(MouseEvent mouse)
 
     radius: Appearance.radius.large
-    color: page.enabled ? Colors.main : Colors.backgroundMuted
+    color: root.enabled ? Colors.main : Colors.backgroundMuted
 
     RowLayout {
         anchors.fill: parent
@@ -24,8 +25,8 @@ Rectangle {
         Icon {
             Layout.fillHeight: true
             Layout.preferredWidth: height
-            color: page.enabled ? Colors.background : Colors.foreground
-            icon: page.icon
+            color: root.enabled ? Colors.background : Colors.foreground
+            icon: root.icon
         }
 
         ColumnLayout {
@@ -35,26 +36,31 @@ Rectangle {
 
             Text {
                 Layout.fillWidth: true
-                Layout.fillHeight: !page.enabled
+                Layout.fillHeight: !root.enabled
                 verticalAlignment: Text.AlignVCenter
-                color: page.enabled ? Colors.background : Colors.foreground
-                font.pixelSize: page.enabled ? Appearance.font.large : Appearance.font.large * 1.25
-                text: page.title
+                color: root.enabled ? Colors.background : Colors.foreground
+                font.pixelSize: root.enabled ? Appearance.font.large : Appearance.font.large * 1.25
+                text: root.title
             }
             Text {
-                visible: page.enabled
+                visible: root.enabled
                 Layout.fillWidth: true
                 font.bold: false
                 verticalAlignment: Text.AlignVCenter
-                color: page.enabled ? Colors.background : Colors.foreground
+                color: root.enabled ? Colors.background : Colors.foreground
                 elide: Text.ElideRight
-                text: page.text
+                text: root.text
             }
         }
     }
 
     MouseArea {
         anchors.fill: parent
-        onClicked: mouse => page.clicked(mouse)
+        cursorShape: !root.found ? Qt.ForbiddenCursor : Qt.PointingHandCursor
+        onClicked: mouse => {
+            if (!root.found)
+                return;
+            root.clicked(mouse);
+        }
     }
 }

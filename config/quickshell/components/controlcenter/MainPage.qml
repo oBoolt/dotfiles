@@ -75,6 +75,7 @@ Page {
                 Layout.fillHeight: true
 
                 enabled: true
+                found: true
                 icon: Icons.AudioVolumeHighSymbolic
                 title: "Audio"
                 text: Audio.sink.name
@@ -86,7 +87,8 @@ Page {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                enabled: BluetoothManager.enabled
+                enabled: BluetoothManager.connectedDevices.length > 0
+                found: BluetoothManager.currentAdapter !== null
                 title: "Bluetooth"
                 text: BluetoothManager.connectedDevices[0]?.name ?? ""
                 icon: Icons.BluetoothSymbolic
