@@ -11,14 +11,11 @@ Rectangle {
     property string text
     property bool found: false
     final property bool enabled: false
-    readonly property bool _enabled: root.found && root.enabled
-
-    readonly property color textColor: _enabled ? Colors.topMain : Colors.foreground
+    readonly property color textColor: !found ? Colors.foregroundMute : enabled ? Colors.topMain : Colors.foreground
 
     signal clicked(MouseEvent mouse)
 
     radius: Appearance.radius.large
-    // color: root.enabled ? Colors.main : Colors.backgroundMuted
     color: !found ? Colors.containerMute : enabled ? Colors.main : Colors.container
 
     RowLayout {
