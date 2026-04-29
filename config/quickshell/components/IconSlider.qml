@@ -33,6 +33,7 @@ RowLayout {
 
         from: 0
         to: root.enabled ? 1 : 0
+        stepSize: 0.01
         handle: Item {}
         background: Rectangle {
             color: Colors.container
