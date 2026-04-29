@@ -12,22 +12,30 @@ Item {
     property int icon: -1
     property string iconString
     property alias color: colorOverlay.color
-    property alias implicitSize: image.implicitSize
+    property real implicitSize: height * 0.75
+
     property bool disableColor: false
     clip: true
 
-    IconImage {
-        id: image
-        anchors.centerIn: parent
-        implicitSize: parent.height * 0.75
-        source: (root.icon != -1) ? Icons.get(root.icon) : (root.iconString != null || root.iconString != "") ? Quickshell.iconPath(root.iconString) : "unknown"
+    Item {
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        implicitWidth: root.implicitSize
+        implicitHeight: width
 
-        ColorOverlay {
-            id: colorOverlay
-            visible: !root.disableColor
+        IconImage {
+            id: image
             anchors.fill: parent
-            source: parent
-            color: Colors.foreground
+            // implicitSize: parent.height * 0.75
+            source: (root.icon != -1) ? Icons.get(root.icon) : (root.iconString != null || root.iconString != "") ? Quickshell.iconPath(root.iconString) : "unknown"
+
+            ColorOverlay {
+                id: colorOverlay
+                visible: !root.disableColor
+                anchors.fill: parent
+                source: parent
+                color: Colors.foreground
+            }
         }
     }
 }
