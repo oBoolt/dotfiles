@@ -161,7 +161,7 @@ Page {
     // Sliders
     Item {
         Layout.fillWidth: true
-        Layout.preferredHeight: 150
+        Layout.preferredHeight: 100
 
         ColumnLayout {
             anchors.fill: parent
@@ -171,6 +171,8 @@ Page {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 value: Audio.sink.volume
+                enabled: Audio.sink !== null
+                icon: Icons.AudioVolumeHighSymbolic
 
                 onMoved: {
                     Audio.sink.setVolume(this.value);
@@ -181,7 +183,9 @@ Page {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 value: Brightness.percentage
+                enabled: Brightness.valid
                 from: 0.01
+                icon: 0
 
                 onMoved: {
                     let current = Brightness.max * this.value;
