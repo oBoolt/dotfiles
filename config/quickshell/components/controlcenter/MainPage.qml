@@ -174,23 +174,18 @@ Page {
                 enabled: Audio.sink !== null
                 icon: Icons.AudioVolumeHighSymbolic
 
-                onMoved: {
-                    Audio.sink.setVolume(this.value);
-                }
+                onMoved: Audio.sink.setVolume(this.value)
             }
 
             IconSlider {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 value: Brightness.percentage
-                enabled: Brightness.valid
+                // enabled: Brightness.valid
                 from: 0.01
                 icon: 0
 
-                onMoved: {
-                    let current = Brightness.max * this.value;
-                    Brightness.set(current);
-                }
+                onMoved: Brightness.set(this.value)
             }
         }
     }

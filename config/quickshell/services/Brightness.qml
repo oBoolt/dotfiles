@@ -20,20 +20,20 @@ Singleton {
         icon = root.getBrightnessIcon(percentage);
     }
 
-    function set(value: int): void {
-        let v = Math.min(Math.max(root.max * 0.01, value), root.max);
+    function set(percentage: real): void {
+        let v = Math.min(Math.max(root.max * 0.01, root.max * percentage), root.max);
         setProcess.command.push(v);
         setProcess.running = true;
         setProcess.command.pop();
     }
 
     function increase(): void {
-        let value = root.current + (root.max * Config.brightness.step);
+        let value = root.percentage + Config.brightness.step;
         root.set(value);
     }
 
     function decrease(): void {
-        let value = root.current - (root.max * Config.brightness.step);
+        let value = root.percentage - Config.brightness.step;
         root.set(value);
     }
 

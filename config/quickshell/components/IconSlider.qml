@@ -13,7 +13,7 @@ RowLayout {
     property alias value: slider.value
     property alias from: slider.from
     property alias icon: iconItem.icon
-    final property bool enabled: false
+    final property bool enabled: true
     signal moved
 
     spacing: Appearance.spacing.normal
