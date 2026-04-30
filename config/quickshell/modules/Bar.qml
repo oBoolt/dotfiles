@@ -94,16 +94,20 @@ Item {
 
                         Menu {
                             Layout.preferredHeight: Appearance.font.icon
+                            Layout.preferredWidth: height
                         }
                         Separator {}
                         Battery {
                             Layout.preferredHeight: Appearance.font.icon
+                            Layout.preferredWidth: height
                         }
                         Volume {
                             Layout.preferredHeight: Appearance.font.icon
+                            Layout.preferredWidth: height
                         }
                         Bluetooth {
                             Layout.preferredHeight: Appearance.font.icon
+                            Layout.preferredWidth: height
                         }
                         //TODO: Network
                         //TODO: SystemUsage

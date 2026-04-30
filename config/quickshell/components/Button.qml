@@ -9,15 +9,17 @@ import qs.config
 Item {
     id: root
     property int icon: -1
-    final property bool enabled: true
     property color color: Colors.foreground
+    property color _defaultColor
+    property bool _horeved: false
     property bool hoverEnabled: false
-    readonly property bool react: color == Colors.foreground || color == Colors.foregroundMute
+
     property BackgroundProperties background: BackgroundProperties {}
+    property BorderProperties border: BorderProperties {}
+
+    final property alias enabled: area.enabled
     property alias text: textItem.text
     property alias font: textItem.font
-    readonly property bool hasText: text != ""
-    property BorderProperties border: BorderProperties {}
 
     component BackgroundProperties: QtObject {
         property bool hover: false
@@ -39,80 +41,85 @@ Item {
     signal entered
     signal exited
 
-    implicitWidth: row.implicitWidth + (hasText ? height * 0.3 : 0)
-    implicitHeight: hasText ? row.implicitHeight : 0
+    implicitWidth: contentRow.implicitWidth
 
+    // Background
     Rectangle {
-        id: backgroundItem
         anchors.fill: parent
-        visible: root.background.visible
-        radius: root.background.radius
+        opacity: (root.background.visible || root._horeved) ? root.background.opacity : 0
         color: root.background.color
-        opacity: root.background.opacity
+        radius: root.background.radius
     }
 
+    // Border
     Rectangle {
-        visible: root.border.width > 0
         anchors.fill: parent
-        opacity: root.border.opacity
-        radius: root.background.radius
         color: "transparent"
+        opacity: root.border.opacity
 
         border {
+            color: root.border.color
             width: root.border.width
             pixelAligned: root.border.pixelAligned
-            color: root.border.color
         }
     }
 
+    // Content
     RowLayout {
-        id: row
+        id: contentRow
         anchors.fill: parent
-        spacing: 0
 
-        Loader {
-            active: root.icon >= 0
-            Layout.fillHeight: active
+        Icon {
+            id: iconItem
+            visible: root.icon >= 0
+            Layout.fillHeight: true
             Layout.preferredWidth: height
-
-            sourceComponent: Icon {
-                anchors.fill: parent
-                color: root.enabled ? root.color : Colors.container
-                icon: root.icon
-            }
+            icon: root.icon
+            color: !root.enabled ? Colors.containerMute : root.color
         }
 
         Text {
             id: textItem
+            visible: !!root.text
             Layout.fillHeight: true
             Layout.fillWidth: true
+            color: !root.enabled ? Colors.containerMute : root.color
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: root.color
+        }
+
+        Item {
+            visible: textItem.visible && iconItem.visible
         }
     }
 
     MouseArea {
         id: area
-        enabled: root.enabled
-        hoverEnabled: root.hoverEnabled || root.background.hover
         anchors.fill: parent
-        cursorShape: enabled ? Qt.PointingHandCursor : Qt.ForbiddenCursor
+        cursorShape: !enabled ? Qt.ForbiddenCursor : Qt.PointingHandCursor
+        hoverEnabled: root.hoverEnabled || root.background.hover
+
         onClicked: e => root.clicked(e)
+        onWheel: e => root.wheel(e)
         onEntered: {
-            root.entered();
+            if (root.hoverEnabled) {
+                root._defaultColor = root.color;
+                root.color = Qt.hsla(root._defaultColor.hslHue, root._defaultColor.hslSaturation * 0.1, root._defaultColor.hslLightness - 0.2, 1);
+            }
+
             if (root.background.hover)
-                root.background.visible = true;
-            if (root.react && root.hoverEnabled && !root.background.hover)
-                root.color = Colors.foregroundMute;
+                root._horeved = true;
+
+            root.entered();
         }
         onExited: {
-            root.exited();
+            if (root.hoverEnabled)
+                root.color = root._defaultColor;
+
             if (root.background.hover)
-                root.background.visible = false;
-            if (root.react && root.hoverEnabled && !root.background.hover)
-                root.color = Colors.foreground;
+                root._horeved = false;
+
+            root.exited();
         }
-        onWheel: e => root.wheel(e)
     }
 }
