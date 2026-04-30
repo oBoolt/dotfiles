@@ -12,7 +12,7 @@ Item {
     property int icon: -1
     property string iconString
     property alias color: colorOverlay.color
-    property real implicitSize: height * 0.75
+    property real implicitSize: (height * 0.7) % 2 === 0 ? height * 0.7 : height * 0.7 + 1
 
     property bool disableColor: false
     clip: true
