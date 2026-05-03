@@ -24,3 +24,29 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.hl.on_yank()
     end
 })
+
+vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
+    group = augroup,
+    callback = function()
+        local capabilities = require("cmp_nvim_lsp").default_capabilities()
+        vim.lsp.config("*", {
+            capabilities = capabilities
+        })
+    end
+})
+
+vim.api.nvim_create_autocmd("PackChanged", {
+    group = augroup,
+    callback = function(e)
+        local name, kind, active = e.data.spec.name, e.data.kind, e.data.active
+
+        if name == 'nvim-treesitter' and kind == 'update' then
+            if not active then vim.cmd.packadd('nvim-treesitter') end
+            vim.cmd('TSUpdate')
+        end
+
+        if name == 'telescope-fzf-native.nvim' and (kind == 'update' or kind == 'install') then
+            vim.system({ 'make' }, { cwd = e.data.path })
+        end
+    end
+})
