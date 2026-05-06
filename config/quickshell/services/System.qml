@@ -15,6 +15,6 @@ Singleton {
     }
 
     function logout() {
-        Quickshell.execDetached(["hyprctl", "dispatch", "exit"]);
+        Quickshell.execDetached(["uwsm", "stop"]);
     }
 }
