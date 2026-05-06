@@ -14,6 +14,8 @@ Singleton {
     property bool showControlCenter: false
     property bool showCalendar: false
     property bool showMpris: false
+    property bool showAreaPicker: false
+
     property int currentClientIndex: 0
     property bool sessionLocked: false
     property int barZone: 30
@@ -57,5 +59,9 @@ Singleton {
         root.showCalendar = false;
         root.showMpris = false;
         root.showControlCenter = false;
+    }
+
+    function toggleAreaPicker(): void {
+        root.showAreaPicker = !root.showAreaPicker;
     }
 }

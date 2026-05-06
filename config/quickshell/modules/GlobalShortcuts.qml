@@ -24,4 +24,12 @@ Item {
             States.toggleMpris();
         }
     }
+
+    Shortcut {
+        name: "areaScreenshot"
+        description: "Open an area picker to take a screenshot using grim"
+        onPressed: {
+            States.toggleAreaPicker();
+        }
+    }
 }

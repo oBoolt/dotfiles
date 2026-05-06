@@ -51,6 +51,7 @@ ShellRoot {
     }
     Background {}
     LockScreen {}
+    AreaPicker {}
 
     Variants {
         id: windowsWrapper

@@ -9,4 +9,5 @@ JsonObject {
     property bool osd: true
     property bool mpris: true
     property bool background: true
+    property bool areapicker: true
 }
