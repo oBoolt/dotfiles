@@ -5,6 +5,7 @@ import Quickshell.Wayland
 
 import qs.utils
 import qs.config
+import qs.services
 
 LazyLoader {
     active: Config.modules.areapicker && States.showAreaPicker
@@ -30,17 +31,7 @@ LazyLoader {
             implicitWidth: modelData.width
             WlrLayershell.layer: WlrLayer.Overlay
 
-            onAreaChanged: {
-                console.log("AreaPicker: area changed:", root.area);
-            }
-
-            // ScreencopyView {
-            //     id: view
-            //     live: false
-            //     captureSource: root.screen
-            //     implicitHeight: 500
-            //     implicitWidth: 500
-            // }
+            onAreaChanged: ScreenshotManager.capture(area.x, area.y, area.width, area.height)
 
             // Background
             Rectangle {
