@@ -21,6 +21,8 @@ Singleton {
     property int barZone: 30
     readonly property bool isPopupOpen: (Config.modules.calendar && showCalendar || Config.modules.mpris && showMpris || Config.modules.controlcenter && showControlCenter)
 
+    property int areaPickerMode: 0
+
     property ShellScreen currentScreen
     property NotificationServer notificationServer
     readonly property bool currentTopLevelFullscreen: ToplevelManager.activeToplevel?.fullscreen ?? false
@@ -61,7 +63,8 @@ Singleton {
         root.showControlCenter = false;
     }
 
-    function toggleAreaPicker(): void {
+    function toggleAreaPicker(mode: int): void {
+        root.areaPickerMode = mode;
         root.showAreaPicker = !root.showAreaPicker;
     }
 }

@@ -3,6 +3,8 @@ import QtQuick
 import qs.components
 import qs.config
 import qs.utils
+import qs.modules
+import qs.services
 
 Item {
     Shortcut {
@@ -29,7 +31,17 @@ Item {
         name: "areaScreenshot"
         description: "Open an area picker to take a screenshot using grim"
         onPressed: {
-            States.toggleAreaPicker();
+            States.toggleAreaPicker(AreaPicker.Screenshot);
+        }
+    }
+
+    Shortcut {
+        name: "fullScreenshot"
+        description: "Take a screenshot of the fullscreen"
+        onPressed: {
+            States.updateCurrentScreen();
+            let currentScreen = States.currentScreen;
+            ScreenshotManager.capture(Qt.rect(0, 0, currentScreen.width, currentScreen.height));
         }
     }
 }

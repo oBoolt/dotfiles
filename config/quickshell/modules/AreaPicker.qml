@@ -10,6 +10,10 @@ import qs.services
 LazyLoader {
     active: Config.modules.areapicker && States.showAreaPicker
 
+    enum Enum {
+        Screenshot
+    }
+
     Variants {
         model: Quickshell.screens
 
@@ -31,7 +35,18 @@ LazyLoader {
             implicitWidth: modelData.width
             WlrLayershell.layer: WlrLayer.Overlay
 
-            onAreaChanged: ScreenshotManager.capture(area.x, area.y, area.width, area.height)
+            onAreaChanged: {
+                console.log(area);
+                if (States.areaPickerMode === AreaPicker.Screenshot) {
+                    ScreenshotManager.capture(area);
+                }
+
+                if (States.areaPickerMode === AreaPicker.PictureInPicture) {
+                    PictureInPictureManager.setPicture(root.area, ToplevelManager.activeToplevel);
+                }
+
+                States.showAreaPicker = false;
+            }
 
             // Background
             Rectangle {
@@ -115,7 +130,6 @@ LazyLoader {
                 }
                 onReleased: e => {
                     root.area = Qt.rect(selector.x, selector.y, selector.width, selector.height);
-                    States.showAreaPicker = false;
                 }
             }
         }
