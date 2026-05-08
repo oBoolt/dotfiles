@@ -5,6 +5,8 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 
+import qs.services
+
 Singleton {
     id: root
     property rect _area
@@ -12,7 +14,7 @@ Singleton {
 
     function capture(area: rect): void {
         let region = area.x + "," + area.y + " " + area.width + "x" + area.height;
-        let path = Quickshell.env("HOME") + "/Pictures/dotfiles-" + Date.now() + ".jpg";
+        let path = Quickshell.env("HOME") + "/Pictures/dotfiles-" + Time.path + ".jpg";
 
         root._area = area;
         root._path = path;

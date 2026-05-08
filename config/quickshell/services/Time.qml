@@ -7,10 +7,11 @@ Singleton {
     readonly property string seconds: Qt.formatDateTime(clock.date, "ss")
     readonly property string minutes: Qt.formatDateTime(clock.date, "mm")
     readonly property string hours: Qt.formatDateTime(clock.date, "hh")
+    readonly property string path: Qt.formatDateTime(clock.date, "yyyyMMdd_hhmmss")
     readonly property date date: clock.date
 
     SystemClock {
         id: clock
-        precision: SystemClock.Minutes
+        precision: SystemClock.Seconds
     }
 }
