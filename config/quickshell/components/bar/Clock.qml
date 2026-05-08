@@ -2,6 +2,7 @@ import QtQuick
 
 import qs.components
 import qs.utils
+import qs.services
 
 Text {
     required property QtObject parentWindow

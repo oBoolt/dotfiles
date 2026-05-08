@@ -9,6 +9,7 @@ import QtQuick.Controls
 import qs.config
 import qs.components
 import qs.utils
+import qs.services
 
 Item {
     id: root
