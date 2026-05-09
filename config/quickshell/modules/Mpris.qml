@@ -2,6 +2,7 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
 
 import Quickshell
 import Quickshell.Services.Mpris
@@ -242,20 +243,26 @@ Item {
                                     height: 4
 
                                     MouseArea {
+                                        enabled: root.current?.canSeek && root.current?.positionSupported
                                         anchors.fill: parent
                                         cursorShape: Qt.PointingHandCursor
                                         onPositionChanged: e => {
-                                            currentIndicator.width = (e.x / this.width) * parent.width;
+                                            currentIndicator.override = true;
+                                            currentIndicator.currentValue = (e.x / this.width) * parent.width;
                                         }
                                         onReleased: e => {
                                             root.current.position = (e.x / this.width) * root.current?.length;
-                                            currentIndicator.implicitWidth = (root.current?.position / root.current?.length) * parent.width;
+                                            currentIndicator.override = false;
                                         }
                                     }
 
                                     // Progress Bar indicator
                                     Rectangle {
                                         id: currentIndicator
+
+                                        property bool override: false
+                                        property real currentValue: 0
+
                                         anchors {
                                             left: parent.left
                                             top: parent.top
@@ -263,7 +270,7 @@ Item {
                                         }
                                         color: Colors.main
                                         radius: Appearance.radius.small
-                                        implicitWidth: ((root.current?.position / root.current?.length) % 1) * parent.width
+                                        implicitWidth: !this.override ? ((root.current?.position / root.current?.length) % 1) * parent.width : this.currentValue
 
                                         Behavior on implicitWidth {
                                             enabled: Appearance.animations.enabled
