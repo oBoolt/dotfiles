@@ -21,9 +21,11 @@ LazyLoader {
             id: root
             required property ShellScreen modelData
             property rect area
+
             property bool _first: true
             property point _firstPoint
             property point _currentPoint
+
             readonly property real _opacity: 0.25
             readonly property color _color: "white"
 
@@ -36,13 +38,8 @@ LazyLoader {
             WlrLayershell.layer: WlrLayer.Overlay
 
             onAreaChanged: {
-                console.log(area);
                 if (States.areaPickerMode === AreaPicker.Screenshot) {
                     ScreenshotManager.capture(area);
-                }
-
-                if (States.areaPickerMode === AreaPicker.PictureInPicture) {
-                    PictureInPictureManager.setPicture(root.area, ToplevelManager.activeToplevel);
                 }
 
                 States.showAreaPicker = false;
@@ -114,9 +111,10 @@ LazyLoader {
             MouseArea {
                 anchors.fill: parent
                 cursorShape: Qt.CrossCursor
-                onDoubleClicked: States.showAreaPicker = false
+                acceptedButtons: Qt.LeftButton | Qt.RightButton
                 onPositionChanged: e => {
                     root._currentPoint = Qt.point(e.x, e.y);
+
                     if (root._first) {
                         root._firstPoint = Qt.point(e.x, e.y);
                         root._first = false;
@@ -129,6 +127,18 @@ LazyLoader {
                     selector.height = (e.y - selector.y > 0) ? (e.y - root._firstPoint.y) : (root._firstPoint.y - e.y);
                 }
                 onReleased: e => {
+                    if (e.button === Qt.RightButton) {
+                        root._firstPoint = Qt.point(0, 0);
+
+                        selector.x = 0;
+                        selector.y = 0;
+                        selector.width = 0;
+                        selector.height = 0;
+
+                        root._first = true;
+                        return;
+                    }
+
                     root.area = Qt.rect(selector.x, selector.y, selector.width, selector.height);
                 }
             }
