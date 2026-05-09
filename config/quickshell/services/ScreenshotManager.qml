@@ -43,7 +43,7 @@ Singleton {
         onExited: code => {
             if (code === 0) {
                 root.sendNotification();
-                // console.log("Screenshot saved in " + Quickshell.env("HOME") + "/Pictures");
+                Quickshell.execDetached(["sh", "-c", "wl-copy --type image/jpg < " + root._path]);
             }
 
             if (code === 1)
