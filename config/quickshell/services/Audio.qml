@@ -68,11 +68,11 @@ Singleton {
     }
 
     readonly property list<PwNode> sinks: {
-        return Pipewire.nodes.values.filter(n => n.isSink && !n.isStream && n.audio);
+        return Pipewire.nodes.values.filter(n => n.isSink && !n.isStream && n.audio).sort((a, b) => a.id - b.id);
     }
 
     readonly property list<PwNode> sources: {
-        return Pipewire.nodes.values.filter(n => !n.isSink && !n.isStream && n.audio);
+        return Pipewire.nodes.values.filter(n => !n.isSink && !n.isStream && n.audio).sort((a, b) => a.id - b.id);
     }
 
     readonly property PwNodeWrapper sink: PwNodeWrapper {
