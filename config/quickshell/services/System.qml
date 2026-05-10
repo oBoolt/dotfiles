@@ -7,7 +7,9 @@ Singleton {
     enum Enum {
         Low,
         Normal = 0,
-        Critical
+        Critical,
+        Text,
+        Image
     }
 
     readonly property SystemUsage usage: SystemUsage {}
@@ -42,5 +44,17 @@ Singleton {
 
         cmd.push(title, body);
         Quickshell.execDetached(cmd);
+    }
+
+    function copyToClipboard(type: int, content: string): void {
+        if (type == System.Image) {
+            Quickshell.execDetached(["sh", "-c", "wl-copy --type image/jpg < " + content]);
+            return;
+        }
+
+        if (type == System.Text) {
+            Quickshell.execDetached(["wl-copy", content]);
+            return;
+        }
     }
 }
