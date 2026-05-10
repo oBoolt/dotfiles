@@ -1,4 +1,5 @@
 import QtQuick
+import Quickshell
 
 import qs.components
 import qs.config
@@ -6,7 +7,7 @@ import qs.utils
 import qs.modules
 import qs.services
 
-Item {
+Scope {
     Shortcut {
         name: "closePopups"
         description: "Close all current opened popups"
