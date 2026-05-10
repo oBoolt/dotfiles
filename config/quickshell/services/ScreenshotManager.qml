@@ -42,7 +42,7 @@ Singleton {
 
         onExited: code => {
             if (code === 0) {
-                root.sendNotification();
+                System.notify("Screenshot taken", "At: " + root._area.x + "," + root._area.y + " " + root._area.width + "x" + root._area.height, root._path);
                 Quickshell.execDetached(["sh", "-c", "wl-copy --type image/jpg < " + root._path]);
             }
 
