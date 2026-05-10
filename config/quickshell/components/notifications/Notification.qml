@@ -17,12 +17,14 @@ Rectangle {
     border {
         width: Config.notification.borderSize
         color: {
+            if (notification.modelData.urgency == NotificationUrgency.Low) {
+                return Colors.good;
+            }
             if (notification.modelData.urgency == NotificationUrgency.Normal) {
                 return Colors.foreground;
-            } else if (notification.modelData.urgency == NotificationUrgency.Critical) {
-                return Colors.critical;
-            } else if (notification.modelData.urgency == NotificationUrgency.Low) {
-                return Colors.warning;
+            }
+            if (notification.modelData.urgency == NotificationUrgency.Critical) {
+                return Colors.danger;
             }
         }
     }

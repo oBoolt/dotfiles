@@ -24,8 +24,8 @@ Singleton {
     property color topMain: Qt.hsla(hue, main.hslSaturation, main.hslLightness - 0.4, 1)
 
     property color danger: Qt.hsla(0, saturation * 1.25, 0.5, 1)
-    property color warning: Qt.hsla(60, saturation * 1.25, 0.5, 1)
-    property color good: Qt.hsla(120, saturation * 1.25, 0.5, 1)
+    property color warning: Qt.hsla(60 / 360, saturation * 1.5, 0.5, 1)
+    property color good: Qt.hsla(120 / 360, saturation, 0.5, 1)
 
     function getColor(percentage: real): color {
         if (percentage >= 0.75)
