@@ -24,10 +24,6 @@ Singleton {
         process.running = true;
     }
 
-    function sendNotification(): void {
-        Quickshell.execDetached(["notify-send", "-a", "dotfiles", "-i", root._path, "Screenshot taken", "At: " + root._area.x + "," + root._area.y + " " + root._area.width + "x" + root._area.height]);
-    }
-
     Process {
         id: process
         running: false
