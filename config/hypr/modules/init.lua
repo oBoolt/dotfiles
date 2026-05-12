@@ -1,0 +1,5 @@
+require("modules.events")
+require("modules.binds")
+require("modules.input")
+require("modules.animations")
+require("modules.appearance")

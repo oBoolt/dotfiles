@@ -27,7 +27,7 @@ Repeater {
             cursorShape: Qt.PointingHandCursor
 
             onClicked: _ => {
-                Hyprland.dispatch("workspace " + (parent.index + 1));
+                Hyprland.dispatch("hl.dsp.focus({ workspace = " + (parent.index + 1) + "})");
             }
         }
     }

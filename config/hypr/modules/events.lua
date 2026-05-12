@@ -1,0 +1,17 @@
+-- Autostart
+hl.on("hyprland.start", function()
+    hl.exec_cmd("uwsm app -- wl-paste --type text --watch cliphist store");
+    hl.exec_cmd("uwsm app -- wl-paste --type image --watch cliphist store");
+    hl.exec_cmd("uwsm app -- udiskie -a -n -t");
+    hl.exec_cmd("uwsm app -- qs");
+    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+end)
+
+-- Submap
+hl.on("keybinds.submap", function(name)
+    if name and name ~= '' then
+        hl.dispatch(hl.dsp.exec_cmd("notify-send -u critical 'Submap changed' 'You are now at " .. name .. " submap'"))
+    else
+        hl.dispatch(hl.dsp.exec_cmd("notify-send -u low 'Submap changed' 'Global submap'"))
+    end
+end)
