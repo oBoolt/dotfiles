@@ -1,5 +1,3 @@
-local colors = require("themes.current.hypr")
-
 hl.config({
     general = {
         layout = "dwindle",
@@ -7,10 +5,10 @@ hl.config({
         gaps_in = 4,
         gaps_out = 8,
         col = {
-            inactive_border = colors.background,
-            active_border = colors.main,
-            nogroup_border = colors.warning,
-            nogroup_border_active = colors.second
+            inactive_border = COLORS.background,
+            active_border = COLORS.main,
+            nogroup_border = COLORS.warning,
+            nogroup_border_active = COLORS.second
         },
         allow_tearing = true,
     },
