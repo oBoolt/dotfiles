@@ -10,8 +10,8 @@ end)
 -- Submap
 hl.on("keybinds.submap", function(name)
     if name and name ~= '' then
-        hl.dispatch(hl.dsp.exec_cmd("notify-send -u critical 'Submap changed' 'You are now at " .. name .. " submap'"))
+        hl.exec_cmd("notify-send -u critical 'Submap changed' 'You are now at " .. name .. " submap'")
     else
-        hl.dispatch(hl.dsp.exec_cmd("notify-send -u low 'Submap changed' 'Global submap'"))
+        hl.exec_cmd("notify-send -u low 'Submap changed' 'Global submap'")
     end
 end)
