@@ -9,3 +9,12 @@ hl.window_rule({
 
     workspace = 1
 })
+
+hl.window_rule({
+    name = "special-workspace",
+    match = {
+        workspace = "name:special:magic"
+    },
+
+    border_color = COLORS.second
+})
