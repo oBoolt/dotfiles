@@ -2,5 +2,6 @@
     "darkMode": true, 
     "background": "#1d2021",
     "foreground": "#ebdbb2",
-    "main": "#8ec07c"
+    "main": "#8ec07c",
+    "second": "#d3869b"
 }

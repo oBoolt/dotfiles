@@ -20,8 +20,12 @@ Singleton {
     property alias foreground: adapter.foreground
     property color foregroundMute: Qt.hsla(hue, foreground.hslSaturation * 0.1, foreground.hslLightness - 0.2, 1)
 
-    property color main: Qt.hsla(hue, saturation, 0.6, 1)
+    // property color main: Qt.hsla(hue, saturation, lightness, 1)
+    property alias main: adapter.main
     property color topMain: Qt.hsla(hue, main.hslSaturation, main.hslLightness - 0.4, 1)
+
+    property alias second: adapter.second
+    property color topSecond: Qt.hsla(second.hslHue, second.hslSaturation, second.hslLightness - 0.4, 1)
 
     property color danger: Qt.hsla(0, saturation * 1.25, 0.5, 1)
     property color warning: Qt.hsla(60 / 360, saturation * 1.5, 0.5, 1)
@@ -63,6 +67,7 @@ Singleton {
             property color background: darkMode ? "black" : "white"
             property color foreground: darkMode ? "white" : "black"
             property color main: "aqua"
+            property color second: "purple"
         }
     }
 }
