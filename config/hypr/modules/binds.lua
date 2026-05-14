@@ -55,7 +55,14 @@ hl.bind(mainMod .. " + SHIFT + U", hl.dsp.layout("swapsplit"))
 
 -- Special Workspace
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+hl.bind(mainMod .. " + SHIFT + S", function()
+    local current = hl.get_active_window()
+    if current ~= nil and current.workspace.special then
+        hl.dispatch(hl.dsp.window.move({ workspace = hl.get_active_workspace().name }))
+    else
+        hl.dispatch(hl.dsp.window.move({ workspace = "special:magic" }))
+    end
+end)
 
 -- Resize
 hl.bind(mainMod .. " + R", hl.dsp.submap("resize"))
