@@ -34,16 +34,16 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(launch(browser)))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(launch(fileManager)))
 
 -- Change active window with arrows
-hl.bind(mainMod .. " + LEFT", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + RIGHT", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + UP", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + DOWN", hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + LEFT", hl.dsp.focus({ direction = "left" }), { submap_universal = true })
+hl.bind(mainMod .. " + RIGHT", hl.dsp.focus({ direction = "right" }), { submap_universal = true })
+hl.bind(mainMod .. " + UP", hl.dsp.focus({ direction = "up" }), { submap_universal = true })
+hl.bind(mainMod .. " + DOWN", hl.dsp.focus({ direction = "down" }), { submap_universal = true })
 
 -- Change active window with vim keybinds
-hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }), { submap_universal = true })
+hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }), { submap_universal = true })
+hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }), { submap_universal = true })
+hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }), { submap_universal = true })
 
 -- Change window in layout
 hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.swap({ direction = "l" }))
@@ -68,10 +68,15 @@ end)
 hl.bind(mainMod .. " + R", hl.dsp.submap("resize"))
 
 hl.define_submap("resize", function()
-    hl.bind("RIGHT", hl.dsp.window.resize({ x = 20, y = 0, relative = true }), { repeating = true })
     hl.bind("LEFT", hl.dsp.window.resize({ x = -20, y = 0, relative = true }), { repeating = true })
+    hl.bind("RIGHT", hl.dsp.window.resize({ x = 20, y = 0, relative = true }), { repeating = true })
     hl.bind("UP", hl.dsp.window.resize({ x = 0, y = -20, relative = true }), { repeating = true })
     hl.bind("DOWN", hl.dsp.window.resize({ x = 0, y = 20, relative = true }), { repeating = true })
+
+    hl.bind("H", hl.dsp.window.resize({ x = -20, y = 0, relative = true }), { repeating = true })
+    hl.bind("L", hl.dsp.window.resize({ x = 20, y = 0, relative = true }), { repeating = true })
+    hl.bind("K", hl.dsp.window.resize({ x = 0, y = -20, relative = true }), { repeating = true })
+    hl.bind("J", hl.dsp.window.resize({ x = 0, y = 20, relative = true }), { repeating = true })
 
     hl.bind("ESCAPE", hl.dsp.submap("reset"))
 end)
