@@ -7,48 +7,67 @@ import qs.config
 import qs.utils
 import qs.services
 
-RowLayout {
+Rectangle {
     id: root
-
     property alias value: slider.value
     property alias from: slider.from
     property alias icon: iconItem.icon
     final property bool enabled: true
+
     signal moved
+    signal iconClicked
 
-    spacing: Appearance.spacing.normal
+    color: Colors.containerMute
+    radius: Appearance.radius.normal
 
-    Icon {
-        id: iconItem
-        Layout.fillHeight: true
-        Layout.preferredWidth: height
-        Layout.margins: 4
-        implicitSize: height * 0.75
-    }
+    RowLayout {
+        anchors.fill: parent
+        anchors.topMargin: 4
+        anchors.bottomMargin: anchors.topMargin
+        anchors.leftMargin: anchors.topMargin * 2
+        anchors.rightMargin: anchors.leftMargin
+        spacing: Appearance.spacing.normal
 
-    Slider {
-        id: slider
-        Layout.fillWidth: true
-        Layout.fillHeight: true
+        Icon {
+            id: iconItem
+            Layout.fillHeight: true
+            Layout.preferredWidth: height
+            implicitSize: height * 0.75
 
-        from: 0
-        to: root.enabled ? 1 : 0
-        stepSize: 0.01
-        handle: Item {}
-        background: Rectangle {
-            color: Colors.container
-
-            Rectangle {
-                color: Colors.main
-                implicitWidth: slider.visualPosition * parent.width
-                implicitHeight: parent.height
+            MouseArea {
+                enabled: root.enabled
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onClicked: root.iconClicked()
             }
         }
 
-        onMoved: {
-            if (!root.enabled)
-                return;
-            root.moved();
+        Slider {
+            id: slider
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            from: 0
+            to: root.enabled ? 1 : 0
+            stepSize: 0.01
+            handle: Item {}
+            background: Rectangle {
+                color: Colors.container
+                radius: root.radius / 2
+
+                Rectangle {
+                    color: Colors.main
+                    radius: parent.radius
+                    implicitWidth: slider.visualPosition * parent.width
+                    implicitHeight: parent.height
+                }
+            }
+
+            onMoved: {
+                if (!root.enabled)
+                    return;
+                root.moved();
+            }
         }
     }
 }

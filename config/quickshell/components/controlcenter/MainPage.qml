@@ -171,10 +171,11 @@ Page {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 value: Audio.sink.volume
-                enabled: Audio.sink !== null
-                icon: Icons.AudioVolumeHighSymbolic
+                enabled: Audio.sink != null
+                icon: Audio.sink.icon
 
                 onMoved: Audio.sink.setVolume(this.value)
+                onIconClicked: Audio.sink.toggleMute()
             }
 
             IconSlider {
