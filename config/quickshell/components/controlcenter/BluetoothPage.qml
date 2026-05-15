@@ -123,30 +123,20 @@ Page {
             Layout.fillWidth: true
         }
 
-        Rectangle {
+        Toggle {
             Layout.fillHeight: true
-            Layout.preferredWidth: height
-            color: BluetoothManager.currentAdapter?.discovering ? "green" : "red"
+            Layout.preferredWidth: height * 2
+            active: BluetoothManager.currentAdapter?.discovering
 
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    BluetoothManager.toggleDiscovering();
-                }
-            }
+            onToggled: BluetoothManager.toggleDiscovering()
         }
 
-        Rectangle {
+        Toggle {
             Layout.fillHeight: true
-            Layout.preferredWidth: height
-            color: BluetoothManager.enabled ? "green" : "red"
+            Layout.preferredWidth: height * 2
+            active: BluetoothManager.enabled
 
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    BluetoothManager.toggleEnabled();
-                }
-            }
+            onToggled: BluetoothManager.toggleEnabled()
         }
     }
 
