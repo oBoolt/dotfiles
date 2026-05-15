@@ -4,15 +4,13 @@ import QtQuick.Controls
 
 import qs.components
 import qs.config
-import qs.utils
-import qs.services
 
 Rectangle {
     id: root
     property alias value: slider.value
     property alias from: slider.from
     property alias icon: iconItem.icon
-    final property bool enabled: true
+    property bool enabled: false
 
     signal moved
     signal iconClicked
@@ -37,7 +35,7 @@ Rectangle {
             MouseArea {
                 enabled: root.enabled
                 anchors.fill: parent
-                cursorShape: Qt.PointingHandCursor
+                cursorShape: root.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
                 onClicked: root.iconClicked()
             }
         }
@@ -47,6 +45,7 @@ Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
+            enabled: root.enabled
             from: 0
             to: root.enabled ? 1 : 0
             stepSize: 0.01
