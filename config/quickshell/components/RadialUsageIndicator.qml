@@ -1,6 +1,7 @@
 import QtQuick
 
 import qs.config
+import qs.components
 
 Item {
     id: root
@@ -18,8 +19,9 @@ Item {
 
     Icon {
         id: iconItem
-        anchors.centerIn: parent
-        implicitWidth: parent.width / 2
+        x: parent.width / 2 - this.width / 2
+        y: parent.height / 2 - (this.height / 2) - 2
+        implicitWidth: (parent.width / 2) - 2
         implicitHeight: width
         icon: 0
     }
@@ -33,21 +35,30 @@ Item {
 
             let centerX = this.width / 2;
             let centerY = this.height / 2;
-            let radius = 14;
-            let angle = Math.PI * 2 * root.percentage;
+            let radius = (this.width / 2) - 8;
 
             ctx.lineWidth = 4;
             ctx.lineCap = "round";
 
+            let start = (Math.PI / 6);
+            let end = (Math.PI / 2) + start * 2;
+            let angle = end * root.percentage;
+
             ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, start, end, true);
             ctx.strokeStyle = Colors.container;
-            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2, false);
             ctx.stroke();
 
             ctx.beginPath();
             ctx.strokeStyle = Colors.foreground;
-            ctx.arc(centerX, centerY, radius, 0, -angle, true);
+            ctx.arc(centerX, centerY, radius, start, -angle, true);
             ctx.stroke();
         }
+    }
+
+    Text {
+        text: Math.round(root.percentage * 100)
+        x: parent.width / 2 - this.width / 2
+        y: parent.height - this.height
     }
 }
