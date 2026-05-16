@@ -21,7 +21,7 @@ Item {
         id: iconItem
         x: parent.width / 2 - this.width / 2
         y: parent.height / 2 - (this.height / 2) - 2
-        implicitWidth: (parent.width / 2) - 2
+        implicitWidth: (parent.width / 2)
         implicitHeight: width
         icon: 0
     }
@@ -37,7 +37,7 @@ Item {
             let centerY = this.height / 2;
             let radius = (this.width / 2) - 8;
 
-            ctx.lineWidth = 4;
+            ctx.lineWidth = 6;
             ctx.lineCap = "round";
 
             let start = (Math.PI / 6);
