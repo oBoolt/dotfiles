@@ -116,13 +116,4 @@ Page {
         model: Audio.sources
         currentNode: Audio.source.node
     }
-
-    Button {
-        Layout.preferredHeight: Appearance.font.icon
-        hoverEnabled: true
-        background.hover: true
-        text: "Back"
-        icon: Icons.GoPreviousSymbolic
-        onClicked: root.pop()
-    }
 }

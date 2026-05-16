@@ -48,6 +48,7 @@ Item {
     Component {
         id: mainPage
         MainPage {
+            stackView: loader.stackView
             onPush: page => {
                 if (page == Page.Audio) {
                     loader.stackView.push(audioPage);
@@ -67,16 +68,21 @@ Item {
     Component {
         id: audioPage
         AudioPage {
+            stackView: loader.stackView
             onPop: loader.stackView.pop()
         }
     }
     Component {
         id: systemInfoPage
-        SystemInfoPage {}
+        SystemInfoPage {
+            stackView: loader.stackView
+            onPop: loader.stackView.pop()
+        }
     }
     Component {
         id: bluetoothPage
         BluetoothPage {
+            stackView: loader.stackView
             onPop: loader.stackView.pop()
         }
     }
