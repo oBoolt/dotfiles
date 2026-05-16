@@ -44,6 +44,8 @@ Rectangle {
             id: slider
             Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.topMargin: parent.anchors.topMargin
+            Layout.bottomMargin: Layout.topMargin
 
             enabled: root.enabled
             from: 0
@@ -52,7 +54,8 @@ Rectangle {
             handle: Item {}
             background: Rectangle {
                 color: Colors.container
-                radius: root.radius / 2
+                radius: root.radius
+                // radius: root.radius / 2
 
                 Rectangle {
                     color: Colors.main
