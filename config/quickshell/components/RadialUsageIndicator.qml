@@ -13,7 +13,7 @@ Item {
     Behavior on percentage {
         enabled: Appearance.animations.enabled
         NumberAnimation {
-            duration: 500
+            duration: 200
         }
     }
 
@@ -33,16 +33,18 @@ Item {
             let ctx = getContext("2d");
             ctx.reset();
 
+            function d2r(angle: int): real {
+                return angle * Math.PI / 180;
+            }
+
             let centerX = this.width / 2;
             let centerY = this.height / 2;
             let radius = (this.width / 2) - 8;
+            let start = d2r(45);
+            let end = d2r(135);
 
             ctx.lineWidth = 6;
             ctx.lineCap = "round";
-
-            let start = (Math.PI / 6);
-            let end = (Math.PI / 2) + start * 2;
-            let angle = end * root.percentage;
 
             ctx.beginPath();
             ctx.arc(centerX, centerY, radius, start, end, true);
@@ -50,8 +52,8 @@ Item {
             ctx.stroke();
 
             ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, start, -1 * d2r(270 * root.percentage) + d2r(45), true);
             ctx.strokeStyle = Colors.foreground;
-            ctx.arc(centerX, centerY, radius, start, -angle, true);
             ctx.stroke();
         }
     }

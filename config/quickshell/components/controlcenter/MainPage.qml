@@ -147,13 +147,13 @@ Page {
                 Layout.fillHeight: true
                 Layout.preferredWidth: height
                 Layout.alignment: Qt.AlignCenter
-                percentage: System.usage.cpu.percentage
+                percentage: 1
             }
             RadialUsageIndicator {
                 Layout.fillHeight: true
                 Layout.preferredWidth: height
                 Layout.alignment: Qt.AlignCenter
-                percentage: System.usage.cpu.percentage
+                percentage: 0.5
             }
         }
     }
