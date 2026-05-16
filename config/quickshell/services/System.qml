@@ -2,8 +2,10 @@ pragma Singleton
 
 import QtQuick
 import Quickshell
+import Quickshell.Io
 
 Singleton {
+    id: root
     enum Enum {
         Low,
         Normal = 0,
@@ -13,6 +15,8 @@ Singleton {
     }
 
     readonly property SystemUsage usage: SystemUsage {}
+    property string user
+    property string hostname
 
     function poweroff() {
         Quickshell.execDetached(["systemctl", "poweroff"]);
@@ -55,6 +59,19 @@ Singleton {
         if (type == System.Text) {
             Quickshell.execDetached(["wl-copy", content]);
             return;
+        }
+    }
+
+    FileView {
+        path: Qt.resolvedUrl("/etc/hostname")
+        onLoaded: root.hostname = this.text().trim()
+    }
+
+    Process {
+        running: true
+        command: ["whoami"]
+        stdout: StdioCollector {
+            onStreamFinished: root.user = this.text.trim()
         }
     }
 }

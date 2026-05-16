@@ -21,7 +21,7 @@ Page {
 
         Text {
             font.pixelSize: Appearance.font.large * 0.8
-            text: "bolt@quacker"
+            text: System.user + "@" + System.hostname
         }
 
         Item {
