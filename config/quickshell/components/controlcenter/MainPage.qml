@@ -12,6 +12,7 @@ Page {
     // Quick actions
     RowLayout {
         Layout.fillWidth: true
+        Layout.preferredHeight: parent.height * 0.05
 
         Icon {
             Layout.preferredHeight: Appearance.font.icon
@@ -62,12 +63,15 @@ Page {
     }
 
     // Panels
-    Item {
+    ColumnLayout {
         Layout.fillWidth: true
-        Layout.preferredHeight: 60
+        // Layout.fillHeight: true
+        Layout.maximumHeight: (parent.height / 5) + (spacing)
+        spacing: 16
 
         RowLayout {
-            anchors.fill: parent
+            Layout.fillWidth: true
+            Layout.fillHeight: true
             spacing: 16
 
             Panel {
@@ -95,14 +99,10 @@ Page {
                 onClicked: root.push(Page.Bluetooth)
             }
         }
-    }
-
-    Item {
-        Layout.fillWidth: true
-        Layout.preferredHeight: 60
 
         RowLayout {
-            anchors.fill: parent
+            Layout.fillWidth: true
+            Layout.fillHeight: true
             spacing: 16
 
             Panel {
@@ -126,7 +126,7 @@ Page {
     // Usage
     Item {
         Layout.fillWidth: true
-        Layout.preferredHeight: 50
+        Layout.preferredHeight: parent.height * 0.1
 
         RowLayout {
             anchors.fill: parent
@@ -161,7 +161,7 @@ Page {
     // Sliders
     Item {
         Layout.fillWidth: true
-        Layout.preferredHeight: 100
+        Layout.preferredHeight: parent.height * 0.15
 
         ColumnLayout {
             anchors.fill: parent
@@ -193,8 +193,9 @@ Page {
 
     // Notification
     Rectangle {
-        Layout.fillHeight: true
+        // Layout.fillHeight: true
         Layout.fillWidth: true
+        Layout.fillHeight: true
         color: "red"
     }
 }

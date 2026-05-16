@@ -20,9 +20,8 @@ Item {
         rightMargin: Appearance.margin.normal
     }
 
-    // implicitWidth: 480 * Config.scaleFactor[screen.name]
-    implicitWidth: 480
-    implicitHeight: parent.height * 0.75
+    implicitWidth: parent.width * 0.25
+    implicitHeight: parent.height * 0.6
 
     Loader {
         id: loader
