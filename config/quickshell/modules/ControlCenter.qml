@@ -41,6 +41,11 @@ Item {
                 anchors.fill: parent
                 initialItem: mainPage
                 Component.onCompleted: loader.stackView = this
+
+                popEnter: Transition {}
+                popExit: Transition {}
+                pushEnter: Transition {}
+                pushExit: Transition {}
             }
         }
     }
