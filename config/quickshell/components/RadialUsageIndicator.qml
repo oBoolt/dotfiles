@@ -13,7 +13,7 @@ Item {
     Behavior on percentage {
         enabled: Appearance.animations.enabled
         NumberAnimation {
-            duration: 200
+            duration: 400
         }
     }
 
