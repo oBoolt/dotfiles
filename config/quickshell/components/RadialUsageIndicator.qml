@@ -40,19 +40,19 @@ Item {
             let centerX = this.width / 2;
             let centerY = this.height / 2;
             let radius = (this.width / 2) - 8;
-            let start = d2r(45);
-            let end = d2r(135);
+            let start = d2r(135);
+            let end = d2r(45);
 
             ctx.lineWidth = 6;
             ctx.lineCap = "round";
 
             ctx.beginPath();
-            ctx.arc(centerX, centerY, radius, start, end, true);
+            ctx.arc(centerX, centerY, radius, start, end, false);
             ctx.strokeStyle = Colors.container;
             ctx.stroke();
 
             ctx.beginPath();
-            ctx.arc(centerX, centerY, radius, start, -1 * d2r(270 * root.percentage) + d2r(45), true);
+            ctx.arc(centerX, centerY, radius, start, start + d2r(270 * root.percentage), false);
             ctx.strokeStyle = Colors.foreground;
             ctx.stroke();
         }
