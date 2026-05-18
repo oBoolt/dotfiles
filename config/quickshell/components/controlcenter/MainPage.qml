@@ -147,7 +147,7 @@ Page {
                 Layout.fillHeight: true
                 Layout.preferredWidth: height
                 Layout.alignment: Qt.AlignCenter
-                percentage: 1
+                percentage: System.usage.gpu.percentage
             }
             RadialUsageIndicator {
                 Layout.fillHeight: true

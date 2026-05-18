@@ -1,14 +1,13 @@
 import QtQuick
 import Quickshell.Io
 
-import qs.config
-
 Item {
     id: root
     property alias runningCpu: cpuProccess.running
     property alias runningMem: memProccess.running
     property CpuInfo cpu: CpuInfo {}
     property MemInfo mem: MemInfo {}
+    property GpuInfo gpu: GpuInfo {}
 
     component CpuInfo: QtObject {
         property int user: 0
@@ -29,6 +28,12 @@ Item {
         property int total: 0
         property int free: 0
         property int available: 0
+        property real percentage: 0
+    }
+
+    component GpuInfo: QtObject {
+        property int temperature: 0
+        property int power: 0 // in watts
         property real percentage: 0
     }
 
@@ -91,10 +96,18 @@ Item {
         root.mem.percentage = (root.mem.total - root.mem.available) / root.mem.total;
     }
 
+    // nvidia-smi -s pu
+    function parseGpuInfo(line: string): void {
+        let [index, ...info] = line.trim().split(",");
+        root.gpu.power = parseInt(info[0]);
+        root.gpu.temperature = parseInt(info[1]);
+        root.gpu.percentage = parseInt(info[3]) / 100;
+    }
+
     Process {
         id: cpuProccess
         running: true
-        command: ["/usr/bin/env", "sh", "-c", "while true; do head -1 /proc/stat; sleep 0.5; done"]
+        command: ["/usr/bin/env", "sh", "-c", "while true; do head -1 /proc/stat; sleep 1; done"]
         stdout: SplitParser {
             onRead: data => root.parseCpuInfo(data)
         }
@@ -103,9 +116,18 @@ Item {
     Process {
         id: memProccess
         running: true
-        command: ["/usr/bin/env", "sh", "-c", "while true; do head -3 /proc/meminfo; sleep 0.5; done"]
+        command: ["/usr/bin/env", "sh", "-c", "while true; do head -3 /proc/meminfo; sleep 1; done"]
         stdout: SplitParser {
             onRead: data => root.parseMemInfo(data)
+        }
+    }
+
+    Process {
+        id: gpuProccess
+        running: true
+        command: ["nvidia-smi", "dmon", "-d", "1", "-s", "pu", "--format=csv,nounit,noheader"]
+        stdout: SplitParser {
+            onRead: data => root.parseGpuInfo(data)
         }
     }
 }
