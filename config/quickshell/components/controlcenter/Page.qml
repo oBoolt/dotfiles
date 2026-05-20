@@ -57,6 +57,13 @@ Item {
             Component.onCompleted: this.children.push(root.rightArea)
         }
 
+        Rectangle {
+            visible: root.stackView.depth > 1
+            Layout.fillWidth: true
+            Layout.preferredHeight: 2
+            color: Colors.containerMute
+        }
+
         anchors.fill: parent
         anchors.margins: Appearance.margin.large
         spacing: Appearance.spacing.large
