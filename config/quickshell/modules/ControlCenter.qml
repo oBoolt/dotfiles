@@ -67,6 +67,10 @@ Item {
                     loader.stackView.push(bluetoothPage);
                     return;
                 }
+                if (page == Page.Network) {
+                    loader.stackView.push(networkPage);
+                    return;
+                }
             }
         }
     }
@@ -87,6 +91,14 @@ Item {
     Component {
         id: bluetoothPage
         BluetoothPage {
+            stackView: loader.stackView
+            onPop: loader.stackView.pop()
+        }
+    }
+
+    Component {
+        id: networkPage
+        NetworkPage {
             stackView: loader.stackView
             onPop: loader.stackView.pop()
         }

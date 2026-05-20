@@ -78,13 +78,12 @@ Page {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                enabled: true
-                found: true
-                icon: Icons.AudioVolumeHighSymbolic
-                title: "Audio"
-                text: Audio.sink.name
-
-                onClicked: root.push(Page.Audio)
+                enabled: NetworkManager.connected
+                found: NetworkManager.found
+                title: "Network"
+                text: NetworkManager.currentConnection == null ? (NetworkManager.currentDevice?.name ?? "Unknown") : NetworkManager.currentConnection.name
+                icon: 0
+                onClicked: root.push(Page.Network)
             }
 
             Panel {
@@ -109,8 +108,13 @@ Page {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                enabled: false
-                title: "Placeholder"
+                enabled: true
+                found: true
+                icon: Icons.AudioVolumeHighSymbolic
+                title: "Audio"
+                text: Audio.sink.name
+
+                onClicked: root.push(Page.Audio)
             }
 
             Panel {

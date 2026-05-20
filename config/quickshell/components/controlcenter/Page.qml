@@ -17,7 +17,8 @@ Item {
         Main,
         Audio,
         SystemInfo,
-        Bluetooth
+        Bluetooth,
+        Network
     }
 
     signal pop
