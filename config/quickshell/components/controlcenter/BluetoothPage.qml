@@ -12,6 +12,14 @@ import qs.services
 
 Page {
     id: root
+    title: "Bluetooth"
+    rightArea: Toggle {
+        Layout.preferredHeight: Appearance.font.icon
+        Layout.preferredWidth: height * 2
+        active: BluetoothManager.enabled
+
+        onToggled: BluetoothManager.toggleEnabled()
+    }
 
     component DevicesList: ListView {
         id: listView
@@ -124,19 +132,11 @@ Page {
         }
 
         Toggle {
-            Layout.fillHeight: true
+            Layout.preferredHeight: Appearance.font.icon
             Layout.preferredWidth: height * 2
             active: BluetoothManager.currentAdapter?.discovering
 
             onToggled: BluetoothManager.toggleDiscovering()
-        }
-
-        Toggle {
-            Layout.fillHeight: true
-            Layout.preferredWidth: height * 2
-            active: BluetoothManager.enabled
-
-            onToggled: BluetoothManager.toggleEnabled()
         }
     }
 
