@@ -11,7 +11,7 @@ Item {
     default property alias innerData: inner.data
     required property StackView stackView
     property string title: ""
-    property Item rightArea
+    property Item rightArea: null
 
     enum Enum {
         Main,
@@ -54,7 +54,8 @@ Item {
                 Layout.fillWidth: true
             }
 
-            Component.onCompleted: this.children.push(root.rightArea)
+            Component.onCompleted: if (root.rightArea != null)
+                return this.children.push(root.rightArea)
         }
 
         Rectangle {
