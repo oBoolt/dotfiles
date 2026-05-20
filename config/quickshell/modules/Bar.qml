@@ -109,7 +109,10 @@ Item {
                             Layout.preferredHeight: Appearance.font.icon
                             Layout.preferredWidth: height
                         }
-                        //TODO: Network
+                        Network {
+                            Layout.preferredHeight: Appearance.font.icon
+                            Layout.preferredWidth: height
+                        }
                         //TODO: SystemUsage
                     }
                 }
