@@ -62,7 +62,9 @@ Singleton {
         ApplicationExitSymbolic,
         AvatarDefaultSymbolic,
         BluetoothSymbolic,
-        BluetoothDisabledSymbolic
+        BluetoothDisabledSymbolic,
+        NetworkWiredSymbolic,
+        NetworkWirelessSymbolic
     }
 
     readonly property var map: ({
@@ -122,7 +124,9 @@ Singleton {
             [Icons.ApplicationExitSymbolic]: "application-exit-symbolic",
             [Icons.AvatarDefaultSymbolic]: "avatar-default-symbolic",
             [Icons.BluetoothSymbolic]: "bluetooth-symbolic",
-            [Icons.BluetoothDisabledSymbolic]: "bluetooth-disabled-symbolic"
+            [Icons.BluetoothDisabledSymbolic]: "bluetooth-disabled-symbolic",
+            [Icons.NetworkWiredSymbolic]: "network-wired-symbolic",
+            [Icons.NetworkWirelessSymbolic]: "network-wireless-symbolic"
         })
 
     function get(icon: int): string {

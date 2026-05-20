@@ -5,7 +5,7 @@ import qs.components
 import qs.config
 
 Button {
-    icon: 0
+    icon: NetworkManager.icon
     background.hover: true
     color: NetworkManager.connected ? Colors.foreground : Colors.danger
 }

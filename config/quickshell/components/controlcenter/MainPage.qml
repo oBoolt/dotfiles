@@ -82,7 +82,7 @@ Page {
                 found: NetworkManager.found
                 title: "Network"
                 text: NetworkManager.currentConnection == null ? (NetworkManager.currentDevice?.name ?? "Unknown") : NetworkManager.currentConnection.name
-                icon: 0
+                icon: NetworkManager.icon
                 onClicked: root.push(Page.Network)
             }
 

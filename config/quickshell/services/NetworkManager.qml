@@ -4,6 +4,8 @@ import QtQuick
 import Quickshell
 import Quickshell.Networking
 
+import qs.utils
+
 Singleton {
     id: root
     readonly property bool found: Networking.backend != NetworkBackendType.None
@@ -25,6 +27,15 @@ Singleton {
         if (current.type == DeviceType.Wifi) {
             return current.networks.values.find(con => con.connected);
         }
+    }
+
+    readonly property int icon: {
+        if (root.currentDevice == null)
+            return 0;
+        if (root.currentDevice.type == DeviceType.Wired)
+            return Icons.NetworkWiredSymbolic;
+        if (root.currentDevice.type == DeviceType.Wifi)
+            return Icons.NetworkWirelessSymbolic;
     }
 
     function toggleWifi(): void {
