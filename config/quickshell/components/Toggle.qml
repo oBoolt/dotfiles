@@ -4,9 +4,15 @@ import qs.config
 
 Rectangle {
     id: root
+
     property bool active: false
+    property bool transition: false
+    property bool enabled: true
+    property bool _lastActive: root.active
+
     color: active ? Colors.main : Colors.container
     radius: Appearance.radius.small
+    opacity: enabled ? 1 : 0.75
 
     signal toggled
 
@@ -17,6 +23,11 @@ Rectangle {
         } else {
             indicator.anchors.right = undefined;
             indicator.anchors.left = root.left;
+        }
+
+        if (root._lastActive == !root.active) {
+            root.transition = false;
+            root._lastActive = root.active;
         }
     }
 
@@ -34,6 +45,11 @@ Rectangle {
 
     MouseArea {
         anchors.fill: parent
-        onClicked: root.toggled()
+        enabled: root.enabled && !root.transition
+        cursorShape: !root.enabled ? Qt.ForbiddenCursor : root.transition ? Qt.WaitCursor : Qt.PointingHandCursor
+        onClicked: {
+            root.transition = true;
+            root.toggled();
+        }
     }
 }

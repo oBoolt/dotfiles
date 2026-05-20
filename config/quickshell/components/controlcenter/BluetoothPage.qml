@@ -135,6 +135,7 @@ Page {
             Layout.preferredHeight: Appearance.font.icon
             Layout.preferredWidth: height * 2
             active: BluetoothManager.currentAdapter?.discovering
+            enabled: BluetoothManager.enabled
 
             onToggled: BluetoothManager.toggleDiscovering()
         }
