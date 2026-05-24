@@ -4,24 +4,14 @@ local terminal = "alacritty"
 local browser = "firefox"
 local fileManager = "nautilus"
 
-local launch = function(app)
-    return "uwsm app -- \"$(" .. app .. ")\""
-end
-
-local wofi = function(app)
-    return "pkill wofi || " .. launch(app)
-end
-
 hl.bind(mainMod .. " + W", hl.dsp.window.close())
 hl.bind(mainMod .. " + T", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + Z", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
 hl.bind(mainMod .. " + SHIFT + Z", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
 
--- Wofi
-hl.bind(mainMod .. " + SPACE",
-    hl.dsp.exec_cmd(wofi("wofi --show drun --define=drun-print_desktop_file=true")))
-hl.bind(mainMod .. " + PERIOD", hl.dsp.exec_cmd(wofi("rofimoji")))
-hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd(wofi("cliphist list | wofi --dmenu | cliphist decode | wl-copy")))
+-- App launcher
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("hyprlauncher -t"))
+hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("cliphist list | hyprlauncher -t --dmenu | cliphist decode | wl-copy"))
 
 -- Universal Copy / Paste
 hl.bind(mainMod .. " + C", hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert" }))
