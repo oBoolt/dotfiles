@@ -29,9 +29,9 @@ hl.bind(mainMod .. " + V", hl.dsp.send_shortcut({ mods = "SHIFT", key = "Insert"
 hl.bind(mainMod .. " + X", hl.dsp.send_shortcut({ mods = "CTRL", key = "X" }))
 
 -- Applications
-hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(launch(terminal)))
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(launch(browser)))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(launch(fileManager)))
+hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(RUN(terminal)))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(RUN(browser)))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(RUN(fileManager)))
 
 -- Change active window with arrows
 hl.bind(mainMod .. " + LEFT", hl.dsp.focus({ direction = "left" }), { submap_universal = true })

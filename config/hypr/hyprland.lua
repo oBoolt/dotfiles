@@ -21,6 +21,10 @@ do
     end
 end
 
+function RUN(app)
+    return "runapp " .. app
+end
+
 require("modules")
 require("rules")
 
