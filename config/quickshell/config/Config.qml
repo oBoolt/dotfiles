@@ -10,7 +10,8 @@ Singleton {
     property alias debug: adapter.debug
     property alias locale: adapter.locale
     property alias scaleFactor: adapter.scaleFactor
-    property alias wallpaper: adapter.wallpaper
+    property alias wallpaperIndex: adapter.wallpaperIndex
+    property int wallpapersSize: 0
 
     property alias modules: adapter.modules
     property AppearanceConfig appearance: AppearanceConfig {}
@@ -21,16 +22,13 @@ Singleton {
     property alias controlcenter: adapter.controlcenter
     property alias bar: adapter.bar
 
-    function setWallpaper(screen: ShellScreen, path: string) {
-        root.wallpaper[screen.name] = path;
-    }
-
     function getScaleFactor(screen: ShellScreen): real {
         return root.scaleFactor[screen?.name] ?? 1;
     }
 
-    function getWallpaper(screen: ShellScreen): string {
-        return root.wallpaper[screen?.name] ?? (Quickshell.env("XDG_CONFIG_HOME") + "/wallpapers/default.jpg");
+    function setWallpaper(index: int): void {
+        root.wallpaperIndex = index % wallpapersSize;
+        fileView.writeAdapter();
     }
 
     FileView {
@@ -69,15 +67,7 @@ Singleton {
 
                 return result;
             }
-            property var wallpaper: {
-                let result = {};
-                let defaultPath = Quickshell.env("XDG_CONFIG_HOME") + "/wallpapers/default.jpg";
-                for (let i = 0; i < Quickshell.screens.length; i++) {
-                    result[Quickshell.screens[i].name] = defaultPath;
-                }
-
-                return result;
-            }
+            property int wallpaperIndex: 0
 
             property ModulesConfig modules: ModulesConfig {}
             property PathsConfig paths: PathsConfig {}

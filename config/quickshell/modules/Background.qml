@@ -1,9 +1,11 @@
 import QtQuick
+import Qt.labs.folderlistmodel
 
 import Quickshell
 import Quickshell.Wayland
 
 import qs.config
+import qs.utils
 
 LazyLoader {
     active: Config.modules.background && (Quickshell.screens.length > 0)
@@ -14,12 +16,7 @@ LazyLoader {
         PanelWindow {
             id: root
             required property ShellScreen modelData
-            property list<string> wallpapers: getWallpapers()
-            property int currentWallpaperIndex: 3
-
-            function getWallpapers(): var {
-                return ["hk-1-3840_2160", "hk-2-3840_4006", "hk-3_4000_2250", "hk-4-3840_2160"];
-            }
+            property list<string> wallpapers: []
 
             screen: modelData
             exclusionMode: ExclusionMode.Ignore
@@ -31,11 +28,33 @@ LazyLoader {
                 right: true
             }
 
+            FolderListModel {
+                id: folderModel
+                folder: Qt.resolvedUrl(Quickshell.env("XDG_CONFIG_HOME") + "/wallpapers/")
+                nameFilters: ["*.png", "*.jpg", "*.jpeg"]
+                showDirs: false
+                onStatusChanged: {
+                    if (folderModel.status == FolderListModel.Ready) {
+                        for (let i = 0; i < folderModel.count; i++) {
+                            let path = folderModel.get(i, "filePath");
+                            let name = folderModel.get(i, "fileBaseName");
+
+                            if (name == "default")
+                                continue;
+
+                            root.wallpapers.push(path);
+                        }
+
+                        Config.wallpapersSize = root.wallpapers.length;
+                    }
+                }
+            }
+
             Image {
                 id: backgroundItem
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectCrop
-                source: Qt.resolvedUrl(Config.getWallpaper(root.screen))
+                source: root.wallpapers.length > 0 ? Qt.resolvedUrl(root.wallpapers[(Config.wallpaperIndex % root.wallpapers.length)]) : ""
             }
         }
     }
