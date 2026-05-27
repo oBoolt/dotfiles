@@ -1,11 +1,13 @@
 import QtQuick
 import Qt.labs.folderlistmodel
+import QtQuick.Layouts
 
 import Quickshell
 import Quickshell.Wayland
 
 import qs.config
 import qs.utils
+import qs.components
 
 LazyLoader {
     active: Config.modules.background && (Quickshell.screens.length > 0)
@@ -55,6 +57,29 @@ LazyLoader {
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectCrop
                 source: root.wallpapers.length > 0 ? Qt.resolvedUrl(root.wallpapers[(Config.wallpaperIndex % root.wallpapers.length)]) : ""
+            }
+
+            RowLayout {
+                spacing: 4
+                implicitHeight: 16
+                implicitWidth: (height * 2) + spacing
+                y: root.screen.height - implicitHeight - spacing
+                x: root.screen.width - implicitWidth - spacing
+
+                Button {
+                    Layout.preferredWidth: parent.height
+                    Layout.preferredHeight: parent.height
+                    background.hover: true
+                    icon: Icons.GoPreviousSymbolic
+                    onClicked: Config.setWallpaper(Config.wallpaperIndex - 1)
+                }
+                Button {
+                    Layout.preferredWidth: parent.height
+                    Layout.preferredHeight: parent.height
+                    background.hover: true
+                    icon: Icons.GoNextSymbolic
+                    onClicked: Config.setWallpaper(Config.wallpaperIndex + 1)
+                }
             }
         }
     }
