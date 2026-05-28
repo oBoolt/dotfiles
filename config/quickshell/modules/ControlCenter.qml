@@ -1,13 +1,10 @@
 pragma ComponentBehavior: Bound
 
 import QtQuick
-import QtQuick.Layouts
 import QtQuick.Controls
 
 import qs.utils
-import qs.components
 import qs.components.controlcenter
-import qs.services
 import qs.config
 
 Item {
