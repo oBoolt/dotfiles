@@ -15,13 +15,15 @@ Singleton {
     property bool showCalendar: false
     property bool showMpris: false
     property bool showAreaPicker: false
+    property bool showSystemTray: false
 
     property int currentClientIndex: 0
     property bool sessionLocked: false
     property int barZone: 30
-    readonly property bool isPopupOpen: (Config.modules.calendar && showCalendar || Config.modules.mpris && showMpris || Config.modules.controlcenter && showControlCenter)
+    readonly property bool isPopupOpen: (Config.modules.calendar && showCalendar || Config.modules.mpris && showMpris || Config.modules.controlcenter && showControlCenter || Config.modules.systemtray && showSystemTray)
 
     property int areaPickerMode: 0
+    property int systemTrayX: 0
 
     property ShellScreen currentScreen
     property NotificationServer notificationServer
@@ -61,6 +63,7 @@ Singleton {
         root.showCalendar = false;
         root.showMpris = false;
         root.showControlCenter = false;
+        root.showSystemTray = false;
     }
 
     function toggleAreaPicker(mode: int): void {

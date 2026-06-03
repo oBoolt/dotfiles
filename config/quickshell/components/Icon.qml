@@ -11,6 +11,7 @@ Item {
     id: root
     property int icon: -1
     property string iconString
+    property bool rawSource: false
     property alias color: colorOverlay.color
     property int implicitSize: (height * 0.7) % 2 === 0 ? height * 0.7 : height * 0.7 + 1
 
@@ -27,7 +28,7 @@ Item {
             id: image
             anchors.fill: parent
             // implicitSize: parent.height * 0.75
-            source: (root.icon != -1) ? Icons.get(root.icon) : (root.iconString != null || root.iconString != "") ? Quickshell.iconPath(root.iconString) : "unknown"
+            source: (root.icon != -1) ? Icons.get(root.icon) : ((root.iconString != null || root.iconString != "") && !root.rawSource) ? Quickshell.iconPath(root.iconString) : root.iconString
 
             ColorOverlay {
                 id: colorOverlay

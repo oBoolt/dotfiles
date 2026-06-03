@@ -10,4 +10,5 @@ JsonObject {
     property bool mpris: true
     property bool background: true
     property bool areapicker: true
+    property bool systemtray: true
 }

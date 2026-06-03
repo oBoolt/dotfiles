@@ -113,7 +113,11 @@ Item {
                             Layout.preferredHeight: Appearance.font.icon
                             Layout.preferredWidth: height
                         }
-                        //TODO: SystemUsage
+                        Separator {}
+                        SystemTrayButton {
+                            Layout.preferredHeight: Appearance.font.icon
+                            Layout.preferredWidth: height
+                        }
                     }
                 }
                 Item {

@@ -85,6 +85,9 @@ ShellRoot {
                 Region {
                     item: (Config.modules.notifications && States.notificationServer?.trackedNotifications.values.length > 0) ? notificationsItem : null
                 }
+                Region {
+                    item: (Config.modules.systemtray && States.showSystemTray) ? systemTrayItem : null
+                }
             }
 
             Bar {
@@ -101,6 +104,9 @@ ShellRoot {
             }
             Notifications {
                 id: notificationsItem
+            }
+            SystemTray {
+                id: systemTrayItem
             }
 
             Component.onCompleted: States.barZone = Config.modules.bar ? itemRect(barItem).height : 0
