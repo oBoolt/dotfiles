@@ -29,7 +29,7 @@
       "src": "g:saadparwaiz1/cmp_luasnip"
     },
     "grug-far.nvim": {
-      "rev": "5506c2f59dc9ab2ed6c233585412b24d31d51521",
+      "rev": "c995bbacf8229dc096ec1c3d60f8531059c86c1b",
       "src": "g:MagicDuck/grug-far.nvim"
     },
     "gruvbox.nvim": {
@@ -37,15 +37,15 @@
       "src": "g:ellisonleao/gruvbox.nvim"
     },
     "mason-lspconfig.nvim": {
-      "rev": "7b01e2974a47d489bb92f47a41e4c0088ea8f86e",
+      "rev": "0a695750d747db1e7e70bcf0267ef8951c95fc83",
       "src": "g:mason-org/mason-lspconfig.nvim"
     },
     "mason.nvim": {
-      "rev": "bb639d4bf385a4d89f478b83af4d770be05ab7eb",
+      "rev": "16ba83bfc8a25f52bb545134f5bee082b195c460",
       "src": "g:mason-org/mason.nvim"
     },
     "mini.nvim": {
-      "rev": "15abccbe23525ee0502d2efe620c77db00bfb93c",
+      "rev": "ff8b3580935818ef2f21bdd651f057a2ae071eab",
       "src": "g:echasnovski/mini.nvim"
     },
     "nvim-biscuits": {
@@ -65,7 +65,7 @@
       "src": "g:rcarriga/nvim-dap-ui"
     },
     "nvim-lspconfig": {
-      "rev": "6f76a3eeadc2ee235d74cd7d5319e95a261084af",
+      "rev": "ed19590a3a9792901553c388d1aadafce012f80d",
       "src": "g:neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -85,7 +85,7 @@
       "src": "g:MeanderingProgrammer/render-markdown.nvim"
     },
     "ripgrep": {
-      "rev": "4857d6fa67db69a95cd4b6f2adda5d807d4d0119",
+      "rev": "82313cf95849bfe425109ad9506a52154879b1b1",
       "src": "g:BurntSushi/ripgrep"
     },
     "telescope-fzf-native.nvim": {

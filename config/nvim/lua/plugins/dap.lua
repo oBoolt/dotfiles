@@ -86,5 +86,12 @@ dap.listeners.before.event_exited.dapui_config = function()
     dapui.close()
 end
 
-vim.keymap.set("n", "<Leader>db", dap.toggle_breakpoint, {})
-vim.keymap.set("n", "<Leader>dc", dap.continue, {})
+vim.keymap.set("n", "<Leader>b", dap.toggle_breakpoint, {})
+vim.keymap.set("n", "<Leader>c", dap.continue, {})
+vim.keymap.set("n", "<Leader>r", dap.restart, {})
+vim.keymap.set("n", "<Leader><Esc>", dap.terminate, {})
+
+vim.keymap.set("n", "<Up>", dap.restart_frame, {})
+vim.keymap.set("n", "<Down>", dap.step_over, {})
+vim.keymap.set("n", "<Right>", dap.step_into, {})
+vim.keymap.set("n", "<Left>", dap.step_out, {})
