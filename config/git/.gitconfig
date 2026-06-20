@@ -3,6 +3,7 @@
 [user]
     name = oBoolt
     email = bernardo.patto.pinheiro@gmail.com
+	signingkey = ~/.ssh/id_ed25519.pub
 [core]
     editor = nvim
     autocrlf = input
@@ -39,3 +40,7 @@
 	rebase = true
 [url "https://github.com/"]
 	insteadOf = g:
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
