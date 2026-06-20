@@ -9,7 +9,6 @@ Singleton {
     id: root
     property alias debug: adapter.debug
     property alias locale: adapter.locale
-    property alias scaleFactor: adapter.scaleFactor
     property alias wallpaperIndex: adapter.wallpaperIndex
     property int wallpapersSize: 0
 
@@ -21,10 +20,6 @@ Singleton {
     property alias brightness: adapter.brightness
     property alias controlcenter: adapter.controlcenter
     property alias bar: adapter.bar
-
-    function getScaleFactor(screen: ShellScreen): real {
-        return root.scaleFactor[screen?.name] ?? 1;
-    }
 
     function setWallpaper(index: int): void {
         root.wallpaperIndex = index % wallpapersSize;
@@ -58,15 +53,6 @@ Singleton {
             id: adapter
             property bool debug: false
             property string locale: "en_US"
-            property var scaleFactor: {
-                let result = {};
-                for (let i = 0; i < Quickshell.screens.length; i++) {
-                    let current = Quickshell.screens[i];
-                    result[current.name] = 1;
-                }
-
-                return result;
-            }
             property int wallpaperIndex: 0
 
             property ModulesConfig modules: ModulesConfig {}

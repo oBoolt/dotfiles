@@ -32,13 +32,6 @@ Scope {
         hideTimer.restart();
     }
 
-    IpcHandler {
-        target: "osd"
-        function showOSD(type: int, iconName: string, value: string): void {
-            root.showOSD(type, Icons.getKey(iconName), value);
-        }
-    }
-
     Timer {
         id: hideTimer
         interval: Config.osd.hideTime
@@ -51,8 +44,8 @@ Scope {
         PanelWindow {
             id: window
             screen: States.currentScreen
-            implicitWidth: 200 * Config.scaleFactor[screen.name]
-            implicitHeight: 50 * Config.scaleFactor[screen.name]
+            implicitWidth: 200
+            implicitHeight: 50
             anchors.bottom: true
             margins.bottom: screen.height / 7
             exclusiveZone: 0

@@ -18,8 +18,6 @@ Item {
     anchors.topMargin: Appearance.margin.normal + States.barZone
     x: parent.width / 2 - this.width / 2
 
-    // implicitWidth: 450 * Config.scaleFactor[screen.name]
-    // implicitHeight: 130 * Config.scaleFactor[screen.name]
     implicitWidth: 450
     implicitHeight: 130
 

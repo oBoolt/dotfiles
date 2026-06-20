@@ -21,8 +21,6 @@ Item {
         leftMargin: Appearance.margin.normal
     }
 
-    // implicitWidth: 400 * Config.scaleFactor[screen.name]
-    // implicitHeight: 350 * Config.scaleFactor[screen.name]
     implicitWidth: 400
     implicitHeight: 350
 
