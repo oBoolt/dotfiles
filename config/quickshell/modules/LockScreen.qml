@@ -9,10 +9,11 @@ import qs.utils
 import qs.config
 import qs.services
 import qs.components
+import qs.modules
 
 WlSessionLock {
     id: lock
-    locked: States.sessionLocked
+    locked: ModulesState.showSessionLock
 
     component ActionButton: Button {
         background.visible: true

@@ -6,9 +6,10 @@ import Quickshell.Wayland
 import qs.utils
 import qs.config
 import qs.services
+import qs.modules
 
 LazyLoader {
-    active: Config.modules.areapicker && States.showAreaPicker
+    active: ModulesState.showAreaPicker
 
     enum Enum {
         Screenshot

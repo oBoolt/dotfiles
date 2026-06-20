@@ -11,6 +11,7 @@ import Quickshell.Widgets
 import qs.config
 import qs.utils
 import qs.components
+import qs.modules
 
 Item {
     id: root
@@ -102,7 +103,7 @@ Item {
     }
 
     Loader {
-        active: Config.modules.mpris && States.showMpris
+        active: ModulesState.showMpris
         anchors.fill: parent
 
         sourceComponent: Rectangle {

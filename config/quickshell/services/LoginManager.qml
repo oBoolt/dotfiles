@@ -1,7 +1,7 @@
 pragma Singleton
 import Quickshell.Services.Pam
 
-import qs.utils
+import qs.modules
 
 PamContext {
     id: root
@@ -24,7 +24,7 @@ PamContext {
     onCompleted: result => {
         root.result = PamResult.toString(result);
         if (result == PamResult.Success) {
-            States.unlockSession();
+            ModulesState.unlockSession();
         }
     }
 }

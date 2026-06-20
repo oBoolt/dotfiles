@@ -3,12 +3,12 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 
-import Quickshell
 import Quickshell.Services.SystemTray
 
 import qs.config
 import qs.utils
 import qs.components
+import qs.modules
 
 Item {
     id: root
@@ -25,7 +25,7 @@ Item {
     implicitWidth: parent.width * 0.1
 
     Loader {
-        active: Config.modules.systemtray && States.showSystemTray
+        active: ModulesState.showSystemTray
         anchors.fill: parent
         sourceComponent: Rectangle {
             anchors.fill: parent

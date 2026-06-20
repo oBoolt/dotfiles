@@ -5,6 +5,7 @@ import qs.config
 import qs.components
 import qs.services
 import qs.utils
+import qs.modules
 
 Page {
     id: root
@@ -42,7 +43,7 @@ Page {
             Layout.preferredHeight: Appearance.font.icon
             hoverEnabled: true
             icon: Icons.SystemLockScreenSymbolic
-            onClicked: States.lockSession()
+            onClicked: ModulesState.lockSession()
         }
 
         Button {

@@ -2,6 +2,7 @@ import QtQuick
 
 import qs.components
 import qs.utils
+import qs.modules
 
 Button {
     icon: Icons.OpenMenuSymbolic
@@ -9,6 +10,6 @@ Button {
 
     onClicked: {
         States.updateCurrentScreen();
-        States.toggleControlCenter();
+        ModulesState.toggleControlCenter();
     }
 }

@@ -11,4 +11,5 @@ JsonObject {
     property bool background: true
     property bool areapicker: true
     property bool systemtray: true
+    property bool sessionlock: true
 }

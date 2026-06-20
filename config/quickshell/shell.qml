@@ -7,6 +7,7 @@ import QtQuick // qmllint disable
 import qs.services
 import qs.modules
 import qs.config
+import qs.modules
 import qs.utils
 
 ShellRoot {
@@ -23,8 +24,8 @@ ShellRoot {
 
     HyprlandFocusGrab {
         windows: windowsWrapper.instances
-        active: States.isPopupOpen
-        onCleared: States.closeAll()
+        active: ModulesState.isModuleOpen
+        onCleared: ModulesState.closeAll()
     }
 
     GlobalShortcuts {}
@@ -74,19 +75,19 @@ ShellRoot {
                     item: Config.modules.bar ? barItem : null
                 }
                 Region {
-                    item: (Config.modules.mpris && States.showMpris) ? mprisItem : null
+                    item: ModulesState.showMpris ? mprisItem : null
                 }
                 Region {
-                    item: (Config.modules.controlcenter && States.showControlCenter) ? controlCenterItem : null
+                    item: ModulesState.showControlCenter ? controlCenterItem : null
                 }
                 Region {
-                    item: (Config.modules.calendar && States.showCalendar) ? calendarItem : null
+                    item: ModulesState.showCalendar ? calendarItem : null
                 }
                 Region {
-                    item: (Config.modules.notifications && States.notificationServer?.trackedNotifications.values.length > 0) ? notificationsItem : null
+                    item: ModulesState.showSystemTray ? systemTrayItem : null
                 }
                 Region {
-                    item: (Config.modules.systemtray && States.showSystemTray) ? systemTrayItem : null
+                    item: (Config.modules.notifications && ModulesState.notificationServer?.trackedNotifications.values.length > 0) ? notificationsItem : null
                 }
             }
 

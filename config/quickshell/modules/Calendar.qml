@@ -10,6 +10,7 @@ import qs.config
 import qs.components
 import qs.utils
 import qs.services
+import qs.modules
 
 Item {
     id: root
@@ -25,7 +26,7 @@ Item {
     implicitHeight: 350
 
     Loader {
-        active: Config.modules.calendar && States.showCalendar
+        active: ModulesState.showCalendar
         anchors.fill: parent
 
         sourceComponent: Rectangle {

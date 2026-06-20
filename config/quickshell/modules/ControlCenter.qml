@@ -6,6 +6,7 @@ import QtQuick.Controls
 import qs.utils
 import qs.components.controlcenter
 import qs.config
+import qs.modules
 
 Item {
     id: root
@@ -22,7 +23,7 @@ Item {
 
     Loader {
         id: loader
-        active: Config.modules.controlcenter && States.showControlCenter
+        active: ModulesState.showControlCenter
         anchors.fill: parent
 
         property StackView stackView

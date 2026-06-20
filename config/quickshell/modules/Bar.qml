@@ -6,7 +6,7 @@ import QtQuick.Layouts
 import qs.config
 import qs.components
 import qs.components.bar
-import qs.utils as Utils
+import qs.modules
 
 Item {
     id: root
@@ -69,7 +69,7 @@ Item {
                     // TODO: Make a nicer way to access mpris
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: Utils.States.toggleMpris()
+                        onClicked: ModulesState.toggleMpris()
                     }
 
                     Title {

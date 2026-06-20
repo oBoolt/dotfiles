@@ -7,20 +7,11 @@ import Quickshell.Services.Notifications
 
 import QtQuick
 
-import qs.config
-
 Singleton {
     id: root
-    property bool showControlCenter: false
-    property bool showCalendar: false
-    property bool showMpris: false
-    property bool showAreaPicker: false
-    property bool showSystemTray: false
 
     property int currentClientIndex: 0
-    property bool sessionLocked: false
     property int barZone: 30
-    readonly property bool isPopupOpen: (Config.modules.calendar && showCalendar || Config.modules.mpris && showMpris || Config.modules.controlcenter && showControlCenter || Config.modules.systemtray && showSystemTray)
 
     property int areaPickerMode: 0
     property int systemTrayX: 0
@@ -37,37 +28,5 @@ Singleton {
                 root.currentScreen = Quickshell.screens[i];
             }
         }
-    }
-
-    function toggleControlCenter(): void {
-        root.showControlCenter = !root.showControlCenter;
-    }
-
-    function toggleCalendar(): void {
-        root.showCalendar = !root.showCalendar;
-    }
-
-    function toggleMpris(): void {
-        root.showMpris = !root.showMpris;
-    }
-
-    function lockSession(): void {
-        root.sessionLocked = true;
-    }
-
-    function unlockSession(): void {
-        root.sessionLocked = false;
-    }
-
-    function closeAll(): void {
-        root.showCalendar = false;
-        root.showMpris = false;
-        root.showControlCenter = false;
-        root.showSystemTray = false;
-    }
-
-    function toggleAreaPicker(mode: int): void {
-        root.areaPickerMode = mode;
-        root.showAreaPicker = !root.showAreaPicker;
     }
 }

@@ -3,18 +3,19 @@ import Quickshell
 
 import qs.components
 import qs.config
-import qs.utils
 import qs.modules
 import qs.services
+import qs.utils
+import qs.modules
 
 Scope {
     Shortcut {
         name: "closePopups"
         description: "Close all current opened popups"
         onPressed: {
-            if (!States.isPopupOpen)
+            if (!ModulesState.isPopupOpen)
                 return;
-            States.closeAll();
+            ModulesState.closeAll();
         }
     }
 
@@ -22,9 +23,9 @@ Scope {
         name: "toggleMpris"
         description: "Toggle mpris state"
         onPressed: {
-            if (!Config.modules.mpris || States.currentTopLevelFullscreen)
+            if (!Config.modules.mpris || ModulesState.currentTopLevelFullscreen)
                 return;
-            States.toggleMpris();
+            ModulesState.toggleMpris();
         }
     }
 
@@ -32,7 +33,7 @@ Scope {
         name: "areaScreenshot"
         description: "Open an area picker to take a screenshot using grim"
         onPressed: {
-            States.toggleAreaPicker(AreaPicker.Screenshot);
+            ModulesState.toggleAreaPicker(AreaPicker.Screenshot);
         }
     }
 
@@ -41,7 +42,7 @@ Scope {
         description: "Take a screenshot of the fullscreen"
         onPressed: {
             States.updateCurrentScreen();
-            let currentScreen = States.currentScreen;
+            let currentScreen = ModulesState.currentScreen;
             ScreenshotManager.capture(Qt.rect(0, 0, currentScreen.width, currentScreen.height));
         }
     }
