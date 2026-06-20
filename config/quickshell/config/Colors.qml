@@ -27,9 +27,9 @@ Singleton {
     property alias second: adapter.second
     property color topSecond: Qt.hsla(second.hslHue, second.hslSaturation, second.hslLightness - 0.4, 1)
 
-    property color danger: Qt.hsla(0, saturation * 1.25, 0.5, 1)
-    property color warning: Qt.hsla(60 / 360, saturation * 1.5, 0.5, 1)
-    property color good: Qt.hsla(120 / 360, saturation, 0.5, 1)
+    property alias danger: adapter.danger
+    property alias warning: adapter.warning
+    property alias good: adapter.good
 
     function getColor(percentage: real): color {
         if (percentage >= 0.75)
@@ -68,6 +68,9 @@ Singleton {
             property color foreground: darkMode ? "white" : "black"
             property color main: "aqua"
             property color second: "purple"
+            property color danger: "red"
+            property color warning: "yellow"
+            property color good: "green"
         }
     }
 }

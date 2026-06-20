@@ -3,5 +3,8 @@
     "background": "#1d2021",
     "foreground": "#ebdbb2",
     "main": "#8ec07c",
-    "second": "#d3869b"
+    "second": "#d3869b",
+    "danger": "#cc241d",
+    "warning": "#fabd2f",
+    "good": "#b8bb26"
 }
