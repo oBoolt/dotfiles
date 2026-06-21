@@ -51,7 +51,7 @@ Item {
                 Timer {
                     id: timer
                     running: not.modelData.urgency !== NotificationUrgency.Critical
-                    interval: 3000
+                    interval: Config.notification.timeout
                     onTriggered: not.modelData.dismiss()
                 }
 
