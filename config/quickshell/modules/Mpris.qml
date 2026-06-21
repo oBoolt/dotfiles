@@ -48,7 +48,7 @@ Item {
         name: "togglePlaying"
         description: "Toggle the state of current client if possible"
         onPressed: {
-            if (!States.showMpris || !Config.modules.mpris)
+            if (!ModulesState.showMpris || !Config.modules.mpris)
                 return;
             root.current?.canTogglePlaying ? root.current?.togglePlaying() : null;
         }
@@ -58,7 +58,7 @@ Item {
         name: "nextClient"
         description: "Change to next mpris client"
         onPressed: {
-            if (!Config.modules.mpris || !States.showMpris)
+            if (!Config.modules.mpris || !ModulesState.showMpris)
                 return;
             root.nextClient();
         }
@@ -68,7 +68,7 @@ Item {
         name: "previousClient"
         description: "Change to previous mpris client"
         onPressed: {
-            if (!Config.modules.mpris || !States.showMpris)
+            if (!Config.modules.mpris || !ModulesState.showMpris)
                 return;
             root.previousClient();
         }
@@ -78,7 +78,7 @@ Item {
         name: "nextTrack"
         description: "Go to the next track"
         onPressed: {
-            if (!Config.modules.mpris || !States.showMpris)
+            if (!Config.modules.mpris || !ModulesState.showMpris)
                 return;
             root.current?.canGoNext ? root.current?.next() : null;
         }
@@ -88,7 +88,7 @@ Item {
         name: "previousTrack"
         description: "Go to the previous track"
         onPressed: {
-            if (!Config.modules.mpris || !States.showMpris)
+            if (!Config.modules.mpris || !ModulesState.showMpris)
                 return;
             root.current?.canGoPrevious ? root.current?.previous() : null;
         }
@@ -96,7 +96,7 @@ Item {
     // qmllint enable unresolved-type
 
     Timer {
-        running: States.showMpris && root.haveClient && root.current?.playbackState == MprisPlaybackState.Playing && root.current?.positionSupported
+        running: ModulesState.showMpris && root.haveClient && root.current?.playbackState == MprisPlaybackState.Playing && root.current?.positionSupported
         interval: 1000
         repeat: true
         onTriggered: root.current?.positionChanged()

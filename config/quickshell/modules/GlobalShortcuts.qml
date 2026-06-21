@@ -13,7 +13,7 @@ Scope {
         name: "closePopups"
         description: "Close all current opened popups"
         onPressed: {
-            if (!ModulesState.isPopupOpen)
+            if (!ModulesState.isModuleOpen)
                 return;
             ModulesState.closeAll();
         }
@@ -23,7 +23,7 @@ Scope {
         name: "toggleMpris"
         description: "Toggle mpris state"
         onPressed: {
-            if (!Config.modules.mpris || ModulesState.currentTopLevelFullscreen)
+            if (!Config.modules.mpris || States.currentTopLevelFullscreen)
                 return;
             ModulesState.toggleMpris();
         }
@@ -42,7 +42,7 @@ Scope {
         description: "Take a screenshot of the fullscreen"
         onPressed: {
             States.updateCurrentScreen();
-            let currentScreen = ModulesState.currentScreen;
+            let currentScreen = States.currentScreen;
             ScreenshotManager.capture(Qt.rect(0, 0, currentScreen.width, currentScreen.height));
         }
     }
