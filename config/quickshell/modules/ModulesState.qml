@@ -1,10 +1,14 @@
 pragma Singleton
 
 import Quickshell
+import Quickshell.Services.Notifications
+
 import qs.config
 
 Singleton {
     id: root
+
+    property NotificationServer _notificationServer
 
     property bool _showControlCenter: false
     property bool _showCalendar: false
@@ -19,6 +23,7 @@ Singleton {
     readonly property bool showAreaPicker: Config.modules.areapicker && _showAreaPicker
     readonly property bool showSystemTray: Config.modules.systemtray && _showSystemTray
     readonly property bool showSessionLock: Config.modules.sessionlock && _showSessionLock
+    readonly property bool showNotifications: Config.modules.notifications && _notificationServer.trackedNotifications?.values.length > 0
 
     readonly property bool isModuleOpen: showControlCenter || showCalendar || showMpris || showAreaPicker || showSystemTray
 
@@ -56,5 +61,9 @@ Singleton {
 
     function unlockSession(): void {
         root._showSessionLock = false;
+    }
+
+    function setNotificationServer(server: var): void {
+        root._notificationServer = server;
     }
 }

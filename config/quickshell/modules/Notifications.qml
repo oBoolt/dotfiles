@@ -1,4 +1,3 @@
-pragma ComponentBehavior: Bound
 import Quickshell.Services.Notifications
 
 import QtQuick
@@ -6,24 +5,25 @@ import QtQuick.Layouts
 
 import qs.config
 import qs.utils
-import qs.components.notifications
+import qs.components
 
 Item {
     id: root
-    // readonly property int properHeight: 100 * Config.getScaleFactor(screen)
-    readonly property int properHeight: 75
-    readonly property int size: {
-        if (States.notificationServer?.trackedNotifications.values.length >= Config.notification.maxDisplay)
-            return Config.notification.maxDisplay;
-        return States.notificationServer?.trackedNotifications.values.length;
+
+    NotificationServer {
+        id: server
+        bodySupported: true
+        imageSupported: true
+
+        onNotification: not => {
+            not.tracked = true;
+        }
+
+        Component.onCompleted: ModulesState.setNotificationServer(server)
     }
 
-    visible: root.size > 0
-    // implicitWidth: 380 * Config.getScaleFactor(screen)
     implicitWidth: 300
-    implicitHeight: properHeight * root.size + root.size * (Appearance.spacing.small - 1)
-    // clip: true
-
+    implicitHeight: column.height
     anchors {
         top: parent.top
         right: parent.right
@@ -33,15 +33,71 @@ Item {
     }
 
     ColumnLayout {
-        anchors.fill: parent
-        spacing: Appearance.spacing.small
+        id: column
+        width: parent.width
+        spacing: Appearance.spacing.normal
 
         Repeater {
-            model: States.notificationServer?.trackedNotifications
-            Notification {
-                Layout.fillWidth: true
-                Layout.preferredHeight: root.properHeight
-                Layout.alignment: Qt.AlignTop
+            model: server.trackedNotifications
+            delegate: Rectangle {
+                id: not
+                required property Notification modelData
+                implicitWidth: parent.width
+                implicitHeight: 60
+                color: Colors.background
+                border.width: 2
+                border.color: modelData.urgency === NotificationUrgency.Critical ? Colors.danger : Colors.container
+
+                Timer {
+                    id: timer
+                    running: not.modelData.urgency !== NotificationUrgency.Critical
+                    interval: 3000
+                    onTriggered: not.modelData.dismiss()
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: {
+                        timer.running = false;
+                        not.modelData.dismiss();
+                    }
+                }
+
+                RowLayout {
+                    anchors.fill: parent
+                    anchors.margins: 10
+                    spacing: Appearance.spacing.small
+
+                    Image {
+                        Layout.preferredHeight: parent.height
+                        Layout.preferredWidth: height
+                        Layout.alignment: Qt.AlignTop
+                        fillMode: Image.PreserveAspectFit
+                        visible: source.toString() !== ""
+                        source: not.modelData.image || not.modelData.appIcon || ""
+                    }
+
+                    ColumnLayout {
+                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignLeft
+                        spacing: 0
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: not.modelData.summary
+                            elide: Text.ElideRight
+                        }
+                        Text {
+                            Layout.fillWidth: true
+                            elide: Text.ElideRight
+                            text: not.modelData.body
+                            font.bold: false
+                            font.pixelSize: Appearance.font.small
+                            visible: text !== ""
+                        }
+                    }
+                }
             }
         }
     }

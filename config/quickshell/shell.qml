@@ -1,26 +1,14 @@
 import Quickshell
 import Quickshell.Hyprland
-import Quickshell.Services.Notifications
 
 import QtQuick // qmllint disable
 
 import qs.services
-import qs.modules
 import qs.config
 import qs.modules
 import qs.utils
 
 ShellRoot {
-    NotificationServer {
-        bodySupported: true
-        imageSupported: true
-
-        onNotification: not => {
-            not.tracked = true;
-        }
-
-        Component.onCompleted: States.notificationServer = this
-    }
 
     HyprlandFocusGrab {
         windows: windowsWrapper.instances
@@ -87,7 +75,7 @@ ShellRoot {
                     item: ModulesState.showSystemTray ? systemTrayItem : null
                 }
                 Region {
-                    item: (Config.modules.notifications && ModulesState.notificationServer?.trackedNotifications.values.length > 0) ? notificationsItem : null
+                    item: ModulesState.showNotifications ? notificationsItem : null
                 }
             }
 
