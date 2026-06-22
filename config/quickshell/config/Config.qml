@@ -58,7 +58,7 @@ Singleton {
             property ModulesConfig modules: ModulesConfig {}
             property PathsConfig paths: PathsConfig {}
             property NotificationConfig notification: NotificationConfig {}
-            property OSDConfig osd: OSDConfig {}
+            property OsdConfig osd: OsdConfig {}
             property BrightnessConfig brightness: BrightnessConfig {}
             property ControlCenterConfig controlcenter: ControlCenterConfig {}
             property BarConfig bar: BarConfig {}

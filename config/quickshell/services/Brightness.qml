@@ -18,6 +18,7 @@ Singleton {
 
     onCurrentChanged: {
         icon = root.getBrightnessIcon(percentage);
+        OsdManager.show(root.icon, root.percentage);
     }
 
     function set(percentage: real): void {

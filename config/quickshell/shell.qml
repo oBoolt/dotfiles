@@ -3,13 +3,11 @@ import Quickshell.Hyprland
 
 import QtQuick // qmllint disable
 
-import qs.services
 import qs.config
 import qs.modules
 import qs.utils
 
 ShellRoot {
-
     HyprlandFocusGrab {
         windows: windowsWrapper.instances
         active: ModulesState.isModuleOpen
@@ -18,26 +16,7 @@ ShellRoot {
 
     GlobalShortcuts {}
 
-    Connections {
-        target: Audio.sink
-        function onVolumeChanged() {
-            osd.showOSD(OSD.Audio, Audio.sink.icon, Math.round(Audio.sink.volume * 100));
-        }
-        function onMutedChanged() {
-            osd.showOSD(OSD.Audio, Audio.sink.icon, Math.round(Audio.sink.volume * 100));
-        }
-    }
-
-    Connections {
-        target: Brightness
-        function onCurrentChanged() {
-            osd.showOSD(OSD.Brightness, Brightness.icon, Math.round(Brightness.percentage * 100));
-        }
-    }
-
-    OSD {
-        id: osd
-    }
+    Osd {}
     Background {}
     LockScreen {}
     AreaPicker {}

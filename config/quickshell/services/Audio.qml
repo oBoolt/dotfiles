@@ -5,6 +5,7 @@ import Quickshell
 import Quickshell.Services.Pipewire
 
 import QtQuick
+
 import qs.utils
 
 Singleton {
@@ -77,6 +78,8 @@ Singleton {
 
     readonly property PwNodeWrapper sink: PwNodeWrapper {
         node: Pipewire.defaultAudioSink
+        onVolumeChanged: OsdManager.show(this.icon, this.volume)
+        onMutedChanged: OsdManager.show(this.icon, this.volume)
     }
     readonly property PwNodeWrapper source: PwNodeWrapper {
         node: Pipewire.defaultAudioSource

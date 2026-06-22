@@ -2,5 +2,5 @@ import Quickshell.Io
 import QtQuick
 
 JsonObject {
-    property int hideTime: 1000
+    property int timeout: 1000
 }
