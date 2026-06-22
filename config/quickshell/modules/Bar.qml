@@ -51,9 +51,7 @@ Item {
                         anchors.bottom: parent.bottom
                         spacing: Appearance.spacing.normal
 
-                        Clock {
-                            parentWindow: root
-                        }
+                        Clock {}
                         Separator {}
                         Workspaces {}
                         Separator {}

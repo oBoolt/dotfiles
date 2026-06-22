@@ -6,7 +6,6 @@ import qs.services
 import qs.modules
 
 Text {
-    required property QtObject parentWindow
     text: `${Time.hours}:${Time.minutes}`
 
     MouseArea {
