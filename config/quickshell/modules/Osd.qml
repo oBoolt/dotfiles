@@ -6,7 +6,7 @@ import Quickshell.Io
 import QtQuick
 import QtQuick.Layouts
 
-import qs.config
+import qs.appearance
 import qs.utils
 import qs.components
 import qs.services

@@ -7,7 +7,7 @@ import Quickshell.Bluetooth
 
 import qs.components
 import qs.utils
-import qs.config
+import qs.appearance
 import qs.services
 
 Page {

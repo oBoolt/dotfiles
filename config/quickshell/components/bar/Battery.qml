@@ -5,7 +5,7 @@ import QtQml
 
 import qs.utils
 import qs.components
-import qs.config
+import qs.appearance
 
 Card {
     id: root

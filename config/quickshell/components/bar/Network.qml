@@ -2,7 +2,7 @@ import QtQuick
 
 import qs.services
 import qs.components
-import qs.config
+import qs.appearance
 
 Button {
     icon: NetworkManager.icon

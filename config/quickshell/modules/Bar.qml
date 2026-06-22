@@ -7,11 +7,11 @@ import qs.config
 import qs.components
 import qs.components.bar
 import qs.modules
+import qs.appearance
 
 Item {
     id: root
-    // implicitHeight: (30 * Config.getScaleFactor(screen)) + (Config.bar.floating ? Appearance.margin.normal : 0)
-    implicitHeight: 30 + (Config.bar.floating ? Appearance.margin.normal : 0)
+    implicitHeight: Appearance.modules.bar.height + (Config.bar.floating ? Appearance.margin.normal : 0)
 
     anchors {
         top: parent.top

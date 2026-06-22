@@ -1,6 +1,6 @@
 import QtQuick
 
-import qs.config
+import qs.appearance
 
 Text {
     color: Colors.foreground

@@ -46,4 +46,6 @@ Singleton {
     readonly property Margin margin: Margin {}
     readonly property Font font: Font {}
     readonly property Animations animations: Animations {}
+
+    readonly property ModulesAppearance modules: ModulesAppearance {}
 }

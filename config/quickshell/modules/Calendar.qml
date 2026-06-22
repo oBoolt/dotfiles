@@ -1,7 +1,5 @@
 pragma ComponentBehavior: Bound
 
-import Quickshell
-
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -11,6 +9,7 @@ import qs.components
 import qs.utils
 import qs.services
 import qs.modules
+import qs.appearance
 
 Item {
     id: root

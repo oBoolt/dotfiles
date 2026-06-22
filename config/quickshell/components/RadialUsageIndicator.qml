@@ -1,6 +1,6 @@
 import QtQuick
 
-import qs.config
+import qs.appearance
 import qs.components
 
 Item {

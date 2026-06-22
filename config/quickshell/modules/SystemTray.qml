@@ -5,7 +5,7 @@ import QtQuick.Layouts
 
 import Quickshell.Services.SystemTray
 
-import qs.config
+import qs.appearance
 import qs.utils
 import qs.components
 import qs.modules

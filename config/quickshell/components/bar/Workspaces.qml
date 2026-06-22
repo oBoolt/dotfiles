@@ -1,7 +1,7 @@
 import QtQuick
 import Quickshell.Hyprland
 
-import qs.config
+import qs.appearance
 
 Repeater {
     model: 5

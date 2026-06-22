@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import QtQuick.Controls
 
 import qs.components
-import qs.config
+import qs.appearance
 import qs.utils
 
 Item {

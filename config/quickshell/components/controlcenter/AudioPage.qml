@@ -5,7 +5,7 @@ import Quickshell.Services.Pipewire
 
 import qs.services
 import qs.components
-import qs.config
+import qs.appearance
 import qs.utils
 
 Page {

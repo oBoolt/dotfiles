@@ -5,7 +5,7 @@ import QtQuick.Controls
 
 import qs.utils
 import qs.components.controlcenter
-import qs.config
+import qs.appearance
 import qs.modules
 
 Item {

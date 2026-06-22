@@ -17,7 +17,6 @@ Singleton {
     property int systemTrayX: 0
 
     property ShellScreen currentScreen
-    property NotificationServer notificationServer
     readonly property bool currentTopLevelFullscreen: ToplevelManager.activeToplevel?.fullscreen ?? false
 
     function updateCurrentScreen(): void {

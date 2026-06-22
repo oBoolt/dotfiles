@@ -5,7 +5,7 @@ import Quickshell
 import Quickshell.Widgets
 
 import qs.utils
-import qs.config
+import qs.appearance
 
 Item {
     id: root

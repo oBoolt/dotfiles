@@ -1,8 +1,7 @@
 import QtQuick
 
 import qs.components
-import qs.utils
-import qs.config
+import qs.appearance
 
 Item {
     id: card

@@ -1,7 +1,7 @@
 import QtQuick
 
 import qs.components
-import qs.config
+import qs.appearance
 import qs.services
 import qs.utils
 

@@ -12,6 +12,7 @@ import qs.config
 import qs.utils
 import qs.components
 import qs.modules
+import qs.appearance
 
 Item {
     id: root
