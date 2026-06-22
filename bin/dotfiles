@@ -47,12 +47,17 @@ case "${1,,}" in
         shift 1
         "${DOTFILES_PATH}"/bin/theme "$@"
         ;;
+    edit)
+        shift 1
+        ${EDITOR} "${DOTFILES_PATH}/$@" 
+        ;;
     *)
         warn "dotfiles <COMMAND>" "help"
         warn "" "help"
         warn "COMMANDS:" "help"
         warn "  config\t\tCreate the symlinks for the dotfiles" "help"
         warn "  theme\t\tChange the current theme" "help"
+        warn "  edit\t\tOpen the dotfiles dir using your editor" "help"
         ;;
 esac
 
