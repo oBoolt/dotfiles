@@ -13,7 +13,6 @@ Singleton {
     property int wallpapersSize: 0
 
     property alias modules: adapter.modules
-    property AppearanceConfig appearance: AppearanceConfig {}
     property alias paths: adapter.paths
     property alias notification: adapter.notification
     property alias osd: adapter.osd
