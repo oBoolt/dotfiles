@@ -7,6 +7,7 @@ import qs.config
 import qs.appearance
 import qs.utils
 import qs.components
+import qs.services
 
 Item {
     id: root
@@ -18,6 +19,7 @@ Item {
 
         onNotification: not => {
             not.tracked = true;
+            NotificationHistory.push(not.summary, not.body, not.appName);
         }
 
         Component.onCompleted: ModulesState.setNotificationServer(server)
