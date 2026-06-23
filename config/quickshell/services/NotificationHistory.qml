@@ -6,6 +6,7 @@ import Quickshell.Io
 import QtQuick
 
 import qs.types
+import qs.config
 
 Singleton {
     id: root
@@ -13,7 +14,7 @@ Singleton {
     property bool _loaded: false
 
     onNotificationsChanged: {
-        if (root._loaded)
+        if (root._loaded && Config.notification.history)
             fileView.update();
     }
 
@@ -47,6 +48,9 @@ Singleton {
         }
 
         onLoadFailed: error => {
+            if (!Config.notification.history)
+                return;
+
             if (error == FileViewError.FileNotFound) {
                 fileView.update();
                 root._loaded = true;
@@ -55,6 +59,9 @@ Singleton {
         }
 
         onLoaded: {
+            if (!Config.notification.history)
+                return;
+
             let foo = JSON.parse(fileView.text());
             for (let i = 0; i < foo.length; i++) {
                 const c = foo[i];
