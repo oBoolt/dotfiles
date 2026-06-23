@@ -47,6 +47,7 @@ Singleton {
             }, 2));
         }
 
+        printErrors: !Config.notification.history
         onLoadFailed: error => {
             if (!Config.notification.history)
                 return;

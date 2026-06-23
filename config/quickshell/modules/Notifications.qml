@@ -40,6 +40,7 @@ Item {
         id: column
         width: parent.width
         spacing: Appearance.spacing.normal
+        visible: !ModulesState.showControlCenter
 
         Repeater {
             model: ScriptModel {
