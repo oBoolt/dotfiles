@@ -1,3 +1,4 @@
+import Quickshell
 import Quickshell.Services.Notifications
 
 import QtQuick
@@ -41,7 +42,9 @@ Item {
         spacing: Appearance.spacing.normal
 
         Repeater {
-            model: server.trackedNotifications
+            model: ScriptModel {
+                values: [...server.trackedNotifications.values].reverse()
+            }
             delegate: Rectangle {
                 id: not
                 required property Notification modelData
