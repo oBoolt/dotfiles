@@ -36,8 +36,8 @@ Item {
         top: parent.top
         right: parent.right
 
-        topMargin: Appearance.margin.normal + States.barZone
-        rightMargin: Appearance.margin.normal
+        rightMargin: Appearance.margin.large + 2
+        topMargin: anchors.rightMargin + States.barZone
     }
 
     ColumnLayout {
@@ -58,6 +58,7 @@ Item {
                 color: Colors.background
                 border.width: 2
                 border.color: modelData.urgency === NotificationUrgency.Critical ? Colors.danger : Colors.container
+                radius: Appearance.radius.normal
 
                 Timer {
                     id: timer
