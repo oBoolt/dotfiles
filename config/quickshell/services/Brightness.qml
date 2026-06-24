@@ -85,8 +85,12 @@ Singleton {
         id: currentFile
         path: Qt.resolvedUrl(Config.paths.backlight + "/actual_brightness")
         watchChanges: true
+        printErrors: false
         onLoadFailed: e => {
             root.valid = false;
+            if (e !== FileViewError.FileNotFound) {
+                console.error("service/Brightness:", FileViewError.toString(e));
+            }
         }
         onLoaded: {
             root.current = parseInt(text());
@@ -101,8 +105,12 @@ Singleton {
     FileView {
         blockLoading: true
         path: Qt.resolvedUrl(Config.paths.backlight + "/max_brightness")
+        printErrors: false
         onLoadFailed: e => {
             root.valid = false;
+            if (e !== FileViewError.FileNotFound) {
+                console.error("service/Brightness:", FileViewError.toString(e));
+            }
         }
         onLoaded: {
             root.max = parseInt(text());
