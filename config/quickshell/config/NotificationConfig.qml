@@ -5,4 +5,5 @@ JsonObject {
     property int timeout: 3000
     property bool history: true
     property list<string> ignore: []
+    property list<string> ephemeral: []
 }

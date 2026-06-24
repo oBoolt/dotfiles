@@ -19,10 +19,12 @@ Item {
         imageSupported: true
 
         onNotification: not => {
-            if (!Config.notification.ignore.includes(not.appName)) {
-                not.tracked = true;
+            if (Config.notification.ignore.includes(not.appName))
+                return;
+
+            not.tracked = true;
+            if (Config.notification.history)
                 NotificationHistory.push(not.summary, not.body, not.appName);
-            }
         }
 
         Component.onCompleted: ModulesState.setNotificationServer(server)
