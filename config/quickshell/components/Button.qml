@@ -10,6 +10,7 @@ Item {
     id: root
     property int icon: -1
     property color color: Colors.foreground
+    property color disabledColor: Colors.containerMute
     property color _defaultColor
     property bool _horeved: false
     property bool hoverEnabled: false
@@ -75,7 +76,7 @@ Item {
             Layout.fillHeight: true
             Layout.preferredWidth: height
             icon: root.icon
-            color: !root.enabled ? Colors.containerMute : root.color
+            color: !root.enabled ? root.disabledColor : root.color
         }
 
         Text {

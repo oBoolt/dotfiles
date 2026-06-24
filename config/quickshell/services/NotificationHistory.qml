@@ -27,20 +27,21 @@ Singleton {
             fileView.update();
     }
 
-    function _createSimpleNotification(summary: string, body: string, appName: string): QtObject {
+    function _createSimpleNotification(summary: string, body: string, appName: string, urgency: int): QtObject {
         let cmp = Qt.createComponent("../types/SimpleNotification.qml");
         let not = {
             summary,
             body,
             appName,
+            urgency,
             date: new Date()
         };
         let obj = cmp.createObject(root, not);
         return obj;
     }
 
-    function push(summary: string, body: string, appName: string): void {
-        let obj = root._createSimpleNotification(summary, body, appName);
+    function push(summary: string, body: string, appName: string, urgency: int): void {
+        let obj = root._createSimpleNotification(summary, body, appName, urgency);
         root._isEphemeral = Config.notification.ephemeral.includes(appName);
         if (root._isEphemeral)
             root._current = obj;

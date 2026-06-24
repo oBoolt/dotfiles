@@ -1,11 +1,15 @@
 import QtQuick
 import QtQuick.Layouts
 
+import Quickshell
+import Quickshell.Services.Notifications
+
 import qs.appearance
 import qs.components
 import qs.services
 import qs.utils
 import qs.modules
+import qs.types
 
 Page {
     id: root
@@ -198,9 +202,119 @@ Page {
 
     // Notification
     Rectangle {
-        // Layout.fillHeight: true
         Layout.fillWidth: true
         Layout.fillHeight: true
-        color: "red"
+        color: Colors.containerMute
+        radius: Appearance.radius.normal
+        clip: true
+
+        ColumnLayout {
+            anchors.fill: parent
+            anchors.margins: Appearance.margin.large
+            spacing: Appearance.spacing.normal
+
+            RowLayout {
+                Text {
+                    text: "Notifications"
+                }
+                Item {
+                    Layout.fillWidth: true
+                }
+                Button {
+                    Layout.preferredWidth: Appearance.font.icon
+                    Layout.preferredHeight: width
+                    icon: Icons.UserTrashSymbolic
+                    background.hover: true
+                    disabledColor: Colors.foregroundMute
+                    enabled: NotificationHistory.notifications.length > 0
+                    onClicked: NotificationHistory.clear()
+                }
+            }
+
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 1
+                color: Colors.foreground
+            }
+
+            ListView {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                spacing: Appearance.spacing.large
+                clip: true
+
+                model: ScriptModel {
+                    values: [...NotificationHistory.notifications].reverse()
+                }
+                delegate: Rectangle {
+                    id: not
+                    required property SimpleNotification modelData
+                    radius: Appearance.radius.small
+                    width: ListView.view.width
+                    height: ListView.view.height * 0.4
+                    color: Colors.container
+
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: NotificationHistory.remove(not.modelData.date)
+                    }
+
+                    ColumnLayout {
+                        anchors.fill: parent
+                        anchors {
+                            leftMargin: anchors.margins + 2
+                            rightMargin: anchors.margins + 2
+                            margins: Appearance.margin.normal - 2
+                        }
+                        // Layout.alignment: Qt.AlignTop
+                        // Layout.fillWidth: true
+                        // Layout.fillHeight: true
+                        spacing: Appearance.spacing.small - 2
+
+                        RowLayout {
+                            spacing: Appearance.spacing.small
+                            Layout.fillWidth: true
+                            Layout.maximumHeight: Appearance.font.large
+
+                            Text {
+                                Layout.alignment: Qt.AlignVCenter
+                                text: not.modelData.summary
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                            Text {
+                                Layout.alignment: Qt.AlignVCenter
+                                visible: text !== ""
+                                text: not.modelData.appName
+                                font.bold: false
+                                font.pixelSize: Appearance.font.small
+                                verticalAlignment: Text.AlignVCenter
+                                color: Colors.foregroundMute
+                            }
+                            Item {
+                                Layout.fillWidth: true
+                            }
+                            Text {
+                                Layout.alignment: Qt.AlignVCenter
+                                text: Qt.formatDateTime(not.modelData.date, "hh:mm dd/MM")
+                                font.pixelSize: Appearance.font.small
+                                verticalAlignment: Text.AlignVCenter
+                                color: Colors.foregroundMute
+                            }
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            visible: text !== ""
+                            text: not.modelData.body
+                            font.bold: false
+                            elide: Text.ElideRight
+                            wrapMode: Text.Wrap
+                        }
+                    }
+                }
+            }
+        }
     }
 }

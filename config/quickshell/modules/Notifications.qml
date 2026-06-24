@@ -24,7 +24,7 @@ Item {
 
             not.tracked = true;
             if (Config.notification.history)
-                NotificationHistory.push(not.summary, not.body, not.appName);
+                NotificationHistory.push(not.summary, not.body, not.appName, not.urgency);
         }
 
         Component.onCompleted: ModulesState.setNotificationServer(server)
