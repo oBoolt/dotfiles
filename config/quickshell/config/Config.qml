@@ -9,8 +9,10 @@ Singleton {
     id: root
     property alias debug: adapter.debug
     property alias locale: adapter.locale
+
     property alias wallpaperIndex: adapter.wallpaperIndex
-    property int wallpapersSize: 0
+    property list<string> wallpapers
+    readonly property int wallpapersSize: wallpapers.length
 
     property alias modules: adapter.modules
     property alias paths: adapter.paths
@@ -25,13 +27,17 @@ Singleton {
         fileView.writeAdapter();
     }
 
+    function getCurrentWallpaper(): string {
+        return Qt.resolvedUrl(root.wallpapers[root.wallpaperIndex]);
+    }
+
     FileView {
         id: fileView
         path: Qt.resolvedUrl(Quickshell.dataDir + "/config.json")
         watchChanges: true
 
         onFileChanged: reload()
-        onAdapterChanged: writeAdapter()
+        onAdapterUpdated: writeAdapter()
         onLoadFailed: error => {
             if (error == FileViewError.FileNotFound) {
                 fileView.createFile();

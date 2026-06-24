@@ -18,7 +18,6 @@ LazyLoader {
         PanelWindow {
             id: root
             required property ShellScreen modelData
-            property list<string> wallpapers: []
 
             screen: modelData
             exclusionMode: ExclusionMode.Ignore
@@ -44,10 +43,8 @@ LazyLoader {
                             if (name == "default")
                                 continue;
 
-                            root.wallpapers.push(path);
+                            Config.wallpapers.push(path);
                         }
-
-                        Config.wallpapersSize = root.wallpapers.length;
                     }
                 }
             }
@@ -56,7 +53,7 @@ LazyLoader {
                 id: backgroundItem
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectCrop
-                source: root.wallpapers.length > 0 ? Qt.resolvedUrl(root.wallpapers[(Config.wallpaperIndex % root.wallpapers.length)]) : ""
+                source: Config.getCurrentWallpaper()
             }
 
             RowLayout {

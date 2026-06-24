@@ -10,6 +10,7 @@ import qs.config
 import qs.services
 import qs.components
 import qs.modules
+import qs.appearance
 
 WlSessionLock {
     id: lock
@@ -37,7 +38,7 @@ WlSessionLock {
         Image {
             anchors.fill: parent
             fillMode: Image.PreserveAspectCrop
-            source: Qt.resolvedUrl(Config.wallpaper[surface.screen.name])
+            source: Config.getCurrentWallpaper()
 
             Rectangle {
                 anchors.fill: parent
@@ -140,7 +141,7 @@ WlSessionLock {
                     anchors.bottom: parent.bottom
                     implicitWidth: parent.width
                     implicitHeight: 2
-                    color: LoginManager.result == "Failed" ? Colors.critical : Colors.main
+                    color: LoginManager.result == "Failed" ? Colors.danger : Colors.main
                 }
 
                 RowLayout {
