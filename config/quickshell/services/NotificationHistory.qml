@@ -34,6 +34,10 @@ Singleton {
         root.notifications = Array.from(root.notifications).filter(c => c.date.getTime() != date.getTime());
     }
 
+    function clear(): void {
+        root.notifications = [];
+    }
+
     FileView {
         id: fileView
         path: Qt.resolvedUrl(Quickshell.dataDir + "/history.json")

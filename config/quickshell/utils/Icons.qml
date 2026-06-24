@@ -64,7 +64,8 @@ Singleton {
         BluetoothSymbolic,
         BluetoothDisabledSymbolic,
         NetworkWiredSymbolic,
-        NetworkWirelessSymbolic
+        NetworkWirelessSymbolic,
+        UserTrashSymbolic
     }
 
     readonly property var map: ({
@@ -126,7 +127,8 @@ Singleton {
             [Icons.BluetoothSymbolic]: "bluetooth-symbolic",
             [Icons.BluetoothDisabledSymbolic]: "bluetooth-disabled-symbolic",
             [Icons.NetworkWiredSymbolic]: "network-wired-symbolic",
-            [Icons.NetworkWirelessSymbolic]: "network-wireless-symbolic"
+            [Icons.NetworkWirelessSymbolic]: "network-wireless-symbolic",
+            [Icons.UserTrashSymbolic]: "user-trash-symbolic"
         })
 
     function get(icon: int): string {
