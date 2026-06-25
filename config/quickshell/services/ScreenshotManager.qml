@@ -35,6 +35,13 @@ Singleton {
                 process.command.pop();
             }
         }
+        stderr: StdioCollector {
+            onStreamFinished: {
+                if (this.text === "")
+                    return;
+                console.error("ScreenshotManager:", this.text);
+            }
+        }
 
         onExited: code => {
             if (code === 0) {
@@ -42,8 +49,9 @@ Singleton {
                 System.copyToClipboard(System.Image, root._path);
             }
 
-            if (code === 1)
-                console.log("Failed to take screenshot");
+            if (code === 1) {
+                System.notify("Failed to take screenshot", "check the logs to see why", "null", System.Critical);
+            }
         }
     }
 }
