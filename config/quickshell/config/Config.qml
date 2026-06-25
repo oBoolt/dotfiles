@@ -11,8 +11,8 @@ Singleton {
     property alias locale: adapter.locale
 
     property alias wallpaperIndex: adapter.wallpaperIndex
-    property list<string> wallpapers
-    readonly property int wallpapersSize: wallpapers.length
+    property bool wallpapersReady: false
+    property list<string> wallpapers: []
 
     property alias modules: adapter.modules
     property alias paths: adapter.paths
@@ -23,11 +23,17 @@ Singleton {
     property alias bar: adapter.bar
 
     function setWallpaper(index: int): void {
-        root.wallpaperIndex = index % wallpapersSize;
+        if (index < 0)
+            return;
+        root.wallpaperIndex = index % root.wallpapers.length;
         fileView.writeAdapter();
     }
 
     function getCurrentWallpaper(): string {
+        if (!root.wallpapersReady) {
+            return "";
+        }
+
         return Qt.resolvedUrl(root.wallpapers[root.wallpaperIndex]);
     }
 

@@ -37,6 +37,7 @@ WlSessionLock {
 
         Image {
             anchors.fill: parent
+            visible: source !== ""
             fillMode: Image.PreserveAspectCrop
             source: Config.getCurrentWallpaper()
 

@@ -45,12 +45,14 @@ LazyLoader {
 
                             Config.wallpapers.push(path);
                         }
+                        Config.wallpapersReady = true;
                     }
                 }
             }
 
             Image {
                 id: backgroundItem
+                visible: source !== ""
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectCrop
                 source: Config.getCurrentWallpaper()
