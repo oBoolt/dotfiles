@@ -25,7 +25,7 @@ Singleton {
     readonly property bool showSessionLock: Config.modules.sessionlock && _showSessionLock
     readonly property bool showNotifications: Config.modules.notifications && _notificationServer.trackedNotifications?.values.length > 0
 
-    readonly property bool isModuleOpen: showControlCenter || showCalendar || showMpris || showAreaPicker || showSystemTray
+    readonly property bool isModuleOpen: showControlCenter || showCalendar || showMpris || showSystemTray
 
     function closeAll(): void {
         root._showControlCenter = false;

@@ -3,17 +3,12 @@ import QtQuick
 import Quickshell
 import Quickshell.Wayland
 
-import qs.utils
-import qs.config
 import qs.services
 import qs.modules
+import qs.appearance
 
 LazyLoader {
     active: ModulesState.showAreaPicker
-
-    enum Enum {
-        Screenshot
-    }
 
     Variants {
         model: Quickshell.screens
@@ -39,11 +34,8 @@ LazyLoader {
             WlrLayershell.layer: WlrLayer.Overlay
 
             onAreaChanged: {
-                if (States.areaPickerMode === AreaPicker.Screenshot) {
-                    ScreenshotManager.capture(area);
-                }
-
-                States.showAreaPicker = false;
+                ScreenshotManager.capture(area);
+                ModulesState.toggleAreaPicker();
             }
 
             // Background
@@ -106,7 +98,7 @@ LazyLoader {
                 y: selector.y - border.width
                 color: "transparent"
                 border.width: 2
-                border.color: Colors.danger
+                border.color: Colors.warning
             }
 
             MouseArea {
