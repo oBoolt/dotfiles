@@ -25,6 +25,11 @@ function RUN(app)
     return "runapp " .. app
 end
 
+function NOTIFY(summary, body, urgency)
+    local u = urgency or "normal"
+    hl.exec_cmd("notify-send -a dotfiles -u " .. u .. " '" .. summary .. "' '" .. body .. "'")
+end
+
 require("modules")
 require("rules")
 
