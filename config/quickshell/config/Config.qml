@@ -23,9 +23,7 @@ Singleton {
     property alias bar: adapter.bar
 
     function setWallpaper(index: int): void {
-        if (index < 0)
-            return;
-        root.wallpaperIndex = index % root.wallpapers.length;
+        root.wallpaperIndex = index < 0 ? (root.wallpapers.length - 1) : (index % root.wallpapers.length);
         fileView.writeAdapter();
     }
 
