@@ -1,0 +1,23 @@
+alias vim='nvim'
+alias cat='bat --paging=never'
+alias cd='z'
+alias ls='eza --group-directories-first'
+alias ll='ls -F -al'
+alias tree='ls -T'
+
+if [ -x "$(command -v sudo-rs)" ]; then
+    alias su='su-rs'
+    alias sudo='sudo-rs'
+    alias sudoedit='sudoedit-rs'
+    alias visudo='visudo-rs'
+fi
+
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+    alias ip='ip --color=auto'
+fi

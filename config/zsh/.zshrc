@@ -1,31 +1,12 @@
-# Variables
-CONFIG_PATH="${XDG_CONFIG_HOME:-${HOME}/.config}"
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-export STARSHIP_CONFIG=$CONFIG_PATH/starship/starship.toml
-export GIT_CONFIG_GLOBAL=$CONFIG_PATH/git/.gitconfig
-
-
-# Install zinit
-[ ! -d "$ZINIT_HOME" ] && mkdir -p "$(dirname "$ZINIT_HOME")"
-[ ! -d "$ZINIT_HOME"/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-source "${ZINIT_HOME}/zinit.zsh"
-
-# Plugins
-#zinit light zsh-users/zsh-syntax-highlighting
-#zinit light zsh-users/zsh-completions
-#zinit light Aloxaf/fzf-tab
-
+# PATH
 [ -d "$HOME"/.local/bin ] && PATH=$PATH:$HOME/.local/bin
+FPATH="$HOME/.docker/completions:$FPATH"
 
 # Keybinds
 bindkey -v
-export KEYTIMEOUT=5
+export KEYTIMEOUT=1
 
 # History
-HISTSIZE=5000
-HISTFILE=~/.zsh_history
-SAVEHIST=$HISTSIZE
-HISTDUP=erase
 setopt appendhistory
 setopt sharehistory
 setopt hist_ignore_space
@@ -33,6 +14,8 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
+
+autoload -Uz compinit; compinit
 
 # On-demand rehash
 zshcache_time="$(date +%s%N)"
@@ -61,14 +44,7 @@ add-zsh-hook -Uz precmd rehash_precmd
 source /usr/share/nvm/init-nvm.sh
 # Environment variables
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-if [ -x "$(command -v nvim)" ]; then
-    local nvim="$(command -v nvim)"
-    export EDITOR="$nvim"
-    export VISUAL="$nvim"
-    export MANPAGER="$nvim +Man!"
-fi
 
-export QT_QPA_PLATFORMTHEME=qt5ct
 # Cargo env
 [ -x "$(command -v cargo)" ] && export PATH="$PATH:$HOME/.cargo/bin"
 
@@ -86,32 +62,4 @@ if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
     exec tmux new-session -A -s "${USER}" >/dev/null 2>&1
 fi
 
-# docker
-FPATH="$HOME/.docker/completions:$FPATH"
-autoload -Uz compinit
-compinit
-
-# aliases
-alias vim='nvim'
-alias cat='bat --paging=never'
-alias cd='z'
-alias ls='eza --group-directories-first'
-alias ll='ls -F -al'
-alias tree='ls -T'
-
-if [ -x "$(command -v sudo-rs)" ]; then
-    alias su='su-rs'
-    alias sudo='sudo-rs'
-    alias sudoedit='sudoedit-rs'
-    alias visudo='visudo-rs'
-fi
-
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-    alias ip='ip --color=auto'
-fi
+source "${ZDOTDIR}/.zaliases"
