@@ -2,14 +2,14 @@ import QtQuick
 import QtQuick.Layouts
 
 import Quickshell
-import Quickshell.Services.Notifications
 
 import qs.appearance
 import qs.components
-import qs.services
-import qs.utils
+import qs.config
 import qs.modules
+import qs.services
 import qs.types
+import qs.utils
 
 Page {
     id: root
@@ -219,6 +219,12 @@ Page {
                 }
                 Item {
                     Layout.fillWidth: true
+                }
+                Toggle {
+                    Layout.preferredHeight: Appearance.font.icon
+                    Layout.preferredWidth: height * 2
+                    active: Config.notification.doNotDisturb
+                    onToggled: Config.toggleDND()
                 }
                 Button {
                     Layout.preferredWidth: Appearance.font.icon

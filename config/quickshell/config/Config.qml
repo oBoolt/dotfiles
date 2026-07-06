@@ -35,6 +35,10 @@ Singleton {
         return Qt.resolvedUrl(root.wallpapers[root.wallpaperIndex]);
     }
 
+    function toggleDND(): void {
+        root.notification.doNotDisturb = !root.notification.doNotDisturb;
+    }
+
     FileView {
         id: fileView
         path: Qt.resolvedUrl(Quickshell.dataDir + "/config.json")

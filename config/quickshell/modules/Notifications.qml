@@ -13,6 +13,7 @@ import qs.services
 
 Item {
     id: root
+    visible: !Config.notification.doNotDisturb
 
     NotificationServer {
         id: server
