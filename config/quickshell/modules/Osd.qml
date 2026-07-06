@@ -1,41 +1,32 @@
 pragma ComponentBehavior: Bound
 
-import Quickshell
-import Quickshell.Io
-
 import QtQuick
 import QtQuick.Layouts
 
 import qs.appearance
-import qs.utils
 import qs.components
 import qs.services
 
-LazyLoader {
-    active: OsdManager.showOsd
+Item {
+    id: root
+    anchors.bottom: parent.bottom
+    anchors.bottomMargin: parent.height * 0.1
+    implicitWidth: 200
+    implicitHeight: 50
+    x: parent.width / 2 - width / 2
 
-    PanelWindow {
-        id: window
-        screen: States.currentScreen
-        implicitWidth: 200
-        implicitHeight: 50
-        anchors.bottom: true
-        margins.bottom: screen.height / 7
-        exclusiveZone: 0
-        color: "transparent"
-        mask: Region {}
-
-        Rectangle {
+    Loader {
+        anchors.fill: parent
+        active: OsdManager.showOsd
+        sourceComponent: Rectangle {
             anchors.fill: parent
             color: Colors.background
             radius: Appearance.radius.normal
 
             RowLayout {
-                anchors {
-                    fill: parent
-                    leftMargin: 18
-                    rightMargin: 18
-                }
+                anchors.fill: parent
+                anchors.leftMargin: 18
+                anchors.rightMargin: 18
                 spacing: 12
 
                 Icon {
@@ -43,10 +34,11 @@ LazyLoader {
                     Layout.preferredWidth: Appearance.font.icon
                     icon: OsdManager.icon
                 }
+
                 Rectangle {
                     id: bar
                     Layout.fillWidth: true
-                    Layout.preferredHeight: window.implicitHeight / 4
+                    Layout.preferredHeight: root.implicitHeight / 4
                     color: Colors.container
                     radius: Appearance.radius.normal / 2
 

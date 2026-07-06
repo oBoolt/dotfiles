@@ -1,5 +1,6 @@
 import Quickshell
 import Quickshell.Hyprland
+import Quickshell.Wayland
 
 import QtQuick // qmllint disable
 
@@ -16,10 +17,45 @@ ShellRoot {
 
     GlobalShortcuts {}
 
-    Osd {}
     Background {}
     LockScreen {}
-    AreaPicker {}
+
+    Variants {
+        id: popupsWrapper
+        model: Quickshell.screens
+
+        PanelWindow { // qmllint disable uncreatable-type
+            required property ShellScreen modelData
+            screen: modelData
+
+            anchors {
+                top: true
+                left: true
+                right: true
+            }
+
+            implicitHeight: screen.height
+            color: "transparent"
+            exclusionMode: ExclusionMode.Ignore
+            WlrLayershell.layer: WlrLayer.Overlay
+            mask: Region {
+                Region {
+                    item: ModulesState.showNotifications ? notificationsItem : null
+                }
+                Region {
+                    item: ModulesState.showAreaPicker ? areaPickerItem : null
+                }
+            }
+
+            Notifications {
+                id: notificationsItem
+            }
+            AreaPicker {
+                id: areaPickerItem
+            }
+            Osd {}
+        }
+    }
 
     Variants {
         id: windowsWrapper
@@ -53,9 +89,6 @@ ShellRoot {
                 Region {
                     item: ModulesState.showSystemTray ? systemTrayItem : null
                 }
-                Region {
-                    item: ModulesState.showNotifications ? notificationsItem : null
-                }
             }
 
             Bar {
@@ -69,9 +102,6 @@ ShellRoot {
             }
             Calendar {
                 id: calendarItem
-            }
-            Notifications {
-                id: notificationsItem
             }
             SystemTray {
                 id: systemTrayItem

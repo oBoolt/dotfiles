@@ -3,6 +3,7 @@ import Quickshell.Services.Notifications
 
 import QtQuick
 import QtQuick.Layouts
+import Quickshell.Wayland
 
 import qs.config
 import qs.appearance
@@ -36,8 +37,8 @@ Item {
         top: parent.top
         right: parent.right
 
-        rightMargin: Appearance.margin.large + 2
-        topMargin: anchors.rightMargin + States.barZone
+        rightMargin: ToplevelManager.activeToplevel?.fullscreen ? Appearance.margin.normal : Appearance.margin.large + 2
+        topMargin: ToplevelManager.activeToplevel?.fullscreen ? Appearance.margin.normal : anchors.rightMargin + States.barZone
     }
 
     ColumnLayout {
