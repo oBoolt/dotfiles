@@ -14,7 +14,7 @@ Singleton {
 
     function capture(area: rect): void {
         let region = area.x + "," + area.y + " " + area.width + "x" + area.height;
-        let path = Quickshell.env("HOME") + "/Pictures/dotfiles-" + Time.path + ".jpg";
+        let path = Quickshell.env("HOME") + "/Pictures/Screenshots/dotfiles-" + Time.path + ".jpg";
 
         root._area = area;
         root._path = path;
