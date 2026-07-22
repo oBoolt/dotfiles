@@ -51,7 +51,7 @@ Item {
                     }
                 }
                 Text {
-                    text: Math.floor(OsdManager.value * 100)
+                    text: Math.ceil(OsdManager.value * 100)
                     font.pixelSize: 16
                     Layout.preferredWidth: parent.width / 6
                     horizontalAlignment: Text.AlignHCenter
