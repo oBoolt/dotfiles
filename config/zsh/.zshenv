@@ -1,5 +1,3 @@
-export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
-
 export DOTFILES_PATH="${HOME}/.local/share/dotfiles"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME"/starship/starship.toml
 export GIT_CONFIG_GLOBAL="$XDG_CONFIG_HOME"/git/.gitconfig

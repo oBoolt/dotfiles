@@ -3,7 +3,9 @@ alias cat='bat --paging=never'
 alias cd='z'
 alias ls='eza --group-directories-first'
 alias ll='ls -F -al'
-alias tree='ls -T'
+alias l='ls -F -l'
+alias tree='ls -la -T'
+alias lsblk='/usr/bin/lsblk --tree=NAME -o NAME,MOUNTPOINTS,FSUSED,FSSIZE,FSUSE%,TYPE'
 
 if [ -x "$(command -v sudo-rs)" ]; then
     alias su='su-rs'
