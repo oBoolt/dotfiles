@@ -76,6 +76,13 @@ LazyLoader {
                     Layout.preferredWidth: parent.height
                     Layout.preferredHeight: parent.height
                     background.hover: true
+                    icon: 0
+                    onClicked: Config.setWallpaper(-1)
+                }
+                Button {
+                    Layout.preferredWidth: parent.height
+                    Layout.preferredHeight: parent.height
+                    background.hover: true
                     icon: Icons.GoNextSymbolic
                     onClicked: Config.setWallpaper(Config.wallpaperIndex + 1)
                 }

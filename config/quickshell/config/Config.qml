@@ -12,6 +12,7 @@ Singleton {
 
     property alias wallpaperIndex: adapter.wallpaperIndex
     property bool wallpapersReady: false
+    readonly property string randomWallpaper: (!root.wallpapersReady && root.wallpapers.length <= 0) ? "" : root.wallpapers[Math.floor(Math.random() * root.wallpapers.length) - 1]
     property list<string> wallpapers: []
 
     property alias modules: adapter.modules
@@ -30,6 +31,9 @@ Singleton {
     function getCurrentWallpaper(): string {
         if (!root.wallpapersReady) {
             return "";
+        }
+        if (root.wallpaperIndex < 0) {
+            return Qt.resolvedUrl(root.randomWallpaper);
         }
 
         return Qt.resolvedUrl(root.wallpapers[root.wallpaperIndex]);
