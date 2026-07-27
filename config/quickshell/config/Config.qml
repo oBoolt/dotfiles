@@ -10,11 +10,6 @@ Singleton {
     property alias debug: adapter.debug
     property alias locale: adapter.locale
 
-    property alias wallpaperIndex: adapter.wallpaperIndex
-    property bool wallpapersReady: false
-    readonly property string randomWallpaper: (!root.wallpapersReady && root.wallpapers.length <= 0) ? "" : root.wallpapers[Math.floor(Math.random() * root.wallpapers.length) - 1]
-    property list<string> wallpapers: []
-
     property alias modules: adapter.modules
     property alias paths: adapter.paths
     property alias notification: adapter.notification
@@ -23,21 +18,8 @@ Singleton {
     property alias controlcenter: adapter.controlcenter
     property alias bar: adapter.bar
 
-    function setWallpaper(index: int): void {
-        root.wallpaperIndex = index < 0 ? (root.wallpapers.length - 1) : (index % root.wallpapers.length);
-        fileView.writeAdapter();
-    }
-
-    function getCurrentWallpaper(): string {
-        if (!root.wallpapersReady) {
-            return "";
-        }
-        if (root.wallpaperIndex < 0) {
-            return Qt.resolvedUrl(root.randomWallpaper);
-        }
-
-        return Qt.resolvedUrl(root.wallpapers[root.wallpaperIndex]);
-    }
+    property alias wallpaperIndex: adapter.wallpaperIndex
+    property alias file: fileView
 
     function toggleDND(): void {
         root.notification.doNotDisturb = !root.notification.doNotDisturb;

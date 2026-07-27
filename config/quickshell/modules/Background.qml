@@ -1,5 +1,4 @@
 import QtQuick
-import Qt.labs.folderlistmodel
 import QtQuick.Layouts
 
 import Quickshell
@@ -8,6 +7,7 @@ import Quickshell.Wayland
 import qs.config
 import qs.utils
 import qs.components
+import qs.services
 
 LazyLoader {
     active: Config.modules.background && (Quickshell.screens.length > 0)
@@ -29,33 +29,12 @@ LazyLoader {
                 right: true
             }
 
-            FolderListModel {
-                id: folderModel
-                folder: Qt.resolvedUrl(Quickshell.env("XDG_CONFIG_HOME") + "/wallpapers/")
-                nameFilters: ["*.png", "*.jpg", "*.jpeg"]
-                showDirs: false
-                onStatusChanged: {
-                    if (folderModel.status == FolderListModel.Ready) {
-                        for (let i = 0; i < folderModel.count; i++) {
-                            let path = folderModel.get(i, "filePath");
-                            let name = folderModel.get(i, "fileBaseName");
-
-                            if (name == "default")
-                                continue;
-
-                            Config.wallpapers.push(path);
-                        }
-                        Config.wallpapersReady = true;
-                    }
-                }
-            }
-
             Image {
                 id: backgroundItem
                 visible: source !== ""
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectCrop
-                source: Config.getCurrentWallpaper()
+                source: Wallpaper.get()
             }
 
             RowLayout {
@@ -70,21 +49,21 @@ LazyLoader {
                     Layout.preferredHeight: parent.height
                     background.hover: true
                     icon: Icons.GoPreviousSymbolic
-                    onClicked: Config.setWallpaper(Config.wallpaperIndex - 1)
+                    onClicked: Wallpaper.next()
                 }
                 Button {
                     Layout.preferredWidth: parent.height
                     Layout.preferredHeight: parent.height
                     background.hover: true
                     icon: 0
-                    onClicked: Config.setWallpaper(-1)
+                    onClicked: Wallpaper.setRandom()
                 }
                 Button {
                     Layout.preferredWidth: parent.height
                     Layout.preferredHeight: parent.height
                     background.hover: true
                     icon: Icons.GoNextSymbolic
-                    onClicked: Config.setWallpaper(Config.wallpaperIndex + 1)
+                    onClicked: Wallpaper.previous()
                 }
             }
         }
