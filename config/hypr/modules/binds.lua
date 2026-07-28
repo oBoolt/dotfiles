@@ -18,7 +18,6 @@ hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("cliphist list | hyprlauncher
 -- https://github.com/basecamp/omarchy/blob/quattro/default/hypr/bindings/clipboard.lua
 local function send_shortcut_once(mods, key)
     return function()
-        NOTIFY(mods .. "+" .. key)
         hl.dispatch(hl.dsp.send_key_state({ mods = mods, key = key, state = "down" }))
 
         hl.timer(function()
