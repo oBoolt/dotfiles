@@ -19,9 +19,9 @@ Item {
 
     anchors.top: parent.top
     anchors.topMargin: Appearance.margin.normal + States.barZone
-    x: States.systemTrayX
+    x: Appearance.margin.normal
 
-    implicitHeight: (iconSize + spacing * 2) * Math.ceil(SystemTray.items.values.length / columns)
+    implicitHeight: (root.iconSize + root.spacing * 2) * Math.ceil(SystemTray.items.values.length / root.columns)
     implicitWidth: parent.width * 0.1
 
     Loader {
