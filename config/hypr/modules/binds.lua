@@ -58,9 +58,16 @@ hl.bind(mainMod .. " + V", universal_clipboard_shortcut("CTRL", "V", "SHIFT", "I
 hl.bind(mainMod .. " + X", send_shortcut_once("CTRL", "X"))
 
 -- Applications
-hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(RUN(terminal)))
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(RUN(browser)))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(RUN(fileManager)))
+hl.bind(mainMod .. " + E", hl.dsp.submap("applications"))
+hl.define_submap("applications", "reset", function()
+    hl.bind("RETURN", hl.dsp.exec_cmd(RUN(terminal)), { ignore_mods = true })
+    hl.bind("B", hl.dsp.exec_cmd(RUN(browser)), { ignore_mods = true })
+    hl.bind("E", hl.dsp.exec_cmd(RUN(fileManager)), { ignore_mods = true })
+    hl.bind("S", hl.dsp.exec_cmd(RUN("spotify-launcher")), { ignore_mods = true })
+    hl.bind("D", hl.dsp.exec_cmd(RUN("discord")), { ignore_mods = true })
+
+    hl.bind("ESCAPE", hl.dsp.submap("reset"), { ignore_mods = true })
+end)
 
 -- Change active window with arrows
 hl.bind(mainMod .. " + LEFT", hl.dsp.focus({ direction = "left" }), { submap_universal = true })
@@ -107,7 +114,7 @@ hl.define_submap("resize", function()
     hl.bind("K", hl.dsp.window.resize({ x = 0, y = -20, relative = true }), { repeating = true })
     hl.bind("J", hl.dsp.window.resize({ x = 0, y = 20, relative = true }), { repeating = true })
 
-    hl.bind("ESCAPE", hl.dsp.submap("reset"))
+    hl.bind("ESCAPE", hl.dsp.submap("reset"), { ignore_mods = true })
 end)
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
