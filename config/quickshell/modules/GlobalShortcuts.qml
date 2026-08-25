@@ -10,7 +10,7 @@ import qs.modules
 
 Scope {
     Shortcut {
-        name: "closePopups"
+        name: "global:closePopups"
         description: "Close all current opened popups"
         onPressed: {
             if (!ModulesState.isModuleOpen)
@@ -20,7 +20,7 @@ Scope {
     }
 
     Shortcut {
-        name: "toggleMpris"
+        name: "global:toggleMpris"
         description: "Toggle mpris state"
         onPressed: {
             if (!Config.modules.mpris || States.currentTopLevelFullscreen)
@@ -30,7 +30,7 @@ Scope {
     }
 
     Shortcut {
-        name: "areaScreenshot"
+        name: "global:areaScreenshot"
         description: "Open an area picker to take a screenshot using grim"
         onPressed: {
             ModulesState.toggleAreaPicker(AreaPicker.Screenshot);
@@ -38,7 +38,7 @@ Scope {
     }
 
     Shortcut {
-        name: "fullScreenshot"
+        name: "global:fullScreenshot"
         description: "Take a screenshot of the fullscreen"
         onPressed: {
             States.updateCurrentScreen();

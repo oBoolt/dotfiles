@@ -46,7 +46,7 @@ Item {
 
     // qmllint disable unresolved-type
     Shortcut {
-        name: "togglePlaying"
+        name: "mpris:togglePlaying"
         description: "Toggle the state of current client if possible"
         onPressed: {
             if (!ModulesState.showMpris || !Config.modules.mpris)
@@ -56,7 +56,7 @@ Item {
     }
 
     Shortcut {
-        name: "nextClient"
+        name: "mpris:nextClient"
         description: "Change to next mpris client"
         onPressed: {
             if (!Config.modules.mpris || !ModulesState.showMpris)
@@ -66,7 +66,7 @@ Item {
     }
 
     Shortcut {
-        name: "previousClient"
+        name: "mpris:previousClient"
         description: "Change to previous mpris client"
         onPressed: {
             if (!Config.modules.mpris || !ModulesState.showMpris)
@@ -76,7 +76,7 @@ Item {
     }
 
     Shortcut {
-        name: "nextTrack"
+        name: "mpris:nextTrack"
         description: "Go to the next track"
         onPressed: {
             if (!Config.modules.mpris || !ModulesState.showMpris)
@@ -86,7 +86,7 @@ Item {
     }
 
     Shortcut {
-        name: "previousTrack"
+        name: "mpris:previousTrack"
         description: "Go to the previous track"
         onPressed: {
             if (!Config.modules.mpris || !ModulesState.showMpris)

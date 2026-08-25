@@ -145,12 +145,13 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tru
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 -- Shell related binds
-hl.bind("ESCAPE", hl.dsp.global("dotfiles:closePopups"), { non_consuming = true })
-hl.bind(mainMod .. " + Y", hl.dsp.global("dotfiles:toggleMpris"))
-hl.bind("RETURN", hl.dsp.global("dotfiles:togglePlaying"), { non_consuming = true })
-hl.bind("RIGHT", hl.dsp.global("dotfiles:nextTrack"), { non_consuming = true })
-hl.bind(mainMod .. " + RIGHT", hl.dsp.global("dotfiles:nextClient"))
-hl.bind("LEFT", hl.dsp.global("dotfiles:previousTrack"), { non_consuming = true })
-hl.bind(mainMod .. " + LEFT", hl.dsp.global("dotfiles:previousClient"))
-hl.bind(mainMod .. " + P", hl.dsp.global("dotfiles:fullScreenshot"))
-hl.bind(mainMod .. " + SHIFT + P", hl.dsp.global("dotfiles:areaScreenshot"))
+hl.bind("ESCAPE", hl.dsp.global("dotfiles:global:closePopups"), { non_consuming = true })
+hl.bind(mainMod .. " + Y", hl.dsp.global("dotfiles:global:toggleMpris"))
+hl.bind(mainMod .. " + P", hl.dsp.global("dotfiles:global:fullScreenshot"))
+hl.bind(mainMod .. " + SHIFT + P", hl.dsp.global("dotfiles:global:areaScreenshot"))
+
+hl.bind("RETURN", hl.dsp.global("dotfiles:mpris:togglePlaying"), { non_consuming = true })
+hl.bind("RIGHT", hl.dsp.global("dotfiles:mpris:nextTrack"), { non_consuming = true })
+hl.bind(mainMod .. " + RIGHT", hl.dsp.global("dotfiles:mpris:nextClient"))
+hl.bind("LEFT", hl.dsp.global("dotfiles:mpris:previousTrack"), { non_consuming = true })
+hl.bind(mainMod .. " + LEFT", hl.dsp.global("dotfiles:mpris:previousClient"))
