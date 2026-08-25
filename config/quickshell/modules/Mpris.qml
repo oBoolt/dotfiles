@@ -49,7 +49,7 @@ Item {
         name: "mpris:togglePlaying"
         description: "Toggle the state of current client if possible"
         onPressed: {
-            if (!ModulesState.showMpris || !Config.modules.mpris)
+            if (!Config.modules.mpris)
                 return;
             root.current?.canTogglePlaying ? root.current?.togglePlaying() : null;
         }

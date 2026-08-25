@@ -133,11 +133,11 @@ hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURC
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("qs ipc call brightness increase"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("qs ipc call brightness decrease"), { locked = true, repeating = true })
 
--- Requires playerctl
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+-- Requires dotfiles shell
+hl.bind("XF86AudioNext", hl.dsp.global("dotfiles:mpris:nextTrack"), { locked = true })
+hl.bind("XF86AudioPrev", hl.dsp.global("dotfiles:mpris:previousTrack"), { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.global("dotfiles:mpris:togglePlaying"), { locked = true })
+hl.bind("XF86AudioPlay", hl.dsp.global("dotfiles:mpris:togglePlaying"), { locked = true })
 
 -- Shell related binds
 hl.bind("ESCAPE", hl.dsp.global("dotfiles:global:closePopups"), { non_consuming = true })
@@ -145,7 +145,7 @@ hl.bind(mainMod .. " + Y", hl.dsp.global("dotfiles:global:toggleMpris"))
 hl.bind(mainMod .. " + P", hl.dsp.global("dotfiles:global:fullScreenshot"))
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.global("dotfiles:global:areaScreenshot"))
 
-hl.bind("RETURN", hl.dsp.global("dotfiles:mpris:togglePlaying"), { non_consuming = true })
+hl.bind(mainMod .. " + RETURN", hl.dsp.global("dotfiles:mpris:togglePlaying"))
 hl.bind("RIGHT", hl.dsp.global("dotfiles:mpris:nextTrack"), { non_consuming = true })
 hl.bind(mainMod .. " + RIGHT", hl.dsp.global("dotfiles:mpris:nextClient"))
 hl.bind("LEFT", hl.dsp.global("dotfiles:mpris:previousTrack"), { non_consuming = true })
