@@ -16,7 +16,7 @@ Singleton {
 
     readonly property string random: {
         if (Config.wallpaperIndex < 0 && root.ready) {
-            return root.wallpapers[Math.floor(Math.random() * root.wallpapers.length - 1)];
+            return root.wallpapers[Math.floor(Math.random() * root.wallpapers.length)];
         }
         return "";
     }
