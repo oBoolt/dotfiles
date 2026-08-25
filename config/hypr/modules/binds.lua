@@ -57,11 +57,6 @@ hl.bind(mainMod .. " + C", universal_clipboard_shortcut("CTRL", "C", "CTRL", "In
 hl.bind(mainMod .. " + V", universal_clipboard_shortcut("CTRL", "V", "SHIFT", "Insert"))
 hl.bind(mainMod .. " + X", send_shortcut_once("CTRL", "X"))
 
--- o.bind("SUPER + C", "Universal copy", universal_clipboard_shortcut("CTRL", "C", "CTRL", "Insert"))
--- o.bind("SUPER + V", "Universal paste", universal_clipboard_shortcut("CTRL", "V", "SHIFT", "Insert"))
--- o.bind("SUPER + X", "Universal cut", send_shortcut_once("CTRL", "X"))
-
-
 -- Applications
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(RUN(terminal)))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(RUN(browser)))
