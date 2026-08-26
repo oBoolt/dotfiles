@@ -137,8 +137,9 @@ hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ to
     { locked = true })
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
     { locked = true })
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("qs ipc call brightness increase"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("qs ipc call brightness decrease"), { locked = true, repeating = true })
+
+hl.bind("XF86MonBrightnessUp", hl.dsp.global("dotfiles:brightness:increase"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.global("dotfiles:brightness:decrease"), { locked = true, repeating = true })
 
 -- Requires dotfiles shell
 hl.bind("XF86AudioNext", hl.dsp.global("dotfiles:mpris:nextTrack"), { locked = true })

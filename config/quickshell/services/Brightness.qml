@@ -7,6 +7,7 @@ import QtQuick
 
 import qs.utils
 import qs.config
+import qs.components
 
 Singleton {
     id: root
@@ -57,16 +58,21 @@ Singleton {
         // }
     }
 
-    IpcHandler {
-        target: "brightness"
-        function set(value: int): void {
-            root.set(value);
+    Shortcut {
+        name: "brightness:increase"
+        description: "Increase the brightness value"
+        onPressed: {
+            if (root.valid)
+                root.increase();
         }
-        function increase(): void {
-            root.increase();
-        }
-        function decrease(): void {
-            root.decrease();
+    }
+
+    Shortcut {
+        name: "brightness:decrease"
+        description: "Decrease the brightness value"
+        onPressed: {
+            if (root.valid)
+                root.decrease();
         }
     }
 
