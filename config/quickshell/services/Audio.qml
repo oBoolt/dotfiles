@@ -78,6 +78,7 @@ Singleton {
 
     readonly property PwNodeWrapper sink: PwNodeWrapper {
         node: Pipewire.defaultAudioSink
+        onNameChanged: OsdManager.showText(Icons.AudioHeadphonesSymbolic, this.name)
         onVolumeChanged: OsdManager.show(this.icon, this.volume)
         onMutedChanged: OsdManager.show(this.icon, this.volume)
     }

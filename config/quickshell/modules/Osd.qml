@@ -81,7 +81,8 @@ Item {
                         text: OsdManager.text
                         font.pixelSize: 16
                         Layout.fillWidth: true
-                        horizontalAlignment: Text.AlignHCenter
+                        elide: Text.ElideRight
+                        horizontalAlignment: Text.AlignLeft
                     }
                 }
             }
