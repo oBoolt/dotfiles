@@ -31,6 +31,12 @@ function NOTIFY(summary, body, urgency)
     hl.exec_cmd("notify-send -a dotfiles -u " .. u .. " '" .. summary .. "' '" .. b .. "'")
 end
 
+function OSD(icon, text)
+    local i = icon or 0
+    local t = text or ""
+    hl.exec_cmd("qs ipc call osd showText " .. i .. " '" .. t .. "'")
+end
+
 require("modules")
 require("rules")
 

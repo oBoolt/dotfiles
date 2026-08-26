@@ -23,38 +23,66 @@ Item {
             color: Colors.background
             radius: Appearance.radius.normal
 
-            RowLayout {
+            Loader {
                 anchors.fill: parent
-                anchors.leftMargin: 18
-                anchors.rightMargin: 18
-                spacing: 12
+                active: OsdManager.valueType
+                sourceComponent: RowLayout {
+                    anchors.fill: parent
+                    anchors.leftMargin: 18
+                    anchors.rightMargin: 18
+                    spacing: 12
 
-                Icon {
-                    Layout.preferredHeight: Appearance.font.icon
-                    Layout.preferredWidth: Appearance.font.icon
-                    icon: OsdManager.icon
-                }
-
-                Rectangle {
-                    id: bar
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: root.implicitHeight / 4
-                    color: Colors.container
-                    radius: Appearance.radius.normal / 2
+                    Icon {
+                        Layout.preferredHeight: Appearance.font.icon + 2
+                        Layout.preferredWidth: Appearance.font.icon + 2
+                        icon: OsdManager.icon
+                    }
 
                     Rectangle {
-                        anchors.top: parent.top
-                        anchors.bottom: parent.bottom
-                        implicitWidth: OsdManager.value * parent.width
-                        color: Colors.main
+                        id: bar
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: root.implicitHeight / 4
+                        color: Colors.container
                         radius: Appearance.radius.normal / 2
+
+                        Rectangle {
+                            anchors.top: parent.top
+                            anchors.bottom: parent.bottom
+                            implicitWidth: OsdManager.value * parent.width
+                            color: Colors.main
+                            radius: Appearance.radius.normal / 2
+                        }
+                    }
+                    Text {
+                        text: Math.ceil(OsdManager.value * 100)
+                        font.pixelSize: 16
+                        Layout.preferredWidth: parent.width / 6
+                        horizontalAlignment: Text.AlignHCenter
                     }
                 }
-                Text {
-                    text: Math.ceil(OsdManager.value * 100)
-                    font.pixelSize: 16
-                    Layout.preferredWidth: parent.width / 6
-                    horizontalAlignment: Text.AlignHCenter
+            }
+
+            Loader {
+                anchors.fill: parent
+                active: OsdManager.textType
+                sourceComponent: RowLayout {
+                    anchors.fill: parent
+                    anchors.leftMargin: 18
+                    anchors.rightMargin: 18
+                    spacing: 12
+
+                    Icon {
+                        Layout.preferredHeight: Appearance.font.icon + 2
+                        Layout.preferredWidth: Appearance.font.icon + 2
+                        icon: OsdManager.icon
+                    }
+
+                    Text {
+                        text: OsdManager.text
+                        font.pixelSize: 16
+                        Layout.fillWidth: true
+                        horizontalAlignment: Text.AlignHCenter
+                    }
                 }
             }
         }

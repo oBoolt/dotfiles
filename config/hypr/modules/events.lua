@@ -11,8 +11,9 @@ end)
 -- Submap
 hl.on("keybinds.submap", function(name)
     if name and name ~= '' then
-        NOTIFY("Submap changed", "You are now at " .. name .. " submap")
+        local n = name:sub(1, 1):upper() .. name:sub(2)
+        OSD(1, n)
     else
-        NOTIFY("Submap changed", "Global submap", "low")
+        OSD(1, "Global")
     end
 end)
