@@ -7,6 +7,7 @@ Singleton {
     id: root
     enum Enum {
         DialogQuestionSymbolic,
+        DocumentEditSymbolic,
         GoNextSymbolic,
         GoPreviousSymbolic,
         MediaSkipForwardSymbolic,
@@ -65,11 +66,13 @@ Singleton {
         BluetoothDisabledSymbolic,
         NetworkWiredSymbolic,
         NetworkWirelessSymbolic,
-        UserTrashSymbolic
+        UserTrashSymbolic,
+        FolderMusicSymbolic
     }
 
     readonly property var map: ({
             [Icons.DialogQuestionSymbolic]: "dialog-question-symbolic",
+            [Icons.DocumentEditSymbolic]: "document-edit-symbolic",
             [Icons.GoNextSymbolic]: "go-next-symbolic",
             [Icons.GoPreviousSymbolic]: "go-previous-symbolic",
             [Icons.MediaSkipForwardSymbolic]: "media-skip-forward-symbolic",
@@ -128,7 +131,8 @@ Singleton {
             [Icons.BluetoothDisabledSymbolic]: "bluetooth-disabled-symbolic",
             [Icons.NetworkWiredSymbolic]: "network-wired-symbolic",
             [Icons.NetworkWirelessSymbolic]: "network-wireless-symbolic",
-            [Icons.UserTrashSymbolic]: "user-trash-symbolic"
+            [Icons.UserTrashSymbolic]: "user-trash-symbolic",
+            [Icons.FolderMusicSymbolic]: "folder-music-symbolic"
         })
 
     function get(icon: int): string {

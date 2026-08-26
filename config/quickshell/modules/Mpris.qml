@@ -13,6 +13,7 @@ import qs.utils
 import qs.components
 import qs.modules
 import qs.appearance
+import qs.services
 
 Item {
     id: root
@@ -42,6 +43,11 @@ Item {
         if (!root.multipleClients)
             return;
         States.currentClientIndex = (States.currentClientIndex - 1) < 0 ? (Mpris.players.values.length - 1) : (States.currentClientIndex - 1);
+    }
+
+    onCurrentChanged: {
+        if (!ModulesState.showMpris)
+            OsdManager.showText(Icons.FolderMusicSymbolic, root.current.identity);
     }
 
     // qmllint disable unresolved-type
