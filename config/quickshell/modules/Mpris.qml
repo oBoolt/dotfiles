@@ -27,6 +27,7 @@ Item {
     readonly property MprisPlayer current: Mpris.players.values[States.currentClientIndex % Mpris.players.values.length] ?? null
     readonly property bool multipleClients: Mpris.players.values.length > 1
     readonly property bool haveClient: !!Mpris.players.values.length
+    readonly property int state: root.current.playbackState
 
     function displaySeconds(seconds: int): string {
         let hours = seconds >= (60 * 60);
@@ -46,8 +47,17 @@ Item {
     }
 
     onCurrentChanged: {
-        if (!ModulesState.showMpris)
-            OsdManager.showText(Icons.FolderMusicSymbolic, root.current.identity);
+        if (ModulesState.showMpris || root.current == null)
+            return;
+
+        OsdManager.showText(Icons.FolderMusicSymbolic, root.current.identity);
+    }
+
+    onStateChanged: {
+        if (ModulesState.showMpris || root.current == null)
+            return;
+
+        OsdManager.showText(root.state == MprisPlaybackState.Playing ? Icons.MediaPlaybackPauseSymbolic : Icons.MediaPlaybackStartSymbolic, MprisPlaybackState.toString(root.state));
     }
 
     // qmllint disable unresolved-type
