@@ -49,7 +49,7 @@ Singleton {
     }
 
     function previous(): void {
-        root.set(Config.wallpaperIndex + 1);
+        root.set(Config.wallpaperIndex - 1);
     }
 
     function setRandom(): void {
