@@ -120,6 +120,7 @@ end)
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+hl.bind(mainMod .. " + SHIFT + mouse:273", hl.dsp.window.resize({ keep_aspect_ratio = true }), { mouse = true })
 
 -- Workspaces
 for i = 1, 10 do
@@ -127,6 +128,8 @@ for i = 1, 10 do
     hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
     hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
+
+hl.bind(mainMod .. " + N", hl.dsp.window.pin())
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
@@ -142,8 +145,8 @@ hl.bind("XF86MonBrightnessUp", hl.dsp.global("dotfiles:brightness:increase"), { 
 hl.bind("XF86MonBrightnessDown", hl.dsp.global("dotfiles:brightness:decrease"), { locked = true, repeating = true })
 
 -- Requires dotfiles shell
-hl.bind("XF86AudioNext", hl.dsp.global("dotfiles:mpris:nextTrack"), { locked = true })
-hl.bind("XF86AudioPrev", hl.dsp.global("dotfiles:mpris:previousTrack"), { locked = true })
+hl.bind("XF86AudioNext", hl.dsp.global("dotfiles:mpris:nextTrackGlobal"), { locked = true })
+hl.bind("XF86AudioPrev", hl.dsp.global("dotfiles:mpris:previousTrackGlobal"), { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.global("dotfiles:mpris:togglePlaying"), { locked = true })
 hl.bind("XF86AudioPlay", hl.dsp.global("dotfiles:mpris:togglePlaying"), { locked = true })
 
@@ -158,3 +161,13 @@ hl.bind("RIGHT", hl.dsp.global("dotfiles:mpris:nextTrack"), { non_consuming = tr
 hl.bind(mainMod .. " + RIGHT", hl.dsp.global("dotfiles:mpris:nextClient"))
 hl.bind("LEFT", hl.dsp.global("dotfiles:mpris:previousTrack"), { non_consuming = true })
 hl.bind(mainMod .. " + LEFT", hl.dsp.global("dotfiles:mpris:previousClient"))
+
+-- OBS Studio
+hl.bind(mainMod .. " + O", hl.dsp.submap("obs"))
+
+hl.define_submap("obs", "reset", function()
+    hl.bind("R", hl.dsp.global("com.obsproject.Studio:toggleRecording"), { ignore_mods = true })
+    hl.bind("S", hl.dsp.global("com.obsproject.Studio:playPauseRecording"), { ignore_mods = true })
+
+    hl.bind("ESCAPE", hl.dsp.submap("reset"), { ignore_mods = true })
+end)

@@ -25,3 +25,11 @@ hl.window_rule({
 
     tag = "+popup"
 })
+
+hl.window_rule({
+    match = {
+        pin = true
+    },
+
+    border_color = COLORS.second
+})
