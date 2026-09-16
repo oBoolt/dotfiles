@@ -16,6 +16,10 @@
       "rev": "5947b412da67306c5b68698a02a846760059be2e",
       "src": "g:hrsh7th/cmp-calc"
     },
+    "cmp-cmdline": {
+      "rev": "d126061b624e0af6c3a556428712dd4d4194ec6d",
+      "src": "g:hrsh7th/cmp-cmdline"
+    },
     "cmp-nvim-lsp": {
       "rev": "cbc7b02bb99fae35cb42f514762b89b5126651ef",
       "src": "g:hrsh7th/cmp-nvim-lsp"
