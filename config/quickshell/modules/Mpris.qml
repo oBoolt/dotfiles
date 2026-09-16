@@ -82,10 +82,30 @@ Item {
     }
 
     Shortcut {
+        name: "mpris:nextClientGlobal"
+        description: "Change to next mpris client even if the module is closed"
+        onPressed: {
+            if (!Config.modules.mpris)
+                return;
+            root.nextClient();
+        }
+    }
+
+    Shortcut {
         name: "mpris:previousClient"
         description: "Change to previous mpris client"
         onPressed: {
             if (!Config.modules.mpris || !ModulesState.showMpris)
+                return;
+            root.previousClient();
+        }
+    }
+
+    Shortcut {
+        name: "mpris:previousClientGlobal"
+        description: "Change to previous mpris client even if the module is closed"
+        onPressed: {
+            if (!Config.modules.mpris)
                 return;
             root.previousClient();
         }
@@ -102,10 +122,30 @@ Item {
     }
 
     Shortcut {
+        name: "mpris:nextTrackGlobal"
+        description: "Go to the next track even if the module is closed"
+        onPressed: {
+            if (!Config.modules.mpris)
+                return;
+            root.current?.canGoNext ? root.current?.next() : null;
+        }
+    }
+
+    Shortcut {
         name: "mpris:previousTrack"
         description: "Go to the previous track"
         onPressed: {
             if (!Config.modules.mpris || !ModulesState.showMpris)
+                return;
+            root.current?.canGoPrevious ? root.current?.previous() : null;
+        }
+    }
+
+    Shortcut {
+        name: "mpris:previousTrackGlobal"
+        description: "Go to the previous track even if the module is closed"
+        onPressed: {
+            if (!Config.modules.mpris)
                 return;
             root.current?.canGoPrevious ? root.current?.previous() : null;
         }
