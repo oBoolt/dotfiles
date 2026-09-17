@@ -46,20 +46,6 @@ cmp.setup({
         ['<Tab>'] = cmp.mapping.confirm({ select = true }),
         ['<C-j>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select, count = 1 }),
         ['<C-k>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select, count = 1 }),
-        ['<C-l>'] = cmp.mapping(function(fallback)
-            if luasnip.locally_jumpable(1) then
-                luasnip.jump(1)
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
-        ['<C-h>'] = cmp.mapping(function(fallback)
-            if luasnip.locally_jumpable(1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-u>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
@@ -86,3 +72,7 @@ cmp.setup.cmdline(':', {
         }
     })
 })
+
+-- luasnip
+vim.keymap.set({ "i", "s" }, "<C-l>", function() luasnip.jump(1) end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-h>", function() luasnip.jump(-1) end, { silent = true })
