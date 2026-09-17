@@ -28,7 +28,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
     group = augroup,
     callback = function()
-        local capabilities = require("cmp_nvim_lsp").default_capabilities()
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
         vim.lsp.config("*", {
             capabilities = capabilities
         })

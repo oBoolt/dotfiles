@@ -15,12 +15,15 @@ vim.pack.add({
     "g:echasnovski/mini.nvim",
     "g:MeanderingProgrammer/render-markdown.nvim",
     "g:code-biscuits/nvim-biscuits",
+    "g:folke/lazydev.nvim"
 })
 
+---@diagnostic disable-next-line: missing-parameter
 require("Navigator").setup()
-require("telescope").setup()
+require("telescope").setup({})
 require("render-markdown").setup()
 require("nvim-biscuits").setup()
+require("lazydev").setup()
 
 vim.cmd.colorscheme("gruvbox")
 

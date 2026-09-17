@@ -18,9 +18,9 @@ vim.keymap.set("n", "[[", "[[zt")
 vim.keymap.set("x", "<leader>p", "\"_dP")
 vim.keymap.set({ "n", "v" }, "<leader>y", "\"+y")
 vim.keymap.set({ "n", "v" }, "<leader>Y", "\"+Y")
-vim.keymap.set("n", "<leader>p", "\"+p")
 
 -- Deletion
+vim.keymap.set("n", "<leader>p", "\"+p")
 vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d")
 
 -- Misc
@@ -40,7 +40,6 @@ vim.keymap.set("n", "<C-Up>", ":resize +2<CR>")
 vim.keymap.set("n", "<C-Down>", ":resize -2<CR>")
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>")
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>")
-
 
 -- LSP
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -97,4 +96,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
     end,
 })
-

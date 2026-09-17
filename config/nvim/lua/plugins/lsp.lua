@@ -10,17 +10,6 @@ require("mason-lspconfig").setup({
     ensure_installed = { "lua_ls", "rust_analyzer", "tombi", "clangd" }
 })
 
-vim.lsp.config("lua_ls", {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" }
-            }
-        }
-    }
-})
-
-
 -- cmp
 vim.pack.add({
     "g:hrsh7th/nvim-cmp",
@@ -47,8 +36,9 @@ cmp.setup({
     },
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        { name = 'calc' },
         { name = 'luasnip' },
+        { name = 'lazydev' },
+        { name = 'calc' },
         { name = 'path' },
         { name = 'buffer' },
     }),
