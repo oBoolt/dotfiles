@@ -129,7 +129,20 @@ for i = 1, 10 do
     hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
-hl.bind(mainMod .. " + N", hl.dsp.window.pin())
+hl.bind(mainMod .. " + N", function()
+    local monitor = hl.get_active_monitor()
+    local window = hl.get_active_window()
+
+    if monitor == nil or window == nil then
+        return
+    end
+
+    if not window.pinned then
+        hl.dispatch(hl.dsp.window.resize({ x = monitor.width * 0.3, y = monitor.height * 0.3 }))
+    end
+
+    hl.dispatch(hl.dsp.window.pin())
+end)
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
